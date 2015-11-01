@@ -16,47 +16,12 @@ function getUniqueValues(data, fieldName) {
 	return values;
 };
 
-function getSpeciesForDate(data, inDate) {
-	var datePosition = data[0].indexOf('Date');
-	var speciesPosition = data[0].indexOf('Scientific Name');
-
-	var values = [];
-	var date2 = new Date(inDate);
-
-	for (var index = 1; index < data.length; index++) {
-		var row = data[index];
-
-		var date1 = new Date(row[datePosition]);
-
-		if (date1.toDateString() == date2.toDateString()) {
-			values.push(row[speciesPosition]);
-		}
-	}
-
-	return values;	
+function getSightingsForDate(inDate) {
+	return gSightings.filter(function(s) { return s['Date'] == inDate; });
 };
 
-function getLocationsForDate(data, inDate) {
-	var datePosition = data[0].indexOf('Date');
-	var locationPosition = data[0].indexOf('Location');
-
-	var values = [];
-	var date2 = new Date(inDate);
-
-	for (var index = 1; index < data.length; index++) {
-		var row = data[index];
-
-		var date1 = new Date(row[datePosition]);
-
-		if (date1.toDateString() == date2.toDateString()) {
-			var aValue = row[locationPosition];
-			if (values.indexOf(aValue) < 0) {
-				values.push(aValue);
-			}
-		}
-	}
-
-	return values;	
+function getSightingsForScientificName(inScientificName) {
+	return gSightings.filter(function(s) { return s['Scientific Name'] == inScientificName; });
 };
 
 // returns a promise to parse the eBird CSV data
@@ -118,11 +83,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		complete: function(results) {
 			gSightings = results.data;
 
-			console.log('moo', results.data[0]);
 			gScientificNames = getUniqueValues(gSightings, 'Scientific Name');
 			gCommonNames = getUniqueValues(gSightings, 'Common Name');
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
+
+			console.log('a trip', getSightingsForDate('01-18-2014'));
+			console.log('snowy egret', getSightingsForScientificName('Egretta thula'));
 
 			addSummaryItem('scientific names ' + gScientificNames.length);
 			addSummaryItem('common names ' + gCommonNames.length);
