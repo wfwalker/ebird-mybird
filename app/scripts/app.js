@@ -105,12 +105,14 @@ var eBirdData = null;
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log('hi mom');
 
-	Papa.parse("/data/ebird.csv", {
+	Papa.parse("./data/ebird.csv", {
 		download: true,
+		header: true,
 		complete: function(results) {
-			console.log('moo');
+			console.log('moo', results.data[0]);
+			document.getElementById('results').innerHTML = 'found ' + results.data.length + JSON.stringify(results.data[0]);
 		}
 	});  
 
-	console.log('end');
+	console.log('end');	
 });
