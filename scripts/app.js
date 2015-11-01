@@ -1,12 +1,13 @@
 // given a representation of CSV data with fieldnames in the first row,
 // return an array of unique values for the column with the given name
 
+gSightings = null;
+
 function getUniqueValues(data, fieldName) {
-	var fieldPosition = data[0].indexOf(fieldName);
 	var values = [];
 
 	for (var index = 1; index < data.length; index++) {
-		var aValue = data[index][fieldPosition];
+		var aValue = data[index][fieldName];
 		if (values.indexOf(aValue) < 0) {
 			values.push(aValue);
 		}
@@ -102,6 +103,12 @@ function parseEBirdData() {
 
 var eBirdData = null;
 
+function addSummaryItem(inString) {
+	var p = document.createElement("p");
+	p.innerHTML = inString;
+	document.getElementById('results').appendChild(p);
+}
+
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log('hi mom');
 
@@ -109,8 +116,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		download: true,
 		header: true,
 		complete: function(results) {
+			gSightings = results.data;
+
 			console.log('moo', results.data[0]);
-			document.getElementById('results').innerHTML = 'found ' + results.data.length + JSON.stringify(results.data[0]);
+			gScientificNames = getUniqueValues(gSightings, 'Scientific Name');
+			gCommonNames = getUniqueValues(gSightings, 'Common Name');
+			gLocations = getUniqueValues(gSightings, 'Location');
+			gDates = getUniqueValues(gSightings, 'Date');
+
+			addSummaryItem('scientific names ' + gScientificNames.length);
+			addSummaryItem('common names ' + gCommonNames.length);
+			addSummaryItem('locations ' + gLocations.length);
+			addSummaryItem('dates ' + gDates.length);
+
+			addSummaryItem('sample sighting ' + JSON.stringify(gSightings[0]));
 		}
 	});  
 
