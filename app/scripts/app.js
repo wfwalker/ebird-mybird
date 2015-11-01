@@ -24,11 +24,16 @@
 
 gSightings = null;
 
-function getUniqueValues(data, fieldName) {
+function getEarliestSighting(sightingList) {
+	sightingList.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+	return sightingList[0];
+}
+
+function getUniqueValues(sightingList, fieldName) {
 	var values = [];
 
-	for (var index = 1; index < data.length; index++) {
-		var aValue = data[index][fieldName];
+	for (var index = 1; index < sightingList.length; index++) {
+		var aValue = sightingList[index][fieldName];
 		if (values.indexOf(aValue) < 0) {
 			values.push(aValue);
 		}
@@ -38,10 +43,14 @@ function getUniqueValues(data, fieldName) {
 };
 
 function addDateObjects() {
-	for (var index = 0; index < 100; index++) {
-		var pieces = gSightings[index]['Date'].split('-');
-		var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
-		gSightings[index]['DateObject'] = new Date(fixedDateString);
+	for (var index = 0; index < gSightings.length; index++) {
+		var sighting = gSightings[index];
+
+		if (sighting['Date']) {
+			var pieces = sighting['Date'].split('-');
+			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
+			gSightings[index]['DateObject'] = new Date(fixedDateString);
+		}
 	}
 }
 
@@ -53,6 +62,11 @@ function getSightingsForScientificName(inScientificName) {
 	return gSightings.filter(function(s) { return s['Scientific Name'] == inScientificName; });
 };
 
+function getSightingsForLocation(inLocation) {
+	return gSightings.filter(function(s) { return s['Location'] == inLocation; });
+};
+
+
 var eBirdData = null;
 
 function addSummaryItem(inString) {
@@ -62,7 +76,7 @@ function addSummaryItem(inString) {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-	console.log('hi mom');
+	console.log('starting');
 
 	Papa.parse("./data/ebird.csv", {
 		download: true,
@@ -77,8 +91,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
 
-			console.log('a trip', getSightingsForDate('01-18-2014'));
+			console.log('a day in trinidad', getSightingsForDate('01-18-2014'));
+
 			console.log('snowy egret', getSightingsForScientificName('Egretta thula'));
+
+			console.log('black phoebe first', getEarliestSighting(getSightingsForScientificName('Sayornis nigricans'))['Date']);
+
+			console.log('charleston slough species', getUniqueValues(getSightingsForLocation('Charleston Slough'), 'Scientific Name'));
 
 			addSummaryItem('scientific names ' + gScientificNames.length);
 			addSummaryItem('common names ' + gCommonNames.length);
@@ -88,6 +107,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			addSummaryItem('sample sighting ' + JSON.stringify(gSightings[0]));
 		}
 	});  
-
-	console.log('end');	
 });
