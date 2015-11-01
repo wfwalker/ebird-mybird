@@ -41,6 +41,7 @@ gulp.task('offline', ['build'], function(callback) {
       'images/**',
       'index.html',
       'scripts/**',
+      'data/**',
       'styles/**',
     ],
   }, callback);
