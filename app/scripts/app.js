@@ -1,47 +1,3 @@
-// given a representation of CSV data with fieldnames in the first row,
-// return an array of unique values for the column with the given name
-
-gSightings = null;
-
-function getUniqueValues(data, fieldName) {
-	var values = [];
-
-	for (var index = 1; index < data.length; index++) {
-		var aValue = data[index][fieldName];
-		if (values.indexOf(aValue) < 0) {
-			values.push(aValue);
-		}
-	}
-
-	return values;
-};
-
-function getSightingsForDate(inDate) {
-	return gSightings.filter(function(s) { return s['Date'] == inDate; });
-};
-
-function getSightingsForScientificName(inScientificName) {
-	return gSightings.filter(function(s) { return s['Scientific Name'] == inScientificName; });
-};
-
-// returns a promise to parse the eBird CSV data
-
-function parseEBirdData() {
-	var deferred = Q.defer();
-
-	var parser = csv.parse({delimiter: ','}, function(err, data){
-		deferred.resolve(data);
-		// getUniqueValues(data, 'Location');
-		// getUniqueValues(data, 'Common Name');
-		// getUniqueValues(data, 'County');
-	});
-
-	var inputStream = fs.createReadStream(__dirname + '/ebird.csv');
-
-	inputStream.pipe(parser);
-
-	return deferred.promise;
-};
 
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
@@ -66,6 +22,37 @@ function parseEBirdData() {
 // Checklist Comments
 
 
+gSightings = null;
+
+function getUniqueValues(data, fieldName) {
+	var values = [];
+
+	for (var index = 1; index < data.length; index++) {
+		var aValue = data[index][fieldName];
+		if (values.indexOf(aValue) < 0) {
+			values.push(aValue);
+		}
+	}
+
+	return values;
+};
+
+function addDateObjects() {
+	for (var index = 0; index < 100; index++) {
+		var pieces = gSightings[index]['Date'].split('-');
+		var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
+		gSightings[index]['DateObject'] = new Date(fixedDateString);
+	}
+}
+
+function getSightingsForDate(inDate) {
+	return gSightings.filter(function(s) { return s['Date'] == inDate; });
+};
+
+function getSightingsForScientificName(inScientificName) {
+	return gSightings.filter(function(s) { return s['Scientific Name'] == inScientificName; });
+};
+
 var eBirdData = null;
 
 function addSummaryItem(inString) {
@@ -82,6 +69,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		header: true,
 		complete: function(results) {
 			gSightings = results.data;
+
+			addDateObjects();
 
 			gScientificNames = getUniqueValues(gSightings, 'Scientific Name');
 			gCommonNames = getUniqueValues(gSightings, 'Common Name');
