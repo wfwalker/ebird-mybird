@@ -1,82 +1,3 @@
-// given a representation of CSV data with fieldnames in the first row,
-// return an array of unique values for the column with the given name
-
-gSightings = null;
-
-function getUniqueValues(data, fieldName) {
-	var values = [];
-
-	for (var index = 1; index < data.length; index++) {
-		var aValue = data[index][fieldName];
-		if (values.indexOf(aValue) < 0) {
-			values.push(aValue);
-		}
-	}
-
-	return values;
-};
-
-function getSpeciesForDate(data, inDate) {
-	var datePosition = data[0].indexOf('Date');
-	var speciesPosition = data[0].indexOf('Scientific Name');
-
-	var values = [];
-	var date2 = new Date(inDate);
-
-	for (var index = 1; index < data.length; index++) {
-		var row = data[index];
-
-		var date1 = new Date(row[datePosition]);
-
-		if (date1.toDateString() == date2.toDateString()) {
-			values.push(row[speciesPosition]);
-		}
-	}
-
-	return values;	
-};
-
-function getLocationsForDate(data, inDate) {
-	var datePosition = data[0].indexOf('Date');
-	var locationPosition = data[0].indexOf('Location');
-
-	var values = [];
-	var date2 = new Date(inDate);
-
-	for (var index = 1; index < data.length; index++) {
-		var row = data[index];
-
-		var date1 = new Date(row[datePosition]);
-
-		if (date1.toDateString() == date2.toDateString()) {
-			var aValue = row[locationPosition];
-			if (values.indexOf(aValue) < 0) {
-				values.push(aValue);
-			}
-		}
-	}
-
-	return values;	
-};
-
-// returns a promise to parse the eBird CSV data
-
-function parseEBirdData() {
-	var deferred = Q.defer();
-
-	var parser = csv.parse({delimiter: ','}, function(err, data){
-		deferred.resolve(data);
-		// getUniqueValues(data, 'Location');
-		// getUniqueValues(data, 'Common Name');
-		// getUniqueValues(data, 'County');
-	});
-
-	var inputStream = fs.createReadStream(__dirname + '/ebird.csv');
-
-	inputStream.pipe(parser);
-
-	return deferred.promise;
-};
 
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
@@ -101,16 +22,65 @@ function parseEBirdData() {
 // Checklist Comments
 
 
+gSightings = null;
+
+function getEarliestSighting(sightingList) {
+	sightingList.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+	return sightingList[0];
+}
+
+function getUniqueValues(sightingList, fieldName) {
+	var values = [];
+
+	for (var index = 1; index < sightingList.length; index++) {
+		var aValue = sightingList[index][fieldName];
+		if (values.indexOf(aValue) < 0) {
+			values.push(aValue);
+		}
+	}
+
+	return values;
+};
+
+function addDateObjects() {
+	for (var index = 0; index < gSightings.length; index++) {
+		var sighting = gSightings[index];
+
+		if (sighting['Date']) {
+			var pieces = sighting['Date'].split('-');
+			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
+			gSightings[index]['DateObject'] = new Date(fixedDateString);
+		}
+	}
+}
+
+function getSightingsForDate(inDate) {
+	return gSightings.filter(function(s) { return s['Date'] == inDate; });
+};
+
+function getSightingsForScientificName(inScientificName) {
+	return gSightings.filter(function(s) { return s['Scientific Name'] == inScientificName; });
+};
+
+function getSightingsForLocation(inLocation) {
+	return gSightings.filter(function(s) { return s['Location'] == inLocation; });
+};
+
+
 var eBirdData = null;
 
-function addSummaryItem(inString) {
-	var p = document.createElement("p");
-	p.innerHTML = inString;
-	document.getElementById('results').appendChild(p);
+function getAllFirstSightings() {
+	var firstSightings = gScientificNames.map(function (n) {
+		return getEarliestSighting(getSightingsForScientificName(n));
+	});
+
+	firstSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+
+	return firstSightings;
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-	console.log('hi mom');
+	console.log('starting');
 
 	Papa.parse("./data/ebird.csv", {
 		download: true,
@@ -118,20 +88,94 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		complete: function(results) {
 			gSightings = results.data;
 
-			console.log('moo', results.data[0]);
+			addDateObjects();
+
 			gScientificNames = getUniqueValues(gSightings, 'Scientific Name');
 			gCommonNames = getUniqueValues(gSightings, 'Common Name');
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
+			gStates = getUniqueValues(gSightings, 'State/Province');
 
-			addSummaryItem('scientific names ' + gScientificNames.length);
-			addSummaryItem('common names ' + gCommonNames.length);
-			addSummaryItem('locations ' + gLocations.length);
-			addSummaryItem('dates ' + gDates.length);
+			// console.log('a day in trinidad', getSightingsForDate('01-18-2014'));
 
-			addSummaryItem('sample sighting ' + JSON.stringify(gSightings[0]));
-		}
-	});  
+			// console.log('snowy egret', getSightingsForScientificName('Egretta thula'));
 
-	console.log('end');	
+			// console.log('black phoebe first', getEarliestSighting(getSightingsForScientificName('Sayornis nigricans'))['Date']);
+
+			// console.log('charleston slough species', getUniqueValues(getSightingsForLocation('Charleston Slough'), 'Scientific Name'));
+
+			// var firstSightings = getAllFirstSightings();
+
+			// for (var index = 0; index < firstSightings.length; index++) {
+			// 	addSummaryItem(firstSightings[index]['Date'] + ' ' + firstSightings[index]['Location'] + ' ' + firstSightings[index]['Common Name']);
+			// }
+
+			for (var item of document.querySelectorAll('a[data-hash]')) {
+				item.addEventListener('click', function (e) {
+			    	e.preventDefault();
+			    	window.location.hash = e.target.getAttribute('data-hash');
+			    });
+			}
+		}	
+	});
 });
+
+var routingMap = {
+	'#trips' : function() {
+		for (var item of document.querySelectorAll('section#trips')) {
+			item.classList.remove('hidden');
+			item.classList.add('visible');
+		}
+
+	    var theTemplateScript = document.querySelectorAll('#trips-template')[0].innerHTML;
+	    var theTemplate = Handlebars.compile(theTemplateScript);
+		var p = document.createElement("p");
+		p.innerHTML = theTemplate({trips: gDates});
+
+		var results = document.getElementById('trips-results');
+		while (results.firstChild) {
+		    results.removeChild(results.firstChild);
+		}
+
+	    results.appendChild(p);
+	}, 
+	'#locations' : function() {
+		for (var item of document.querySelectorAll('section#locations')) {
+			item.classList.remove('hidden');
+			item.classList.add('visible');
+		}
+
+	    var theTemplateScript = document.querySelectorAll('#locations-template')[0].innerHTML;
+	    var theTemplate = Handlebars.compile(theTemplateScript);
+		var p = document.createElement("p");
+		p.innerHTML = theTemplate({locations: gLocations});
+
+		var results = document.getElementById('locations-results');
+		while (results.firstChild) {
+		    results.removeChild(results.firstChild);
+		}
+
+	    results.appendChild(p);
+	}, 
+}
+
+window.onhashchange = function() {
+	// On every hash change the render function is called with the new hash.
+	// This is how the navigation of our app happens.
+	console.log('changed', window.location.hash);
+
+	for (var item of document.querySelectorAll('section.card')) {
+		item.classList.remove('visible');
+		item.classList.add('hidden');
+	}
+
+	if(routingMap[window.location.hash]) {
+		routingMap[window.location.hash]();
+	} else {
+		console.log('not found', window.location.hash);
+	}
+};
+
+
+
+
