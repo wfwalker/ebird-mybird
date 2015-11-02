@@ -67,7 +67,7 @@ function getSightingsForLocation(inLocation) {
 };
 
 function renderTemplate(inPrefix) {
-    var theTemplateScript = document.querySelectorAll('#' + inPrefix + '-template')[0].innerHTML;
+    var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
     var theTemplate = Handlebars.compile(theTemplateScript);
 	var p = document.createElement("p");
 	p.innerHTML = theTemplate({locations: gLocations, trips: gDates});
