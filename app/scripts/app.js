@@ -75,6 +75,16 @@ function addSummaryItem(inString) {
 	document.getElementById('results').appendChild(p);
 }
 
+function getAllFirstSightings() {
+	var firstSightings = gScientificNames.map(function (n) {
+		return getEarliestSighting(getSightingsForScientificName(n));
+	});
+
+	firstSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+
+	return firstSightings;
+}
+
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log('starting');
 
@@ -90,21 +100,69 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			gCommonNames = getUniqueValues(gSightings, 'Common Name');
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
+			gStates = getUniqueValues(gSightings, 'State/Province');
 
-			console.log('a day in trinidad', getSightingsForDate('01-18-2014'));
+			// console.log('a day in trinidad', getSightingsForDate('01-18-2014'));
 
-			console.log('snowy egret', getSightingsForScientificName('Egretta thula'));
+			// console.log('snowy egret', getSightingsForScientificName('Egretta thula'));
 
-			console.log('black phoebe first', getEarliestSighting(getSightingsForScientificName('Sayornis nigricans'))['Date']);
+			// console.log('black phoebe first', getEarliestSighting(getSightingsForScientificName('Sayornis nigricans'))['Date']);
 
-			console.log('charleston slough species', getUniqueValues(getSightingsForLocation('Charleston Slough'), 'Scientific Name'));
+			// console.log('charleston slough species', getUniqueValues(getSightingsForLocation('Charleston Slough'), 'Scientific Name'));
 
-			addSummaryItem('scientific names ' + gScientificNames.length);
-			addSummaryItem('common names ' + gCommonNames.length);
+			addSummaryItem('species ' + gCommonNames.length);
 			addSummaryItem('locations ' + gLocations.length);
+			addSummaryItem('states ' + gStates.length);
 			addSummaryItem('dates ' + gDates.length);
 
-			addSummaryItem('sample sighting ' + JSON.stringify(gSightings[0]));
-		}
-	});  
+			// var firstSightings = getAllFirstSightings();
+
+			// for (var index = 0; index < firstSightings.length; index++) {
+			// 	addSummaryItem(firstSightings[index]['Date'] + ' ' + firstSightings[index]['Location'] + ' ' + firstSightings[index]['Common Name']);
+			// }
+
+			for (var item of document.querySelectorAll('a[data-hash]')) {
+				item.addEventListener('click', function (e) {
+			    	e.preventDefault();
+			    	window.location.hash = e.target.getAttribute('data-hash');
+			    });
+			}
+		}	
+	});
 });
+
+var routingMap = {
+	'#trips' : function() {
+		for (var item of document.querySelectorAll('section#trips')) {
+			item.classList.remove('hidden');
+			item.classList.add('visible');
+		}
+	}, 
+	'#locations' : function() {
+		for (var item of document.querySelectorAll('section#locations')) {
+			item.classList.remove('hidden');
+			item.classList.add('visible');
+		}
+	}, 
+}
+
+window.onhashchange = function() {
+	// On every hash change the render function is called with the new hash.
+	// This is how the navigation of our app happens.
+	console.log('changed', window.location.hash);
+
+	for (var item of document.querySelectorAll('section.card')) {
+		item.classList.remove('visible');
+		item.classList.add('hidden');
+	}
+
+	if(routingMap[window.location.hash]) {
+		routingMap[window.location.hash]();
+	} else {
+		console.log('not found', window.location.hash);
+	}
+};
+
+
+
+

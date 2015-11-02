@@ -6,6 +6,7 @@
     <title>ebird-mybird</title>
     <meta name="description" content="ebird-mybird : An offline web app for browsing your personal eBird sightings">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/app.css">
     <script src="scripts/offline-manager.js"></script>
     <script src="scripts/papaparse.min.js"></script>
     <script src="scripts/app.js"></script>
@@ -23,7 +24,17 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
+        <a data-hash="trips" href="#trips">trips</a>
+        <a data-hash="locations" href="#locations">locations</a>
         <div id='results'>
+      </section>
+
+      <section id="locations" class="hidden card inner">
+        locations section
+      </section>
+
+      <section id="trips" class="hidden card inner">
+        trips section
       </section>
     </div>
 
