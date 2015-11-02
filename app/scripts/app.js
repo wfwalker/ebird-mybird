@@ -66,11 +66,11 @@ function getSightingsForLocation(inLocation) {
 	return gSightings.filter(function(s) { return s['Location'] == inLocation; });
 };
 
-function renderTemplate(inPrefix) {
+function renderTemplate(inPrefix, inData) {
     var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
     var theTemplate = Handlebars.compile(theTemplateScript);
 	var newDiv = document.createElement("div");
-	newDiv.innerHTML = theTemplate({locations: gLocations, trips: gDates, taxons: gCommonNames});
+	newDiv.innerHTML = theTemplate(inData);
 
 	var results = document.getElementById(inPrefix + '-results');
 	while (results.firstChild) {
@@ -115,8 +115,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 			// console.log('black phoebe first', getEarliestSighting(getSightingsForScientificName('Sayornis nigricans'))['Date']);
 
-			// console.log('charleston slough species', getUniqueValues(getSightingsForLocation('Charleston Slough'), 'Scientific Name'));
-
 			// var firstSightings = getAllFirstSightings();
 
 			// for (var index = 0; index < firstSightings.length; index++) {
@@ -140,7 +138,20 @@ var routingMap = {
 			item.classList.add('visible');
 		}
 
-		renderTemplate('trips');
+		renderTemplate('trips', {
+			trips: gDates
+		});
+	}, 
+	'#trip' : function(inDate) {
+		for (var item of document.querySelectorAll('section#trip')) {
+			item.classList.remove('hidden');
+			item.classList.add('visible');
+		}
+
+		renderTemplate('trip', {
+			name: inDate,
+			sightings: getSightingsForDate(inDate)
+		});
 	}, 
 	'#locations' : function() {
 		for (var item of document.querySelectorAll('section#locations')) {
@@ -148,7 +159,24 @@ var routingMap = {
 			item.classList.add('visible');
 		}
 
-		renderTemplate('locations');
+		renderTemplate('locations', {
+			locations: gLocations
+		});
+	}, 
+	'#location' : function(inLocationName) {
+		for (var item of document.querySelectorAll('section#location')) {
+			item.classList.remove('hidden');
+			item.classList.add('visible');
+		}
+
+		console.log('location details');
+
+		// TODO: url decode, to avoid "Frontera%20Audubon"
+
+		renderTemplate('location', {
+			name: inLocationName,
+			sightings: getSightingsForLocation(inLocationName)
+		});
 	}, 
 	'#taxons' : function() {
 		for (var item of document.querySelectorAll('section#taxons')) {
@@ -156,22 +184,25 @@ var routingMap = {
 			item.classList.add('visible');
 		}
 
-		renderTemplate('taxons');
+		renderTemplate('taxons', {
+			taxons: gCommonNames
+		});
 	}, 
 }
 
 window.onhashchange = function() {
 	// On every hash change the render function is called with the new hash.
 	// This is how the navigation of our app happens.
-	console.log('changed', window.location.hash);
+	var theHashParts = window.location.hash.split('/');
+	console.log('changed', theHashParts[0], theHashParts[1]);
 
 	for (var item of document.querySelectorAll('section.card')) {
 		item.classList.remove('visible');
 		item.classList.add('hidden');
 	}
 
-	if(routingMap[window.location.hash]) {
-		routingMap[window.location.hash]();
+	if(routingMap[theHashParts[0]]) {
+		routingMap[theHashParts[0]](theHashParts[1]);
 	} else {
 		console.log('not found', window.location.hash);
 	}

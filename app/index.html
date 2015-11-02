@@ -18,21 +18,36 @@
     <script id="taxons-template" type="x-handlebars-template">​
       <h3>{{taxons.length}} species</h3>
       {{#each taxons}}
-        <div><a href="#species?name={{this}}">{{this}}</a></div>
+        <div><a href="#species/{{this}}">{{this}}</a></div>
       {{/each}}
     </script>
 
     <script id="locations-template" type="x-handlebars-template">​
       <h3>{{locations.length}} locations</h3>
       {{#each locations}}
-        <div><a href="#location?name={{this}}">{{this}}</a></div>
+        <div><a href="#location/{{this}}">{{this}}</a></div>
+      {{/each}}
+    </script>
+
+    <script id="location-template" type="x-handlebars-template">​
+      <h3>{{name}}</h3>
+      <div>{{sightings.length}} sightings</div>
+      {{#each sightings}}
+        <div>{{this.Date}} {{[Common Name]}}</div>
       {{/each}}
     </script>
 
     <script id="trips-template" type="x-handlebars-template">
       <h3>{{trips.length}} trips</h3>
       {{#each trips}}
-        <div><a href="#trip?date={{this}}">{{this}}</a></div>
+        <div><a href="#trip/{{this}}">{{this}}</a></div>
+      {{/each}}
+    </script>
+
+    <script id="trip-template" type="x-handlebars-template">
+      <h3>{{name}}</h3>
+      {{#each sightings}}
+        <div>{{this.Location}} {{[Common Name]}}</div>
       {{/each}}
     </script>
   </head>
@@ -59,8 +74,18 @@
         </div>
       </section>
 
+      <section id="location" class="hidden card inner">
+        <div id='location-results' class='inner'>
+        </div>
+      </section>
+
       <section id="trips" class="hidden card inner">
         <div id='trips-results' class='inner'>
+        </div>
+      </section>
+
+      <section id="trip" class="hidden card inner">
+        <div id='trip-results' class='inner'>
         </div>
       </section>
 
