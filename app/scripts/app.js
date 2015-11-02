@@ -66,6 +66,19 @@ function getSightingsForLocation(inLocation) {
 	return gSightings.filter(function(s) { return s['Location'] == inLocation; });
 };
 
+function renderTemplate(inPrefix) {
+    var theTemplateScript = document.querySelectorAll('#' + inPrefix + '-template')[0].innerHTML;
+    var theTemplate = Handlebars.compile(theTemplateScript);
+	var p = document.createElement("p");
+	p.innerHTML = theTemplate({locations: gLocations, trips: gDates});
+
+	var results = document.getElementById(inPrefix + '-results');
+	while (results.firstChild) {
+	    results.removeChild(results.firstChild);
+	}
+
+    results.appendChild(p);
+}
 
 var eBirdData = null;
 
@@ -127,17 +140,7 @@ var routingMap = {
 			item.classList.add('visible');
 		}
 
-	    var theTemplateScript = document.querySelectorAll('#trips-template')[0].innerHTML;
-	    var theTemplate = Handlebars.compile(theTemplateScript);
-		var p = document.createElement("p");
-		p.innerHTML = theTemplate({trips: gDates});
-
-		var results = document.getElementById('trips-results');
-		while (results.firstChild) {
-		    results.removeChild(results.firstChild);
-		}
-
-	    results.appendChild(p);
+		renderTemplate('trips');
 	}, 
 	'#locations' : function() {
 		for (var item of document.querySelectorAll('section#locations')) {
@@ -145,17 +148,7 @@ var routingMap = {
 			item.classList.add('visible');
 		}
 
-	    var theTemplateScript = document.querySelectorAll('#locations-template')[0].innerHTML;
-	    var theTemplate = Handlebars.compile(theTemplateScript);
-		var p = document.createElement("p");
-		p.innerHTML = theTemplate({locations: gLocations});
-
-		var results = document.getElementById('locations-results');
-		while (results.firstChild) {
-		    results.removeChild(results.firstChild);
-		}
-
-	    results.appendChild(p);
+		renderTemplate('locations');
 	}, 
 }
 
