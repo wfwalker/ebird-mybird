@@ -69,12 +69,6 @@ function getSightingsForLocation(inLocation) {
 
 var eBirdData = null;
 
-function addSummaryItem(inString) {
-	var p = document.createElement("p");
-	p.innerHTML = inString;
-	document.getElementById('results').appendChild(p);
-}
-
 function getAllFirstSightings() {
 	var firstSightings = gScientificNames.map(function (n) {
 		return getEarliestSighting(getSightingsForScientificName(n));
@@ -110,11 +104,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 			// console.log('charleston slough species', getUniqueValues(getSightingsForLocation('Charleston Slough'), 'Scientific Name'));
 
-			addSummaryItem('species ' + gCommonNames.length);
-			addSummaryItem('locations ' + gLocations.length);
-			addSummaryItem('states ' + gStates.length);
-			addSummaryItem('dates ' + gDates.length);
-
 			// var firstSightings = getAllFirstSightings();
 
 			// for (var index = 0; index < firstSightings.length; index++) {
@@ -137,12 +126,36 @@ var routingMap = {
 			item.classList.remove('hidden');
 			item.classList.add('visible');
 		}
+
+	    var theTemplateScript = document.querySelectorAll('#trips-template')[0].innerHTML;
+	    var theTemplate = Handlebars.compile(theTemplateScript);
+		var p = document.createElement("p");
+		p.innerHTML = theTemplate({trips: gDates});
+
+		var results = document.getElementById('trips-results');
+		while (results.firstChild) {
+		    results.removeChild(results.firstChild);
+		}
+
+	    results.appendChild(p);
 	}, 
 	'#locations' : function() {
 		for (var item of document.querySelectorAll('section#locations')) {
 			item.classList.remove('hidden');
 			item.classList.add('visible');
 		}
+
+	    var theTemplateScript = document.querySelectorAll('#locations-template')[0].innerHTML;
+	    var theTemplate = Handlebars.compile(theTemplateScript);
+		var p = document.createElement("p");
+		p.innerHTML = theTemplate({locations: gLocations});
+
+		var results = document.getElementById('locations-results');
+		while (results.firstChild) {
+		    results.removeChild(results.firstChild);
+		}
+
+	    results.appendChild(p);
 	}, 
 }
 
