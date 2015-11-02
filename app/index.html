@@ -14,6 +14,20 @@
     <script src="scripts/papaparse.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/handlebars-v4.0.4.js"></script>
+
+    <script id="locations-template" type="x-handlebars-template">​
+      <h3>{{locations.length}} locations</h3>
+      {{#each locations}}
+        <div><a href="#location?name={{this}}">{{this}}</a></div>
+      {{/each}}
+    </script>
+
+    <script id="trips-template" type="x-handlebars-template">
+      <h3>{{trips.length}} trips</h3>
+      {{#each trips}}
+        <div><a href="#trip?date={{this}}">{{this}}</a></div>
+      {{/each}}
+    </script>
   </head>
 
   <body>
@@ -30,27 +44,14 @@
       <section id="main_content" class="inner">
         <a data-hash="trips" href="#trips">trips</a>
         <a data-hash="locations" href="#locations">locations</a>
-        <div id='results'>
       </section>
 
       <section id="locations" class="hidden card inner">
-        <div id='locations-template' class='hidden'>
-          <h3>{{locations.length}} locations</h3>
-          {{#each locations}}
-            <div><a href="#location?name={{this}}">{{this}}</a></div>
-          {{/each}}
-        </div>
         <div id='locations-results' class='inner'>
         </div>
       </section>
 
       <section id="trips" class="hidden card inner">
-        <div id='trips-template' class='hidden'>
-          <h3>{{trips.length}} trips</h3>
-          {{#each trips}}
-            <div><a href="#trip?date={{this}}">{{this}}</a></div>
-          {{/each}}
-        </div>
         <div id='trips-results' class='inner'>
         </div>
       </section>
