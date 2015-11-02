@@ -69,15 +69,15 @@ function getSightingsForLocation(inLocation) {
 function renderTemplate(inPrefix) {
     var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
     var theTemplate = Handlebars.compile(theTemplateScript);
-	var p = document.createElement("p");
-	p.innerHTML = theTemplate({locations: gLocations, trips: gDates});
+	var newDiv = document.createElement("div");
+	newDiv.innerHTML = theTemplate({locations: gLocations, trips: gDates, taxons: gCommonNames});
 
 	var results = document.getElementById(inPrefix + '-results');
 	while (results.firstChild) {
 	    results.removeChild(results.firstChild);
 	}
 
-    results.appendChild(p);
+    results.appendChild(newDiv);
 }
 
 var eBirdData = null;
@@ -149,6 +149,14 @@ var routingMap = {
 		}
 
 		renderTemplate('locations');
+	}, 
+	'#taxons' : function() {
+		for (var item of document.querySelectorAll('section#taxons')) {
+			item.classList.remove('hidden');
+			item.classList.add('visible');
+		}
+
+		renderTemplate('taxons');
 	}, 
 }
 

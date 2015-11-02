@@ -15,6 +15,13 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/handlebars-v4.0.4.js"></script>
 
+    <script id="taxons-template" type="x-handlebars-template">​
+      <h3>{{taxons.length}} species</h3>
+      {{#each taxons}}
+        <div><a href="#species?name={{this}}">{{this}}</a></div>
+      {{/each}}
+    </script>
+
     <script id="locations-template" type="x-handlebars-template">​
       <h3>{{locations.length}} locations</h3>
       {{#each locations}}
@@ -44,6 +51,7 @@
       <section id="main_content" class="inner">
         <a data-hash="trips" href="#trips">trips</a>
         <a data-hash="locations" href="#locations">locations</a>
+        <a data-hash="taxons" href="#taxons">species</a>
       </section>
 
       <section id="locations" class="hidden card inner">
@@ -53,6 +61,11 @@
 
       <section id="trips" class="hidden card inner">
         <div id='trips-results' class='inner'>
+        </div>
+      </section>
+
+      <section id="taxons" class="hidden card inner">
+        <div id='taxons-results' class='inner'>
         </div>
       </section>
     </div>
