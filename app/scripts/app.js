@@ -62,6 +62,10 @@ function getSightingsForScientificName(inScientificName) {
 	return gSightings.filter(function(s) { return s['Scientific Name'] == inScientificName; });
 };
 
+function getSightingsForCommonName(inCommonName) {
+	return gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
+};
+
 function getSightingsForLocation(inLocation) {
 	return gSightings.filter(function(s) { return s['Location'] == inLocation; });
 };
@@ -108,10 +112,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
 			gStates = getUniqueValues(gSightings, 'State/Province');
-
-			// console.log('a day in trinidad', getSightingsForDate('01-18-2014'));
-
-			// console.log('snowy egret', getSightingsForScientificName('Egretta thula'));
 
 			// console.log('black phoebe first', getEarliestSighting(getSightingsForScientificName('Sayornis nigricans'))['Date']);
 
@@ -186,6 +186,17 @@ var routingMap = {
 
 		renderTemplate('taxons', {
 			taxons: gCommonNames
+		});
+	}, 
+	'#taxon' : function(inCommonName) {
+		for (var item of document.querySelectorAll('section#taxon')) {
+			item.classList.remove('hidden');
+			item.classList.add('visible');
+		}
+
+		renderTemplate('taxon', {
+			name: inCommonName,
+			sightings: getSightingsForCommonName(inCommonName)
 		});
 	}, 
 }

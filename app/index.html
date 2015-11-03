@@ -18,7 +18,14 @@
     <script id="taxons-template" type="x-handlebars-template">​
       <h3>{{taxons.length}} species</h3>
       {{#each taxons}}
-        <div><a href="#species/{{this}}">{{this}}</a></div>
+        <div><a href="#taxon/{{this}}">{{this}}</a></div>
+      {{/each}}
+    </script>
+
+    <script id="taxon-template" type="x-handlebars-template">​
+      <h3>{{name}}</h3>
+      {{#each sightings}}
+        <div>{{this.Date}} {{this.Location}}</div>
       {{/each}}
     </script>
 
@@ -91,6 +98,11 @@
 
       <section id="taxons" class="hidden card inner">
         <div id='taxons-results' class='inner'>
+        </div>
+      </section>
+
+      <section id="taxon" class="hidden card inner">
+        <div id='taxon-results' class='inner'>
         </div>
       </section>
     </div>
