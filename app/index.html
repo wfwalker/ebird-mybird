@@ -25,7 +25,7 @@
     <script id="taxon-template" type="x-handlebars-template">​
       <h3>{{name}}</h3>
       {{#each sightings}}
-        <div>{{this.Date}} {{this.Location}}</div>
+        <div><a href="#trip/{{this.Date}}">{{this.Date}}</a> <a href="#location/{{this.Location}}">{{this.Location}}</a></div>
       {{/each}}
     </script>
 
