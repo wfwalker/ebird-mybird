@@ -24,6 +24,7 @@
 
     <script id="taxon-template" type="x-handlebars-template">​
       <h3>{{name}}</h3>
+      <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
         <div><a href="#trip/{{this.Date}}">{{this.Date}}</a> <a href="#location/{{this.Location}}">{{this.Location}}</a></div>
       {{/each}}
@@ -53,6 +54,7 @@
 
     <script id="trip-template" type="x-handlebars-template">
       <h3>{{name}}</h3>
+      <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
         <div>{{this.Location}} {{[Common Name]}}</div>
       {{/each}}
