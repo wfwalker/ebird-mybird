@@ -115,8 +115,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			gDates = getUniqueValues(gSightings, 'Date');
 			gStates = getUniqueValues(gSightings, 'State/Province');
 
-			// console.log('black phoebe first', getEarliestSighting(getSightingsForScientificName('Sayornis nigricans'))['Date']);
-
 			// var firstSightings = getAllFirstSightings();
 
 			// for (var index = 0; index < firstSightings.length; index++) {

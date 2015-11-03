@@ -40,7 +40,7 @@
       <h3>{{name}}</h3>
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
-        <div>{{this.Date}} {{[Common Name]}}</div>
+        <div><a href="#trip/{{this.Date}}">{{this.Date}}</a> <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
       {{/each}}
     </script>
 
