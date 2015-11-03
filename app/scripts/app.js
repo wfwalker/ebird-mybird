@@ -52,6 +52,8 @@ function addDateObjects() {
 			gSightings[index]['DateObject'] = new Date(fixedDateString);
 		}
 	}
+
+	gSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 }
 
 function getSightingsForDate(inDate) {
@@ -164,8 +166,6 @@ var routingMap = {
 	'#location' : function(inLocationName) {
 		showSection('section#location');
 
-		// TODO: url decode, to avoid "Frontera%20Audubon"
-
 		renderTemplate('location', {
 			name: inLocationName,
 			sightings: getSightingsForLocation(inLocationName)
@@ -200,7 +200,7 @@ window.onhashchange = function() {
 	}
 
 	if(routingMap[theHashParts[0]]) {
-		routingMap[theHashParts[0]](theHashParts[1]);
+		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
 	} else {
 		console.log('not found', window.location.hash);
 	}
