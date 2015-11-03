@@ -131,22 +131,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	});
 });
 
+function showSection(inSelector) {
+	for (var item of document.querySelectorAll(inSelector)) {
+		item.classList.remove('hidden');
+		item.classList.add('visible');
+	}
+}
+
 var routingMap = {
 	'#trips' : function() {
-		for (var item of document.querySelectorAll('section#trips')) {
-			item.classList.remove('hidden');
-			item.classList.add('visible');
-		}
+		showSection('section#trips');
 
 		renderTemplate('trips', {
 			trips: gDates
 		});
 	}, 
 	'#trip' : function(inDate) {
-		for (var item of document.querySelectorAll('section#trip')) {
-			item.classList.remove('hidden');
-			item.classList.add('visible');
-		}
+		showSection('section#trip');
 
 		renderTemplate('trip', {
 			name: inDate,
@@ -154,22 +155,14 @@ var routingMap = {
 		});
 	}, 
 	'#locations' : function() {
-		for (var item of document.querySelectorAll('section#locations')) {
-			item.classList.remove('hidden');
-			item.classList.add('visible');
-		}
+		showSection('section#locations');
 
 		renderTemplate('locations', {
 			locations: gLocations
 		});
 	}, 
 	'#location' : function(inLocationName) {
-		for (var item of document.querySelectorAll('section#location')) {
-			item.classList.remove('hidden');
-			item.classList.add('visible');
-		}
-
-		console.log('location details');
+		showSection('section#location');
 
 		// TODO: url decode, to avoid "Frontera%20Audubon"
 
@@ -179,20 +172,14 @@ var routingMap = {
 		});
 	}, 
 	'#taxons' : function() {
-		for (var item of document.querySelectorAll('section#taxons')) {
-			item.classList.remove('hidden');
-			item.classList.add('visible');
-		}
+		showSection('section#taxons');
 
 		renderTemplate('taxons', {
 			taxons: gCommonNames
 		});
 	}, 
 	'#taxon' : function(inCommonName) {
-		for (var item of document.querySelectorAll('section#taxon')) {
-			item.classList.remove('hidden');
-			item.classList.add('visible');
-		}
+		showSection('section#taxon');
 
 		renderTemplate('taxon', {
 			name: inCommonName,
