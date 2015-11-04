@@ -65,6 +65,10 @@
         <div style='font-style: italic'>{{this}}</div>
       {{/each}}
 
+      {{#each submissions}}
+        <div><a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>{{this}}</a></div>
+      {{/each}}
+
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
         <div>

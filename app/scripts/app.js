@@ -121,6 +121,7 @@ var routingMap = {
 		renderTemplate('trip', {
 			name: inDate,
 			comments: getUniqueValues(tripSightings, 'Checklist Comments'),
+			submissions: getUniqueValues(tripSightings, 'Submission ID'),
 			sightings: tripSightings
 		});
 	}, 
