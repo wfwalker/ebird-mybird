@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/stylesheet.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/app.css">
 
+    <script src="scripts/canvasjs.min.js"></script>
     <script src="scripts/offline-manager.js"></script>
     <script src="scripts/papaparse.min.js"></script>
     <script src="scripts/app.js"></script>
@@ -21,10 +22,8 @@
         {{nicenumber numSightings}} sightings in {{nicenumber numChecklists}} checklists
         from {{nicedate earliest.DateObject}} - {{nicedate latest.DateObject}}
       </div>
-      info graphic here
-      {{#each sightingsByYear}}
-        <div>Key: {{@key}} Value = {{this.length}}</div>
-      {{/each}}
+
+      <div id='byYearChartContainer' style='height: 500px; width: 100%;'></div>
     </script>
 
     <script id="chrono-template" type="x-handlebars-template">

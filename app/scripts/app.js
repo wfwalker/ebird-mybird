@@ -145,6 +145,25 @@ var routingMap = {
 			owner: 'Bill Walker'
 		});
 
+		var dataPoints = Object.keys(gSightingsByYear).map(function(k){return {label: k, y: gSightingsByYear[k].length}});
+
+		var byYearChart = new CanvasJS.Chart("byYearChartContainer", {
+			theme: "theme4",
+			height: 250,
+			backgroundColor: null,
+			title: {
+				text: "Sightings By Year"
+			},
+			data: [//array of dataSeries
+				{ //dataSeries object
+					type: "area",
+					dataPoints: dataPoints
+				}
+			]
+		});
+
+	    byYearChart.render();
+
 		showSection('section#home');
 	}, 
 	'#chrono' : function() {
