@@ -22,7 +22,12 @@
 // Checklist Comments
 
 
-gSightings = null;
+gSightings = [];
+gScientificNames = [];
+gCommonNames = [];
+gLocations = [];
+gDates = [];
+gStates = [];
 
 function getEarliestSighting(sightingList) {
 	sightingList.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
@@ -106,6 +111,13 @@ function showSection(inSelector) {
 }
 
 var routingMap = {
+	'#home' : function() {
+		showSection('section#home');
+
+		renderTemplate('home', {
+			numSightings: gSightings.length
+		});
+	}, 
 	'#trips' : function() {
 		showSection('section#trips');
 

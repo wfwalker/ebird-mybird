@@ -15,6 +15,11 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/handlebars-v4.0.4.js"></script>
 
+    <script id="home-template" type="x-handlebars-template">
+      <h3>home</h3>
+      is where this template is {{numSightings}} sightings
+    </script>
+
     <script id="taxons-template" type="x-handlebars-template">
       <h3>{{taxons.length}} species</h3>
       {{#each taxons}}
@@ -83,8 +88,8 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <h1 id="project_title">ebird-mybird</h1>
-          <h2 id="project_tagline">A personal website for your eBird data</h2>
+          <span id="project_title">ebird-mybird</span>
+          <span id="project_tagline"> | A personal website for your eBird data</span>
         </header>
     </div>
 
@@ -94,6 +99,12 @@
         <a data-hash="trips" href="#trips">trips</a>
         <a data-hash="locations" href="#locations">locations</a>
         <a data-hash="taxons" href="#taxons">species</a>
+        <a data-hash="home" href="#home">home</a>
+      </section>
+
+      <section id="home" class="hidden card inner">
+        <div id='home-results' class='inner'>
+        </div>
       </section>
 
       <section id="locations" class="hidden card inner">
