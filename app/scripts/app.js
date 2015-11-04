@@ -160,6 +160,8 @@ var routingMap = {
 
 		renderTemplate('location', {
 			name: inLocationName,
+			county: locationSightings[0]["County"],
+			state: locationSightings[0]["State/Province"],
 			sightings: locationSightings,
 			taxons: getUniqueValues(locationSightings, "Common Name")
 		});
