@@ -152,7 +152,9 @@ var routingMap = {
 			height: 250,
 			backgroundColor: null,
 			title: {
-				text: "Sightings By Year"
+				text: 'Sightings By Year',
+				fontFamily: 'Open Sans',
+				horizontalAlign: 'left'
 			},
 			data: [//array of dataSeries
 				{ //dataSeries object
