@@ -1,3 +1,4 @@
+"use strict";
 
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
@@ -22,14 +23,16 @@
 // Checklist Comments
 
 
-gSightings = [];
-gLifeSightingsTaxonomic = [];
-gLifeSightingsChronological = [];
-gSightingsByYear = {};
-gEarliestSightingByCommonName = {};
-gLocations = [];
-gDates = [];
-gStates = [];
+var gSightings = [];
+var gScientificNames = [];
+var gCommonNames = [];
+var gLifeSightingsTaxonomic = [];
+var gLifeSightingsChronological = [];
+var gSightingsByYear = {};
+var gEarliestSightingByCommonName = {};
+var gLocations = [];
+var gDates = [];
+var gStates = [];
 
 function getEarliestSighting(sightingList) {
 	sightingList.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
