@@ -159,8 +159,8 @@ var routingMap = {
 				fontFamily: 'Open Sans',
 				horizontalAlign: 'left'
 			},
-			data: [//array of dataSeries
-				{ //dataSeries object
+			data: [ // array of dataSeries
+				{ // dataSeries object
 					type: "area",
 					dataPoints: dataPoints
 				}
