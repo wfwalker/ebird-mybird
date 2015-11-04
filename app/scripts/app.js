@@ -181,15 +181,19 @@ var routingMap = {
 		showSection('section#locations');
 	}, 
 	'#location' : function(inLocationName) {
-		var locationSightings = getSightingsForLocation(inLocationName);
+		var locationSightingsChronological = getSightingsForLocation(inLocationName);
+		locationSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
+
+		var locationSightingsTaxonomic = locationSightingsChronological.slice(0);
+		locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 		renderTemplate('location', {
 			name: inLocationName,
-			county: locationSightings[0]["County"],
-			state: locationSightings[0]["State/Province"],
-			sightings: locationSightings,
-			dates: getUniqueValues(locationSightings, "Date"),
-			taxons: getUniqueValues(locationSightings, "Common Name")
+			county: locationSightingsChronological[0]["County"],
+			state: locationSightingsChronological[0]["State/Province"],
+			locationSightingsTaxonomic: locationSightingsTaxonomic,
+			dates: getUniqueValues(locationSightingsChronological, "Date"),
+			taxons: getUniqueValues(locationSightingsTaxonomic, "Common Name")
 		});
 
 		showSection('section#location');
@@ -203,6 +207,7 @@ var routingMap = {
 	}, 
 	'#taxon' : function(inCommonName) {
 		var taxonSightings = getSightingsForCommonName(inCommonName);
+		taxonSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
 		renderTemplate('taxon', {
 			name: inCommonName,
