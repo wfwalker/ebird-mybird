@@ -23,6 +23,7 @@
 
 
 gSightings = [];
+gSightingsByYear = {};
 gScientificNames = [];
 gCommonNames = [];
 gLocations = [];
@@ -60,6 +61,11 @@ function addDateObjects() {
 			var pieces = sighting['Date'].split('-');
 			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
 			gSightings[index]['DateObject'] = new Date(fixedDateString);
+
+			if (! gSightingsByYear[pieces[2]]) {
+				gSightingsByYear[pieces[2]] = [];
+			}
+			gSightingsByYear[pieces[2]].push(sighting);
 		}
 	}
 
@@ -117,26 +123,25 @@ function showSection(inSelector) {
 
 var routingMap = {
 	'#home' : function() {
-		showSection('section#home');
-
 		renderTemplate('home', {
 			numSightings: gSightings.length,
+			sightingsByYear: gSightingsByYear,
 			numChecklists: getUniqueValues(gSightings, 'Submission ID').length,
 			earliest: getEarliestSighting(gSightings),
 			latest: getLatestSighting(gSightings),
 			owner: 'Bill Walker'
 		});
+
+		showSection('section#home');
 	}, 
 	'#trips' : function() {
-		showSection('section#trips');
-
 		renderTemplate('trips', {
 			trips: gDates
 		});
+
+		showSection('section#trips');
 	}, 
 	'#trip' : function(inDate) {
-		showSection('section#trip');
-
 		var tripSightings = getSightingsForDate(inDate);
 
 		renderTemplate('trip', {
@@ -145,17 +150,17 @@ var routingMap = {
 			submissions: getUniqueValues(tripSightings, 'Submission ID'),
 			sightings: tripSightings
 		});
+
+		showSection('section#trip');
 	}, 
 	'#locations' : function() {
-		showSection('section#locations');
-
 		renderTemplate('locations', {
 			locations: gLocations
 		});
+
+		showSection('section#locations');
 	}, 
 	'#location' : function(inLocationName) {
-		showSection('section#location');
-
 		var locationSightings = getSightingsForLocation(inLocationName);
 
 		renderTemplate('location', {
@@ -163,19 +168,20 @@ var routingMap = {
 			county: locationSightings[0]["County"],
 			state: locationSightings[0]["State/Province"],
 			sightings: locationSightings,
+			dates: getUniqueValues(locationSightings, "Date"),
 			taxons: getUniqueValues(locationSightings, "Common Name")
 		});
+
+		showSection('section#location');
 	}, 
 	'#taxons' : function() {
-		showSection('section#taxons');
-
 		renderTemplate('taxons', {
 			taxons: gCommonNames
 		});
+
+		showSection('section#taxons');
 	}, 
 	'#taxon' : function(inCommonName) {
-		showSection('section#taxon');
-
 		var taxonSightings = getSightingsForCommonName(inCommonName);
 
 		renderTemplate('taxon', {
@@ -183,6 +189,8 @@ var routingMap = {
 			scientificName: taxonSightings[0]["Scientific Name"],
 			sightings: taxonSightings
 		});
+
+		showSection('section#taxon');
 	}, 
 }
 
@@ -208,6 +216,18 @@ window.onhashchange = routeBasedOnHash;
 
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log('starting');
+
+	Handlebars.registerHelper('nicedate', function(inDate) {
+	  return new Handlebars.SafeString(
+	    inDate.toLocaleDateString()
+	  );
+	});
+
+	Handlebars.registerHelper('nicenumber', function(inNumber) {
+	  return new Handlebars.SafeString(
+	    inNumber.toLocaleString()
+	  );
+	});
 
 	Papa.parse("./data/ebird.csv", {
 		download: true,
