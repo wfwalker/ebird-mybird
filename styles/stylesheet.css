@@ -267,7 +267,6 @@ Full-Width Styles
 .inner {
   position: relative;
   max-width: 640px;
-  padding: 20px 10px;
   margin: 0 auto;
 }
 
@@ -284,17 +283,21 @@ Full-Width Styles
   padding: 20px 10px 10px 10px;
 }
 
+.card {
+  padding: 0px 20px 0px 0px;
+}
+
 #project_title {
   margin: 0;
   color: #fff;
-  font-size: 42px;
+  font-size: 22px;
   font-weight: 700;
   text-shadow: #111 0px 0px 10px;
 }
 
 #project_tagline {
   color: #fff;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 300;
   background: none;
   text-shadow: #111 0px 0px 10px;
@@ -332,10 +335,6 @@ Small Device Styles
   .inner {
     min-width: 320px;
     max-width: 480px;
-  }
-
-  #project_title {
-  font-size: 32px;
   }
 
   h1 {
