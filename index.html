@@ -10,26 +10,38 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/stylesheet.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/app.css">
 
+    <script src="scripts/canvasjs.min.js"></script>
     <script src="scripts/offline-manager.js"></script>
     <script src="scripts/papaparse.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/handlebars-v4.0.4.js"></script>
 
     <script id="home-template" type="x-handlebars-template">
-      <h3>{{owner}}'s eBird</h3>
-      <div>{{earliest.DateObject}} - {{latest.DateObject}}</div>
-      {{numSightings}} sightings, {{numChecklists}} checklists
+      <h3>{{owner}}&apos;s eBird</h3>
+      <div>
+        {{nicenumber numSightings}} sightings in {{nicenumber numChecklists}} checklists
+        from {{nicedate earliest.DateObject}} - {{nicedate latest.DateObject}}
+      </div>
+
+      <div id='byYearChartContainer' style='height: 500px; width: 100%;'></div>
+    </script>
+
+    <script id="chrono-template" type="x-handlebars-template">
+      <h3>{{firstSightings.length}} species</h3>
+      {{#each firstSightings}}
+        <div>{{this.Date}} <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
+      {{/each}}
     </script>
 
     <script id="taxons-template" type="x-handlebars-template">
-      <h3>{{taxons.length}} species</h3>
-      {{#each taxons}}
-        <div><a href="#taxon/{{this}}">{{this}}</a></div>
+      <h3>{{lifeSightings.length}} species</h3>
+      {{#each lifeSightings}}
+        <div><a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
       {{/each}}
     </script>
 
     <script id="taxon-template" type="x-handlebars-template">
-      <h3>{{name}}</h3>
+      <h3>{{name}} ({{scientificName}})</h3>
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
         <div>
@@ -47,8 +59,8 @@
     </script>
 
     <script id="location-template" type="x-handlebars-template">
-      <h3>{{name}}</h3>
-      <div>{{taxons.length}} species</div>
+      <h3>{{name}}, {{county}}, {{state}}</h3>
+      <div>{{taxons.length}} species on {{dates.length}} dates</div>
       {{#each taxons}}
         <div>
           <a href="#taxon/{{this}}">{{this}}</a>
@@ -95,6 +107,7 @@
             <a data-hash="locations" href="#locations">locations</a>
             <a data-hash="taxons" href="#taxons">species</a>
             <a data-hash="home" href="#home">home</a>
+            <a data-hash="chrono" href="#chrono">chrono</a>
         </div>
         </header>
     </div>
@@ -128,6 +141,11 @@
 
       <section id="taxons" class="hidden card inner">
         <div id='taxons-results' class='inner'>
+        </div>
+      </section>
+
+      <section id="chrono" class="hidden card inner">
+        <div id='chrono-results' class='inner'>
         </div>
       </section>
 

@@ -23,8 +23,10 @@
 
 
 gSightings = [];
-gScientificNames = [];
-gCommonNames = [];
+gLifeSightingsTaxonomic = [];
+gLifeSightingsChronological = [];
+gSightingsByYear = {};
+gEarliestSightingByCommonName = {};
 gLocations = [];
 gDates = [];
 gStates = [];
@@ -60,8 +62,25 @@ function addDateObjects() {
 			var pieces = sighting['Date'].split('-');
 			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
 			gSightings[index]['DateObject'] = new Date(fixedDateString);
+
+			if (! gSightingsByYear[pieces[2]]) {
+				gSightingsByYear[pieces[2]] = [];
+			}
+			gSightingsByYear[pieces[2]].push(sighting);
+
+			if (! gEarliestSightingByCommonName[sighting['Common Name']]) {
+				gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
+			} else if (sighting.DateObject < gEarliestSightingByCommonName[sighting['Common Name']].DateObject) {
+				gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
+			}
 		}
 	}
+
+	gLifeSightingsTaxonomic = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
+	gLifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	gLifeSightingsChronological = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
+	gLifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
 	gSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 }
@@ -117,26 +136,51 @@ function showSection(inSelector) {
 
 var routingMap = {
 	'#home' : function() {
-		showSection('section#home');
-
 		renderTemplate('home', {
 			numSightings: gSightings.length,
+			sightingsByYear: gSightingsByYear,
 			numChecklists: getUniqueValues(gSightings, 'Submission ID').length,
 			earliest: getEarliestSighting(gSightings),
 			latest: getLatestSighting(gSightings),
 			owner: 'Bill Walker'
 		});
+
+		var dataPoints = Object.keys(gSightingsByYear).map(function(k){return {label: k, y: gSightingsByYear[k].length}});
+
+		var byYearChart = new CanvasJS.Chart("byYearChartContainer", {
+			theme: "theme4",
+			height: 250,
+			backgroundColor: null,
+			title: {
+				text: "Sightings By Year"
+			},
+			data: [//array of dataSeries
+				{ //dataSeries object
+					type: "area",
+					dataPoints: dataPoints
+				}
+			]
+		});
+
+	    byYearChart.render();
+
+		showSection('section#home');
+	}, 
+	'#chrono' : function() {
+		renderTemplate('chrono', {
+			firstSightings: gLifeSightingsChronological
+		});
+
+		showSection('section#chrono');
 	}, 
 	'#trips' : function() {
-		showSection('section#trips');
-
 		renderTemplate('trips', {
 			trips: gDates
 		});
+
+		showSection('section#trips');
 	}, 
 	'#trip' : function(inDate) {
-		showSection('section#trip');
-
 		var tripSightings = getSightingsForDate(inDate);
 
 		renderTemplate('trip', {
@@ -145,39 +189,52 @@ var routingMap = {
 			submissions: getUniqueValues(tripSightings, 'Submission ID'),
 			sightings: tripSightings
 		});
+
+		showSection('section#trip');
 	}, 
 	'#locations' : function() {
-		showSection('section#locations');
-
 		renderTemplate('locations', {
 			locations: gLocations
 		});
+
+		showSection('section#locations');
 	}, 
 	'#location' : function(inLocationName) {
-		showSection('section#location');
+		var locationSightingsChronological = getSightingsForLocation(inLocationName);
+		locationSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
 
-		var locationSightings = getSightingsForLocation(inLocationName);
+		var locationSightingsTaxonomic = locationSightingsChronological.slice(0);
+		locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 		renderTemplate('location', {
 			name: inLocationName,
-			sightings: locationSightings,
-			taxons: getUniqueValues(locationSightings, "Common Name")
+			county: locationSightingsChronological[0]["County"],
+			state: locationSightingsChronological[0]["State/Province"],
+			locationSightingsTaxonomic: locationSightingsTaxonomic,
+			dates: getUniqueValues(locationSightingsChronological, "Date"),
+			taxons: getUniqueValues(locationSightingsTaxonomic, "Common Name")
 		});
+
+		showSection('section#location');
 	}, 
 	'#taxons' : function() {
-		showSection('section#taxons');
-
 		renderTemplate('taxons', {
-			taxons: gCommonNames
+			lifeSightings: gLifeSightingsTaxonomic
 		});
+
+		showSection('section#taxons');
 	}, 
 	'#taxon' : function(inCommonName) {
-		showSection('section#taxon');
+		var taxonSightings = getSightingsForCommonName(inCommonName);
+		taxonSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
 		renderTemplate('taxon', {
 			name: inCommonName,
-			sightings: getSightingsForCommonName(inCommonName)
+			scientificName: taxonSightings[0]["Scientific Name"],
+			sightings: taxonSightings
 		});
+
+		showSection('section#taxon');
 	}, 
 }
 
@@ -204,6 +261,18 @@ window.onhashchange = routeBasedOnHash;
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log('starting');
 
+	Handlebars.registerHelper('nicedate', function(inDate) {
+	  return new Handlebars.SafeString(
+	    inDate.toLocaleDateString()
+	  );
+	});
+
+	Handlebars.registerHelper('nicenumber', function(inNumber) {
+	  return new Handlebars.SafeString(
+	    inNumber.toLocaleString()
+	  );
+	});
+
 	Papa.parse("./data/ebird.csv", {
 		download: true,
 		header: true,
@@ -217,12 +286,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
 			gStates = getUniqueValues(gSightings, 'State/Province');
-
-			// var firstSightings = getAllFirstSightings();
-
-			// for (var index = 0; index < firstSightings.length; index++) {
-			// 	addSummaryItem(firstSightings[index]['Date'] + ' ' + firstSightings[index]['Location'] + ' ' + firstSightings[index]['Common Name']);
-			// }
 
 			routeBasedOnHash();
 		}	
