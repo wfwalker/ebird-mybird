@@ -15,14 +15,14 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/handlebars-v4.0.4.js"></script>
 
-    <script id="taxons-template" type="x-handlebars-template">​
+    <script id="taxons-template" type="x-handlebars-template">
       <h3>{{taxons.length}} species</h3>
       {{#each taxons}}
         <div><a href="#taxon/{{this}}">{{this}}</a></div>
       {{/each}}
     </script>
 
-    <script id="taxon-template" type="x-handlebars-template">​
+    <script id="taxon-template" type="x-handlebars-template">
       <h3>{{name}}</h3>
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
@@ -33,14 +33,14 @@
       {{/each}}
     </script>
 
-    <script id="locations-template" type="x-handlebars-template">​
+    <script id="locations-template" type="x-handlebars-template">
       <h3>{{locations.length}} locations</h3>
       {{#each locations}}
         <div><a href="#location/{{this}}">{{this}}</a></div>
       {{/each}}
     </script>
 
-    <script id="location-template" type="x-handlebars-template">​
+    <script id="location-template" type="x-handlebars-template">
       <h3>{{name}}</h3>
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
