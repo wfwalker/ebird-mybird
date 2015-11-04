@@ -23,9 +23,10 @@
 
 
 gSightings = [];
+gLifeSightingsTaxonomic = [];
+gLifeSightingsChronological = [];
 gSightingsByYear = {};
-gScientificNames = [];
-gCommonNames = [];
+gEarliestSightingByCommonName = {};
 gLocations = [];
 gDates = [];
 gStates = [];
@@ -66,8 +67,20 @@ function addDateObjects() {
 				gSightingsByYear[pieces[2]] = [];
 			}
 			gSightingsByYear[pieces[2]].push(sighting);
+
+			if (! gEarliestSightingByCommonName[sighting['Common Name']]) {
+				gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
+			} else if (sighting.DateObject < gEarliestSightingByCommonName[sighting['Common Name']].DateObject) {
+				gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
+			}
 		}
 	}
+
+	gLifeSightingsTaxonomic = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
+	gLifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	gLifeSightingsChronological = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
+	gLifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
 	gSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 }
@@ -135,10 +148,8 @@ var routingMap = {
 		showSection('section#home');
 	}, 
 	'#chrono' : function() {
-		var firstSightings = getAllFirstSightings();
-
 		renderTemplate('chrono', {
-			firstSightings: firstSightings
+			firstSightings: gLifeSightingsChronological
 		});
 
 		showSection('section#chrono');
@@ -185,7 +196,7 @@ var routingMap = {
 	}, 
 	'#taxons' : function() {
 		renderTemplate('taxons', {
-			taxons: gCommonNames
+			lifeSightings: gLifeSightingsTaxonomic
 		});
 
 		showSection('section#taxons');

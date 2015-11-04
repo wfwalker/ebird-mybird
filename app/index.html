@@ -35,9 +35,9 @@
     </script>
 
     <script id="taxons-template" type="x-handlebars-template">
-      <h3>{{taxons.length}} species</h3>
-      {{#each taxons}}
-        <div><a href="#taxon/{{this}}">{{this}}</a></div>
+      <h3>{{lifeSightings.length}} species</h3>
+      {{#each lifeSightings}}
+        <div><a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
       {{/each}}
     </script>
 
@@ -108,6 +108,7 @@
             <a data-hash="locations" href="#locations">locations</a>
             <a data-hash="taxons" href="#taxons">species</a>
             <a data-hash="home" href="#home">home</a>
+            <a data-hash="chrono" href="#chrono">chrono</a>
         </div>
         </header>
     </div>
