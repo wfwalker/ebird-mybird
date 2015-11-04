@@ -34,6 +34,11 @@ function getEarliestSighting(sightingList) {
 	return sightingList[0];
 }
 
+function getLatestSighting(sightingList) {
+	sightingList.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
+	return sightingList[0];
+}
+
 function getUniqueValues(sightingList, fieldName) {
 	var values = [];
 
@@ -117,6 +122,8 @@ var routingMap = {
 		renderTemplate('home', {
 			numSightings: gSightings.length,
 			numChecklists: getUniqueValues(gSightings, 'Submission ID').length,
+			earliest: getEarliestSighting(gSightings),
+			latest: getLatestSighting(gSightings),
 			owner: 'Bill Walker'
 		});
 	}, 
@@ -149,9 +156,12 @@ var routingMap = {
 	'#location' : function(inLocationName) {
 		showSection('section#location');
 
+		var locationSightings = getSightingsForLocation(inLocationName);
+
 		renderTemplate('location', {
 			name: inLocationName,
-			sightings: getSightingsForLocation(inLocationName)
+			sightings: locationSightings,
+			taxons: getUniqueValues(locationSightings, "Common Name")
 		});
 	}, 
 	'#taxons' : function() {

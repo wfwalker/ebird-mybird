@@ -17,6 +17,7 @@
 
     <script id="home-template" type="x-handlebars-template">
       <h3>{{owner}}'s eBird</h3>
+      <div>{{earliest.DateObject}} - {{latest.DateObject}}</div>
       {{numSightings}} sightings, {{numChecklists}} checklists
     </script>
 
@@ -47,11 +48,10 @@
 
     <script id="location-template" type="x-handlebars-template">
       <h3>{{name}}</h3>
-      <div>{{sightings.length}} sightings</div>
-      {{#each sightings}}
+      <div>{{taxons.length}} species</div>
+      {{#each taxons}}
         <div>
-          <a href="#trip/{{this.Date}}">{{this.Date}}</a>
-          <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a>
+          <a href="#taxon/{{this}}">{{this}}</a>
         </div>
       {{/each}}
     </script>
