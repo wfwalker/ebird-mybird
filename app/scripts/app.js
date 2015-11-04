@@ -176,9 +176,12 @@ var routingMap = {
 	'#taxon' : function(inCommonName) {
 		showSection('section#taxon');
 
+		var taxonSightings = getSightingsForCommonName(inCommonName);
+
 		renderTemplate('taxon', {
 			name: inCommonName,
-			sightings: getSightingsForCommonName(inCommonName)
+			scientificName: taxonSightings[0]["Scientific Name"],
+			sightings: taxonSightings
 		});
 	}, 
 }
