@@ -134,6 +134,15 @@ var routingMap = {
 
 		showSection('section#home');
 	}, 
+	'#chrono' : function() {
+		var firstSightings = getAllFirstSightings();
+
+		renderTemplate('chrono', {
+			firstSightings: firstSightings
+		});
+
+		showSection('section#chrono');
+	}, 
 	'#trips' : function() {
 		renderTemplate('trips', {
 			trips: gDates
@@ -242,12 +251,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
 			gStates = getUniqueValues(gSightings, 'State/Province');
-
-			// var firstSightings = getAllFirstSightings();
-
-			// for (var index = 0; index < firstSightings.length; index++) {
-			// 	addSummaryItem(firstSightings[index]['Date'] + ' ' + firstSightings[index]['Location'] + ' ' + firstSightings[index]['Common Name']);
-			// }
 
 			routeBasedOnHash();
 		}	

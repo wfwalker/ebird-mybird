@@ -27,6 +27,13 @@
       {{/each}}
     </script>
 
+    <script id="chrono-template" type="x-handlebars-template">
+      <h3>{{firstSightings.length}} species</h3>
+      {{#each firstSightings}}
+        <div>{{this.Date}} <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
+      {{/each}}
+    </script>
+
     <script id="taxons-template" type="x-handlebars-template">
       <h3>{{taxons.length}} species</h3>
       {{#each taxons}}
@@ -134,6 +141,11 @@
 
       <section id="taxons" class="hidden card inner">
         <div id='taxons-results' class='inner'>
+        </div>
+      </section>
+
+      <section id="chrono" class="hidden card inner">
+        <div id='chrono-results' class='inner'>
         </div>
       </section>
 
