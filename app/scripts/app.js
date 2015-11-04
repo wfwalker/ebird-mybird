@@ -115,7 +115,9 @@ var routingMap = {
 		showSection('section#home');
 
 		renderTemplate('home', {
-			numSightings: gSightings.length
+			numSightings: gSightings.length,
+			numChecklists: getUniqueValues(gSightings, 'Submission ID').length,
+			owner: 'Bill Walker'
 		});
 	}, 
 	'#trips' : function() {
