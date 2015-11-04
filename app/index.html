@@ -26,7 +26,10 @@
       <h3>{{name}}</h3>
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
-        <div><a href="#trip/{{this.Date}}">{{this.Date}}</a> <a href="#location/{{this.Location}}">{{this.Location}}</a></div>
+        <div>
+          <a href="#trip/{{this.Date}}">{{this.Date}}</a>
+          <a href="#location/{{this.Location}}">{{this.Location}}</a>
+        </div>
       {{/each}}
     </script>
 
@@ -41,7 +44,10 @@
       <h3>{{name}}</h3>
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
-        <div><a href="#trip/{{this.Date}}">{{this.Date}}</a> <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
+        <div>
+          <a href="#trip/{{this.Date}}">{{this.Date}}</a>
+          <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a>
+        </div>
       {{/each}}
     </script>
 
@@ -54,9 +60,17 @@
 
     <script id="trip-template" type="x-handlebars-template">
       <h3>{{name}}</h3>
+
+      {{#each comments}}
+        <div style='font-style: italic'>{{this}}</div>
+      {{/each}}
+
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
-        <div>{{this.Location}} {{[Common Name]}}</div>
+        <div>
+          <a href='#location/{{this.Location}}'>{{this.Location}}</a>
+          <a href='#taxon/{{[Common Name]}}'>{{[Common Name]}}</a>
+        </div>
       {{/each}}
     </script>
   </head>

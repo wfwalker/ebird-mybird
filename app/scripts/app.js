@@ -98,39 +98,6 @@ function getAllFirstSightings() {
 	return firstSightings;
 }
 
-document.addEventListener("DOMContentLoaded", function(event) { 
-	console.log('starting');
-
-	Papa.parse("./data/ebird.csv", {
-		download: true,
-		header: true,
-		complete: function(results) {
-			gSightings = results.data;
-
-			addDateObjects();
-
-			gScientificNames = getUniqueValues(gSightings, 'Scientific Name');
-			gCommonNames = getUniqueValues(gSightings, 'Common Name');
-			gLocations = getUniqueValues(gSightings, 'Location');
-			gDates = getUniqueValues(gSightings, 'Date');
-			gStates = getUniqueValues(gSightings, 'State/Province');
-
-			// var firstSightings = getAllFirstSightings();
-
-			// for (var index = 0; index < firstSightings.length; index++) {
-			// 	addSummaryItem(firstSightings[index]['Date'] + ' ' + firstSightings[index]['Location'] + ' ' + firstSightings[index]['Common Name']);
-			// }
-
-			for (var item of document.querySelectorAll('a[data-hash]')) {
-				item.addEventListener('click', function (e) {
-			    	e.preventDefault();
-			    	window.location.hash = e.target.getAttribute('data-hash');
-			    });
-			}
-		}	
-	});
-});
-
 function showSection(inSelector) {
 	for (var item of document.querySelectorAll(inSelector)) {
 		item.classList.remove('hidden');
@@ -149,9 +116,12 @@ var routingMap = {
 	'#trip' : function(inDate) {
 		showSection('section#trip');
 
+		var tripSightings = getSightingsForDate(inDate);
+
 		renderTemplate('trip', {
 			name: inDate,
-			sightings: getSightingsForDate(inDate)
+			comments: getUniqueValues(tripSightings, 'Checklist Comments'),
+			sightings: tripSightings
 		});
 	}, 
 	'#locations' : function() {
@@ -186,7 +156,7 @@ var routingMap = {
 	}, 
 }
 
-window.onhashchange = function() {
+function routeBasedOnHash() {
 	// On every hash change the render function is called with the new hash.
 	// This is how the navigation of our app happens.
 	var theHashParts = window.location.hash.split('/');
@@ -201,9 +171,38 @@ window.onhashchange = function() {
 		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
 	} else {
 		console.log('not found', window.location.hash);
-	}
-};
+	}	
+}
 
+window.onhashchange = routeBasedOnHash;
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+	console.log('starting');
+
+	Papa.parse("./data/ebird.csv", {
+		download: true,
+		header: true,
+		complete: function(results) {
+			gSightings = results.data;
+
+			addDateObjects();
+
+			gScientificNames = getUniqueValues(gSightings, 'Scientific Name');
+			gCommonNames = getUniqueValues(gSightings, 'Common Name');
+			gLocations = getUniqueValues(gSightings, 'Location');
+			gDates = getUniqueValues(gSightings, 'Date');
+			gStates = getUniqueValues(gSightings, 'State/Province');
+
+			// var firstSightings = getAllFirstSightings();
+
+			// for (var index = 0; index < firstSightings.length; index++) {
+			// 	addSummaryItem(firstSightings[index]['Date'] + ' ' + firstSightings[index]['Location'] + ' ' + firstSightings[index]['Common Name']);
+			// }
+
+			routeBasedOnHash();
+		}	
+	});
+});
 
 
 
