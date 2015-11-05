@@ -1,3 +1,4 @@
+"use strict";
 
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
@@ -22,14 +23,16 @@
 // Checklist Comments
 
 
-gSightings = [];
-gLifeSightingsTaxonomic = [];
-gLifeSightingsChronological = [];
-gSightingsByYear = {};
-gEarliestSightingByCommonName = {};
-gLocations = [];
-gDates = [];
-gStates = [];
+var gSightings = [];
+var gScientificNames = [];
+var gCommonNames = [];
+var gLifeSightingsTaxonomic = [];
+var gLifeSightingsChronological = [];
+var gSightingsByYear = {};
+var gEarliestSightingByCommonName = {};
+var gLocations = [];
+var gDates = [];
+var gStates = [];
 
 function getEarliestSighting(sightingList) {
 	sightingList.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
@@ -115,18 +118,6 @@ function renderTemplate(inPrefix, inData) {
     results.appendChild(newDiv);
 }
 
-var eBirdData = null;
-
-function getAllFirstSightings() {
-	var firstSightings = gScientificNames.map(function (n) {
-		return getEarliestSighting(getSightingsForScientificName(n));
-	});
-
-	firstSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
-
-	return firstSightings;
-}
-
 function showSection(inSelector) {
 	for (var item of document.querySelectorAll(inSelector)) {
 		item.classList.remove('hidden');
@@ -152,10 +143,12 @@ var routingMap = {
 			height: 250,
 			backgroundColor: null,
 			title: {
-				text: "Sightings By Year"
+				text: 'Sightings By Year',
+				fontFamily: 'Open Sans',
+				horizontalAlign: 'left'
 			},
-			data: [//array of dataSeries
-				{ //dataSeries object
+			data: [ // array of dataSeries
+				{ // dataSeries object
 					type: "area",
 					dataPoints: dataPoints
 				}
