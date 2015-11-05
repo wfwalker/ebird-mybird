@@ -18,6 +18,7 @@
 
     <script id="home-template" type="x-handlebars-template">
       <h3>{{owner}}&apos;s eBird</h3>
+
       <div>
         {{nicenumber numSightings}} sightings in {{nicenumber numChecklists}} checklists
         from {{nicedate earliest.DateObject}} - {{nicedate latest.DateObject}}
@@ -29,7 +30,7 @@
     <script id="chrono-template" type="x-handlebars-template">
       <h3>{{firstSightings.length}} species</h3>
       {{#each firstSightings}}
-        <div>{{this.Date}} <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
+        <div>{{nicedate this.DateObject}} <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
       {{/each}}
     </script>
 
@@ -45,7 +46,7 @@
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
         <div>
-          <a href="#trip/{{this.Date}}">{{this.Date}}</a>
+          <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
           <a href="#location/{{this.Location}}">{{this.Location}}</a>
         </div>
       {{/each}}

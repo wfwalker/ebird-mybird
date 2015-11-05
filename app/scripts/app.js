@@ -118,18 +118,6 @@ function renderTemplate(inPrefix, inData) {
     results.appendChild(newDiv);
 }
 
-var eBirdData = null;
-
-function getAllFirstSightings() {
-	var firstSightings = gScientificNames.map(function (n) {
-		return getEarliestSighting(getSightingsForScientificName(n));
-	});
-
-	firstSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
-
-	return firstSightings;
-}
-
 function showSection(inSelector) {
 	for (var item of document.querySelectorAll(inSelector)) {
 		item.classList.remove('hidden');
