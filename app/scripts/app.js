@@ -125,6 +125,34 @@ function showSection(inSelector) {
 	}
 }
 
+function barGraphCountsForSightings(inData, inElement) {
+	var labels = Object.keys(inData).map(function(k){return k;});
+	var values = Object.keys(inData).map(function(k){return inData[k].length;});
+	var values2 = Object.keys(inData).map(function(k){return getUniqueValues(inData[k], 'Common Name').length;});
+	var values3 = Object.keys(inData).map(function(k){return getUniqueValues(inData[k], 'Location').length;});
+
+	labels.unshift('x');
+	values.unshift('sightings');
+	values2.unshift('species');
+	values3.unshift('location');
+
+	var chart = c3.generate({
+		bindto: '#' + inElement,
+		data: {
+			x: 'x',
+			columns: [
+				values,
+				values2,
+				values3,
+				labels,
+			],
+			types: {
+				sightings: 'line'
+			}
+		}
+	});
+}
+
 var routingMap = {
 	'#home' : function() {
 		renderTemplate('home', {
@@ -136,26 +164,7 @@ var routingMap = {
 			owner: 'Bill Walker'
 		});
 
-		var dataPoints = Object.keys(gSightingsByYear).map(function(k){return {label: k, y: gSightingsByYear[k].length}});
-
-		var byYearChart = new CanvasJS.Chart("byYearChartContainer", {
-			theme: "theme4",
-			height: 250,
-			backgroundColor: null,
-			title: {
-				text: 'Sightings By Year',
-				fontFamily: 'Open Sans',
-				horizontalAlign: 'left'
-			},
-			data: [ // array of dataSeries
-				{ // dataSeries object
-					type: "area",
-					dataPoints: dataPoints
-				}
-			]
-		});
-
-	    byYearChart.render();
+		barGraphCountsForSightings(gSightingsByYear, 'byYearChartContainer');
 
 		showSection('section#home');
 	}, 
