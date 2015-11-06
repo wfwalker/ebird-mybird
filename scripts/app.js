@@ -93,10 +93,6 @@ function getSightingsForDate(inDate) {
 	return gSightings.filter(function(s) { return s['Date'] == inDate; });
 };
 
-function getSightingsForScientificName(inScientificName) {
-	return gSightings.filter(function(s) { return s['Scientific Name'] == inScientificName; });
-};
-
 function getSightingsForCommonName(inCommonName) {
 	return gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
 };
@@ -218,6 +214,8 @@ var routingMap = {
 			county: locationSightingsChronological[0]["County"],
 			state: locationSightingsChronological[0]["State/Province"],
 			locationSightingsTaxonomic: locationSightingsTaxonomic,
+			longitude: locationSightingsChronological[0]["Longitude"],
+			latitude: locationSightingsChronological[0]["Latitude"],
 			dates: getUniqueValues(locationSightingsChronological, "Date"),
 			taxons: getUniqueValues(locationSightingsTaxonomic, "Common Name")
 		});
