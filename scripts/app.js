@@ -33,6 +33,7 @@ var gEarliestSightingByCommonName = {};
 var gLocations = [];
 var gDates = [];
 var gStates = [];
+var gCustomDayNames = [];
 
 function getEarliestSighting(sightingList) {
 	sightingList.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
@@ -125,6 +126,36 @@ function showSection(inSelector) {
 	}
 }
 
+function barGraphCountsForSightings(inData, inElement) {
+	var labels = Object.keys(inData).map(function(k){return k;});
+	var values = Object.keys(inData).map(function(k){return inData[k].length;});
+	var values2 = Object.keys(inData).map(function(k){return getUniqueValues(inData[k], 'Common Name').length;});
+	var values3 = Object.keys(inData).map(function(k){return getUniqueValues(inData[k], 'Location').length;});
+
+	labels.unshift('x');
+	values.unshift('sightings');
+	values2.unshift('species');
+	values3.unshift('locations');
+
+	var chart = c3.generate({
+		bindto: '#' + inElement,
+		data: {
+			x: 'x',
+			columns: [
+				values,
+				values2,
+				values3,
+				labels,
+			],
+			types: {
+				sightings: 'line',
+				species: 'line',
+				locations: 'line'
+			}
+		}
+	});
+}
+
 var routingMap = {
 	'#home' : function() {
 		renderTemplate('home', {
@@ -136,26 +167,7 @@ var routingMap = {
 			owner: 'Bill Walker'
 		});
 
-		var dataPoints = Object.keys(gSightingsByYear).map(function(k){return {label: k, y: gSightingsByYear[k].length}});
-
-		var byYearChart = new CanvasJS.Chart("byYearChartContainer", {
-			theme: "theme4",
-			height: 250,
-			backgroundColor: null,
-			title: {
-				text: 'Sightings By Year',
-				fontFamily: 'Open Sans',
-				horizontalAlign: 'left'
-			},
-			data: [ // array of dataSeries
-				{ // dataSeries object
-					type: "area",
-					dataPoints: dataPoints
-				}
-			]
-		});
-
-	    byYearChart.render();
+		barGraphCountsForSightings(gSightingsByYear, 'byYearChartContainer');
 
 		showSection('section#home');
 	}, 
@@ -168,7 +180,8 @@ var routingMap = {
 	}, 
 	'#trips' : function() {
 		renderTemplate('trips', {
-			trips: gDates
+			trips: gDates,
+			customDayNames: gCustomDayNames
 		});
 
 		showSection('section#trips');
@@ -178,6 +191,7 @@ var routingMap = {
 
 		renderTemplate('trip', {
 			name: inDate,
+			customName: gCustomDayNames[inDate],
 			comments: getUniqueValues(tripSightings, 'Checklist Comments'),
 			submissions: getUniqueValues(tripSightings, 'Submission ID'),
 			sightings: tripSightings
@@ -250,6 +264,14 @@ function routeBasedOnHash() {
 }
 
 window.onhashchange = routeBasedOnHash;
+
+var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", function() {
+  gCustomDayNames = JSON.parse(this.responseText);
+  console.log('loaded custom day names', gCustomDayNames.length);
+});
+oReq.open("GET", "./data/day-names.json");
+oReq.send();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log('starting');
