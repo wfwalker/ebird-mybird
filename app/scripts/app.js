@@ -33,6 +33,7 @@ var gEarliestSightingByCommonName = {};
 var gLocations = [];
 var gDates = [];
 var gStates = [];
+var gCustomDayNames = [];
 
 function getEarliestSighting(sightingList) {
 	sightingList.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
@@ -177,7 +178,8 @@ var routingMap = {
 	}, 
 	'#trips' : function() {
 		renderTemplate('trips', {
-			trips: gDates
+			trips: gDates,
+			customDayNames: gCustomDayNames
 		});
 
 		showSection('section#trips');
@@ -187,6 +189,7 @@ var routingMap = {
 
 		renderTemplate('trip', {
 			name: inDate,
+			customName: gCustomDayNames[inDate],
 			comments: getUniqueValues(tripSightings, 'Checklist Comments'),
 			submissions: getUniqueValues(tripSightings, 'Submission ID'),
 			sightings: tripSightings
@@ -259,6 +262,14 @@ function routeBasedOnHash() {
 }
 
 window.onhashchange = routeBasedOnHash;
+
+var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", function() {
+  gCustomDayNames = JSON.parse(this.responseText);
+  console.log('loaded custom day names', gCustomDayNames.length);
+});
+oReq.open("GET", "./data/day-names.json");
+oReq.send();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log('starting');
