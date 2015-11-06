@@ -66,7 +66,10 @@
 
     <script id="location-template" type="x-handlebars-template">
       <h3>{{name}}, {{county}}, {{state}}</h3>
+      <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
+
       <div>{{taxons.length}} species on {{dates.length}} dates</div>
+
       {{#each taxons}}
         <div>
           <a href="#taxon/{{this}}">{{this}}</a>
