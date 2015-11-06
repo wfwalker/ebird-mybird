@@ -76,8 +76,9 @@
 
     <script id="trips-template" type="x-handlebars-template">
       <h3>{{trips.length}} trips</h3>
+
       {{#each trips}}
-        <div><a href="#trip/{{this}}">{{this}}</a></div>
+        <div><a href="#trip/{{this}}">{{this}}</a> {{lookup ../customDayNames this}}</div>
       {{/each}}
     </script>
 
@@ -164,7 +165,8 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Bootstrapped with <a href="https://github.com/mozilla/oghliner/">oghliner</a>.
+        <p class="copyright">Bootstrapped with <a target="_blank_" href="https://github.com/mozilla/oghliner/">oghliner</a>.</p>
+        <p class="copyright">Check out <a target="_blank_" href="https://github.com/wfwalker/ebird-mybird">the source code on github</a>
       </footer>
     </div>
   </body>

@@ -135,7 +135,7 @@ function barGraphCountsForSightings(inData, inElement) {
 	labels.unshift('x');
 	values.unshift('sightings');
 	values2.unshift('species');
-	values3.unshift('location');
+	values3.unshift('locations');
 
 	var chart = c3.generate({
 		bindto: '#' + inElement,
