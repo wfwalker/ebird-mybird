@@ -148,7 +148,9 @@ function barGraphCountsForSightings(inData, inElement) {
 				labels,
 			],
 			types: {
-				sightings: 'line'
+				sightings: 'line',
+				species: 'line',
+				locations: 'line'
 			}
 		}
 	});
