@@ -11,9 +11,11 @@
     <link rel="shortcut icon" href="./images/ebird-favicon.ico">
 
     <link rel="stylesheet" type="text/css" media="screen" href="styles/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/c3.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/app.css">
 
-    <script src="scripts/canvasjs.min.js"></script>
+    <script src="scripts/d3.v3.min.js" charset="utf-8"></script>
+    <script src="scripts/c3.min.js"></script>
     <script src="scripts/offline-manager.js"></script>
     <script src="scripts/papaparse.min.js"></script>
     <script src="scripts/app.js"></script>
@@ -27,7 +29,7 @@
         from {{nicedate earliest.DateObject}} - {{nicedate latest.DateObject}}
       </div>
 
-      <div id='byYearChartContainer' style='padding-top: 10px; height: 500px; width: 100%;'></div>
+      <div id='byYearChartContainer' style='padding-top: 10px'></div>
     </script>
 
     <script id="chrono-template" type="x-handlebars-template">
