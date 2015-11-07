@@ -24,6 +24,9 @@
 
 
 var gSightings = [];
+var gChecklists = [];
+var gEarliestSightingDateObject = null;
+var gLatestSightingDateObject = null;
 var gOmittedCommonNames = [];
 var gLifeSightingsTaxonomic = [];
 var gLifeSightingsChronological = [];
@@ -63,7 +66,16 @@ function addDateObjects() {
 		if (sighting['Date']) {
 			var pieces = sighting['Date'].split('-');
 			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
-			gSightings[index]['DateObject'] = new Date(fixedDateString);
+			var newDate = new Date(fixedDateString);
+			gSightings[index]['DateObject'] = newDate;
+
+			if (gEarliestSightingDateObject == null || newDate < gEarliestSightingDateObject) {
+				gEarliestSightingDateObject = newDate;
+			}
+
+			if (gLatestSightingDateObject == null || newDate > gLatestSightingDateObject) {
+				gLatestSightingDateObject = newDate;
+			}
 
 			if (! gSightingsByYear[pieces[2]]) {
 				gSightingsByYear[pieces[2]] = [];
@@ -82,26 +94,8 @@ function addDateObjects() {
 		}
 	}
 
-	gLifeSightingsTaxonomic = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
-	gLifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-
-	gLifeSightingsChronological = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
-	gLifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
-
 	gSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 }
-
-function getSightingsForDate(inDate) {
-	return gSightings.filter(function(s) { return s['Date'] == inDate; });
-};
-
-function getSightingsForCommonName(inCommonName) {
-	return gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
-};
-
-function getSightingsForLocation(inLocation) {
-	return gSightings.filter(function(s) { return s['Location'] == inLocation; });
-};
 
 function renderTemplate(inPrefix, inData) {
     var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
@@ -161,14 +155,17 @@ var routingMap = {
 			sightingsByYear: gSightingsByYear,
 			chartID: 'byYear',
 			numChecklists: getUniqueValues(gSightings, 'Submission ID').length,
-			earliest: getEarliestSighting(gSightings),
-			latest: getLatestSighting(gSightings),
+			earliest: gEarliestSightingDateObject,
+			latest: gLatestSightingDateObject,
 			owner: 'Bill Walker'
 		});
 
 		showSection('section#home');
 	}, 
 	'#chrono' : function() {
+		gLifeSightingsChronological = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
+		gLifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+
 		renderTemplate('chrono', {
 			firstSightings: gLifeSightingsChronological
 		});
@@ -184,7 +181,7 @@ var routingMap = {
 		showSection('section#trips');
 	}, 
 	'#trip' : function(inDate) {
-		var tripSightings = getSightingsForDate(inDate);
+		var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
 
 		renderTemplate('trip', {
 			name: inDate,
@@ -204,7 +201,7 @@ var routingMap = {
 		showSection('section#locations');
 	}, 
 	'#location' : function(inLocationName) {
-		var locationSightingsChronological = getSightingsForLocation(inLocationName);
+		var locationSightingsChronological = gSightings.filter(function(s) { return s['Location'] == inLocationName; });
 		locationSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
 
 		var locationSightingsTaxonomic = locationSightingsChronological.slice(0);
@@ -224,14 +221,18 @@ var routingMap = {
 		showSection('section#location');
 	}, 
 	'#taxons' : function() {
+		gLifeSightingsTaxonomic = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
+		gLifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
 		renderTemplate('taxons', {
+
 			lifeSightings: gLifeSightingsTaxonomic
 		});
 
 		showSection('section#taxons');
 	}, 
 	'#taxon' : function(inCommonName) {
-		var taxonSightings = getSightingsForCommonName(inCommonName);
+		var taxonSightings = gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
 		taxonSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
 		renderTemplate('taxon', {
@@ -298,9 +299,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	});
 
 	Handlebars.registerHelper('bargraph', function(inData, inElement) {
-		console.log('inside helper');
+		// per @digitarald use timeout to reorder helper after Handlebars templating
 		window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement) }, 1);
-		console.log('after timeout');
 	});
 
 	Papa.parse("./data/ebird.csv", {
@@ -313,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
+			gChecklists = getUniqueValues(gSightings, 'Submission ID');
 
 			routeBasedOnHash();
 		}	
