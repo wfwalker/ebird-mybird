@@ -284,7 +284,7 @@ function loadOmittedCommonNames() {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-	console.log('starting');
+	console.log('start DOMContentLoaded');
 
 	Handlebars.registerHelper('nicedate', function(inDate) {
 	  return new Handlebars.SafeString(
@@ -303,21 +303,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement) }, 1);
 	});
 
-	Papa.parse("./data/ebird.csv", {
-		download: true,
-		header: true,
-		complete: function(results) {
-			gSightings = results.data;
+	console.log('end DOMContentLoaded');
+});
 
-			addDateObjects();
+Papa.parse("./data/ebird.csv", {
+	download: true,
+	header: true,
+	complete: function(results) {
+		gSightings = results.data;
 
-			gLocations = getUniqueValues(gSightings, 'Location');
-			gDates = getUniqueValues(gSightings, 'Date');
-			gChecklists = getUniqueValues(gSightings, 'Submission ID');
+		addDateObjects();
 
-			routeBasedOnHash();
-		}	
-	});
+		gLocations = getUniqueValues(gSightings, 'Location');
+		gDates = getUniqueValues(gSightings, 'Date');
+		gChecklists = getUniqueValues(gSightings, 'Submission ID');
+
+		routeBasedOnHash();
+	}	
 });
 
 window.onhashchange = routeBasedOnHash;
