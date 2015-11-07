@@ -24,8 +24,6 @@
 
 
 var gSightings = [];
-var gScientificNames = [];
-var gCommonNames = [];
 var gOmittedCommonNames = [];
 var gLifeSightingsTaxonomic = [];
 var gLifeSightingsChronological = [];
@@ -33,7 +31,6 @@ var gSightingsByYear = {};
 var gEarliestSightingByCommonName = {};
 var gLocations = [];
 var gDates = [];
-var gStates = [];
 var gCustomDayNames = [];
 
 function getEarliestSighting(sightingList) {
@@ -314,11 +311,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 			addDateObjects();
 
-			gScientificNames = getUniqueValues(gSightings, 'Scientific Name');
-			gCommonNames = getUniqueValues(gSightings, 'Common Name');
 			gLocations = getUniqueValues(gSightings, 'Location');
 			gDates = getUniqueValues(gSightings, 'Date');
-			gStates = getUniqueValues(gSightings, 'State/Province');
 
 			routeBasedOnHash();
 		}	
