@@ -293,9 +293,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	console.log('start DOMContentLoaded');
 
 	Handlebars.registerHelper('nicedate', function(inDate) {
-	  return new Handlebars.SafeString(
-	    inDate.toString('d-MMM-yyyy')
-	  );
+		return new Handlebars.SafeString(
+			d3.time.format("%b %d, %Y")(inDate)
+		);
 	});
 
 	Handlebars.registerHelper('nicenumber', function(inNumber) {
