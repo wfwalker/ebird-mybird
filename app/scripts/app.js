@@ -26,6 +26,7 @@
 var gSightings = [];
 var gScientificNames = [];
 var gCommonNames = [];
+var gOmittedCommonNames = [];
 var gLifeSightingsTaxonomic = [];
 var gLifeSightingsChronological = [];
 var gSightingsByYear = {};
@@ -72,10 +73,14 @@ function addDateObjects() {
 			}
 			gSightingsByYear[pieces[2]].push(sighting);
 
-			if (! gEarliestSightingByCommonName[sighting['Common Name']]) {
-				gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
-			} else if (sighting.DateObject < gEarliestSightingByCommonName[sighting['Common Name']].DateObject) {
-				gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
+			var omit = gOmittedCommonNames.indexOf(sighting['Common Name']) >=0;
+
+			if (! omit) {
+				if (! gEarliestSightingByCommonName[sighting['Common Name']]) {
+					gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
+				} else if (sighting.DateObject < gEarliestSightingByCommonName[sighting['Common Name']].DateObject) {
+					gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
+				}				
 			}
 		}
 	}
@@ -260,15 +265,25 @@ function routeBasedOnHash() {
 	}	
 }
 
-window.onhashchange = routeBasedOnHash;
+function loadCustomDayNames() {
+	var oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", function() {
+	  gCustomDayNames = JSON.parse(this.responseText);
+	  console.log('loaded custom day names', Object.keys(gCustomDayNames).length);
+	});
+	oReq.open("GET", "./data/day-names.json");
+	oReq.send();
+}
 
-var oReq = new XMLHttpRequest();
-oReq.addEventListener("load", function() {
-  gCustomDayNames = JSON.parse(this.responseText);
-  console.log('loaded custom day names', gCustomDayNames.length);
-});
-oReq.open("GET", "./data/day-names.json");
-oReq.send();
+function loadOmittedCommonNames() {
+	var oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", function() {
+	  gOmittedCommonNames = JSON.parse(this.responseText);
+	  console.log('loaded omitted common names', gOmittedCommonNames.length);
+	});
+	oReq.open("GET", "./data/omitted-common-names.json");
+	oReq.send();
+}
 
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log('starting');
@@ -310,5 +325,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	});
 });
 
+window.onhashchange = routeBasedOnHash;
+
+loadCustomDayNames();
+loadOmittedCommonNames();
 
 
