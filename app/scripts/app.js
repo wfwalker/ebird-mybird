@@ -112,9 +112,18 @@ function renderTemplate(inPrefix, inData) {
 }
 
 function showSection(inSelector) {
-	for (var item of document.querySelectorAll(inSelector)) {
-		item.classList.remove('hidden');
-		item.classList.add('visible');
+	var sections = document.querySelectorAll(inSelector);
+	for (var index = 0; index < sections.length; index++) {
+		sections[index].classList.remove('hidden');
+		sections[index].classList.add('visible');
+	}
+}
+
+function hideAllSections() {
+	var sections = document.querySelectorAll('section.card');
+	for (var index = 0; index < sections.length; index++) {
+		sections[index].classList.remove('visible');
+		sections[index].classList.add('hidden');
 	}
 }
 
@@ -251,10 +260,7 @@ function routeBasedOnHash() {
 	var theHashParts = window.location.hash.split('/');
 	console.log('changed', theHashParts[0], theHashParts[1]);
 
-	for (var item of document.querySelectorAll('section.card')) {
-		item.classList.remove('visible');
-		item.classList.add('hidden');
-	}
+	hideAllSections();
 
 	if(routingMap[theHashParts[0]]) {
 		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
@@ -288,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	Handlebars.registerHelper('nicedate', function(inDate) {
 	  return new Handlebars.SafeString(
-	    inDate.toLocaleDateString()
+	    inDate.toString('d-MMM-yyyy')
 	  );
 	});
 
