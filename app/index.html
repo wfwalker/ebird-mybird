@@ -29,7 +29,9 @@
         from {{nicedate earliest.DateObject}} - {{nicedate latest.DateObject}}
       </div>
 
-      <div id='byYearChartContainer' style='padding-top: 10px'></div>
+      <div id={{chartID}} style='padding-top: 10px'></div>
+
+      {{bargraph sightingsByYear chartID}}
     </script>
 
     <script id="chrono-template" type="x-handlebars-template">

@@ -134,7 +134,7 @@ function barGraphCountsForSightings(inData, inElement) {
 	values3.unshift('locations');
 
 	var chart = c3.generate({
-		bindto: '#' + inElement,
+		bindto: d3.select(inElement),
 		data: {
 			x: 'x',
 			columns: [
@@ -157,13 +157,12 @@ var routingMap = {
 		renderTemplate('home', {
 			numSightings: gSightings.length,
 			sightingsByYear: gSightingsByYear,
+			chartID: 'byYear',
 			numChecklists: getUniqueValues(gSightings, 'Submission ID').length,
 			earliest: getEarliestSighting(gSightings),
 			latest: getLatestSighting(gSightings),
 			owner: 'Bill Walker'
 		});
-
-		barGraphCountsForSightings(gSightingsByYear, 'byYearChartContainer');
 
 		showSection('section#home');
 	}, 
@@ -284,6 +283,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	  return new Handlebars.SafeString(
 	    inNumber.toLocaleString()
 	  );
+	});
+
+	Handlebars.registerHelper('bargraph', function(inData, inElement) {
+		console.log('inside helper');
+		window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement) }, 1);
+		console.log('after timeout');
 	});
 
 	Papa.parse("./data/ebird.csv", {
