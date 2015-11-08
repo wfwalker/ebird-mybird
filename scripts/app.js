@@ -98,6 +98,7 @@ function addDateObjects() {
 }
 
 function renderTemplate(inPrefix, inData) {
+
     var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
     var theTemplate = Handlebars.compile(theTemplateScript);
 	var newDiv = document.createElement("div");
@@ -108,6 +109,11 @@ function renderTemplate(inPrefix, inData) {
 	    results.removeChild(results.firstChild);
 	}
 
+    // hide loading section
+	document.getElementById('loading').classList.remove('visible');
+	document.getElementById('loading').classList.add('hidden');
+
+	// show rendered template
     results.appendChild(newDiv);
 }
 
@@ -255,12 +261,17 @@ var routingMap = {
 }
 
 function routeBasedOnHash() {
+	hideAllSections();
+
+	// show loading section
+	document.getElementById('loading').classList.add('visible');
+	document.getElementById('loading').classList.remove('hidden');
+
 	// On every hash change the render function is called with the new hash.
 	// This is how the navigation of our app happens.
 	var theHashParts = window.location.hash.split('/');
 	console.log('changed', theHashParts[0], theHashParts[1]);
 
-	hideAllSections();
 
 	if(routingMap[theHashParts[0]]) {
 		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
