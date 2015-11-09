@@ -1,11 +1,7 @@
 "use strict";
 
 var gSightings = null;
-var gChecklists = [];
 var gOmittedCommonNames = [];
-var gLifeSightingsTaxonomic = [];
-var gLocations = [];
-var gDates = [];
 var gCustomDayNames = [];
 
 function renderTemplate(inPrefix, inData) {
@@ -48,7 +44,7 @@ function barGraphCountsForSightings(inData, inElement) {
 	var labels = Object.keys(inData).map(function(k){return k;});
 	var values = Object.keys(inData).map(function(k){return inData[k].length;});
 	var values2 = Object.keys(inData).map(function(k){return new SightingList(inData[k]).getUniqueValues('Common Name').length;});
-	var values3 = Object.keys(inData).map(function(k){return new SightingList(inData[k]).getUniqueValues('Location').length;});
+	var values3 = Object.keys(inData).map(function(k){return new SightingList(inData[k]).locations.length;});
 
 	labels.unshift('x');
 	values.unshift('sightings');
@@ -108,7 +104,7 @@ var routingMap = {
 			numSightings: gSightings.count(),
 			sightingsByYear: gSightings.byYear(),
 			chartID: 'byYear',
-			numChecklists: gChecklists.length,
+			numChecklists: gSightings.checklists.length,
 			earliest: gSightings.earliestDateObject,
 			latest: gSightings.latestDateObject,
 			owner: 'Bill Walker'
@@ -129,7 +125,7 @@ var routingMap = {
 	}, 
 	'#trips' : function() {
 		renderTemplate('trips', {
-			trips: gDates,
+			trips: gSightings.dates,
 			customDayNames: gCustomDayNames
 		});
 
@@ -143,7 +139,7 @@ var routingMap = {
 			tripDate: tripSightings[0].DateObject,
 			customName: gCustomDayNames[inDate],
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
-			submissions: tripSightingList.getUniqueValues('Submission ID'),
+			submissions: tripSightingList.checklists,
 			sightings: tripSightings
 		});
 
@@ -151,18 +147,19 @@ var routingMap = {
 	}, 
 	'#year' : function(inYear) {
 		var yearSightings = gSightings.byYear()[inYear];
+		var yearSightingList = new SightingList(yearSightings);
 
 		renderTemplate('year', {
 			year: inYear,
 			yearSightings: yearSightings,
-			yearSpecies: getUniqueValues(yearSightings, 'Common Name')
+			yearSpecies: yearSightingList.getUniqueValues('Common Name')
 		});
 
 		showSection('section#year');
 	},
 	'#locations' : function() {
 		renderTemplate('locations', {
-			locations: gLocations
+			locations: gSightings.locations
 		});
 
 		showSection('section#locations');
@@ -180,7 +177,7 @@ var routingMap = {
 			locationSightingsTaxonomic: locationSightingsTaxonomic,
 			longitude: locationSightingsTaxonomic[0]["Longitude"],
 			latitude: locationSightingsTaxonomic[0]["Latitude"],
-			dates: locationSightingList.getUniqueValues("Date"),
+			dates: locationSightingList.dates,
 			taxons: locationSightingList.getUniqueValues("Common Name")
 		});
 
@@ -188,11 +185,11 @@ var routingMap = {
 	}, 
 	'#taxons' : function() {
 		var earliestByCommonName = gSightings.earliestByCommonName();
-		gLifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
-		gLifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+		var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
+		lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 		renderTemplate('taxons', {
-			lifeSightings: gLifeSightingsTaxonomic
+			lifeSightings: lifeSightingsTaxonomic
 		});
 
 		showSection('section#taxons');
@@ -306,11 +303,6 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 		header: true,
 		complete: function(results) {
 			gSightings = new SightingList(results.data);
-
-			gLocations = gSightings.getUniqueValues('Location');
-			gDates = gSightings.getUniqueValues('Date');
-			gChecklists = gSightings.getUniqueValues('Submission ID');
-
 			routeBasedOnHash();
 		}
 	});

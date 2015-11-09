@@ -26,6 +26,9 @@ var SightingList = function (inRowsFromCSV) {
 	this.earliestRowByCommonName = {};
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
+	this.locations = this.getUniqueValues('Location');
+	this.dates = this.getUniqueValues('Date');
+	this.checklists = this.getUniqueValues('Submission ID');
 
 	for (var index = 0; index < this.rows.length; index++) {
 		var sighting = this.rows[index];
