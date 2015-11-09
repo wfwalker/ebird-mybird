@@ -300,48 +300,54 @@ function loadOmittedCommonNames() {
 	oReq.send();
 }
 
-document.addEventListener("DOMContentLoaded", function(event) { 
-	console.log('start DOMContentLoaded');
+// REDIRECT to HTTPS!
+var host = "wfwalker.github.io";
+if ((host == window.location.host) && (window.location.protocol != "https:")) {
+	window.location.protocol = "https";
+} else {
+	document.addEventListener("DOMContentLoaded", function(event) { 
+		console.log('start DOMContentLoaded');
 
-	Handlebars.registerHelper('nicedate', function(inDate) {
-		return new Handlebars.SafeString (
-			d3.time.format("%b %d, %Y")(inDate)
-		);
+		Handlebars.registerHelper('nicedate', function(inDate) {
+			return new Handlebars.SafeString (
+				d3.time.format("%b %d, %Y")(inDate)
+			);
+		});
+
+		Handlebars.registerHelper('nicenumber', function(inNumber) {
+			return new Handlebars.SafeString (
+				d3.format(",d")(inNumber)
+			);
+		});
+
+		Handlebars.registerHelper('bargraph', function(inData, inElement) {
+			// per @digitarald use timeout to reorder helper after Handlebars templating
+			window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement) }, 1);
+		});
+
+		console.log('end DOMContentLoaded');
 	});
 
-	Handlebars.registerHelper('nicenumber', function(inNumber) {
-		return new Handlebars.SafeString (
-			d3.format(",d")(inNumber)
-		);
+	Papa.parse("./data/ebird.csv", {
+		download: true,
+		header: true,
+		complete: function(results) {
+			gSightings = results.data;
+
+			addDateObjects();
+
+			gLocations = getUniqueValues(gSightings, 'Location');
+			gDates = getUniqueValues(gSightings, 'Date');
+			gChecklists = getUniqueValues(gSightings, 'Submission ID');
+
+			routeBasedOnHash();
+		}
 	});
 
-	Handlebars.registerHelper('bargraph', function(inData, inElement) {
-		// per @digitarald use timeout to reorder helper after Handlebars templating
-		window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement) }, 1);
-	});
+	window.onhashchange = routeBasedOnHash;
 
-	console.log('end DOMContentLoaded');
-});
-
-Papa.parse("./data/ebird.csv", {
-	download: true,
-	header: true,
-	complete: function(results) {
-		gSightings = results.data;
-
-		addDateObjects();
-
-		gLocations = getUniqueValues(gSightings, 'Location');
-		gDates = getUniqueValues(gSightings, 'Date');
-		gChecklists = getUniqueValues(gSightings, 'Submission ID');
-
-		routeBasedOnHash();
-	}	
-});
-
-window.onhashchange = routeBasedOnHash;
-
-loadCustomDayNames();
-loadOmittedCommonNames();
+	loadCustomDayNames();
+	loadOmittedCommonNames();
+}
 
 
