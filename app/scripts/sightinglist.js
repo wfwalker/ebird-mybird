@@ -1,3 +1,25 @@
+// Submission ID, S7755084
+// Common Name, Black-bellied Whistling-Duck
+// Scientific Name, Dendrocygna autumnalis
+// Taxonomic Order, 215
+// Count, X
+// State/Province, US-TX
+// County, Cameron
+// Location, Brownsville
+// Latitude, 25.911388
+// Longitude, -97.4904876
+// Date, 04-17-2004
+// Time,
+// Protocol, eBird - Casual Observation
+// Duration (Min),
+// All Obs Reported,
+// Distance Traveled (km),
+// Area Covered (ha),
+// Number of Observers,
+// Breeding Code,
+// Species Comments,
+// Checklist Comments
+
 var SightingList = function (inRowsFromCSV) {
 	this.rows = inRowsFromCSV;
 	this.rowsByYear = {};
@@ -27,6 +49,7 @@ var SightingList = function (inRowsFromCSV) {
 			}
 			this.rowsByYear[pieces[2]].push(sighting);
 
+			// TODO: dependancy on external global and also race condition
 			var omit = gOmittedCommonNames.indexOf(sighting['Common Name']) >=0;
 
 			if (! omit) {
@@ -61,6 +84,10 @@ SightingList.prototype.count = function() {
 SightingList.prototype.byYear = function() {
 	return this.rowsByYear;
 }
+
+SightingList.prototype.earliestByCommonName = function() {
+	return this.earliestRowByCommonName;
+}	
 
 SightingList.prototype.getUniqueValues = function(fieldName) {
 	var values = [];

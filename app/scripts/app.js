@@ -1,33 +1,9 @@
 "use strict";
 
-// Submission ID, S7755084
-// Common Name, Black-bellied Whistling-Duck
-// Scientific Name, Dendrocygna autumnalis
-// Taxonomic Order, 215
-// Count, X
-// State/Province, US-TX
-// County, Cameron
-// Location, Brownsville
-// Latitude, 25.911388
-// Longitude, -97.4904876
-// Date, 04-17-2004
-// Time,
-// Protocol, eBird - Casual Observation
-// Duration (Min),
-// All Obs Reported,
-// Distance Traveled (km),
-// Area Covered (ha),
-// Number of Observers,
-// Breeding Code,
-// Species Comments,
-// Checklist Comments
-
-
 var gSightings = null;
 var gChecklists = [];
 var gOmittedCommonNames = [];
 var gLifeSightingsTaxonomic = [];
-var gLifeSightingsChronological = [];
 var gLocations = [];
 var gDates = [];
 var gCustomDayNames = [];
@@ -141,11 +117,12 @@ var routingMap = {
 		showSection('section#home');
 	}, 
 	'#chrono' : function() {
-		gLifeSightingsChronological = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
-		gLifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+		var earliestByCommonName = gSightings.earliestByCommonName();
+		var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
+		lifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
 		renderTemplate('chrono', {
-			firstSightings: gLifeSightingsChronological
+			firstSightings: lifeSightingsChronological
 		});
 
 		showSection('section#chrono');
@@ -191,27 +168,27 @@ var routingMap = {
 		showSection('section#locations');
 	}, 
 	'#location' : function(inLocationName) {
-		var locationSightingsChronological = gSightings.filter(function(s) { return s['Location'] == inLocationName; });
-		locationSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
-
-		var locationSightingsTaxonomic = locationSightingsChronological.slice(0);
+		var locationSightingsTaxonomic = gSightings.filter(function(s) { return s['Location'] == inLocationName; });
 		locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+		var locationSightingList = new SightingList(locationSightingsTaxonomic);
 
 		renderTemplate('location', {
 			name: inLocationName,
-			county: locationSightingsChronological[0]["County"],
-			state: locationSightingsChronological[0]["State/Province"],
+			county: locationSightingsTaxonomic[0]["County"],
+			state: locationSightingsTaxonomic[0]["State/Province"],
 			locationSightingsTaxonomic: locationSightingsTaxonomic,
-			longitude: locationSightingsChronological[0]["Longitude"],
-			latitude: locationSightingsChronological[0]["Latitude"],
-			dates: getUniqueValues(locationSightingsChronological, "Date"),
-			taxons: getUniqueValues(locationSightingsTaxonomic, "Common Name")
+			longitude: locationSightingsTaxonomic[0]["Longitude"],
+			latitude: locationSightingsTaxonomic[0]["Latitude"],
+			dates: locationSightingList.getUniqueValues("Date"),
+			taxons: locationSightingList.getUniqueValues("Common Name")
 		});
 
 		showSection('section#location');
 	}, 
 	'#taxons' : function() {
-		gLifeSightingsTaxonomic = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
+		var earliestByCommonName = gSightings.earliestByCommonName();
+		gLifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
 		gLifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 		renderTemplate('taxons', {
