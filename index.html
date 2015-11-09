@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
     <title>ebird-mybird</title>
 
@@ -43,6 +44,11 @@
 
     <script id="taxon-template" type="x-handlebars-template">
       <h3>{{name}} <span style='font-weight: lighter'>| {{scientificName}}<span></h3>
+
+      <div id={{chartID}} style='padding-top: 10px'></div>
+
+      {{monthgraph sightingsByMonth chartID}}
+
       <div>{{sightings.length}} sightings</div>
       {{#each sightings}}
         <div>

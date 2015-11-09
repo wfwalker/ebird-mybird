@@ -163,6 +163,34 @@ function barGraphCountsForSightings(inData, inElement) {
 	});
 }
 
+function byMonthForSightings(inData, inElement) {
+	// var labels = ['x', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var values = inData.map(function(a){return a.length;});
+
+	values.unshift('sightings');
+
+	var chart = c3.generate({
+		bindto: d3.select(inElement),
+		size: {
+			width: 640,
+			height: 200
+		},
+		bar: {
+			width: {
+				ratio: 1.0
+			}
+		},
+		data: {
+			columns: [
+				values
+			],
+			types: {
+				sightings: 'bar'
+			}
+		}
+	});
+}
+
 var routingMap = {
 	'#home' : function() {
 		renderTemplate('home', {
@@ -251,7 +279,6 @@ var routingMap = {
 		gLifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 		renderTemplate('taxons', {
-
 			lifeSightings: gLifeSightingsTaxonomic
 		});
 
@@ -261,10 +288,23 @@ var routingMap = {
 		var taxonSightings = gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
 		taxonSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
+		var sightingsByMonth = [null, [],[],[],[],[],[],[],[],[],[],[],[]];
+
+		for (var index = 0; index < taxonSightings.length; index++) {
+			var tmp = parseInt(taxonSightings[index].Date.substring(0,2));
+			sightingsByMonth[tmp].push(taxonSightings[index]);
+		}
+
+		sightingsByMonth.shift();
+
+		console.log(sightingsByMonth);
+
 		renderTemplate('taxon', {
 			name: inCommonName,
 			scientificName: taxonSightings[0]["Scientific Name"],
-			sightings: taxonSightings
+			sightingsByMonth: sightingsByMonth,
+			sightings: taxonSightings,
+			chartID: 'bymonth'
 		});
 
 		showSection('section#taxon');
@@ -338,6 +378,11 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 		Handlebars.registerHelper('bargraph', function(inData, inElement) {
 			// per @digitarald use timeout to reorder helper after Handlebars templating
 			window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement) }, 1);
+		});
+
+		Handlebars.registerHelper('monthgraph', function(inData, inElement) {
+			// per @digitarald use timeout to reorder helper after Handlebars templating
+			window.setTimeout(function () { byMonthForSightings(inData, '#' + inElement) }, 1);
 		});
 
 		console.log('end DOMContentLoaded');
