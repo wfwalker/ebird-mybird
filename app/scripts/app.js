@@ -199,7 +199,7 @@ var routingMap = {
 		var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
 
 		renderTemplate('trip', {
-			name: inDate,
+			tripDate: tripSightings[0].DateObject,
 			customName: gCustomDayNames[inDate],
 			comments: getUniqueValues(tripSightings, 'Checklist Comments'),
 			submissions: getUniqueValues(tripSightings, 'Submission ID'),
