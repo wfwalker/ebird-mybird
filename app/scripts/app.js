@@ -272,6 +272,10 @@ function routeBasedOnHash() {
 	var theHashParts = window.location.hash.split('/');
 	console.log('changed', theHashParts[0], theHashParts[1]);
 
+	if (! theHashParts[0]) {
+		// TODO: should use push state
+		theHashParts[0] = '#home';
+	}
 
 	if(routingMap[theHashParts[0]]) {
 		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
