@@ -208,6 +208,17 @@ var routingMap = {
 
 		showSection('section#trip');
 	}, 
+	'#year' : function(inYear) {
+		var yearSightings = gSightingsByYear[inYear];
+
+		renderTemplate('year', {
+			year: inYear,
+			yearSightings: yearSightings,
+			yearSpecies: getUniqueValues(yearSightings, 'Common Name')
+		});
+
+		showSection('section#year');
+	},
 	'#locations' : function() {
 		renderTemplate('locations', {
 			locations: gLocations

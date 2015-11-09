@@ -80,6 +80,16 @@
       {{/each}}
     </script>
 
+    <script id="year-template" type="x-handlebars-template">
+      <h3>{{year}}</h3>
+
+      <div>{{yearSightings.length}} sightings, {{yearSpecies.length}} species</div>
+
+      {{#each yearSpecies}}
+        <div><a href="#taxon/{{this}}">{{this}}</a></div>
+      {{/each}}
+    </script>
+
     <script id="trip-template" type="x-handlebars-template">
       <h3>{{nicedate tripDate}} <span style='font-weight: lighter'>| {{customName}}</span></h3>
 
@@ -145,6 +155,11 @@
 
       <section id="trip" class="hidden card inner">
         <div id='trip-results' class='inner'>
+        </div>
+      </section>
+
+      <section id="year" class="hidden card inner">
+        <div id='year-results' class='inner'>
         </div>
       </section>
 
