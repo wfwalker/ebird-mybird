@@ -199,7 +199,7 @@ var routingMap = {
 		var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
 
 		renderTemplate('trip', {
-			name: inDate,
+			tripDate: tripSightings[0].DateObject,
 			customName: gCustomDayNames[inDate],
 			comments: getUniqueValues(tripSightings, 'Checklist Comments'),
 			submissions: getUniqueValues(tripSightings, 'Submission ID'),
@@ -208,6 +208,17 @@ var routingMap = {
 
 		showSection('section#trip');
 	}, 
+	'#year' : function(inYear) {
+		var yearSightings = gSightingsByYear[inYear];
+
+		renderTemplate('year', {
+			year: inYear,
+			yearSightings: yearSightings,
+			yearSpecies: getUniqueValues(yearSightings, 'Common Name')
+		});
+
+		showSection('section#year');
+	},
 	'#locations' : function() {
 		renderTemplate('locations', {
 			locations: gLocations
