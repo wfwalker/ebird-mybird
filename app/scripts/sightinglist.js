@@ -27,17 +27,28 @@ var SightingList = function (inRowsFromCSV) {
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
 	this.locations = this.getUniqueValues('Location');
-	this.dates = this.getUniqueValues('Date');
 	this.checklists = this.getUniqueValues('Submission ID');
+	this.dates = [];
+	this.dateObjects = [];
 
 	for (var index = 0; index < this.rows.length; index++) {
 		var sighting = this.rows[index];
 
 		if (sighting['Date']) {
+			// Parse the date
 			var pieces = sighting['Date'].split('-');
+
+			// order the pieces in a sensible way
 			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
+
+			// create and save the new dat
 			var newDate = new Date(fixedDateString);
 			this.rows[index]['DateObject'] = newDate;
+
+			if (this.dates.indexOf(sighting['Date']) < 0) {
+				this.dates.push(sighting['Date']);
+				this.dateObjects.push(newDate);
+			}
 
 			if (this.earliestDateObject == null || newDate < this.earliestDateObject) {
 				this.earliestDateObject = newDate;
@@ -65,6 +76,9 @@ var SightingList = function (inRowsFromCSV) {
 		}
 	}
 
+	this.dateObjects.sort(function(a, b) { return a - b; });
+
+	// TODO: this is probably unnecessary sort!
 	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });	
 }
 

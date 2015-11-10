@@ -125,7 +125,7 @@ var routingMap = {
 	}, 
 	'#trips' : function() {
 		renderTemplate('trips', {
-			trips: gSightings.dates,
+			trips: gSightings.dateObjects,
 			customDayNames: gCustomDayNames
 		});
 
@@ -177,7 +177,7 @@ var routingMap = {
 			locationSightingsTaxonomic: locationSightingsTaxonomic,
 			longitude: locationSightingsTaxonomic[0]["Longitude"],
 			latitude: locationSightingsTaxonomic[0]["Latitude"],
-			dates: locationSightingList.dates,
+			dates: locationSightingList.dateObjects,
 			taxons: locationSightingList.getUniqueValues("Common Name")
 		});
 
@@ -206,8 +206,6 @@ var routingMap = {
 		}
 
 		sightingsByMonth.shift();
-
-		console.log(sightingsByMonth);
 
 		renderTemplate('taxon', {
 			name: inCommonName,
@@ -278,6 +276,13 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 				d3.time.format("%b %d, %Y")(inDate)
 			);
 		});
+
+		Handlebars.registerHelper('ebirddate', function(inDate) {
+			return new Handlebars.SafeString (
+				d3.time.format("%m-%d-%Y")(inDate)
+			);
+		});
+
 
 		Handlebars.registerHelper('nicenumber', function(inNumber) {
 			return new Handlebars.SafeString (

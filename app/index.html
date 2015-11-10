@@ -69,7 +69,7 @@
       <h3>{{name}} <span style='font-weight: lighter'>| {{county}}, {{state}}<span></h3>
       <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
 
-      <div>{{taxons.length}} species on {{dates.length}} dates</div>
+      <div>{{taxons.length}} species on {{dateObjects.length}} dates</div>
 
       {{#each taxons}}
         <div>
@@ -82,7 +82,7 @@
       <h3>{{trips.length}} trips</h3>
 
       {{#each trips}}
-        <div><a href="#trip/{{this}}">{{this}}</a> {{lookup ../customDayNames this}}</div>
+        <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
       {{/each}}
     </script>
 
