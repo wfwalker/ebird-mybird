@@ -107,7 +107,7 @@ var routingMap = {
 		renderTemplate('home', {
 			numSightings: gSightings.count(),
 			sightingsByYear: gSightings.byYear(),
-			chartID: 'byYear',
+			chartID: 'byYear' + Date.now(),
 			numChecklists: gSightings.checklists.length,
 			earliest: gSightings.earliestDateObject,
 			latest: gSightings.latestDateObject,
@@ -176,19 +176,12 @@ var routingMap = {
 
 		var locationSightingList = new SightingList(locationSightingsTaxonomic);
 
-		var sightingsByMonth = [null, [],[],[],[],[],[],[],[],[],[],[],[]];
-
-		for (var index = 0; index < locationSightingsTaxonomic.length; index++) {
-			var tmp = parseInt(locationSightingsTaxonomic[index].Date.substring(0,2));
-			sightingsByMonth[tmp].push(locationSightingsTaxonomic[index]);
-		}
-
-		sightingsByMonth.shift();
+		console.log('loc by month', locationSightingList.byMonth());
 
 		renderTemplate('location', {
 			name: inLocationName,
-			chartID: 'bymonth',
-			sightingsByMonth: sightingsByMonth,
+			chartID: 'bymonth' + Date.now(),
+			sightingsByMonth: locationSightingList.byMonth(),
 			photos: gPhotos.filter(function(p) { return p.location == inLocationName }),
 			county: locationSightingsTaxonomic[0]["County"],
 			state: locationSightingsTaxonomic[0]["State/Province"],
@@ -216,21 +209,14 @@ var routingMap = {
 		var taxonSightings = gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
 		taxonSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
-		var sightingsByMonth = [null, [],[],[],[],[],[],[],[],[],[],[],[]];
-
-		for (var index = 0; index < taxonSightings.length; index++) {
-			var tmp = parseInt(taxonSightings[index].Date.substring(0,2));
-			sightingsByMonth[tmp].push(taxonSightings[index]);
-		}
-
-		sightingsByMonth.shift();
+		var taxonSightingsList = new SightingList(taxonSightings);
 
 		renderTemplate('taxon', {
 			name: inCommonName,
 			scientificName: taxonSightings[0]["Scientific Name"],
-			sightingsByMonth: sightingsByMonth,
+			sightingsByMonth: taxonSightingsList.byMonth(),
 			sightings: taxonSightings,
-			chartID: 'bymonth'
+			chartID: 'bymonth' + Date.now()
 		});
 
 		showSection('section#taxon');

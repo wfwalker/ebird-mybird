@@ -23,6 +23,7 @@
 var SightingList = function (inRowsFromCSV) {
 	this.rows = inRowsFromCSV;
 	this.rowsByYear = {};
+	this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] };
 	this.earliestRowByCommonName = {};
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
@@ -63,6 +64,11 @@ var SightingList = function (inRowsFromCSV) {
 			}
 			this.rowsByYear[pieces[2]].push(sighting);
 
+			if (! this.rowsByMonth[pieces[0]]) {
+				this.rowsByMonth[pieces[0]] = [];
+			}
+			this.rowsByMonth[pieces[0]].push(sighting);
+
 			// TODO: dependancy on external global and also race condition
 			var omit = gOmittedCommonNames.indexOf(sighting['Common Name']) >=0;
 
@@ -100,6 +106,23 @@ SightingList.prototype.count = function() {
 
 SightingList.prototype.byYear = function() {
 	return this.rowsByYear;
+}
+
+SightingList.prototype.byMonth = function() {
+	return [
+		this.rowsByMonth['01'],
+		this.rowsByMonth['02'],
+		this.rowsByMonth['03'],
+		this.rowsByMonth['04'],
+		this.rowsByMonth['05'],
+		this.rowsByMonth['06'],
+		this.rowsByMonth['07'],
+		this.rowsByMonth['08'],
+		this.rowsByMonth['09'],
+		this.rowsByMonth['10'],
+		this.rowsByMonth['11'],
+		this.rowsByMonth['12']
+	];
 }
 
 SightingList.prototype.earliestByCommonName = function() {
