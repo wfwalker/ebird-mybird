@@ -1,101 +1,9 @@
 "use strict";
 
-// Submission ID, S7755084
-// Common Name, Black-bellied Whistling-Duck
-// Scientific Name, Dendrocygna autumnalis
-// Taxonomic Order, 215
-// Count, X
-// State/Province, US-TX
-// County, Cameron
-// Location, Brownsville
-// Latitude, 25.911388
-// Longitude, -97.4904876
-// Date, 04-17-2004
-// Time,
-// Protocol, eBird - Casual Observation
-// Duration (Min),
-// All Obs Reported,
-// Distance Traveled (km),
-// Area Covered (ha),
-// Number of Observers,
-// Breeding Code,
-// Species Comments,
-// Checklist Comments
-
-
-var gSightings = [];
-var gChecklists = [];
-var gEarliestSightingDateObject = null;
-var gLatestSightingDateObject = null;
+var gSightings = null;
 var gOmittedCommonNames = [];
-var gLifeSightingsTaxonomic = [];
-var gLifeSightingsChronological = [];
-var gSightingsByYear = {};
-var gEarliestSightingByCommonName = {};
-var gLocations = [];
-var gDates = [];
 var gCustomDayNames = [];
-
-function getEarliestSighting(sightingList) {
-	sightingList.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
-	return sightingList[0];
-}
-
-function getLatestSighting(sightingList) {
-	sightingList.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
-	return sightingList[0];
-}
-
-function getUniqueValues(sightingList, fieldName) {
-	var values = [];
-
-	for (var index = 1; index < sightingList.length; index++) {
-		var aValue = sightingList[index][fieldName];
-		if (values.indexOf(aValue) < 0) {
-			values.push(aValue);
-		}
-	}
-
-	return values;
-};
-
-function addDateObjects() {
-	for (var index = 0; index < gSightings.length; index++) {
-		var sighting = gSightings[index];
-
-		if (sighting['Date']) {
-			var pieces = sighting['Date'].split('-');
-			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
-			var newDate = new Date(fixedDateString);
-			gSightings[index]['DateObject'] = newDate;
-
-			if (gEarliestSightingDateObject == null || newDate < gEarliestSightingDateObject) {
-				gEarliestSightingDateObject = newDate;
-			}
-
-			if (gLatestSightingDateObject == null || newDate > gLatestSightingDateObject) {
-				gLatestSightingDateObject = newDate;
-			}
-
-			if (! gSightingsByYear[pieces[2]]) {
-				gSightingsByYear[pieces[2]] = [];
-			}
-			gSightingsByYear[pieces[2]].push(sighting);
-
-			var omit = gOmittedCommonNames.indexOf(sighting['Common Name']) >=0;
-
-			if (! omit) {
-				if (! gEarliestSightingByCommonName[sighting['Common Name']]) {
-					gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
-				} else if (sighting.DateObject < gEarliestSightingByCommonName[sighting['Common Name']].DateObject) {
-					gEarliestSightingByCommonName[sighting['Common Name']] = sighting;
-				}				
-			}
-		}
-	}
-
-	gSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
-}
+var gPhotos = [];
 
 function renderTemplate(inPrefix, inData) {
 
@@ -136,8 +44,8 @@ function hideAllSections() {
 function barGraphCountsForSightings(inData, inElement) {
 	var labels = Object.keys(inData).map(function(k){return k;});
 	var values = Object.keys(inData).map(function(k){return inData[k].length;});
-	var values2 = Object.keys(inData).map(function(k){return getUniqueValues(inData[k], 'Common Name').length;});
-	var values3 = Object.keys(inData).map(function(k){return getUniqueValues(inData[k], 'Location').length;});
+	var values2 = Object.keys(inData).map(function(k){return new SightingList(inData[k]).getUniqueValues('Common Name').length;});
+	var values3 = Object.keys(inData).map(function(k){return new SightingList(inData[k]).locations.length;});
 
 	labels.unshift('x');
 	values.unshift('sightings');
@@ -158,6 +66,9 @@ function barGraphCountsForSightings(inData, inElement) {
 				sightings: 'line',
 				species: 'line',
 				locations: 'line'
+			},
+			onclick: function(d, element) {
+				window.location.hash = '#year/' + d.x;
 			}
 		}
 	});
@@ -194,30 +105,31 @@ function byMonthForSightings(inData, inElement) {
 var routingMap = {
 	'#home' : function() {
 		renderTemplate('home', {
-			numSightings: gSightings.length,
-			sightingsByYear: gSightingsByYear,
+			numSightings: gSightings.count(),
+			sightingsByYear: gSightings.byYear(),
 			chartID: 'byYear',
-			numChecklists: getUniqueValues(gSightings, 'Submission ID').length,
-			earliest: gEarliestSightingDateObject,
-			latest: gLatestSightingDateObject,
+			numChecklists: gSightings.checklists.length,
+			earliest: gSightings.earliestDateObject,
+			latest: gSightings.latestDateObject,
 			owner: 'Bill Walker'
 		});
 
 		showSection('section#home');
 	}, 
 	'#chrono' : function() {
-		gLifeSightingsChronological = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
-		gLifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+		var earliestByCommonName = gSightings.earliestByCommonName();
+		var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
+		lifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
 		renderTemplate('chrono', {
-			firstSightings: gLifeSightingsChronological
+			firstSightings: lifeSightingsChronological
 		});
 
 		showSection('section#chrono');
 	}, 
 	'#trips' : function() {
 		renderTemplate('trips', {
-			trips: gDates,
+			trips: gSightings.dateObjects,
 			customDayNames: gCustomDayNames
 		});
 
@@ -225,61 +137,66 @@ var routingMap = {
 	}, 
 	'#trip' : function(inDate) {
 		var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
+		var tripSightingList = new SightingList(tripSightings);
 
 		renderTemplate('trip', {
 			tripDate: tripSightings[0].DateObject,
+			photos: gPhotos.filter(function(p){return p.tripDate == inDate;}),
 			customName: gCustomDayNames[inDate],
-			comments: getUniqueValues(tripSightings, 'Checklist Comments'),
-			submissions: getUniqueValues(tripSightings, 'Submission ID'),
+			comments: tripSightingList.getUniqueValues('Checklist Comments'),
+			submissions: tripSightingList.checklists,
 			sightings: tripSightings
 		});
 
 		showSection('section#trip');
 	}, 
 	'#year' : function(inYear) {
-		var yearSightings = gSightingsByYear[inYear];
+		var yearSightings = gSightings.byYear()[inYear];
+		yearSightings.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+		var yearSightingList = new SightingList(yearSightings);
 
 		renderTemplate('year', {
 			year: inYear,
 			yearSightings: yearSightings,
-			yearSpecies: getUniqueValues(yearSightings, 'Common Name')
+			yearSpecies: yearSightingList.getUniqueValues('Common Name')
 		});
 
 		showSection('section#year');
 	},
 	'#locations' : function() {
 		renderTemplate('locations', {
-			locations: gLocations
+			locations: gSightings.locations
 		});
 
 		showSection('section#locations');
 	}, 
 	'#location' : function(inLocationName) {
-		var locationSightingsChronological = gSightings.filter(function(s) { return s['Location'] == inLocationName; });
-		locationSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
-
-		var locationSightingsTaxonomic = locationSightingsChronological.slice(0);
+		var locationSightingsTaxonomic = gSightings.filter(function(s) { return s['Location'] == inLocationName; });
 		locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+		var locationSightingList = new SightingList(locationSightingsTaxonomic);
 
 		renderTemplate('location', {
 			name: inLocationName,
-			county: locationSightingsChronological[0]["County"],
-			state: locationSightingsChronological[0]["State/Province"],
+			photos: gPhotos.filter(function(p) { return p.location == inLocationName }),
+			county: locationSightingsTaxonomic[0]["County"],
+			state: locationSightingsTaxonomic[0]["State/Province"],
 			locationSightingsTaxonomic: locationSightingsTaxonomic,
-			longitude: locationSightingsChronological[0]["Longitude"],
-			latitude: locationSightingsChronological[0]["Latitude"],
-			dates: getUniqueValues(locationSightingsChronological, "Date"),
-			taxons: getUniqueValues(locationSightingsTaxonomic, "Common Name")
+			longitude: locationSightingsTaxonomic[0]["Longitude"],
+			latitude: locationSightingsTaxonomic[0]["Latitude"],
+			dateObjects: locationSightingList.dateObjects,
+			taxons: locationSightingList.getUniqueValues("Common Name")
 		});
 
 		showSection('section#location');
 	}, 
 	'#taxons' : function() {
-		gLifeSightingsTaxonomic = Object.keys(gEarliestSightingByCommonName).map(function(k){return gEarliestSightingByCommonName[k]});
-		gLifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+		var earliestByCommonName = gSightings.earliestByCommonName();
+		var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
+		lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 		renderTemplate('taxons', {
-			lifeSightings: gLifeSightingsTaxonomic
+			lifeSightings: lifeSightingsTaxonomic
 		});
 
 		showSection('section#taxons');
@@ -296,8 +213,6 @@ var routingMap = {
 		}
 
 		sightingsByMonth.shift();
-
-		console.log(sightingsByMonth);
 
 		renderTemplate('taxon', {
 			name: inCommonName,
@@ -355,6 +270,37 @@ function loadOmittedCommonNames() {
 	oReq.send();
 }
 
+function loadPhotos() {
+	var oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", function() {
+		gPhotos = JSON.parse(this.responseText);
+		console.log('loaded photos', gPhotos.length);
+
+
+		for (var index = 0; index < gPhotos.length; index++) {
+			var imageFilename = '';
+			var photo = gPhotos[index];
+			if (photo.abbreviation == 'NULL') {
+				imageFilename = photo.date + '-' + photo.scientificName.replace(' ', '_').toLowerCase();
+			} else {
+				imageFilename = photo.date + '-' + photo.abbreviation;
+			}
+
+			if (photo.original_filename != 'NULL') {
+				imageFilename = imageFilename + '-' + photo.original_filename;
+			}
+
+			gPhotos[index].photoURL = 'http://birdwalker.com/images/photo/' + imageFilename + '.jpg';
+			gPhotos[index].thumbURL = 'http://birdwalker.com/images/thumb/' + imageFilename + '.jpg';
+			var tmp = photo.date.split('-');
+			gPhotos[index].tripDate = [tmp[1], tmp[2], tmp[0]].join('-');
+			console.log(gPhotos[index].tripDate, gPhotos[index].url)
+		}
+	});
+	oReq.open("GET", "./data/photos.json");
+	oReq.send();
+}
+
 // REDIRECT to HTTPS!
 var host = "wfwalker.github.io";
 if ((host == window.location.host) && (window.location.protocol != "https:")) {
@@ -366,6 +312,12 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 		Handlebars.registerHelper('nicedate', function(inDate) {
 			return new Handlebars.SafeString (
 				d3.time.format("%b %d, %Y")(inDate)
+			);
+		});
+
+		Handlebars.registerHelper('ebirddate', function(inDate) {
+			return new Handlebars.SafeString (
+				d3.time.format("%m-%d-%Y")(inDate)
 			);
 		});
 
@@ -392,14 +344,7 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 		download: true,
 		header: true,
 		complete: function(results) {
-			gSightings = results.data;
-
-			addDateObjects();
-
-			gLocations = getUniqueValues(gSightings, 'Location');
-			gDates = getUniqueValues(gSightings, 'Date');
-			gChecklists = getUniqueValues(gSightings, 'Submission ID');
-
+			gSightings = new SightingList(results.data);
 			routeBasedOnHash();
 		}
 	});
@@ -408,6 +353,7 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 
 	loadCustomDayNames();
 	loadOmittedCommonNames();
+	loadPhotos();
 }
 
 
