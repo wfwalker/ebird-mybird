@@ -176,8 +176,19 @@ var routingMap = {
 
 		var locationSightingList = new SightingList(locationSightingsTaxonomic);
 
+		var sightingsByMonth = [null, [],[],[],[],[],[],[],[],[],[],[],[]];
+
+		for (var index = 0; index < locationSightingsTaxonomic.length; index++) {
+			var tmp = parseInt(locationSightingsTaxonomic[index].Date.substring(0,2));
+			sightingsByMonth[tmp].push(locationSightingsTaxonomic[index]);
+		}
+
+		sightingsByMonth.shift();
+
 		renderTemplate('location', {
 			name: inLocationName,
+			chartID: 'bymonth',
+			sightingsByMonth: sightingsByMonth,
 			photos: gPhotos.filter(function(p) { return p.location == inLocationName }),
 			county: locationSightingsTaxonomic[0]["County"],
 			state: locationSightingsTaxonomic[0]["State/Province"],
