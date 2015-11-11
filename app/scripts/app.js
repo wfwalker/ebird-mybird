@@ -41,8 +41,6 @@ function hideAllSections() {
 	}
 }
 
-// TODO add onclick: function (d, element) { ... } within data{} section
-
 function barGraphCountsForSightings(inData, inElement) {
 	var labels = Object.keys(inData).map(function(k){return k;});
 	var values = Object.keys(inData).map(function(k){return inData[k].length;});
@@ -68,6 +66,9 @@ function barGraphCountsForSightings(inData, inElement) {
 				sightings: 'line',
 				species: 'line',
 				locations: 'line'
+			},
+			onclick: function(d, element) {
+				window.location.hash = '#year/' + d.x;
 			}
 		}
 	});
