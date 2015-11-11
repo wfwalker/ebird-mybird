@@ -3,6 +3,7 @@
 var gSightings = null;
 var gOmittedCommonNames = [];
 var gCustomDayNames = [];
+var gPhotos = [];
 
 function renderTemplate(inPrefix, inData) {
 
@@ -39,6 +40,8 @@ function hideAllSections() {
 		sections[index].classList.add('hidden');
 	}
 }
+
+// TODO add onclick: function (d, element) { ... } within data{} section
 
 function barGraphCountsForSightings(inData, inElement) {
 	var labels = Object.keys(inData).map(function(k){return k;});
@@ -137,6 +140,7 @@ var routingMap = {
 
 		renderTemplate('trip', {
 			tripDate: tripSightings[0].DateObject,
+			photos: gPhotos.filter(function(p){return p.tripDate == inDate;}),
 			customName: gCustomDayNames[inDate],
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
 			submissions: tripSightingList.checklists,
@@ -147,6 +151,7 @@ var routingMap = {
 	}, 
 	'#year' : function(inYear) {
 		var yearSightings = gSightings.byYear()[inYear];
+		yearSightings.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 		var yearSightingList = new SightingList(yearSightings);
 
 		renderTemplate('year', {
@@ -177,7 +182,7 @@ var routingMap = {
 			locationSightingsTaxonomic: locationSightingsTaxonomic,
 			longitude: locationSightingsTaxonomic[0]["Longitude"],
 			latitude: locationSightingsTaxonomic[0]["Latitude"],
-			dates: locationSightingList.dateObjects,
+			dateObjects: locationSightingList.dateObjects,
 			taxons: locationSightingList.getUniqueValues("Common Name")
 		});
 
@@ -263,6 +268,36 @@ function loadOmittedCommonNames() {
 	oReq.send();
 }
 
+function loadPhotos() {
+	var oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", function() {
+		gPhotos = JSON.parse(this.responseText);
+		console.log('loaded photos', gPhotos.length);
+
+
+		for (var index = 0; index < gPhotos.length; index++) {
+			var imageFilename = '';
+			var photo = gPhotos[index];
+			if (photo.abbreviation == 'NULL') {
+				imageFilename = photo.date + '-' + photo.scientificName.replace(' ', '_').toLowerCase();
+			} else {
+				imageFilename = photo.date + '-' + photo.abbreviation;
+			}
+
+			if (photo.original_filename != 'NULL') {
+				imageFilename = imageFilename + '-' + photo.original_filename;
+			}
+
+			gPhotos[index].url = 'http://birdwalker.com/images/photo/' + imageFilename + '.jpg';
+			var tmp = photo.date.split('-');
+			gPhotos[index].tripDate = [tmp[1], tmp[2], tmp[0]].join('-');
+			console.log(gPhotos[index].tripDate, gPhotos[index].url)
+		}
+	});
+	oReq.open("GET", "./data/photos.json");
+	oReq.send();
+}
+
 // REDIRECT to HTTPS!
 var host = "wfwalker.github.io";
 if ((host == window.location.host) && (window.location.protocol != "https:")) {
@@ -282,7 +317,6 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 				d3.time.format("%m-%d-%Y")(inDate)
 			);
 		});
-
 
 		Handlebars.registerHelper('nicenumber', function(inNumber) {
 			return new Handlebars.SafeString (
@@ -316,6 +350,7 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 
 	loadCustomDayNames();
 	loadOmittedCommonNames();
+	loadPhotos();
 }
 
 

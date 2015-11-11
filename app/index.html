@@ -103,6 +103,10 @@
         <div style='font-style: italic'>{{this}}</div>
       {{/each}}
 
+      {{#each photos}}
+        <div><img src="{{this.url}}"></div>
+      {{/each}}
+
       {{#each submissions}}
         <div><a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>{{this}}</a></div>
       {{/each}}
