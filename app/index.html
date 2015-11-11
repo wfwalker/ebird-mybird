@@ -69,6 +69,12 @@
       <h3>{{name}} <span style='font-weight: lighter'>| {{county}}, {{state}}<span></h3>
       <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
 
+      <div>
+      {{#each photos}}
+        <span><img src="{{this.thumbURL}}"></span>
+      {{/each}}
+      </div>
+
       <div>{{taxons.length}} species on {{dateObjects.length}} dates</div>
 
       {{#each taxons}}
@@ -104,7 +110,7 @@
       {{/each}}
 
       {{#each photos}}
-        <div><img src="{{this.url}}"></div>
+        <div><img src="{{this.thumbURL}}"></div>
       {{/each}}
 
       {{#each submissions}}

@@ -177,6 +177,7 @@ var routingMap = {
 
 		renderTemplate('location', {
 			name: inLocationName,
+			photos: gPhotos.filter(function(p) { return p.location == inLocationName }),
 			county: locationSightingsTaxonomic[0]["County"],
 			state: locationSightingsTaxonomic[0]["State/Province"],
 			locationSightingsTaxonomic: locationSightingsTaxonomic,
@@ -288,7 +289,8 @@ function loadPhotos() {
 				imageFilename = imageFilename + '-' + photo.original_filename;
 			}
 
-			gPhotos[index].url = 'http://birdwalker.com/images/photo/' + imageFilename + '.jpg';
+			gPhotos[index].photoURL = 'http://birdwalker.com/images/photo/' + imageFilename + '.jpg';
+			gPhotos[index].thumbURL = 'http://birdwalker.com/images/thumb/' + imageFilename + '.jpg';
 			var tmp = photo.date.split('-');
 			gPhotos[index].tripDate = [tmp[1], tmp[2], tmp[0]].join('-');
 			console.log(gPhotos[index].tripDate, gPhotos[index].url)
