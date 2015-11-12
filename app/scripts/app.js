@@ -75,7 +75,7 @@ function barGraphCountsForSightings(inData, inElement) {
 }
 
 function byMonthForSightings(inData, inElement) {
-	// var labels = ['x', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var labels = ['x', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	var values = inData.map(function(a){return a.length;});
 
 	values.unshift('sightings');
@@ -91,9 +91,16 @@ function byMonthForSightings(inData, inElement) {
 				ratio: 1.0
 			}
 		},
+		axis: {
+			x: {
+				type: 'category'
+			}
+		},
 		data: {
+			x: 'x',
 			columns: [
-				values
+				values,
+				labels
 			],
 			types: {
 				sightings: 'bar'
