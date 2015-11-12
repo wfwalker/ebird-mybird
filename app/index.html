@@ -49,6 +49,10 @@
     <script id="taxon-template" type="x-handlebars-template">
       <h3>{{name}} <span style='font-weight: lighter'>| {{scientificName}}<span></h3>
 
+      {{#each photos}}
+        <span><img src="{{this.thumbURL}}"></span>
+      {{/each}}
+
       <div id={{chartID}} style='padding-top: 10px'></div>
 
       {{monthgraph sightingsByMonth chartID}}
