@@ -61,8 +61,8 @@ SightingList.prototype.addRows = function(inRows) {
 				this.locations.push(sighting['Location']);
 			}
 
-			if (this.locations.indexOf(sighting['Submission ID']) < 0) {
-				this.locations.push(sighting['Submission ID']);
+			if (this.checklists.indexOf(sighting['Submission ID']) < 0) {
+				this.checklists.push(sighting['Submission ID']);
 			}
 
 			if (this.earliestDateObject == null || newDate < this.earliestDateObject) {
