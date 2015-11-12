@@ -23,9 +23,13 @@
         from {{nicedate earliest}} - {{nicedate latest}}
       </div>
 
-      <div id={{chartID}} style='padding-top: 10px'></div>
+      <div id={{yearChartID}} style='padding-top: 10px'></div>
 
-      {{bargraph sightingsByYear chartID}}
+      {{bargraph sightingsByYear yearChartID}}
+
+      <div id={{monthChartID}} style='padding-top: 10px'></div>
+
+      {{monthgraph sightingsByMonth monthChartID}}
     </script>
 
     <script id="chrono-template" type="x-handlebars-template">
@@ -68,12 +72,15 @@
     <script id="location-template" type="x-handlebars-template">
       <h3>{{name}} <span style='font-weight: lighter'>| {{county}}, {{state}}<span></h3>
       <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
-
       <div>
       {{#each photos}}
         <span><img src="{{this.thumbURL}}"></span>
       {{/each}}
       </div>
+
+      <div id={{chartID}} style='padding-top: 10px'></div>
+
+      {{monthgraph sightingsByMonth chartID}}
 
       <div>{{taxons.length}} species on {{dateObjects.length}} dates</div>
 
