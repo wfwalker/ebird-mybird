@@ -83,8 +83,8 @@ function byMonthForSightings(inData, inElement) {
 	var chart = c3.generate({
 		bindto: d3.select(inElement),
 		size: {
-			width: 640,
-			height: 200
+			width: 400,
+			height: 150
 		},
 		bar: {
 			width: {
@@ -213,9 +213,12 @@ var routingMap = {
 
 		var taxonSightingsList = new SightingList(taxonSightings);
 
+		var scientificName = taxonSightings[0]["Scientific Name"];
+
 		renderTemplate('taxon', {
 			name: inCommonName,
-			scientificName: taxonSightings[0]["Scientific Name"],
+			photos: gPhotos.filter(function(p){return p.scientificName == scientificName;}),
+			scientificName: scientificName,
 			sightingsByMonth: taxonSightingsList.byMonth(),
 			sightings: taxonSightings,
 			chartID: 'bymonth' + Date.now()
