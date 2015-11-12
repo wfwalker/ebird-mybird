@@ -293,7 +293,6 @@ function loadPhotos() {
 			gPhotos[index].thumbURL = 'http://birdwalker.com/images/thumb/' + imageFilename + '.jpg';
 			var tmp = photo.date.split('-');
 			gPhotos[index].tripDate = [tmp[1], tmp[2], tmp[0]].join('-');
-			console.log(gPhotos[index].tripDate, gPhotos[index].url)
 		}
 	});
 	oReq.open("GET", "./data/photos.json");

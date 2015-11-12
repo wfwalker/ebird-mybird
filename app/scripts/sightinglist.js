@@ -1,3 +1,5 @@
+"use strict";
+
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
 // Scientific Name, Dendrocygna autumnalis
