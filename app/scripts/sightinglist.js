@@ -29,8 +29,8 @@ var SightingList = function (inRowsFromCSV) {
 	this.earliestRowByCommonName = {};
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
-	this.locations = this.getUniqueValues('Location');
-	this.checklists = this.getUniqueValues('Submission ID');
+	this.locations = [];
+	this.checklists = [];
 	this.dates = [];
 	this.dateObjects = [];
 
@@ -51,6 +51,14 @@ var SightingList = function (inRowsFromCSV) {
 			if (this.dates.indexOf(sighting['Date']) < 0) {
 				this.dates.push(sighting['Date']);
 				this.dateObjects.push(newDate);
+			}
+
+			if (this.locations.indexOf(sighting['Location']) < 0) {
+				this.locations.push(sighting['Location']);
+			}
+
+			if (this.locations.indexOf(sighting['Submission ID']) < 0) {
+				this.locations.push(sighting['Submission ID']);
 			}
 
 			if (this.earliestDateObject == null || newDate < this.earliestDateObject) {
