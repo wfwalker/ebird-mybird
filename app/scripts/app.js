@@ -94,7 +94,13 @@ function byMonthForSightings(inData, inElement) {
 		axis: {
 			x: {
 				type: 'category'
+			},
+			y: {
+				show: false
 			}
+		},
+		legend: {
+			show: false
 		},
 		data: {
 			x: 'x',
