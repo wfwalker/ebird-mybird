@@ -54,6 +54,11 @@ function barGraphCountsForSightings(inData, inElement) {
 
 	var chart = c3.generate({
 		bindto: d3.select(inElement),
+		axis: {
+			y: {
+				show: false
+			}
+		},
 		data: {
 			x: 'x',
 			columns: [
