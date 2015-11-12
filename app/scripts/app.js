@@ -107,7 +107,9 @@ var routingMap = {
 		renderTemplate('home', {
 			numSightings: gSightings.count(),
 			sightingsByYear: gSightings.byYear(),
-			chartID: 'byYear' + Date.now(),
+			sightingsByMonth: gSightings.byMonth(),
+			yearChartID: 'byYear' + Date.now(),
+			monthChartID: 'byMonth' + Date.now(),
 			numChecklists: gSightings.checklists.length,
 			earliest: gSightings.earliestDateObject,
 			latest: gSightings.latestDateObject,

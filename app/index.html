@@ -23,9 +23,13 @@
         from {{nicedate earliest}} - {{nicedate latest}}
       </div>
 
-      <div id={{chartID}} style='padding-top: 10px'></div>
+      <div id={{yearChartID}} style='padding-top: 10px'></div>
 
-      {{bargraph sightingsByYear chartID}}
+      {{bargraph sightingsByYear yearChartID}}
+
+      <div id={{monthChartID}} style='padding-top: 10px'></div>
+
+      {{monthgraph sightingsByMonth monthChartID}}
     </script>
 
     <script id="chrono-template" type="x-handlebars-template">
