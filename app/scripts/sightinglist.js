@@ -22,8 +22,8 @@
 // Species Comments,
 // Checklist Comments
 
-var SightingList = function (inRowsFromCSV) {
-	this.rows = inRowsFromCSV;
+var SightingList = function (inRows) {
+	this.rows = [];
 	this.rowsByYear = {};
 	this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] };
 	this.earliestRowByCommonName = {};
@@ -34,8 +34,12 @@ var SightingList = function (inRowsFromCSV) {
 	this.dates = [];
 	this.dateObjects = [];
 
-	for (var index = 0; index < this.rows.length; index++) {
-		var sighting = this.rows[index];
+	this.addRows(inRows);
+}
+
+SightingList.prototype.addRows = function(inRows) {
+	for (var index = 0; index < inRows.length; index++) {
+		var sighting = inRows[index];
 
 		if (sighting['Date']) {
 			// Parse the date
@@ -46,7 +50,7 @@ var SightingList = function (inRowsFromCSV) {
 
 			// create and save the new dat
 			var newDate = new Date(fixedDateString);
-			this.rows[index]['DateObject'] = newDate;
+			sighting['DateObject'] = newDate;
 
 			if (this.dates.indexOf(sighting['Date']) < 0) {
 				this.dates.push(sighting['Date']);
@@ -79,23 +83,20 @@ var SightingList = function (inRowsFromCSV) {
 			}
 			this.rowsByMonth[pieces[0]].push(sighting);
 
-			// TODO: dependancy on external global and also race condition
-			var omit = gOmittedCommonNames.indexOf(sighting['Common Name']) >=0;
-
-			if (! omit) {
-				if (! this.earliestRowByCommonName[sighting['Common Name']]) {
-					this.earliestRowByCommonName[sighting['Common Name']] = sighting;
-				} else if (sighting.DateObject < this.earliestRowByCommonName[sighting['Common Name']].DateObject) {
-					this.earliestRowByCommonName[sighting['Common Name']] = sighting;
-				}				
-			}
+			if (! this.earliestRowByCommonName[sighting['Common Name']]) {
+				this.earliestRowByCommonName[sighting['Common Name']] = sighting;
+			} else if (sighting.DateObject < this.earliestRowByCommonName[sighting['Common Name']].DateObject) {
+				this.earliestRowByCommonName[sighting['Common Name']] = sighting;
+			}				
 		}
 	}
+
+	this.rows = this.rows.concat(inRows);
 
 	this.dateObjects.sort(function(a, b) { return a - b; });
 
 	// TODO: this is probably unnecessary sort!
-	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });	
+	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });		
 }
 
 SightingList.prototype.earliestDateObject = function() {
