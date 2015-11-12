@@ -50,7 +50,7 @@
       <h3>{{name}} <span style='font-weight: lighter'>| {{scientificName}}<span></h3>
 
       {{#each photos}}
-        <span><img src="{{this.thumbURL}}"></span>
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"><a/></span>
       {{/each}}
 
       <div id={{chartID}} style='padding-top: 10px'></div>
@@ -78,7 +78,7 @@
       <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
       <div>
       {{#each photos}}
-        <span><img src="{{this.thumbURL}}"></span>
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"><a/></span>
       {{/each}}
       </div>
 
@@ -121,7 +121,7 @@
       {{/each}}
 
       {{#each photos}}
-        <div><img src="{{this.thumbURL}}"></div>
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"><a/></span>
       {{/each}}
 
       {{#each submissions}}
