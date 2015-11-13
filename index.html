@@ -136,6 +136,27 @@
         </div>
       {{/each}}
     </script>
+
+    <script id="debug-template" type="x-handlebars-template">
+      <h3>debugging info</h3>
+      <div>{{photos.length}} photos</div>
+
+      <h4>Please add an eBird checklist for these dates and locations:</h4>
+
+      {{#each photosMissingTrip}}
+        <div> <img height='32px' src="{{this.thumbURL}}"> {{this.location}} {{this.date}} {{this.scientificName}}</div>
+      {{/each}}
+
+      <h4>Here is a copy of your clean photos.json</h4>
+
+      <pre>
+      [
+      {{#each photos}}
+        { "location": "{{this.location}}", "tripDate": "{{this.tripDate}}", "thumbURL": "{{thumbURL}}" }
+      {{/each}}
+      ]
+      </pre>
+    </script>
   </head>
 
   <body>
@@ -202,6 +223,11 @@
 
       <section id="taxon" class="hidden card inner">
         <div id='taxon-results' class='inner'>
+        </div>
+      </section>
+
+      <section id="debug" class="hidden card inner">
+        <div id='debug-results' class='inner'>
         </div>
       </section>
     </div>

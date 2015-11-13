@@ -244,6 +244,14 @@ var routingMap = {
 
 		showSection('section#taxon');
 	}, 
+	'#debug' : function() {
+		renderTemplate('debug', {
+			photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.tripDate) < 0; }),
+			photos: gPhotos
+		});
+
+		showSection('section#debug');
+	}
 }
 
 function routeBasedOnHash() {
