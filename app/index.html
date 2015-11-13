@@ -41,9 +41,12 @@
 
     <script id="taxons-template" type="x-handlebars-template">
       <h3>{{lifeSightings.length}} species</h3>
+
+      <div class="biglist">
       {{#each lifeSightings}}
         <div><a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
       {{/each}}
+      </div>
     </script>
 
     <script id="taxon-template" type="x-handlebars-template">
@@ -58,19 +61,25 @@
       {{monthgraph sightingsByMonth chartID}}
 
       <div>{{sightings.length}} sightings</div>
+
+      <div class="biglist">
       {{#each sightings}}
         <div>
           <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
           <a href="#location/{{this.Location}}">{{this.Location}}</a>
         </div>
       {{/each}}
+      </div>
     </script>
 
     <script id="locations-template" type="x-handlebars-template">
       <h3>{{locations.length}} locations</h3>
+
+      <div class="biglist">
       {{#each locations}}
         <div><a href="#location/{{this}}">{{this}}</a></div>
       {{/each}}
+      </div>
     </script>
 
     <script id="location-template" type="x-handlebars-template">
@@ -88,19 +97,23 @@
 
       <div>{{taxons.length}} species on {{dateObjects.length}} dates</div>
 
+      <div class="biglist">
       {{#each taxons}}
         <div>
           <a href="#taxon/{{this}}">{{this}}</a>
         </div>
       {{/each}}
+      </div>
     </script>
 
     <script id="trips-template" type="x-handlebars-template">
       <h3>{{trips.length}} trips</h3>
 
+      <div class="biglist">
       {{#each trips}}
         <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
       {{/each}}
+      </div>
     </script>
 
     <script id="year-template" type="x-handlebars-template">
@@ -108,9 +121,11 @@
 
       <div>{{yearSightings.length}} sightings, {{yearSpecies.length}} species</div>
 
+      <div class="biglist">
       {{#each yearSpecies}}
         <div><a href="#taxon/{{this}}">{{this}}</a></div>
       {{/each}}
+      </div>
     </script>
 
     <script id="trip-template" type="x-handlebars-template">

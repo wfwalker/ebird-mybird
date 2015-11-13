@@ -5,3 +5,10 @@
 .visible {
 	display: inline;
 }
+
+.biglist {
+	-moz-column-width: 15em;
+	-moz-columns: 15em;
+	-webkit-columns: 15em;
+	columns: 15em;
+}
