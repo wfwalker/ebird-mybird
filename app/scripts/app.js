@@ -177,6 +177,7 @@ var routingMap = {
 
 		renderTemplate('year', {
 			year: inYear,
+			photos: gPhotos.filter(function(p){return p.date.substring(0,4) == inYear;}),
 			yearSightings: yearSightings,
 			yearSpecies: yearSightingList.getUniqueValues('Common Name')
 		});

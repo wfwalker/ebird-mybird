@@ -121,6 +121,10 @@
 
       <div>{{yearSightings.length}} sightings, {{yearSpecies.length}} species</div>
 
+      {{#each photos}}
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"><a/></span>
+      {{/each}}
+
       <div class="biglist">
       {{#each yearSpecies}}
         <div><a href="#taxon/{{this}}">{{this}}</a></div>
