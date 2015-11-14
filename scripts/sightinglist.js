@@ -143,7 +143,7 @@ SightingList.prototype.earliestByCommonName = function() {
 SightingList.prototype.getUniqueValues = function(fieldName) {
 	var values = [];
 
-	for (var index = 1; index < this.rows.length; index++) {
+	for (var index = 0; index < this.rows.length; index++) {
 		var aValue = this.rows[index][fieldName];
 		if (values.indexOf(aValue) < 0) {
 			values.push(aValue);
