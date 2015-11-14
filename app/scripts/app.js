@@ -197,7 +197,7 @@ var routingMap = {
 
 		var locationSightingList = new SightingList(locationSightingsTaxonomic);
 
-		console.log('loc by month', locationSightingList.byMonth());
+		console.log(locationSightingList);
 
 		renderTemplate('location', {
 			name: inLocationName,
@@ -246,9 +246,15 @@ var routingMap = {
 		showSection('section#taxon');
 	}, 
 	'#debug' : function() {
+		console.log('moo');
+		var tmp = gSightings.filter(function(s) { return s["Location"] && s["Location"].indexOf('/') >= 0; })
+		var brokenLocationSightingList = new SightingList(tmp);
+
 		renderTemplate('debug', {
 			photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.tripDate) < 0; }),
-			photos: gPhotos
+			photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.location) < 0; }),
+			photos: gPhotos,
+			brokenLocations: brokenLocationSightingList.getUniqueValues("Location")
 		});
 
 		showSection('section#debug');
