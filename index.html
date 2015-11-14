@@ -53,7 +53,7 @@
       <h3>{{name}} <span style='font-weight: lighter'>| {{scientificName}}<span></h3>
 
       {{#each photos}}
-        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"><a/></span>
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
       {{/each}}
 
       <div id={{chartID}} style='padding-top: 10px'></div>
@@ -87,7 +87,7 @@
       <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
       <div>
       {{#each photos}}
-        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"><a/></span>
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
       {{/each}}
       </div>
 
@@ -122,7 +122,7 @@
       <div>{{yearSightings.length}} sightings, {{yearSpecies.length}} species</div>
 
       {{#each photos}}
-        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"><a/></span>
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
       {{/each}}
 
       <div class="biglist">
@@ -140,7 +140,7 @@
       {{/each}}
 
       {{#each photos}}
-        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"><a/></span>
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
       {{/each}}
 
       {{#each submissions}}
@@ -160,10 +160,22 @@
       <h3>debugging info</h3>
       <div>{{photos.length}} photos</div>
 
-      <h4>Please add an eBird checklist for these dates and locations:</h4>
+      <h4>Please add an eBird checklist for these {{photosMissingTrip.length}} photos:</h4>
 
       {{#each photosMissingTrip}}
         <div> <img height='32px' src="{{this.thumbURL}}"> {{this.location}} {{this.date}} {{this.scientificName}}</div>
+      {{/each}}
+
+      <h4>These {{photosMissingLocation.length}} photos have locations missing from your eBird data:</h4>
+
+      {{#each photosMissingLocation}}
+        <div> <img height='32px' src="{{this.thumbURL}}"> {{this.location}} <a href="#trip/{{this.tripDate}}">{{this.date}}</a> {{this.scientificName}}</div>
+      {{/each}}
+
+      <h4>Sighting has slashes:</h4>
+
+      {{#each brokenLocations}}
+        <div>{{this}}</div>
       {{/each}}
 
       <h4>Here is a copy of your clean photos.json</h4>
