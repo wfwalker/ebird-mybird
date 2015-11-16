@@ -143,15 +143,26 @@
         <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
       {{/each}}
 
+      <div>
       {{#each sightingList.checklists}}
-        <div><a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>{{this}}</a></div>
+        <span><a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>{{this}}</a></span>
       {{/each}}
+      </div>
 
-      <div>{{sightingList.rows.length}} sightings at {{sightingList.locations.length}} location(s)</div>
+      <div>
+        {{sightingList.rows.length}} sightings at
+        {{#if sightingList.multipleLocations}}
+          {{sightingList.locations.length}} locations
+        {{else}}
+          {{sightingList.locations}}
+        {{/if}}
+      </div>
 
       {{#each sightingList.rows}}
         <div>
+          {{#if sightingList.multipleLocations}}
           <a href='#location/{{this.Location}}'>{{this.Location}}</a>
+          {{/if}}
           <a href='#taxon/{{[Common Name]}}'>{{[Common Name]}}</a>
         </div>
       {{/each}}

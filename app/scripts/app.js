@@ -196,8 +196,6 @@ var routingMap = {
 
 		var locationSightingList = new SightingList(locationSightingsTaxonomic);
 
-		console.log(locationSightingList);
-
 		renderTemplate('location', {
 			name: inLocationName,
 			chartID: 'bymonth' + Date.now(),
