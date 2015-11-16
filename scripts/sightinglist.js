@@ -30,6 +30,7 @@ var SightingList = function (inRows) {
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
 	this.locations = [];
+	this.multipleLocations = false;
 	this.checklists = [];
 	this.dates = [];
 	this.dateObjects = [];
@@ -92,6 +93,8 @@ SightingList.prototype.addRows = function(inRows) {
 	}
 
 	this.rows = this.rows.concat(inRows);
+
+	this.multipleLocations = this.locations.length > 1;
 
 	this.dateObjects.sort(function(a, b) { return a - b; });
 
