@@ -164,8 +164,7 @@ var routingMap = {
 			photos: gPhotos.filter(function(p){return p.tripDate == inDate;}),
 			customName: gCustomDayNames[inDate],
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
-			submissions: tripSightingList.checklists,
-			sightings: tripSightings
+			sightingList: tripSightingList
 		});
 
 		showSection('section#trip');
