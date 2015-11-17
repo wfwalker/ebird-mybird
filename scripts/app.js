@@ -217,7 +217,7 @@ var routingMap = {
 			latitude: locationSightingsTaxonomic[0]["Latitude"],
 			sightingList: locationSightingList,
 			taxons: locationSightingList.getUniqueValues("Common Name"),
-			customDayNames: gCustomDayNames			
+			customDayNames: gCustomDayNames
 		});
 
 		showSection('section#location');
@@ -237,7 +237,7 @@ var routingMap = {
 			sightingList: countySightingList,
 			countySightingsTaxonomic: countySightingsTaxonomic,
 			taxons: countySightingList.getUniqueValues("Common Name"),
-			customDayNames: gCustomDayNames			
+			customDayNames: gCustomDayNames
 		});
 
 		showSection('section#county');
