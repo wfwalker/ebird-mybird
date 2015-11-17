@@ -6,46 +6,54 @@ var gCustomDayNames = [];
 var gPhotos = [];
 var gCompiledTemplates = {};
 
-function renderTemplate(inPrefix, inData) {
-	var theTemplate = gCompiledTemplates[inPrefix];
+function ensureTemplateLoadedAndCompiled(inPrefix) {
+	return new Promise(function(resolve, reject) {
+		var theTemplate = gCompiledTemplates[inPrefix];
 
-	if (! theTemplate) {
-		console.log('compiling', inPrefix);
+		if (! theTemplate) {
+			console.log('compiling', inPrefix);
 
-		var templateRequest = new XMLHttpRequest();
+			var templateRequest = new XMLHttpRequest();
 
-		templateRequest.addEventListener("load", function() {
-			var theTemplateScript = this.responseText;
-		    theTemplate = Handlebars.compile(theTemplateScript);
-		    gCompiledTemplates[inPrefix] = theTemplate;
-		});
+			templateRequest.addEventListener("load", function() {
+				var theTemplateScript = this.responseText;
+			    theTemplate = Handlebars.compile(theTemplateScript);
+			    gCompiledTemplates[inPrefix] = theTemplate;
+			    resolve(theTemplate);
+			});
 
-		templateRequest.open("GET", "./templates/" + inPrefix + ".html", false);
+			templateRequest.addEventListener("error", function(err) {
+				console.log('error', err);
+				reject(err);
+			});
 
-		// TODO: handle errors thrown here
-		try {
+			templateRequest.open("GET", "./templates/" + inPrefix + ".html");
 			templateRequest.send();
-		} catch (e) {
-			console.log('cannot load template', e);
+		} else {
+			resolve(theTemplate);
+		}	
+	});
+}
+
+function renderTemplate(inPrefix, inData) {
+	ensureTemplateLoadedAndCompiled(inPrefix).then(function(theTemplate) {
+		var newDiv = document.createElement("div");
+		newDiv.innerHTML = theTemplate(inData);
+
+		var results = document.getElementById(inPrefix + '-results');
+		while (results.firstChild) {
+		    results.removeChild(results.firstChild);
 		}
-	} else {
-		console.log('reusing', inPrefix);
-	}
 
-	var newDiv = document.createElement("div");
-	newDiv.innerHTML = theTemplate(inData);
+	    // hide loading section
+		document.getElementById('loading').classList.remove('visible');
+		document.getElementById('loading').classList.add('hidden');
 
-	var results = document.getElementById(inPrefix + '-results');
-	while (results.firstChild) {
-	    results.removeChild(results.firstChild);
-	}
-
-    // hide loading section
-	document.getElementById('loading').classList.remove('visible');
-	document.getElementById('loading').classList.add('hidden');
-
-	// show rendered template
-    results.appendChild(newDiv);
+		// show rendered template
+	    results.appendChild(newDiv);
+	}, function(err) {
+		console.log('not compiled', err);
+	});
 }
 
 function showSection(inSelector) {
@@ -291,7 +299,7 @@ var routingMap = {
 		var brokenLocationSightingList = new SightingList(tmp);
 
 		// TODO: find photos whose scientific name is missing from sightings
-		
+
 		renderTemplate('debug', {
 			photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.tripDate) < 0; }),
 			photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.location) < 0; }),
