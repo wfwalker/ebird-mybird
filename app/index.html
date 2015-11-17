@@ -83,7 +83,7 @@
     </script>
 
     <script id="location-template" type="x-handlebars-template">
-      <h3>{{name}} <span style='font-weight: lighter'>| {{county}}, {{state}}<span></h3>
+      <h3>{{name}} <span style='font-weight: lighter'>| <a href="#county/{{county}}">{{county}}</a>, {{state}}<span></h3>
       <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
       <div>
       {{#each photos}}
@@ -107,9 +107,8 @@
     </script>
 
     <script id="county-template" type="x-handlebars-template">
-      <h3>{{name}} <span style='font-weight: lighter'>| {{county}}, {{state}}<span></h3>
-      <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
-      <div>
+      <h3>{{county}} <span style='font-weight: lighter'>| {{state}}<span></h3>
+
       {{#each photos}}
         <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
       {{/each}}
