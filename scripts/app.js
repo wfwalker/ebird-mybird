@@ -197,6 +197,7 @@ function renderTrip(inDate) {
 		photos: gPhotos.filter(function(p){return p.tripDate == inDate;}),
 		customName: gCustomDayNames[inDate],
 		comments: tripSightingList.getUniqueValues('Checklist Comments'),
+		taxons: tripSightingList.getUniqueValues("Common Name"),
 		sightingList: tripSightingList
 	});
 
