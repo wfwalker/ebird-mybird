@@ -212,6 +212,28 @@ var routingMap = {
 
 		showSection('section#location');
 	}, 
+	'#county' : function(inCountyName) {
+		var countySightingsTaxonomic = gSightings.filter(function(s) { return s['County'] == inCountyName; });
+		countySightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+		var countySightingList = new SightingList(countySightingsTaxonomic);
+
+		renderTemplate('county', {
+			name: inCountyName,
+			chartID: 'bymonth' + Date.now(),
+			sightingsByMonth: countySightingList.byMonth(),
+			photos: gPhotos.filter(function(p) { return p.location == inCountyName }),
+			county: countySightingsTaxonomic[0]["County"],
+			state: countySightingsTaxonomic[0]["State/Province"],
+			countySightingsTaxonomic: countySightingsTaxonomic,
+			longitude: countySightingsTaxonomic[0]["Longitude"],
+			latitude: countySightingsTaxonomic[0]["Latitude"],
+			dateObjects: countySightingList.dateObjects,
+			taxons: countySightingList.getUniqueValues("Common Name")
+		});
+
+		showSection('section#county');
+	}, 
 	'#taxons' : function() {
 		var earliestByCommonName = gSightings.earliestByCommonName();
 		var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
