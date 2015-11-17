@@ -1,0 +1,20 @@
+<h3>{{name}} <span style='font-weight: lighter'>| {{scientificName}}</span></h3>
+
+{{#each photos}}
+  <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
+{{/each}}
+
+<div id={{chartID}} style='padding-top: 10px'></div>
+
+{{monthgraph sightingsByMonth chartID}}
+
+<h4>{{sightings.length}} sightings</h4>
+
+<div class="biglist">
+{{#each sightings}}
+  <div>
+    <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
+    <a href="#location/{{this.Location}}">{{this.Location}}</a>
+  </div>
+{{/each}}
+</div>
