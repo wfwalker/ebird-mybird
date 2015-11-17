@@ -6,7 +6,6 @@ var gCustomDayNames = [];
 var gPhotos = [];
 
 function renderTemplate(inPrefix, inData) {
-
     var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
     var theTemplate = Handlebars.compile(theTemplateScript);
 	var newDiv = document.createElement("div");
