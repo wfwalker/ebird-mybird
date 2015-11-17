@@ -215,8 +215,9 @@ var routingMap = {
 			locationSightingsTaxonomic: locationSightingsTaxonomic,
 			longitude: locationSightingsTaxonomic[0]["Longitude"],
 			latitude: locationSightingsTaxonomic[0]["Latitude"],
-			dateObjects: locationSightingList.dateObjects,
-			taxons: locationSightingList.getUniqueValues("Common Name")
+			sightingList: locationSightingList,
+			taxons: locationSightingList.getUniqueValues("Common Name"),
+			customDayNames: gCustomDayNames			
 		});
 
 		showSection('section#location');
@@ -232,13 +233,11 @@ var routingMap = {
 			chartID: 'bymonth' + Date.now(),
 			sightingsByMonth: countySightingList.byMonth(),
 			photos: gPhotos.filter(function(p) { return p.location == inCountyName }),
-			county: countySightingsTaxonomic[0]["County"],
 			state: countySightingsTaxonomic[0]["State/Province"],
+			sightingList: countySightingList,
 			countySightingsTaxonomic: countySightingsTaxonomic,
-			longitude: countySightingsTaxonomic[0]["Longitude"],
-			latitude: countySightingsTaxonomic[0]["Latitude"],
-			dateObjects: countySightingList.dateObjects,
-			taxons: countySightingList.getUniqueValues("Common Name")
+			taxons: countySightingList.getUniqueValues("Common Name"),
+			customDayNames: gCustomDayNames			
 		});
 
 		showSection('section#county');
