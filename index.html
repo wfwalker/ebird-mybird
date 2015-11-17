@@ -106,6 +106,30 @@
       </div>
     </script>
 
+    <script id="county-template" type="x-handlebars-template">
+      <h3>{{name}} <span style='font-weight: lighter'>| {{county}}, {{state}}<span></h3>
+      <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
+      <div>
+      {{#each photos}}
+        <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
+      {{/each}}
+      </div>
+
+      <div id={{chartID}} style='padding-top: 10px'></div>
+
+      {{monthgraph sightingsByMonth chartID}}
+
+      <div>{{taxons.length}} species on {{dateObjects.length}} dates</div>
+
+      <div class="biglist">
+      {{#each taxons}}
+        <div>
+          <a href="#taxon/{{this}}">{{this}}</a>
+        </div>
+      {{/each}}
+      </div>
+    </script>
+
     <script id="trips-template" type="x-handlebars-template">
       <h3>{{trips.length}} trips</h3>
 
@@ -236,6 +260,11 @@
 
       <section id="location" class="hidden card inner">
         <div id='location-results' class='inner'>
+        </div>
+      </section>
+
+      <section id="county" class="hidden card inner">
+        <div id='county-results' class='inner'>
         </div>
       </section>
 
