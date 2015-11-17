@@ -4,10 +4,20 @@ var gSightings = null;
 var gOmittedCommonNames = [];
 var gCustomDayNames = [];
 var gPhotos = [];
+var gCompiledTemplates = {};
 
 function renderTemplate(inPrefix, inData) {
-    var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
-    var theTemplate = Handlebars.compile(theTemplateScript);
+	var theTemplate = gCompiledTemplates[inPrefix];
+
+	if (! theTemplate) {
+		console.log('compiling', inPrefix);
+	    var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
+	    theTemplate = Handlebars.compile(theTemplateScript);
+	    gCompiledTemplates[inPrefix] = theTemplate;
+	} else {
+		console.log('reusing', inPrefix);
+	}
+
 	var newDiv = document.createElement("div");
 	newDiv.innerHTML = theTemplate(inData);
 
