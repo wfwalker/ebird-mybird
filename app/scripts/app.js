@@ -151,164 +151,186 @@ function byMonthForSightings(inData, inElement) {
 	});
 }
 
+function renderHome() {
+	renderTemplate('home', {
+		numSightings: gSightings.count(),
+		sightingsByYear: gSightings.byYear(),
+		sightingsByMonth: gSightings.byMonth(),
+		yearChartID: 'byYear' + Date.now(),
+		monthChartID: 'byMonth' + Date.now(),
+		numChecklists: gSightings.checklists.length,
+		earliest: gSightings.earliestDateObject,
+		latest: gSightings.latestDateObject,
+		owner: 'Bill Walker'
+	});
+
+	showSection('section#home');	
+}
+
+function renderChrono() {
+	var earliestByCommonName = gSightings.earliestByCommonName();
+	var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
+	lifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+
+	renderTemplate('chrono', {
+		firstSightings: lifeSightingsChronological
+	});
+
+	showSection('section#chrono');
+}
+
+function renderTrips() {
+	renderTemplate('trips', {
+		trips: gSightings.dateObjects,
+		customDayNames: gCustomDayNames
+	});
+
+	showSection('section#trips');
+}
+
+function renderTrip(inDate) {
+	var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
+	var tripSightingList = new SightingList(tripSightings);
+
+	renderTemplate('trip', {
+		tripDate: tripSightings[0].DateObject,
+		photos: gPhotos.filter(function(p){return p.tripDate == inDate;}),
+		customName: gCustomDayNames[inDate],
+		comments: tripSightingList.getUniqueValues('Checklist Comments'),
+		sightingList: tripSightingList
+	});
+
+	showSection('section#trip');
+}
+
+function renderYear(inYear) {
+	var yearSightings = gSightings.byYear()[inYear];
+	yearSightings.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var yearSightingList = new SightingList(yearSightings);
+
+	renderTemplate('year', {
+		year: inYear,
+		photos: gPhotos.filter(function(p){return p.date.substring(0,4) == inYear;}),
+		yearSightings: yearSightings,
+		yearSpecies: yearSightingList.getUniqueValues('Common Name')
+	});
+
+	showSection('section#year');
+}
+
+function renderLocations() {
+	renderTemplate('locations', {
+		locations: gSightings.locations
+	});
+
+	showSection('section#locations');
+}
+
+function renderLocation(inLocationName) {
+	var locationSightingsTaxonomic = gSightings.filter(function(s) { return s['Location'] == inLocationName; });
+	locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	var locationSightingList = new SightingList(locationSightingsTaxonomic);
+
+	renderTemplate('location', {
+		name: inLocationName,
+		chartID: 'bymonth' + Date.now(),
+		sightingsByMonth: locationSightingList.byMonth(),
+		photos: gPhotos.filter(function(p) { return p.location == inLocationName }),
+		county: locationSightingsTaxonomic[0]["County"],
+		state: locationSightingsTaxonomic[0]["State/Province"],
+		locationSightingsTaxonomic: locationSightingsTaxonomic,
+		longitude: locationSightingsTaxonomic[0]["Longitude"],
+		latitude: locationSightingsTaxonomic[0]["Latitude"],
+		sightingList: locationSightingList,
+		taxons: locationSightingList.getUniqueValues("Common Name"),
+		customDayNames: gCustomDayNames
+	});
+
+	showSection('section#location');
+}
+
+function renderCounty(inCountyName) {
+	var countySightingsTaxonomic = gSightings.filter(function(s) { return s['County'] == inCountyName; });
+	countySightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	var countySightingList = new SightingList(countySightingsTaxonomic);
+
+	renderTemplate('county', {
+		name: inCountyName,
+		chartID: 'bymonth' + Date.now(),
+		sightingsByMonth: countySightingList.byMonth(),
+		photos: gPhotos.filter(function(p) { return p.location == inCountyName }),
+		state: countySightingsTaxonomic[0]["State/Province"],
+		sightingList: countySightingList,
+		countySightingsTaxonomic: countySightingsTaxonomic,
+		taxons: countySightingList.getUniqueValues("Common Name"),
+		customDayNames: gCustomDayNames
+	});
+
+	showSection('section#county');
+}
+
+function renderTaxons() {
+	var earliestByCommonName = gSightings.earliestByCommonName();
+	var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
+	lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	renderTemplate('taxons', {
+		lifeSightings: lifeSightingsTaxonomic
+	});
+
+	showSection('section#taxons');
+}
+
+function renderTaxon(inCommonName) {
+	var taxonSightings = gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
+	taxonSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+
+	var taxonSightingsList = new SightingList(taxonSightings);
+
+	var scientificName = taxonSightings[0]["Scientific Name"];
+
+	renderTemplate('taxon', {
+		name: inCommonName,
+		photos: gPhotos.filter(function(p){return p.scientificName == scientificName;}),
+		scientificName: scientificName,
+		sightingsByMonth: taxonSightingsList.byMonth(),
+		sightings: taxonSightings,
+		chartID: 'bymonth' + Date.now()
+	});
+
+	showSection('section#taxon');
+}
+
+function renderDebug() {
+	var tmp = gSightings.filter(function(s) { return s["Location"] && s["Location"].indexOf('/') >= 0; })
+	var brokenLocationSightingList = new SightingList(tmp);
+
+	// TODO: find photos whose scientific name is missing from sightings
+
+	renderTemplate('debug', {
+		photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.tripDate) < 0; }),
+		photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.location) < 0; }),
+		photos: gPhotos,
+		brokenLocations: brokenLocationSightingList.getUniqueValues("Location")
+	});
+
+	showSection('section#debug');
+}
+
 var routingMap = {
-	'#home' : function() {
-		renderTemplate('home', {
-			numSightings: gSightings.count(),
-			sightingsByYear: gSightings.byYear(),
-			sightingsByMonth: gSightings.byMonth(),
-			yearChartID: 'byYear' + Date.now(),
-			monthChartID: 'byMonth' + Date.now(),
-			numChecklists: gSightings.checklists.length,
-			earliest: gSightings.earliestDateObject,
-			latest: gSightings.latestDateObject,
-			owner: 'Bill Walker'
-		});
-
-		showSection('section#home');
-	}, 
-	'#chrono' : function() {
-		var earliestByCommonName = gSightings.earliestByCommonName();
-		var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
-		lifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
-
-		renderTemplate('chrono', {
-			firstSightings: lifeSightingsChronological
-		});
-
-		showSection('section#chrono');
-	}, 
-	'#trips' : function() {
-		renderTemplate('trips', {
-			trips: gSightings.dateObjects,
-			customDayNames: gCustomDayNames
-		});
-
-		showSection('section#trips');
-	}, 
-	'#trip' : function(inDate) {
-		var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
-		var tripSightingList = new SightingList(tripSightings);
-
-		renderTemplate('trip', {
-			tripDate: tripSightings[0].DateObject,
-			photos: gPhotos.filter(function(p){return p.tripDate == inDate;}),
-			customName: gCustomDayNames[inDate],
-			comments: tripSightingList.getUniqueValues('Checklist Comments'),
-			sightingList: tripSightingList
-		});
-
-		showSection('section#trip');
-	}, 
-	'#year' : function(inYear) {
-		var yearSightings = gSightings.byYear()[inYear];
-		yearSightings.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-		var yearSightingList = new SightingList(yearSightings);
-
-		renderTemplate('year', {
-			year: inYear,
-			photos: gPhotos.filter(function(p){return p.date.substring(0,4) == inYear;}),
-			yearSightings: yearSightings,
-			yearSpecies: yearSightingList.getUniqueValues('Common Name')
-		});
-
-		showSection('section#year');
-	},
-	'#locations' : function() {
-		renderTemplate('locations', {
-			locations: gSightings.locations
-		});
-
-		showSection('section#locations');
-	}, 
-	'#location' : function(inLocationName) {
-		var locationSightingsTaxonomic = gSightings.filter(function(s) { return s['Location'] == inLocationName; });
-		locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-
-		var locationSightingList = new SightingList(locationSightingsTaxonomic);
-
-		renderTemplate('location', {
-			name: inLocationName,
-			chartID: 'bymonth' + Date.now(),
-			sightingsByMonth: locationSightingList.byMonth(),
-			photos: gPhotos.filter(function(p) { return p.location == inLocationName }),
-			county: locationSightingsTaxonomic[0]["County"],
-			state: locationSightingsTaxonomic[0]["State/Province"],
-			locationSightingsTaxonomic: locationSightingsTaxonomic,
-			longitude: locationSightingsTaxonomic[0]["Longitude"],
-			latitude: locationSightingsTaxonomic[0]["Latitude"],
-			sightingList: locationSightingList,
-			taxons: locationSightingList.getUniqueValues("Common Name"),
-			customDayNames: gCustomDayNames
-		});
-
-		showSection('section#location');
-	}, 
-	'#county' : function(inCountyName) {
-		var countySightingsTaxonomic = gSightings.filter(function(s) { return s['County'] == inCountyName; });
-		countySightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-
-		var countySightingList = new SightingList(countySightingsTaxonomic);
-
-		renderTemplate('county', {
-			name: inCountyName,
-			chartID: 'bymonth' + Date.now(),
-			sightingsByMonth: countySightingList.byMonth(),
-			photos: gPhotos.filter(function(p) { return p.location == inCountyName }),
-			state: countySightingsTaxonomic[0]["State/Province"],
-			sightingList: countySightingList,
-			countySightingsTaxonomic: countySightingsTaxonomic,
-			taxons: countySightingList.getUniqueValues("Common Name"),
-			customDayNames: gCustomDayNames
-		});
-
-		showSection('section#county');
-	}, 
-	'#taxons' : function() {
-		var earliestByCommonName = gSightings.earliestByCommonName();
-		var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){return earliestByCommonName[k]});
-		lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-
-		renderTemplate('taxons', {
-			lifeSightings: lifeSightingsTaxonomic
-		});
-
-		showSection('section#taxons');
-	}, 
-	'#taxon' : function(inCommonName) {
-		var taxonSightings = gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
-		taxonSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
-
-		var taxonSightingsList = new SightingList(taxonSightings);
-
-		var scientificName = taxonSightings[0]["Scientific Name"];
-
-		renderTemplate('taxon', {
-			name: inCommonName,
-			photos: gPhotos.filter(function(p){return p.scientificName == scientificName;}),
-			scientificName: scientificName,
-			sightingsByMonth: taxonSightingsList.byMonth(),
-			sightings: taxonSightings,
-			chartID: 'bymonth' + Date.now()
-		});
-
-		showSection('section#taxon');
-	}, 
-	'#debug' : function() {
-		var tmp = gSightings.filter(function(s) { return s["Location"] && s["Location"].indexOf('/') >= 0; })
-		var brokenLocationSightingList = new SightingList(tmp);
-
-		// TODO: find photos whose scientific name is missing from sightings
-
-		renderTemplate('debug', {
-			photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.tripDate) < 0; }),
-			photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.location) < 0; }),
-			photos: gPhotos,
-			brokenLocations: brokenLocationSightingList.getUniqueValues("Location")
-		});
-
-		showSection('section#debug');
-	}
+	'#home' : renderHome,
+	'#chrono' : renderChrono,
+	'#trips' : renderTrips,
+	'#trip' : renderTrip,
+	'#year' : renderYear,
+	'#locations' : renderLocations,
+	'#location' : renderLocation,
+	'#county' : renderCounty,
+	'#taxons' : renderTaxons,
+	'#taxon' : renderTaxon,
+	'#debug' : renderDebug
 }
 
 function routeBasedOnHash() {
