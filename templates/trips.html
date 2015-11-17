@@ -1,0 +1,7 @@
+<h3>{{trips.length}} trips</h3>
+
+<div class="biglist">
+{{#each trips}}
+<div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+{{/each}}
+</div>

@@ -1,0 +1,30 @@
+<h3>debugging info</h3>
+<div>{{photos.length}} photos</div>
+
+<h4>Please add an eBird checklist for these {{photosMissingTrip.length}} photos:</h4>
+
+{{#each photosMissingTrip}}
+  <div> <img height='32px' src="{{this.thumbURL}}"> {{this.location}} {{this.date}} {{this.scientificName}}</div>
+{{/each}}
+
+<h4>These {{photosMissingLocation.length}} photos have locations missing from your eBird data:</h4>
+
+{{#each photosMissingLocation}}
+  <div> <img height='32px' src="{{this.thumbURL}}"> {{this.location}} <a href="#trip/{{this.tripDate}}">{{this.date}}</a> {{this.scientificName}}</div>
+{{/each}}
+
+<h4>Sighting has slashes:</h4>
+
+{{#each brokenLocations}}
+  <div>{{this}}</div>
+{{/each}}
+
+<h4>Here is a copy of your clean photos.json</h4>
+
+<pre>
+[
+{{#each photos}}
+  { "location": "{{this.location}}", "tripDate": "{{this.tripDate}}", "thumbURL": "{{thumbURL}}" }
+{{/each}}
+]
+</pre>

@@ -11,9 +11,23 @@ function renderTemplate(inPrefix, inData) {
 
 	if (! theTemplate) {
 		console.log('compiling', inPrefix);
-	    var theTemplateScript = document.getElementById(inPrefix + '-template').innerHTML;
-	    theTemplate = Handlebars.compile(theTemplateScript);
-	    gCompiledTemplates[inPrefix] = theTemplate;
+
+		var templateRequest = new XMLHttpRequest();
+
+		templateRequest.addEventListener("load", function() {
+			var theTemplateScript = this.responseText;
+		    theTemplate = Handlebars.compile(theTemplateScript);
+		    gCompiledTemplates[inPrefix] = theTemplate;
+		});
+
+		templateRequest.open("GET", "./templates/" + inPrefix + ".html", false);
+
+		// TODO: handle errors thrown here
+		try {
+			templateRequest.send();
+		} catch (e) {
+			console.log('cannot load template', e);
+		}
 	} else {
 		console.log('reusing', inPrefix);
 	}
@@ -273,10 +287,11 @@ var routingMap = {
 		showSection('section#taxon');
 	}, 
 	'#debug' : function() {
-		console.log('moo');
 		var tmp = gSightings.filter(function(s) { return s["Location"] && s["Location"].indexOf('/') >= 0; })
 		var brokenLocationSightingList = new SightingList(tmp);
 
+		// TODO: find photos whose scientific name is missing from sightings
+		
 		renderTemplate('debug', {
 			photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.tripDate) < 0; }),
 			photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.location) < 0; }),

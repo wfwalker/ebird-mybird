@@ -1,0 +1,33 @@
+<h3>{{nicedate tripDate}} <span style='font-weight: lighter'>| {{customName}}</span></h3>
+
+{{#each comments}}
+  <div style='font-style: italic'>{{this}}</div>
+{{/each}}
+
+{{#each photos}}
+  <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
+{{/each}}
+
+<div>
+{{#each sightingList.checklists}}
+  <span><a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>{{this}}</a></span>
+{{/each}}
+</div>
+
+<h4>
+  {{sightingList.rows.length}} sightings at
+  {{#if sightingList.multipleLocations}}
+    {{sightingList.locations.length}} locations
+  {{else}}
+    {{sightingList.locations}}
+  {{/if}}
+</h4>
+
+{{#each sightingList.rows}}
+  <div>
+    {{#if sightingList.multipleLocations}}
+    <a href='#location/{{this.Location}}'>{{this.Location}}</a>
+    {{/if}}
+    <a href='#taxon/{{[Common Name]}}'>{{[Common Name]}}</a>
+  </div>
+{{/each}}

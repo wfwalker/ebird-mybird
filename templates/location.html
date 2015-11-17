@@ -1,0 +1,32 @@
+<h3>{{name}} <span style='font-weight: lighter'>| <a href="#county/{{county}}">{{county}}</a>, {{state}}</span></h3>
+<div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
+
+<div>
+{{#each photos}}
+  <span><a href="{{this.photoURL}}"><img src="{{this.thumbURL}}"></a></span>
+{{/each}}
+</div>
+
+<div id={{chartID}} style='padding-top: 10px'></div>
+
+{{monthgraph sightingsByMonth chartID}}
+
+<h4>{{taxons.length}} species</h4>
+
+<div class="biglist">
+{{#each taxons}}
+  <div>
+    <a href="#taxon/{{this}}">{{this}}</a>
+  </div>
+{{/each}}
+</div>
+
+<h4>{{sightingList.dateObjects.length}} dates</h4>
+
+<div class="biglist">
+{{#each sightingList.dateObjects}}
+  <div>
+    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+  </div>
+{{/each}}
+</div>
