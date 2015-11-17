@@ -15,7 +15,7 @@
 </div>
 
 <h4>
-  {{sightingList.rows.length}} sightings at
+  {{taxons.length}} species at
   {{#if sightingList.multipleLocations}}
     {{sightingList.locations.length}} locations
   {{else}}
@@ -23,11 +23,13 @@
   {{/if}}
 </h4>
 
-{{#each sightingList.rows}}
+<div class="biglist">
+{{#each taxons}}
   <div>
     {{#if sightingList.multipleLocations}}
     <a href='#location/{{this.Location}}'>{{this.Location}}</a>
     {{/if}}
-    <a href='#taxon/{{[Common Name]}}'>{{[Common Name]}}</a>
+    <a href='#taxon/{{this}}'>{{this}}</a>
   </div>
 {{/each}}
+</div>
