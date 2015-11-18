@@ -88,7 +88,7 @@ SightingList.prototype.addRows = function(inRows) {
 				this.earliestRowByCommonName[sighting['Common Name']] = sighting;
 			} else if (sighting.DateObject < this.earliestRowByCommonName[sighting['Common Name']].DateObject) {
 				this.earliestRowByCommonName[sighting['Common Name']] = sighting;
-			}				
+			}	
 		}
 	}
 

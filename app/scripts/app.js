@@ -5,6 +5,7 @@ var gOmittedCommonNames = [];
 var gCustomDayNames = [];
 var gPhotos = [];
 var gCompiledTemplates = {};
+var gCountyByLocation = {};
 
 function ensureTemplateLoadedAndCompiled(inPrefix) {
 	return new Promise(function(resolve, reject) {
@@ -261,7 +262,7 @@ function renderCounty(inCountyName) {
 		name: inCountyName,
 		chartID: 'bymonth' + Date.now(),
 		sightingsByMonth: countySightingList.byMonth(),
-		photos: gPhotos.filter(function(p) { return p.location == inCountyName }),
+		photos: gPhotos.filter(function(p) { return countySightingList.locations.indexOf(p.location) >= 0; }),
 		state: countySightingsTaxonomic[0]["State/Province"],
 		sightingList: countySightingList,
 		countySightingsTaxonomic: countySightingsTaxonomic,
@@ -383,7 +384,6 @@ function loadPhotos() {
 	oReq.addEventListener("load", function() {
 		gPhotos = JSON.parse(this.responseText);
 		console.log('loaded photos', gPhotos.length);
-
 
 		for (var index = 0; index < gPhotos.length; index++) {
 			var imageFilename = '';
