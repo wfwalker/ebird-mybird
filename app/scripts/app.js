@@ -384,24 +384,24 @@ if ((host == window.location.host) && (window.location.protocol != "https:")) {
 
 		Handlebars.registerHelper('bargraph', function(inData, inElement) {
 			// per @digitarald use timeout to reorder helper after Handlebars templating
-			window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement) }, 1);
+			window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement); }, 1);
 		});
 
 		Handlebars.registerHelper('monthgraph', function(inData, inElement) {
 			// per @digitarald use timeout to reorder helper after Handlebars templating
-			window.setTimeout(function () { byMonthForSightings(inData, '#' + inElement) }, 1);
+			window.setTimeout(function () { byMonthForSightings(inData, '#' + inElement); }, 1);
 		});
 
 		console.log('end DOMContentLoaded');
 	});
 
-	Papa.parse("./data/ebird.csv", {
+	Papa.parse('./data/ebird.csv', {
 		download: true,
 		header: true,
 		complete: function(results) {
 			gSightings = new SightingList(results.data);
 			routeBasedOnHash();
-		}
+		},
 	});
 
 	window.onhashchange = routeBasedOnHash;
