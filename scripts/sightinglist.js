@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
@@ -36,7 +36,7 @@ var SightingList = function (inRows) {
 	this.dateObjects = [];
 
 	this.addRows(inRows);
-}
+};
 
 SightingList.prototype.addRows = function(inRows) {
 	for (var index = 0; index < inRows.length; index++) {
@@ -100,27 +100,27 @@ SightingList.prototype.addRows = function(inRows) {
 
 	// TODO: this is probably unnecessary sort!
 	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });		
-}
+};
 
 SightingList.prototype.earliestDateObject = function() {
 	return this.earliestDateObject;
-}
+};
 
 SightingList.prototype.latestDateObject = function() {
 	return this.latestDateObject;
-}
+};
 
 SightingList.prototype.filter = function(filterFunc) {
 	return this.rows.filter(filterFunc);
-}
+};
 
 SightingList.prototype.count = function() {
 	return this.rows.length;
-}
+};
 
 SightingList.prototype.byYear = function() {
 	return this.rowsByYear;
-}
+};
 
 SightingList.prototype.byMonth = function() {
 	return [
@@ -135,13 +135,13 @@ SightingList.prototype.byMonth = function() {
 		this.rowsByMonth['09'],
 		this.rowsByMonth['10'],
 		this.rowsByMonth['11'],
-		this.rowsByMonth['12']
+		this.rowsByMonth['12'],
 	];
-}
+};
 
 SightingList.prototype.earliestByCommonName = function() {
 	return this.earliestRowByCommonName;
-}	
+};
 
 SightingList.prototype.getUniqueValues = function(fieldName) {
 	var values = [];
