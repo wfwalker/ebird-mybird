@@ -6,6 +6,15 @@
 	display: inline;
 }
 
+#loading {
+	position: absolute;
+	top: 20px;
+	text-align: center;
+	width: 100px;
+	z-index: 1;
+	font-size: 96pt;
+}
+
 .biglist {
 	-moz-column-width: 15em;
 	-moz-columns: 15em;

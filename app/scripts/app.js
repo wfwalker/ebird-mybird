@@ -50,8 +50,11 @@ function renderTemplate(inPrefix, inData) {
 		document.getElementById('loading').classList.remove('visible');
 		document.getElementById('loading').classList.add('hidden');
 
+		hideAllSections();
+
 		// show rendered template
 	    results.appendChild(newDiv);
+		showSection('section#' + inPrefix);
 	}, function(err) {
 		console.log('not compiled', err);
 	});
@@ -164,8 +167,6 @@ function renderHome() {
 		latest: gSightings.latestDateObject,
 		owner: 'Bill Walker'
 	});
-
-	showSection('section#home');	
 }
 
 function renderChrono() {
@@ -176,8 +177,6 @@ function renderChrono() {
 	renderTemplate('chrono', {
 		firstSightings: lifeSightingsChronological
 	});
-
-	showSection('section#chrono');
 }
 
 function renderTrips() {
@@ -185,8 +184,6 @@ function renderTrips() {
 		trips: gSightings.dateObjects,
 		customDayNames: gCustomDayNames
 	});
-
-	showSection('section#trips');
 }
 
 function renderTrip(inDate) {
@@ -201,8 +198,6 @@ function renderTrip(inDate) {
 		taxons: tripSightingList.getUniqueValues("Common Name"),
 		sightingList: tripSightingList
 	});
-
-	showSection('section#trip');
 }
 
 function renderYear(inYear) {
@@ -216,16 +211,12 @@ function renderYear(inYear) {
 		yearSightings: yearSightings,
 		yearSpecies: yearSightingList.getUniqueValues('Common Name')
 	});
-
-	showSection('section#year');
 }
 
 function renderLocations() {
 	renderTemplate('locations', {
 		locations: gSightings.locations
 	});
-
-	showSection('section#locations');
 }
 
 function renderLocation(inLocationName) {
@@ -248,8 +239,6 @@ function renderLocation(inLocationName) {
 		taxons: locationSightingList.getUniqueValues("Common Name"),
 		customDayNames: gCustomDayNames
 	});
-
-	showSection('section#location');
 }
 
 function renderCounty(inCountyName) {
@@ -269,8 +258,6 @@ function renderCounty(inCountyName) {
 		taxons: countySightingList.getUniqueValues("Common Name"),
 		customDayNames: gCustomDayNames
 	});
-
-	showSection('section#county');
 }
 
 function renderTaxons() {
@@ -281,8 +268,6 @@ function renderTaxons() {
 	renderTemplate('taxons', {
 		lifeSightings: lifeSightingsTaxonomic
 	});
-
-	showSection('section#taxons');
 }
 
 function renderTaxon(inCommonName) {
@@ -301,8 +286,6 @@ function renderTaxon(inCommonName) {
 		sightings: taxonSightings,
 		chartID: 'bymonth' + Date.now()
 	});
-
-	showSection('section#taxon');
 }
 
 function renderDebug() {
@@ -317,8 +300,6 @@ function renderDebug() {
 		photos: gPhotos,
 		brokenLocations: brokenLocationSightingList.getUniqueValues("Location")
 	});
-
-	showSection('section#debug');
 }
 
 var routingMap = {
@@ -336,8 +317,6 @@ var routingMap = {
 }
 
 function routeBasedOnHash() {
-	hideAllSections();
-
 	// show loading section
 	document.getElementById('loading').classList.add('visible');
 	document.getElementById('loading').classList.remove('hidden');
