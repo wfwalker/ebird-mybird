@@ -7,58 +7,27 @@ var gPhotos = [];
 var gCompiledTemplates = {};
 var gCountyByLocation = {};
 
-function ensureTemplateLoadedAndCompiled(inPrefix) {
-	return new Promise(function(resolve, reject) {
-		var theTemplate = gCompiledTemplates[inPrefix];
-
-		if (! theTemplate) {
-			console.log('compiling', inPrefix);
-
-			var templateRequest = new XMLHttpRequest();
-
-			templateRequest.addEventListener("load", function() {
-				var theTemplateScript = this.responseText;
-			    theTemplate = Handlebars.compile(theTemplateScript);
-			    gCompiledTemplates[inPrefix] = theTemplate;
-			    resolve(theTemplate);
-			});
-
-			templateRequest.addEventListener("error", function(err) {
-				console.log('error', err);
-				reject(err);
-			});
-
-			templateRequest.open("GET", "./templates/" + inPrefix + ".html");
-			templateRequest.send();
-		} else {
-			resolve(theTemplate);
-		}	
-	});
-}
-
 function renderTemplate(inPrefix, inData) {
-	ensureTemplateLoadedAndCompiled(inPrefix).then(function(theTemplate) {
-		var newDiv = document.createElement("div");
-		newDiv.innerHTML = theTemplate(inData);
+	var compiledTemplate = ebirdmybird[inPrefix];
+	var newDiv = document.createElement("div");
+	newDiv.innerHTML = compiledTemplate(inData);
 
-		var results = document.getElementById(inPrefix + '-results');
-		while (results.firstChild) {
-		    results.removeChild(results.firstChild);
-		}
+	var results = document.getElementById(inPrefix + '-results');
+	while (results.firstChild) {
+	    results.removeChild(results.firstChild);
+	}
 
-	    // hide loading section
-		document.getElementById('loading').classList.remove('visible');
-		document.getElementById('loading').classList.add('hidden');
+    // hide loading section
+	document.getElementById('loading').classList.remove('visible');
+	document.getElementById('loading').classList.add('hidden');
 
-		hideAllSections();
+	hideAllSections();
 
-		// show rendered template
-	    results.appendChild(newDiv);
-		showSection('section#' + inPrefix);
-	}, function(err) {
-		console.log('not compiled', err);
-	});
+	// show rendered template
+    results.appendChild(newDiv);
+	showSection('section#' + inPrefix);
 }
+
 
 function showSection(inSelector) {
 	var sections = document.querySelectorAll(inSelector);

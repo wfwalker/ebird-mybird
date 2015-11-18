@@ -19,8 +19,12 @@
 var connect = require('gulp-connect');
 var gulp = require('gulp');
 var oghliner = require('oghliner');
+var handlebars = require('gulp-handlebars');
+var wrap = require('gulp-wrap');
+var concat = require('gulp-concat');
+var declare = require('gulp-declare');
 
-gulp.task('default', ['build', 'offline']);
+gulp.task('default', ['templates', 'build', 'offline']);
 
 gulp.task('build', function(callback) {
   return gulp.src('app/**').pipe(gulp.dest('dist'));
@@ -34,6 +38,20 @@ gulp.task('deploy', function(callback) {
   }, callback);
 });
 
+gulp.task('templates', function(){
+  gulp.src('app/templates/*.html')
+    .pipe(handlebars({
+      handlebars: require('handlebars')
+    }))
+    .pipe(wrap('Handlebars.template(<%= contents %>)'))
+    .pipe(declare({
+      namespace: 'ebirdmybird',
+      noRedeclare: true, // Avoid duplicate declarations
+    }))
+    .pipe(concat('handlebars-templates.js'))
+    .pipe(gulp.dest('./app/scripts'));
+});
+
 gulp.task('offline', ['build'], function(callback) {
   oghliner.offline({
     rootDir: 'dist/',
@@ -41,7 +59,6 @@ gulp.task('offline', ['build'], function(callback) {
       'images/**',
       'index.html',
       'scripts/**',
-      'templates/**',
       'data/**',
       'styles/**',
     ],
