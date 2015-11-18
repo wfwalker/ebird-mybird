@@ -23,23 +23,35 @@ var handlebars = require('gulp-handlebars');
 var wrap = require('gulp-wrap');
 var concat = require('gulp-concat');
 var declare = require('gulp-declare');
+var eslint = require('gulp-eslint');
 
 gulp.task('default', ['templates', 'build', 'offline']);
 
-gulp.task('build', function(callback) {
+gulp.task('build', ['templates'], function(callback) {
   return gulp.src('app/**').pipe(gulp.dest('dist'));
 });
 
 gulp.task('configure', oghliner.configure);
 
-gulp.task('deploy', function(callback) {
-  oghliner.deploy({
+gulp.task('deploy', function() {
+  return oghliner.deploy({
     rootDir: 'dist',
-  }, callback);
+  });
+});
+
+gulp.task('lint', function() {
+  return gulp.src('app/scripts/app.js').pipe(eslint({
+    'rules':{
+        'quotes': [1, 'single'],
+        'semi': [1, 'always'],
+        'comma-dangle': [1, 'always-multiline'],
+        'quote-props': [1, 'as-needed']
+    }
+  })).pipe(eslint.format());
 });
 
 gulp.task('templates', function(){
-  gulp.src('app/templates/*.html')
+  return gulp.src('app/templates/*.html')
     .pipe(handlebars({
       handlebars: require('handlebars')
     }))
@@ -52,8 +64,8 @@ gulp.task('templates', function(){
     .pipe(gulp.dest('./app/scripts'));
 });
 
-gulp.task('offline', ['build'], function(callback) {
-  oghliner.offline({
+gulp.task('offline', ['build'], function() {
+  return oghliner.offline({
     rootDir: 'dist/',
     fileGlobs: [
       'images/**',
@@ -62,7 +74,7 @@ gulp.task('offline', ['build'], function(callback) {
       'data/**',
       'styles/**',
     ],
-  }, callback);
+  });
 });
 
 gulp.task('serve', function () {
