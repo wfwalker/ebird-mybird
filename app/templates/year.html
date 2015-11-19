@@ -1,6 +1,6 @@
 <h3>{{year}} Year List</h3>
 
-<div>{{yearSightings.length}} sightings, {{yearSpecies.length}} species, {{photos.length}} photos</div>
+<div>{{nicenumber yearSightings.length}} sightings, {{nicenumber yearSpecies.length}} species, {{nicenumber photos.length}} photos</div>
 
 {{#each photos}}
   <span><a href="{{this.photoURL}}"><img width="100px" height="100px" src="{{this.thumbURL}}"></a></span>
