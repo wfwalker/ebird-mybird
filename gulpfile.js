@@ -25,10 +25,13 @@ var concat = require('gulp-concat');
 var declare = require('gulp-declare');
 var eslint = require('gulp-eslint');
 var uglify = require('gulp-uglify');
+var postcss = require('gulp-postcss');
+var mqpacker = require('css-mqpacker');
+var csswring = require('csswring');
 
-gulp.task('default', ['templates', 'compress', 'build', 'offline']);
+gulp.task('default', ['build', 'offline']);
 
-gulp.task('build', ['templates', 'compress'], function(callback) {
+gulp.task('build', ['templates', 'compress', 'css'], function(callback) {
   return gulp.src('app/**').pipe(gulp.dest('dist'));
 });
 
@@ -78,6 +81,18 @@ gulp.task('compress', ['templates'], function(){
     .pipe(uglify())
     .pipe(concat('compressed.js'))
     .pipe(gulp.dest('app/scripts'));
+});
+
+gulp.task('css', function() {
+  var processors = [
+    mqpacker,
+    csswring,
+  ];
+  return gulp
+    .src(['app/styles/*.css', '!app/styles/bundle.css'])
+    .pipe(postcss(processors))
+    .pipe(concat('bundle.css'))
+    .pipe(gulp.dest('app/styles'));
 });
 
 gulp.task('offline', ['build'], function() {

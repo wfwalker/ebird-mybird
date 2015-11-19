@@ -2,3 +2,4 @@ node_modules/
 dist/
 app/scripts/handlebars-templates.js
 app/scripts/compressed.js
+app/styles/bundle.css
