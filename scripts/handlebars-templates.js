@@ -397,11 +397,13 @@ this["ebirdmybird"]["year"] = Handlebars.template({"1":function(container,depth0
 
   return "<h3>"
     + alias2(((helper = (helper = helpers.year || (depth0 != null ? depth0.year : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"year","hash":{},"data":data}) : helper)))
-    + "</h3>\n\n<div>"
+    + " Year List</h3>\n\n<div>"
     + alias2(alias3(((stack1 = (depth0 != null ? depth0.yearSightings : depth0)) != null ? stack1.length : stack1), depth0))
     + " sightings, "
     + alias2(alias3(((stack1 = (depth0 != null ? depth0.yearSpecies : depth0)) != null ? stack1.length : stack1), depth0))
-    + " species</div>\n\n"
+    + " species, "
+    + alias2(alias3(((stack1 = (depth0 != null ? depth0.photos : depth0)) != null ? stack1.length : stack1), depth0))
+    + " photos</div>\n\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.photos : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n<div class=\"biglist\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.yearSpecies : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
