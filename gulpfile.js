@@ -24,10 +24,11 @@ var wrap = require('gulp-wrap');
 var concat = require('gulp-concat');
 var declare = require('gulp-declare');
 var eslint = require('gulp-eslint');
+var uglify = require('gulp-uglify');
 
-gulp.task('default', ['templates', 'build', 'offline']);
+gulp.task('default', ['templates', 'compress', 'build', 'offline']);
 
-gulp.task('build', ['templates'], function(callback) {
+gulp.task('build', ['templates', 'compress'], function(callback) {
   return gulp.src('app/**').pipe(gulp.dest('dist'));
 });
 
@@ -64,13 +65,28 @@ gulp.task('templates', function(){
     .pipe(gulp.dest('./app/scripts'));
 });
 
+gulp.task('compress', ['templates'], function(){
+  return gulp.src([
+    'app/scripts/d3.v3.js',
+    'app/scripts/c3.min.js',
+    'app/scripts/papaparse.min.js',
+    'app/scripts/handlebars-v4.0.4.js',
+    'app/scripts/handlebars-templates.js',
+    'app/scripts/sightinglist.js',
+    'app/scripts/app.js',
+  ])
+    .pipe(uglify())
+    .pipe(concat('compressed.js'))
+    .pipe(gulp.dest('app/scripts'));
+});
+
 gulp.task('offline', ['build'], function() {
   return oghliner.offline({
     rootDir: 'dist/',
     fileGlobs: [
       'images/**',
       'index.html',
-      'scripts/**',
+      'scripts/compressed.js',
       'data/**',
       'styles/**',
     ],
