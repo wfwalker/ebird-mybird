@@ -93,7 +93,7 @@ gulp.task('offline', ['build'], function() {
   });
 });
 
-gulp.task('serve', function () {
+gulp.task('serve', ['offline'], function () {
   connect.server({
     root: 'dist',
   });
