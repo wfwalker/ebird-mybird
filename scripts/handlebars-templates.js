@@ -97,15 +97,21 @@ this["ebirdmybird"]["debug"] = Handlebars.template({"1":function(container,depth
     + container.escapeExpression(container.lambda(depth0, depth0))
     + "</div>\n";
 },"7":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=container.lambda, alias2=container.escapeExpression;
+    var helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
 
-  return "  { \"location\": \""
+  return "{\n  	\"location\": \""
     + alias2(alias1((depth0 != null ? depth0.location : depth0), depth0))
-    + "\", \"tripDate\": \""
+    + "\",\n  	\"tripDate\": \""
     + alias2(alias1((depth0 != null ? depth0.tripDate : depth0), depth0))
-    + "\", \"thumbURL\": \""
-    + alias2(((helper = (helper = helpers.thumbURL || (depth0 != null ? depth0.thumbURL : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"thumbURL","hash":{},"data":data}) : helper)))
-    + "\" }\n";
+    + "\",\n  	\"scientificName\": \""
+    + alias2(((helper = (helper = helpers.scientificName || (depth0 != null ? depth0.scientificName : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"scientificName","hash":{},"data":data}) : helper)))
+    + "\",\n  	\"commonName\": \""
+    + alias2(((helper = (helper = helpers.commonName || (depth0 != null ? depth0.commonName : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"commonName","hash":{},"data":data}) : helper)))
+    + "\",\n  	\"thumbURL\": \""
+    + alias2(((helper = (helper = helpers.thumbURL || (depth0 != null ? depth0.thumbURL : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"thumbURL","hash":{},"data":data}) : helper)))
+    + "\",\n  	\"photoURL\": \""
+    + alias2(((helper = (helper = helpers.photoURL || (depth0 != null ? depth0.photoURL : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"photoURL","hash":{},"data":data}) : helper)))
+    + "\"\n}\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {};
 
@@ -228,6 +234,25 @@ this["ebirdmybird"]["locations"] = Handlebars.template({"1":function(container,d
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.locations : depth0)) != null ? stack1.length : stack1), depth0))
     + " locations</h3>\n\n<div class=\"biglist\">\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.locations : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</div>\n";
+},"useData":true});
+this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "<div><a href=\"#taxon/"
+    + alias2(alias1(depth0, depth0))
+    + "\">"
+    + alias2(alias1(depth0, depth0))
+    + "</a></div>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
+
+  return "<h3>"
+    + alias3((helpers.nicenumber || (depth0 && depth0.nicenumber) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.photos : depth0)) != null ? stack1.length : stack1),{"name":"nicenumber","hash":{},"data":data}))
+    + " photos of "
+    + alias3((helpers.nicenumber || (depth0 && depth0.nicenumber) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.photoScientificNames : depth0)) != null ? stack1.length : stack1),{"name":"nicenumber","hash":{},"data":data}))
+    + " species</h3>\n\n<div class=\"biglist\">\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.photoScientificNames : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n";
 },"useData":true});
 this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {

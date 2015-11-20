@@ -13,6 +13,11 @@ function renderTemplate(inPrefix, inData) {
 	newDiv.innerHTML = compiledTemplate(inData);
 
 	var results = document.getElementById(inPrefix + '-results');
+
+	if (! results) {
+		throw new Error('internal error, missing div for ' + inPrefix);
+	}
+
 	while (results.firstChild) {
 	    results.removeChild(results.firstChild);
 	}
@@ -182,6 +187,26 @@ function renderYear(inYear) {
 	});
 }
 
+function renderPhotos() {
+	var photoScientificNames = [];
+
+	for (var index = 0; index < gPhotos.length; index++) {
+		var aValue = gPhotos[index]['scientificName'];
+		if (photoScientificNames.indexOf(aValue) < 0) {
+			photoScientificNames.push(aValue);
+		}
+	}
+
+	console.log(photoScientificNames);
+
+	renderTemplate('photos', {
+		photos: gPhotos,
+		photoScientificNames: photoScientificNames,
+	});
+}
+
+
+
 function renderLocations() {
 	renderTemplate('locations', {
 		locations: gSightings.locations,
@@ -262,6 +287,17 @@ function renderDebug() {
 	var brokenLocationSightingList = new SightingList(tmp);
 
 	// TODO: find photos whose scientific name is missing from sightings
+	for (var index = 0; index < gPhotos.length; index++) {
+		var photo = gPhotos[index];
+		var sightings = gSightings.filter(function (s) { return s['Scientific Name'] == photo.scientificName; });
+		if (sightings.length == 0) {
+			photo.commonName = 'unknown';
+			console.log('no sightings for scientific name ' + photo.scientificName);
+		} else {
+			photo.commonName = sightings[0]['Common Name'];
+			console.log(photo.commonName, photo.scientificName);
+		}
+	}
 
 	renderTemplate('debug', {
 		photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.tripDate) < 0; }),
@@ -274,6 +310,7 @@ function renderDebug() {
 var routingMap = {
 	'#home' : renderHome,
 	'#chrono' : renderChrono,
+	'#photos' : renderPhotos,
 	'#trips' : renderTrips,
 	'#trip' : renderTrip,
 	'#year' : renderYear,

@@ -24,7 +24,14 @@
 <pre>
 [
 {{#each photos}}
-  { "location": "{{this.location}}", "tripDate": "{{this.tripDate}}", "thumbURL": "{{thumbURL}}" }
+{
+  	"location": "{{this.location}}",
+  	"tripDate": "{{this.tripDate}}",
+  	"scientificName": "{{scientificName}}",
+  	"commonName": "{{commonName}}",
+  	"thumbURL": "{{thumbURL}}",
+  	"photoURL": "{{photoURL}}"
+}
 {{/each}}
 ]
 </pre>
