@@ -285,6 +285,7 @@ function renderTaxon(inCommonName) {
 function renderDebug() {
 	var tmp = gSightings.filter(function(s) { return s['Location'] && s['Location'].indexOf('/') >= 0; });
 	var brokenLocationSightingList = new SightingList(tmp);
+	var photosBadScientificName = [];
 
 	// TODO: find photos whose scientific name is missing from sightings
 	for (var index = 0; index < gPhotos.length; index++) {
@@ -293,6 +294,7 @@ function renderDebug() {
 		if (sightings.length == 0) {
 			photo.commonName = 'unknown';
 			console.log('no sightings for scientific name ' + photo.scientificName);
+			photosBadScientificName.push(photo);
 		} else {
 			photo.commonName = sightings[0]['Common Name'];
 			console.log(photo.commonName, photo.scientificName);
@@ -302,6 +304,7 @@ function renderDebug() {
 	renderTemplate('debug', {
 		photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.tripDate) < 0; }),
 		photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.location) < 0; }),
+		photosBadScientificName: photosBadScientificName,
 		photos: gPhotos,
 		brokenLocations: brokenLocationSightingList.getUniqueValues('Location'),
 	});

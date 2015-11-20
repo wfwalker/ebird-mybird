@@ -125,7 +125,11 @@ this["ebirdmybird"]["debug"] = Handlebars.template({"1":function(container,depth
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.photosMissingLocation : depth0)) != null ? stack1.length : stack1), depth0))
     + " photos have locations missing from your eBird data:</h4>\n\n"
     + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photosMissingLocation : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n<h4>Sighting has slashes:</h4>\n\n"
+    + "\n<h4>These "
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.photosBadScientificName : depth0)) != null ? stack1.length : stack1), depth0))
+    + " photos have scientific names missing from your eBird sightings:</h4>\n\n"
+    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photosBadScientificName : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n\n<h4>Sighting has slashes:</h4>\n\n"
     + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.brokenLocations : depth0),{"name":"each","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n<h4>Here is a copy of your clean photos.json</h4>\n\n<pre>\n[\n"
     + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photos : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
