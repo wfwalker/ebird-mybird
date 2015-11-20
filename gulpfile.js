@@ -25,6 +25,7 @@ var concat = require('gulp-concat');
 var declare = require('gulp-declare');
 var eslint = require('gulp-eslint');
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 var postcss = require('gulp-postcss');
 var mqpacker = require('css-mqpacker');
 var csswring = require('csswring');
@@ -78,8 +79,10 @@ gulp.task('compress', ['templates'], function(){
     'app/scripts/sightinglist.js',
     'app/scripts/app.js',
   ])
-    .pipe(uglify())
+    .pipe(sourcemaps.init())
     .pipe(concat('compressed.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('app/scripts'));
 });
 
