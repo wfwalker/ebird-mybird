@@ -13,6 +13,13 @@
   <div> <img height='32px' src="{{this.thumbURL}}"> {{this.location}} <a href="#trip/{{this.tripDate}}">{{this.date}}</a> {{this.scientificName}}</div>
 {{/each}}
 
+<h4>These {{photosBadScientificName.length}} photos have scientific names missing from your eBird sightings:</h4>
+
+{{#each photosBadScientificName}}
+  <div> <img height='32px' src="{{this.thumbURL}}"> {{this.location}} <a href="#trip/{{this.tripDate}}">{{this.date}}</a> {{this.scientificName}}</div>
+{{/each}}
+
+
 <h4>Sighting has slashes:</h4>
 
 {{#each brokenLocations}}
