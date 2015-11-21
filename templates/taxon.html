@@ -4,11 +4,11 @@
   <span><a href="{{this.photoURL}}"><img width="100px" height="100px" src="{{this.thumbURL}}"></a></span>
 {{/each}}
 
+<h4>{{nicenumber sightings.length}} sightings</h4>
+
 <div id={{chartID}} style='padding-top: 10px'></div>
 
 {{monthgraph sightingsByMonth chartID}}
-
-<h4>{{nicenumber sightings.length}} sightings</h4>
 
 <div class="biglist">
 {{#each sightings}}
