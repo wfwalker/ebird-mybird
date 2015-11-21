@@ -29,6 +29,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var postcss = require('gulp-postcss');
 var mqpacker = require('css-mqpacker');
 var csswring = require('csswring');
+var path = require('path');
+var debounce = require('lodash.debounce');
 
 gulp.task('default', ['build', 'offline']);
 
@@ -111,8 +113,22 @@ gulp.task('offline', ['build'], function() {
   });
 });
 
-gulp.task('serve', ['offline'], function () {
-  connect.server({
-    root: 'dist',
+gulp.task('watch', ['offline'], function() {
+  var browserSyncCreator = require('browser-sync');
+  var browserSync = browserSyncCreator.create();
+  browserSync.init({
+    open: false,
+    server: {
+      baseDir: 'dist',
+      ghostMode: false,
+      notify: false,
+    },
   });
+  gulp.watch(['./app/styles/*.css'], ['css']);
+  gulp.watch(['./app/scripts/*.js', '!./app/scripts/compressed.js'], ['compress']);
+  gulp.watch(['./app/templates/*.html'], ['templates']);
+  gulp.watch([
+    path.join('app', '**/*.*'),
+  ], debounce(function () { return gulp.src('app/**').pipe(gulp.dest('dist')); }, 200));
 });
+
