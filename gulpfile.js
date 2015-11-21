@@ -113,6 +113,12 @@ gulp.task('offline', ['build'], function() {
   });
 });
 
+gulp.task('serve', ['offline'], function () {
+  connect.server({
+    root: 'dist',
+  });
+});
+
 gulp.task('watch', ['offline'], function() {
   var browserSyncCreator = require('browser-sync');
   var browserSync = browserSyncCreator.create();
