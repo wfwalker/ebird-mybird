@@ -63,6 +63,9 @@ function barGraphCountsForSightings(inData, inElement) {
 
 	var chart = c3.generate({
 		bindto: d3.select(inElement),
+		size: {
+			height: 150,
+		},
 		axis: {
 			y: {
 				show: false,
@@ -97,7 +100,6 @@ function byMonthForSightings(inData, inElement) {
 	var chart = c3.generate({
 		bindto: d3.select(inElement),
 		size: {
-			width: 400,
 			height: 150,
 		},
 		bar: {
