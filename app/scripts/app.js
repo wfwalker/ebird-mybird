@@ -398,43 +398,43 @@ function loadPhotos() {
 	oReq.send();
 }
 
+function registerHelpers() {
+	Handlebars.registerHelper('nicedate', function(inDate) {
+		return new Handlebars.SafeString (
+			d3.time.format('%b %d, %Y')(inDate)
+		);
+	});
+
+	Handlebars.registerHelper('ebirddate', function(inDate) {
+		return new Handlebars.SafeString (
+			d3.time.format('%m-%d-%Y')(inDate)
+		);
+	});
+
+	Handlebars.registerHelper('nicenumber', function(inNumber) {
+		return new Handlebars.SafeString (
+			d3.format(',d')(inNumber)
+		);
+	});
+
+	Handlebars.registerHelper('bargraph', function(inData, inElement) {
+		// per @digitarald use timeout to reorder helper after Handlebars templating
+		window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement); }, 1);
+	});
+
+	Handlebars.registerHelper('monthgraph', function(inData, inElement) {
+		// per @digitarald use timeout to reorder helper after Handlebars templating
+		window.setTimeout(function () { byMonthForSightings(inData, '#' + inElement); }, 1);
+	});
+}
+
 // REDIRECT to HTTPS!
 var host = 'wfwalker.github.io';
 if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 	window.location.protocol = 'https';
 } else {
 	document.addEventListener('DOMContentLoaded', function(event) { 
-		console.log('start DOMContentLoaded');
-
-		Handlebars.registerHelper('nicedate', function(inDate) {
-			return new Handlebars.SafeString (
-				d3.time.format('%b %d, %Y')(inDate)
-			);
-		});
-
-		Handlebars.registerHelper('ebirddate', function(inDate) {
-			return new Handlebars.SafeString (
-				d3.time.format('%m-%d-%Y')(inDate)
-			);
-		});
-
-		Handlebars.registerHelper('nicenumber', function(inNumber) {
-			return new Handlebars.SafeString (
-				d3.format(',d')(inNumber)
-			);
-		});
-
-		Handlebars.registerHelper('bargraph', function(inData, inElement) {
-			// per @digitarald use timeout to reorder helper after Handlebars templating
-			window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement); }, 1);
-		});
-
-		Handlebars.registerHelper('monthgraph', function(inData, inElement) {
-			// per @digitarald use timeout to reorder helper after Handlebars templating
-			window.setTimeout(function () { byMonthForSightings(inData, '#' + inElement); }, 1);
-		});
-
-		console.log('end DOMContentLoaded');
+		registerHelpers();
 	});
 
 	Papa.parse('./data/ebird.csv', {
