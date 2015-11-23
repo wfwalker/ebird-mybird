@@ -22,7 +22,7 @@ this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,dept
 
   return "  <span><a href=\""
     + alias2(alias1((depth0 != null ? depth0.photoURL : depth0), depth0))
-    + "\"><img width=\"100px\" height=\"100px\" src=\""
+    + "\"><img width=\"85px\" height=\"85px\" src=\""
     + alias2(alias1((depth0 != null ? depth0.thumbURL : depth0), depth0))
     + "\"></a></span>\n";
 },"3":function(container,depth0,helpers,partials,data) {
@@ -163,7 +163,7 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
 
   return "  <span><a href=\""
     + alias2(alias1((depth0 != null ? depth0.photoURL : depth0), depth0))
-    + "\"><img width=\"100px\" height=\"100px\" src=\""
+    + "\"><img width=\"85px\" height=\"85px\" src=\""
     + alias2(alias1((depth0 != null ? depth0.thumbURL : depth0), depth0))
     + "\"></a></span>\n";
 },"3":function(container,depth0,helpers,partials,data) {
@@ -209,17 +209,17 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + alias4(((helper = (helper = helpers.longitude || (depth0 != null ? depth0.longitude : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"longitude","hash":{},"data":data}) : helper)))
     + "</a></div>\n\n<div>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.photos : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>\n\n<div id="
-    + alias4(((helper = (helper = helpers.chartID || (depth0 != null ? depth0.chartID : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"chartID","hash":{},"data":data}) : helper)))
-    + " style='padding-top: 10px'></div>\n\n"
-    + alias4((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.chartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
-    + "\n\n<h4>"
+    + "</div>\n\n<h4>"
     + alias4(alias5(((stack1 = (depth0 != null ? depth0.taxons : depth0)) != null ? stack1.length : stack1), depth0))
     + " species</h4>\n\n<div class=\"biglist\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.taxons : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n\n<h4>"
     + alias4(alias5(((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.dateObjects : stack1)) != null ? stack1.length : stack1), depth0))
-    + " dates</h4>\n\n<div class=\"biglist\">\n"
+    + " dates</h4>\n\n<div id="
+    + alias4(((helper = (helper = helpers.chartID || (depth0 != null ? depth0.chartID : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"chartID","hash":{},"data":data}) : helper)))
+    + " style='padding-top: 10px'></div>\n\n"
+    + alias4((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.chartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
+    + "\n\n<div class=\"biglist\">\n"
     + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.dateObjects : stack1),{"name":"each","hash":{},"fn":container.program(5, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n";
 },"useData":true,"useDepths":true});
@@ -264,7 +264,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
 
   return "  <span><a href=\""
     + alias2(alias1((depth0 != null ? depth0.photoURL : depth0), depth0))
-    + "\"><img width=\"100px\" height=\"100px\" src=\""
+    + "\"><img width=\"85px\" height=\"85px\" src=\""
     + alias2(alias1((depth0 != null ? depth0.thumbURL : depth0), depth0))
     + "\"></a></span>\n";
 },"3":function(container,depth0,helpers,partials,data) {
@@ -324,7 +324,7 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
 
   return "  <span><a href=\""
     + alias2(alias1((depth0 != null ? depth0.photoURL : depth0), depth0))
-    + "\"><img width=\"100px\" height=\"100px\" src=\""
+    + "\"><img width=\"85px\" height=\"85px\" src=\""
     + alias2(alias1((depth0 != null ? depth0.thumbURL : depth0), depth0))
     + "\"></a></span>\n";
 },"5":function(container,depth0,helpers,partials,data) {
@@ -410,7 +410,7 @@ this["ebirdmybird"]["year"] = Handlebars.template({"1":function(container,depth0
 
   return "  <span><a href=\""
     + alias2(alias1((depth0 != null ? depth0.photoURL : depth0), depth0))
-    + "\"><img width=\"100px\" height=\"100px\" src=\""
+    + "\"><img width=\"85px\" height=\"85px\" src=\""
     + alias2(alias1((depth0 != null ? depth0.thumbURL : depth0), depth0))
     + "\"></a></span>\n";
 },"3":function(container,depth0,helpers,partials,data) {

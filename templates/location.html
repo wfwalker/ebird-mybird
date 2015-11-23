@@ -3,13 +3,9 @@
 
 <div>
 {{#each photos}}
-  <span><a href="{{this.photoURL}}"><img width="100px" height="100px" src="{{this.thumbURL}}"></a></span>
+  <span><a href="{{this.photoURL}}"><img width="85px" height="85px" src="{{this.thumbURL}}"></a></span>
 {{/each}}
 </div>
-
-<div id={{chartID}} style='padding-top: 10px'></div>
-
-{{monthgraph sightingsByMonth chartID}}
 
 <h4>{{taxons.length}} species</h4>
 
@@ -22,6 +18,10 @@
 </div>
 
 <h4>{{sightingList.dateObjects.length}} dates</h4>
+
+<div id={{chartID}} style='padding-top: 10px'></div>
+
+{{monthgraph sightingsByMonth chartID}}
 
 <div class="biglist">
 {{#each sightingList.dateObjects}}
