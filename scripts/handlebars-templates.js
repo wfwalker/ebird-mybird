@@ -93,23 +93,31 @@ this["ebirdmybird"]["debug"] = Handlebars.template({"1":function(container,depth
     + alias2(alias1((depth0 != null ? depth0.scientificName : depth0), depth0))
     + "</div>\n";
 },"5":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=container.escapeExpression;
+
+  return "    <div>"
+    + alias1(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"key","hash":{},"data":data}) : helper)))
+    + ", "
+    + alias1(container.lambda(depth0, depth0))
+    + "</div>\n";
+},"7":function(container,depth0,helpers,partials,data) {
     return "  <div>"
     + container.escapeExpression(container.lambda(depth0, depth0))
     + "</div>\n";
-},"7":function(container,depth0,helpers,partials,data) {
+},"9":function(container,depth0,helpers,partials,data) {
     var helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
 
-  return "{\n  	\"location\": \""
+  return "{\n  	\"Location\": \""
     + alias2(alias1((depth0 != null ? depth0.location : depth0), depth0))
-    + "\",\n  	\"tripDate\": \""
+    + "\",\n  	\"Date\": \""
     + alias2(alias1((depth0 != null ? depth0.tripDate : depth0), depth0))
-    + "\",\n  	\"scientificName\": \""
+    + "\",\n  	\"Scientific Name\": \""
     + alias2(((helper = (helper = helpers.scientificName || (depth0 != null ? depth0.scientificName : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"scientificName","hash":{},"data":data}) : helper)))
-    + "\",\n  	\"commonName\": \""
+    + "\",\n  	\"Common Name\": \""
     + alias2(((helper = (helper = helpers.commonName || (depth0 != null ? depth0.commonName : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"commonName","hash":{},"data":data}) : helper)))
-    + "\",\n  	\"thumbURL\": \""
+    + "\",\n  	\"Thumbnail URL\": \""
     + alias2(((helper = (helper = helpers.thumbURL || (depth0 != null ? depth0.thumbURL : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"thumbURL","hash":{},"data":data}) : helper)))
-    + "\",\n  	\"photoURL\": \""
+    + "\",\n  	\"Photo URL\": \""
     + alias2(((helper = (helper = helpers.photoURL || (depth0 != null ? depth0.photoURL : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"photoURL","hash":{},"data":data}) : helper)))
     + "\"\n}\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -129,10 +137,12 @@ this["ebirdmybird"]["debug"] = Handlebars.template({"1":function(container,depth
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.photosBadScientificName : depth0)) != null ? stack1.length : stack1), depth0))
     + " photos have scientific names missing from your eBird sightings:</h4>\n\n"
     + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photosBadScientificName : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n\n<h4>Sighting has slashes:</h4>\n\n"
-    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.brokenLocations : depth0),{"name":"each","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n<h4>There are no sightings for these custom day names:</h4>\n\n"
+    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.missingSightingsForCustomDayNames : depth0),{"name":"each","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n<h4>Sighting has slashes:</h4>\n\n"
+    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.brokenLocations : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n<h4>Here is a copy of your clean photos.json</h4>\n\n<pre>\n[\n"
-    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photos : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photos : depth0),{"name":"each","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "]\n</pre>\n";
 },"useData":true});
 this["ebirdmybird"]["home"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
