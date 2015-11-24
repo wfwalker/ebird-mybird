@@ -288,8 +288,8 @@ function renderDebug() {
 	var tmp = gSightings.filter(function(s) { return s['Location'] && s['Location'].indexOf('/') >= 0; });
 	var brokenLocationSightingList = new SightingList(tmp);
 	var photosBadScientificName = [];
+	var missingSightingsForCustomDayNames = {};
 
-	// TODO: find photos whose scientific name is missing from sightings
 	for (var index = 0; index < gPhotos.length; index++) {
 		var photo = gPhotos[index];
 		var sightings = gSightings.filter(function (s) { return s['Scientific Name'] == photo.scientificName; });
@@ -299,7 +299,15 @@ function renderDebug() {
 			photosBadScientificName.push(photo);
 		} else {
 			photo.commonName = sightings[0]['Common Name'];
-			console.log(photo.commonName, photo.scientificName);
+		}
+	}
+
+	for (index in gCustomDayNames) {
+		var aCustomDate = gCustomDayNames[index];
+		var sightings = gSightings.filter(function (s) { return s['Date'] == index; });
+		if (sightings.length == 0) {
+			console.log('no sightings for', index, aCustomDate);
+			missingSightingsForCustomDayNames[index] = aCustomDate;
 		}
 	}
 
@@ -309,6 +317,7 @@ function renderDebug() {
 		photosBadScientificName: photosBadScientificName,
 		photos: gPhotos,
 		brokenLocations: brokenLocationSightingList.getUniqueValues('Location'),
+		missingSightingsForCustomDayNames: missingSightingsForCustomDayNames,
 	});
 }
 

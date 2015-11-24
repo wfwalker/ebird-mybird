@@ -19,6 +19,11 @@
   <div> <img height='32px' src="{{this.thumbURL}}"> {{this.location}} <a href="#trip/{{this.tripDate}}">{{this.date}}</a> {{this.scientificName}}</div>
 {{/each}}
 
+<h4>There are no sightings for these custom day names:</h4>
+
+{{#each missingSightingsForCustomDayNames}}
+    <div>{{@key}}, {{this}}</div>
+{{/each}}
 
 <h4>Sighting has slashes:</h4>
 
@@ -32,12 +37,12 @@
 [
 {{#each photos}}
 {
-  	"location": "{{this.location}}",
-  	"tripDate": "{{this.tripDate}}",
-  	"scientificName": "{{scientificName}}",
-  	"commonName": "{{commonName}}",
-  	"thumbURL": "{{thumbURL}}",
-  	"photoURL": "{{photoURL}}"
+  	"Location": "{{this.location}}",
+  	"Date": "{{this.tripDate}}",
+  	"Scientific Name": "{{scientificName}}",
+  	"Common Name": "{{commonName}}",
+  	"Thumbnail URL": "{{thumbURL}}",
+  	"Photo URL": "{{photoURL}}"
 }
 {{/each}}
 ]
