@@ -1,7 +1,7 @@
-<h3>{{nicenumber photos.length}} photos of {{nicenumber photoScientificNames.length}} species</h3>
+<h3>{{nicenumber photos.length}} photos of {{nicenumber photoCommonNames.length}} species</h3>
 
 <div class="biglist">
-{{#each photoScientificNames}}
+{{#each photoCommonNames}}
 <div><a href="#taxon/{{this}}">{{this}}</a></div>
 {{/each}}
 </div>
