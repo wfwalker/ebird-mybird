@@ -189,6 +189,12 @@ function renderYear(inYear) {
 	});
 }
 
+function renderPhoto(inID) {
+	renderTemplate('photo',
+		gPhotos[inID]
+	);
+}
+
 function renderPhotos() {
 	var photoCommonNames = [];
 
@@ -208,8 +214,6 @@ function renderPhotos() {
 		photoCommonNames: photoCommonNames,
 	});
 }
-
-
 
 function renderLocations() {
 	renderTemplate('locations', {
@@ -324,6 +328,7 @@ var routingMap = {
 	'#home' : renderHome,
 	'#chrono' : renderChrono,
 	'#photos' : renderPhotos,
+	'#photo' : renderPhoto,
 	'#trips' : renderTrips,
 	'#trip' : renderTrip,
 	'#year' : renderYear,
@@ -381,7 +386,11 @@ function loadPhotos() {
 	var oReq = new XMLHttpRequest();
 	oReq.addEventListener('load', function() {
 		gPhotos = JSON.parse(this.responseText);
-		console.log('loaded photos', gPhotos.length);
+		for (var index = 0; index < gPhotos.length; index++)
+		{
+			gPhotos[index].id = index;
+		}
+		console.log('loaded photos', gPhotos.length, gPhotos);
 	});
 	oReq.open('GET', './data/photos.json');
 	oReq.send();
