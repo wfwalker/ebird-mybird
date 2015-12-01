@@ -84,11 +84,15 @@ SightingList.prototype.addRows = function(inRows) {
 			}
 			this.rowsByMonth[pieces[0]].push(sighting);
 
-			if (! this.earliestRowByCommonName[sighting['Common Name']]) {
-				this.earliestRowByCommonName[sighting['Common Name']] = sighting;
-			} else if (sighting.DateObject < this.earliestRowByCommonName[sighting['Common Name']].DateObject) {
-				this.earliestRowByCommonName[sighting['Common Name']] = sighting;
-			}	
+			if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
+				if (! this.earliestRowByCommonName[sighting['Common Name']]) {
+					this.earliestRowByCommonName[sighting['Common Name']] = sighting;
+				} else if (sighting.DateObject < this.earliestRowByCommonName[sighting['Common Name']].DateObject) {
+					this.earliestRowByCommonName[sighting['Common Name']] = sighting;
+				}	
+			} else {
+				console.log('omit', sighting['Common Name']);
+			}
 		}
 	}
 
