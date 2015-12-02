@@ -1,8 +1,6 @@
 <h3>{{name}} <span style='font-weight: lighter'>| {{scientificName}}</span></h3>
 
-{{#each photos}}
-  <span><a href="#photo/{{id}}"><img width="85px" height="85px" src="{{[Thumbnail URL]}}"></a></span>
-{{/each}}
+{{> thumbnails}}
 
 <h4>{{nicenumber sightings.length}} sightings</h4>
 

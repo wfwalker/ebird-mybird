@@ -2,9 +2,7 @@
 
 <div>{{nicenumber yearSightings.length}} sightings, {{nicenumber yearSpecies.length}} species, {{nicenumber photos.length}} photos</div>
 
-{{#each photos}}
-  <span><a href="#photo/{{id}}"><img width="85px" height="85px" src="{{[Thumbnail URL]}}"></a></span>
-{{/each}}
+{{> thumbnails}}
 
 <div class="biglist">
 {{#each yearSpecies}}
