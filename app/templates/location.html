@@ -1,11 +1,7 @@
 <h3>{{name}} <span style='font-weight: lighter'>| <a href="#county/{{county}}">{{county}}</a>, {{state}}</span></h3>
 <div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
 
-<div>
-{{#each photos}}
-  <span><a href="#photo/{{id}}"><img width="85px" height="85px" src="{{[Thumbnail URL]}}"></a></span>
-{{/each}}
-</div>
+{{> thumbnails}}
 
 <h4>{{taxons.length}} species</h4>
 
