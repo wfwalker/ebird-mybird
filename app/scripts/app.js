@@ -88,6 +88,11 @@ function barGraphCountsForSightings(inData, inElement) {
 				window.location.hash = '#year/' + d.x;
 			},
 		},
+		tooltip: {
+			format: {
+				value: d3.format(',') // apply to all
+			}
+		},
 	});
 }
 
@@ -128,7 +133,12 @@ function byMonthForSightings(inData, inElement) {
 				sightings: 'bar',
 			},
 		},
-	});
+		tooltip: {
+			format: {
+				value: d3.format(',') // apply to all
+			}
+		},
+    });
 }
 
 function renderHome() {
@@ -230,6 +240,7 @@ function renderLocation(inLocationName) {
 	renderTemplate('location', {
 		name: inLocationName,
 		chartID: 'bymonth' + Date.now(),
+		showChart: locationSightingsTaxonomic.length > 100,
 		sightingsByMonth: locationSightingList.byMonth(),
 		photos: gPhotos.filter(function(p) { return p.Location == inLocationName; }),
 		county: locationSightingsTaxonomic[0]['County'],
