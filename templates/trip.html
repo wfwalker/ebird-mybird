@@ -6,6 +6,12 @@
 
 {{> thumbnails}}
 
+<div>
+{{#each sightingList.checklists}}
+  <span><a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>{{this}}</a></span>
+{{/each}}
+</div>
+
 <h4>
   {{taxons.length}} species at
   {{#if sightingList.multipleLocations}}
