@@ -15,14 +15,17 @@
 
 <h4>{{sightingList.dateObjects.length}} dates</h4>
 
-<div id={{chartID}} style='padding-top: 10px'></div>
+{{#if this.showChart}}
+	<div id={{chartID}} style='padding-top: 10px'></div>
+	{{monthgraph sightingsByMonth chartID}}
+{{else}}
+	<div class="biglist">
+	{{#each sightingList.dateObjects}}
+	  <div>
+	    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+	  </div>
+	{{/each}}
+	</div>
+{{/if}}
 
-{{monthgraph sightingsByMonth chartID}}
 
-<div class="biglist">
-{{#each sightingList.dateObjects}}
-  <div>
-    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
-  </div>
-{{/each}}
-</div>
