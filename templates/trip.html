@@ -25,9 +25,9 @@
 {{#each taxons}}
   <div>
     {{#if sightingList.multipleLocations}}
-    <a href='#location/{{this.Location}}'>{{this.Location}}</a>
+    <a href='#location/{{encode this.Location}}'>{{this.Location}}</a>
     {{/if}}
-    <a href='#taxon/{{this}}'>{{this}}</a>
+    <a href='#taxon/{{encode this}}'>{{this}}</a>
   </div>
 {{/each}}
 </div>

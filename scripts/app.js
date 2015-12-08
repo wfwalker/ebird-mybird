@@ -421,6 +421,13 @@ function registerHelpers() {
 		);
 	});
 
+	Handlebars.registerHelper('encode', function(inString) {
+		console.log('encode', inString, encodeURIComponent(inString));
+		return new Handlebars.SafeString (
+			encodeURIComponent(inString)
+		);
+	});
+
 	Handlebars.registerPartial('thumbnails',
 		'<div>
 		{{#each photos}}
