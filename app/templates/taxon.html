@@ -4,15 +4,16 @@
 
 <h4>{{nicenumber sightings.length}} sightings</h4>
 
-<div id={{chartID}} style='padding-top: 10px'></div>
-
-{{monthgraph sightingsByMonth chartID}}
-
-<div class="biglist">
-{{#each sightings}}
-  <div>
-    <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
-    <a href="#location/{{this.Location}}">{{this.Location}}</a>
-  </div>
-{{/each}}
-</div>
+{{#if this.showChart}}
+	<div id={{chartID}} style='padding-top: 10px'></div>
+	{{monthgraph sightingsByMonth chartID}}
+{{else}}
+	<div class="biglist">
+	{{#each sightings}}
+	  <div>
+	    <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
+	    <a href="#location/{{this.Location}}">{{this.Location}}</a>
+	  </div>
+	{{/each}}
+	</div>
+{{/if}}

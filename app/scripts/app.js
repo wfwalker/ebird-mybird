@@ -293,6 +293,7 @@ function renderTaxon(inCommonName) {
 
 	renderTemplate('taxon', {
 		name: inCommonName,
+		showChart: taxonSightings.length > 30,
 		photos: gPhotos.filter(function(p){return p['Scientific Name'] == scientificName;}),
 		scientificName: scientificName,
 		sightingsByMonth: taxonSightingsList.byMonth(),
