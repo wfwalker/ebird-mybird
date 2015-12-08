@@ -12,7 +12,7 @@
 	{{#each sightings}}
 	  <div>
 	    <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
-	    <a href="#location/{{this.Location}}">{{this.Location}}</a>
+	    <a href="#location/{{encode this.Location}}">{{this.Location}}</a>
 	  </div>
 	{{/each}}
 	</div>
