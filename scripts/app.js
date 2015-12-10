@@ -7,7 +7,7 @@ var gPhotos = [];
 var gCompiledTemplates = {};
 var gCountyByLocation = {};
 
-function renderTemplate(inPrefix, inData) {
+function renderTemplate(inPrefix, inPageTitle, inData) {
 	var compiledTemplate = ebirdmybird[inPrefix];
 	var newDiv = document.createElement('div');
 	newDiv.innerHTML = compiledTemplate(inData);
@@ -31,6 +31,7 @@ function renderTemplate(inPrefix, inData) {
 	// show rendered template
     results.appendChild(newDiv);
 	showSection('section#' + inPrefix);
+	document.title = 'ebird-mybird | ' + inPageTitle;
 }
 
 
@@ -142,7 +143,7 @@ function byMonthForSightings(inData, inElement) {
 }
 
 function renderHome() {
-	renderTemplate('home', {
+	renderTemplate('home', 'Home', {
 		numSightings: gSightings.count(),
 		sightingsByYear: gSightings.byYear(),
 		sightingsByMonth: gSightings.byMonth(),
@@ -160,13 +161,13 @@ function renderChrono() {
 	var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
 	lifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
 
-	renderTemplate('chrono', {
+	renderTemplate('chrono', 'Life List', {
 		firstSightings: lifeSightingsChronological,
 	});
 }
 
 function renderTrips() {
-	renderTemplate('trips', {
+	renderTemplate('trips', 'Trips', {
 		trips: gSightings.dateObjects,
 		customDayNames: gCustomDayNames,
 	});
@@ -176,7 +177,7 @@ function renderTrip(inDate) {
 	var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
 	var tripSightingList = new SightingList(tripSightings);
 
-	renderTemplate('trip', {
+	renderTemplate('trip', inDate, {
 		tripDate: tripSightings[0].DateObject,
 		photos: gPhotos.filter(function(p){return p.Date == inDate;}),
 		customName: gCustomDayNames[inDate],
@@ -191,7 +192,7 @@ function renderYear(inYear) {
 	yearSightings.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 	var yearSightingList = new SightingList(yearSightings);
 
-	renderTemplate('year', {
+	renderTemplate('year', inYear, {
 		year: inYear,
 		photos: gPhotos.filter(function(p){return p.Date.substring(6,10) == inYear;}),
 		yearSightings: yearSightings,
@@ -200,7 +201,7 @@ function renderYear(inYear) {
 }
 
 function renderPhoto(inID) {
-	renderTemplate('photo',
+	renderTemplate('photo', 'Photo ' + inID,
 		gPhotos[inID]
 	);
 }
@@ -219,14 +220,14 @@ function renderPhotos() {
 
 	console.log(photoCommonNames);
 
-	renderTemplate('photos', {
+	renderTemplate('photos', 'Photos', {
 		photos: gPhotos,
 		photoCommonNames: photoCommonNames,
 	});
 }
 
 function renderLocations() {
-	renderTemplate('locations', {
+	renderTemplate('locations', 'Locations', {
 		locations: gSightings.locations,
 	});
 }
@@ -237,7 +238,7 @@ function renderLocation(inLocationName) {
 
 	var locationSightingList = new SightingList(locationSightingsTaxonomic);
 
-	renderTemplate('location', {
+	renderTemplate('location', inLocationName, {
 		name: inLocationName,
 		chartID: 'bymonth' + Date.now(),
 		showChart: locationSightingsTaxonomic.length > 100,
@@ -260,7 +261,7 @@ function renderCounty(inCountyName) {
 
 	var countySightingList = new SightingList(countySightingsTaxonomic);
 
-	renderTemplate('county', {
+	renderTemplate('county', inCountyName + ' County', {
 		name: inCountyName,
 		chartID: 'bymonth' + Date.now(),
 		sightingsByMonth: countySightingList.byMonth(),
@@ -278,7 +279,7 @@ function renderTaxons() {
 	var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){ return earliestByCommonName[k]; });
 	lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
-	renderTemplate('taxons', {
+	renderTemplate('taxons', 'Species', {
 		lifeSightings: lifeSightingsTaxonomic,
 	});
 }
@@ -291,7 +292,7 @@ function renderTaxon(inCommonName) {
 
 	var scientificName = taxonSightings[0]['Scientific Name'];
 
-	renderTemplate('taxon', {
+	renderTemplate('taxon', inCommonName, {
 		name: inCommonName,
 		showChart: taxonSightings.length > 30,
 		photos: gPhotos.filter(function(p){return p['Scientific Name'] == scientificName;}),
@@ -326,7 +327,7 @@ function renderDebug() {
 		}
 	}
 
-	renderTemplate('debug', {
+	renderTemplate('debug', 'Debug', {
 		photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.Date) < 0; }),
 		photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.Location) < 0; }),
 		photosBadScientificName: photosBadScientificName,
