@@ -400,7 +400,20 @@ function loadPhotos() {
 		gPhotos = JSON.parse(this.responseText);
 		for (var index = 0; index < gPhotos.length; index++)
 		{
-			gPhotos[index].id = index;
+			var photo = gPhotos[index];
+
+			photo.id = index;
+
+			// Parse the date
+			var pieces = photo['Date'].split('-');
+
+			// order the pieces in a sensible way
+			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
+
+			// create and save the new dat
+			var newDate = new Date(fixedDateString);
+			photo['DateObject'] = newDate;
+			console.log('dated', photo);
 		}
 		console.log('loaded photos', gPhotos.length, gPhotos);
 	});
