@@ -296,7 +296,9 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + " <span style='font-weight: lighter'>| "
     + alias4(((helper = (helper = helpers.scientificName || (depth0 != null ? depth0.scientificName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"scientificName","hash":{},"data":data}) : helper)))
-    + "</span></h3>\n\n"
+    + "</span></h3>\n\n<div><a target=\"_blank\" href=\"http://www.xeno-canto.org/species/"
+    + alias4((helpers.spacetodash || (depth0 && depth0.spacetodash) || alias2).call(alias1,(depth0 != null ? depth0.scientificName : depth0),{"name":"spacetodash","hash":{},"data":data}))
+    + "\">xeno-canto sounds</a></div>\n\n"
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<h4>"
     + alias4((helpers.nicenumber || (depth0 && depth0.nicenumber) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.sightings : depth0)) != null ? stack1.length : stack1),{"name":"nicenumber","hash":{},"data":data}))
