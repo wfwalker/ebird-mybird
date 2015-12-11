@@ -201,7 +201,7 @@ function renderYear(inYear) {
 }
 
 function renderPhoto(inID) {
-	renderTemplate('photo', 'Photo ' + inID,
+	renderTemplate('photo', gPhotos[inID]['Common Name'],
 		gPhotos[inID]
 	);
 }
@@ -432,6 +432,12 @@ function registerHelpers() {
 	Handlebars.registerHelper('ebirddate', function(inDate) {
 		return new Handlebars.SafeString (
 			d3.time.format('%m-%d-%Y')(inDate)
+		);
+	});
+
+	Handlebars.registerHelper('spacetodash', function(inString) {
+		return new Handlebars.SafeString (
+			inString.replace(' ', '-')
 		);
 	});
 
