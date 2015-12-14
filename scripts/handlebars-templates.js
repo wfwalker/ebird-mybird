@@ -10,12 +10,12 @@ this["ebirdmybird"]["chrono"] = Handlebars.template({"1":function(container,dept
     + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
     + "</a></div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, alias1=depth0 != null ? depth0 : {};
 
   return "<h3>"
-    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.firstSightings : depth0)) != null ? stack1.length : stack1), depth0))
+    + container.escapeExpression((helpers.nicenumber || (depth0 && depth0.nicenumber) || helpers.helperMissing).call(alias1,((stack1 = (depth0 != null ? depth0.firstSightings : depth0)) != null ? stack1.length : stack1),{"name":"nicenumber","hash":{},"data":data}))
     + " species</h3>\n\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.firstSightings : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.firstSightings : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
