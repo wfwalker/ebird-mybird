@@ -342,12 +342,16 @@ function renderDebug() {
 }
 
 function renderSearchResults(inTerm) {
-    var results = gIndex.search(inTerm).map(function (result) {
+    var rawResults = gIndex.search(inTerm).map(function (result) {
 		return gSightings.rows[result.ref];
     });
 
+    var searchResultsSightingList = new SightingList(rawResults);
+
 	renderTemplate('searchresults', 'Search Results', {
-		results: results,
+		comments: searchResultsSightingList.getUniqueValues('Checklist Comments'),
+		taxons: searchResultsSightingList.getUniqueValues('Common Name'),
+		sightingList: searchResultsSightingList,
 	});
 }
 

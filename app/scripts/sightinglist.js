@@ -150,8 +150,10 @@ SightingList.prototype.earliestByCommonName = function() {
 SightingList.prototype.addToIndex = function(inIndex) {
 	for (var index = 0; index < this.rows.length; index++) {
 		var aValue = this.rows[index];
+		var searchString = [aValue['Common Name'], aValue['Scientific Name'], aValue['Location']].join(' ');
+
 		inIndex.add({
-			body: aValue['Common Name'],
+			body: searchString,
 			kind: 'species',
 			id: index,
 		});
