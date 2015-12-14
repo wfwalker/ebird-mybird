@@ -7,3 +7,29 @@
     <a href="#location/{{encode this.Location}}">{{this.Location}}</a>
   </div>
 {{/each}}
+
+
+{{#if sightingList.multipleLocations}}
+	<h4>{{sightingList.locations.length}} locations</h4>
+
+	<div class="biglist">
+	{{#each sightingList.locations}}
+	<div><a href="#location/{{encode this}}">{{this}}</a></div>
+	{{/each}}
+	</div>
+
+	<h4>{{taxons.length}} species</h4>
+{{else}}
+	<h4>{{sightingList.locations}}</h4>
+{{/if}}
+
+<div class="biglist">
+{{#each taxons}}
+  <div>
+    {{#if sightingList.multipleLocations}}
+    <a href='#location/{{encode this.Location}}'>{{this.Location}}</a>
+    {{/if}}
+    <a href='#taxon/{{encode this}}'>{{this}}</a>
+  </div>
+{{/each}}
+</div>

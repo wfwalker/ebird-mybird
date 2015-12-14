@@ -27,7 +27,7 @@
 
 
 /* eslint-disable quotes, comma-spacing */
-var PrecacheConfig = [["data/day-names.json","599c71d68f8d8d27edcd76e8c575b6dc"],["data/ebird.csv","f8f4d6c2f81b0fb88a44a3eaf3a61612"],["data/omitted-common-names.json","d9b1c11d9ab44ac15f2270bd79c26b55"],["data/photos.json","edf4e4ef31e4036e4485156a2ac23040"],["images/bg_hr.png","96bb1f23f7691879f1e8c0c63783fa7e"],["images/blacktocat.png","d9d270173d87906eaf549a52b528ad2a"],["images/cookbook.png","e94858809e6d4487704b70413cb6cadc"],["images/ebird-favicon.ico","a3e8fd36115cface96265ee62864e01c"],["images/ebird-favicon.png","c3f48186834f16ee120269d63c941daa"],["images/icon_download.png","eeac879dbdf05fbe48af50fd445c466f"],["images/sprite_download.png","eb935db9daa680716f110018580d323b"],["index.html","fe03263751de81dcf125e79e4154b045"],["scripts/compressed.js","40e9109a2a1961e5e94679022e3bbeee"],["styles/app.css","1a85b84ded36a2fcb766b67b63218abe"],["styles/bundle.css","6bbcfb8d5603f5814d4772db7d5f17c3"],["styles/c3.min.css","91de9ba975bf863f6b9922ebe2a987ad"],["styles/github-light.css","937829407edf61f2b3c7da0fb82d994b"],["styles/stylesheet.css","1a14b18b62d54587a95f34823d6f4bf2"]];
+var PrecacheConfig = [["data/day-names.json","599c71d68f8d8d27edcd76e8c575b6dc"],["data/ebird.csv","f8f4d6c2f81b0fb88a44a3eaf3a61612"],["data/omitted-common-names.json","d9b1c11d9ab44ac15f2270bd79c26b55"],["data/photos.json","edf4e4ef31e4036e4485156a2ac23040"],["images/bg_hr.png","96bb1f23f7691879f1e8c0c63783fa7e"],["images/blacktocat.png","d9d270173d87906eaf549a52b528ad2a"],["images/cookbook.png","e94858809e6d4487704b70413cb6cadc"],["images/ebird-favicon.ico","a3e8fd36115cface96265ee62864e01c"],["images/ebird-favicon.png","c3f48186834f16ee120269d63c941daa"],["images/icon_download.png","eeac879dbdf05fbe48af50fd445c466f"],["images/sprite_download.png","eb935db9daa680716f110018580d323b"],["index.html","fe03263751de81dcf125e79e4154b045"],["scripts/compressed.js","8421972f927be0e64355181fa2f25b6b"],["styles/app.css","1a85b84ded36a2fcb766b67b63218abe"],["styles/bundle.css","6bbcfb8d5603f5814d4772db7d5f17c3"],["styles/c3.min.css","91de9ba975bf863f6b9922ebe2a987ad"],["styles/github-light.css","937829407edf61f2b3c7da0fb82d994b"],["styles/stylesheet.css","1a14b18b62d54587a95f34823d6f4bf2"]];
 /* eslint-enable quotes, comma-spacing */
 var CacheNamePrefix = 'sw-precache-v1-wfwalker/ebird-mybird-' + (self.registration ? self.registration.scope : '') + '-';
 
@@ -44,7 +44,17 @@ var addDirectoryIndex = function (originalUrl, index) {
     return url.toString();
   };
 
-var populateCurrentCacheNames = function (precacheConfig, cacheNamePrefix, baseUrl) {
+var getCacheBustedUrl = function (url, now) {
+    now = now || Date.now();
+
+    var urlWithCacheBusting = new URL(url);
+    urlWithCacheBusting.search += (urlWithCacheBusting.search ? '&' : '') + 'sw-precache=' + now;
+
+    return urlWithCacheBusting.toString();
+  };
+
+var populateCurrentCacheNames = function (precacheConfig,
+    cacheNamePrefix, baseUrl) {
     var absoluteUrlToCacheName = {};
     var currentCacheNamesToAbsoluteUrl = {};
 
@@ -61,7 +71,8 @@ var populateCurrentCacheNames = function (precacheConfig, cacheNamePrefix, baseU
     };
   };
 
-var stripIgnoredUrlParameters = function (originalUrl, ignoreUrlParametersMatching) {
+var stripIgnoredUrlParameters = function (originalUrl,
+    ignoreUrlParametersMatching) {
     var url = new URL(originalUrl);
 
     url.search = url.search.slice(1) // Exclude initial '?'
@@ -106,20 +117,14 @@ self.addEventListener('install', function(event) {
         Object.keys(CurrentCacheNamesToAbsoluteUrl).filter(function(cacheName) {
           return allCacheNames.indexOf(cacheName) === -1;
         }).map(function(cacheName) {
-          var url = new URL(CurrentCacheNamesToAbsoluteUrl[cacheName]);
-          // Put in a cache-busting parameter to ensure we're caching a fresh response.
-          if (url.search) {
-            url.search += '&';
-          }
-          url.search += 'sw-precache=' + now;
-          var urlWithCacheBusting = url.toString();
+          var urlWithCacheBusting = getCacheBustedUrl(CurrentCacheNamesToAbsoluteUrl[cacheName],
+            now);
 
-          console.log('Adding URL "%s" to cache named "%s"', urlWithCacheBusting, cacheName);
           return caches.open(cacheName).then(function(cache) {
             var request = new Request(urlWithCacheBusting, {credentials: 'same-origin'});
-            return fetch(request.clone()).then(function(response) {
+            return fetch(request).then(function(response) {
               if (response.ok) {
-                return cache.put(request, response);
+                return cache.put(CurrentCacheNamesToAbsoluteUrl[cacheName], response);
               }
 
               console.error('Request for %s returned a response with status %d, so not attempting to cache it.',
@@ -135,7 +140,6 @@ self.addEventListener('install', function(event) {
             return cacheName.indexOf(CacheNamePrefix) === 0 &&
                    !(cacheName in CurrentCacheNamesToAbsoluteUrl);
           }).map(function(cacheName) {
-            console.log('Deleting out-of-date cache "%s"', cacheName);
             return caches.delete(cacheName);
           })
         );
@@ -198,19 +202,20 @@ self.addEventListener('fetch', function(event) {
 
     if (cacheName) {
       event.respondWith(
-        // We can't call cache.match(event.request) since the entry in the cache will contain the
-        // cache-busting parameter. Instead, rely on the fact that each cache should only have one
-        // entry, and return that.
+        // Rely on the fact that each cache we manage should only have one entry, and return that.
         caches.open(cacheName).then(function(cache) {
           return cache.keys().then(function(keys) {
             return cache.match(keys[0]).then(function(response) {
-              return response || fetch(event.request).catch(function(e) {
-                console.error('Fetch for "%s" failed: %O', urlWithoutIgnoredParameters, e);
-              });
+              if (response) {
+                return response;
+              }
+              // If for some reason the response was deleted from the cache,
+              // raise and exception and fall back to the fetch() triggered in the catch().
+              throw Error('The cache ' + cacheName + ' is empty.');
             });
           });
         }).catch(function(e) {
-          console.error('Couldn\'t serve response for "%s" from cache: %O', urlWithoutIgnoredParameters, e);
+          console.warn('Couldn\'t serve response for "%s" from cache: %O', event.request.url, e);
           return fetch(event.request);
         })
       );
