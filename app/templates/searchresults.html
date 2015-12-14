@@ -1,0 +1,9 @@
+<h3>search results</h3>
+
+{{#each results}}
+  <div>
+  	{{[Common Name]}}
+    <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
+    <a href="#location/{{encode this.Location}}">{{this.Location}}</a>
+  </div>
+{{/each}}
