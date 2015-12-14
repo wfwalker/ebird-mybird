@@ -75,6 +75,7 @@ gulp.task('compress', ['templates'], function(){
   return gulp.src([
     'app/scripts/d3.v3.js',
     'app/scripts/c3.min.js',
+    'app/scripts/lunr.js',
     'app/scripts/papaparse.min.js',
     'app/scripts/handlebars-v4.0.4.js',
     'app/scripts/handlebars-templates.js',
