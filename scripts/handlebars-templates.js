@@ -263,6 +263,26 @@ this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,dept
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.photoCommonNames : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n";
 },"useData":true});
+this["ebirdmybird"]["searchresults"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression, alias4=container.lambda;
+
+  return "  <div>\n  	"
+    + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
+    + "\n    <a href=\"#trip/"
+    + alias3(alias4((depth0 != null ? depth0.Date : depth0), depth0))
+    + "\">"
+    + alias3((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,(depth0 != null ? depth0.DateObject : depth0),{"name":"nicedate","hash":{},"data":data}))
+    + "</a>\n    <a href=\"#location/"
+    + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,(depth0 != null ? depth0.Location : depth0),{"name":"encode","hash":{},"data":data}))
+    + "\">"
+    + alias3(alias4((depth0 != null ? depth0.Location : depth0), depth0))
+    + "</a>\n  </div>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<h3>search results</h3>\n\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.results : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"useData":true});
 this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 

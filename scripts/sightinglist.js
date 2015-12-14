@@ -147,6 +147,17 @@ SightingList.prototype.earliestByCommonName = function() {
 	return this.earliestRowByCommonName;
 };
 
+SightingList.prototype.addToIndex = function(inIndex) {
+	for (var index = 0; index < this.rows.length; index++) {
+		var aValue = this.rows[index];
+		inIndex.add({
+			body: aValue['Common Name'],
+			kind: 'species',
+			id: index,
+		});
+	}
+};
+
 SightingList.prototype.getUniqueValues = function(fieldName) {
 	var values = [];
 

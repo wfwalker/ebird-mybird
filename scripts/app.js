@@ -6,6 +6,10 @@ var gCustomDayNames = [];
 var gPhotos = [];
 var gCompiledTemplates = {};
 var gCountyByLocation = {};
+var gIndex = lunr(function () {
+    this.field('body')
+    this.ref('id')
+});
 
 function renderTemplate(inPrefix, inPageTitle, inData) {
 	var compiledTemplate = ebirdmybird[inPrefix];
@@ -337,6 +341,16 @@ function renderDebug() {
 	});
 }
 
+function renderSearchResults(inTerm) {
+    var results = gIndex.search(inTerm).map(function (result) {
+		return gSightings.rows[result.ref];
+    });
+
+	renderTemplate('searchresults', 'Search Results', {
+		results: results,
+	});
+}
+
 var routingMap = {
 	'#home' : renderHome,
 	'#chrono' : renderChrono,
@@ -403,6 +417,8 @@ function loadPhotos() {
 		{
 			var photo = gPhotos[index];
 
+			// set the photos's ID as its index in this array.
+			// TODO: not permanently stable
 			photo.id = index;
 
 			// Parse the date
@@ -414,7 +430,6 @@ function loadPhotos() {
 			// create and save the new dat
 			var newDate = new Date(fixedDateString);
 			photo['DateObject'] = newDate;
-			console.log('dated', photo);
 		}
 		console.log('loaded photos', gPhotos.length, gPhotos);
 	});
@@ -480,6 +495,10 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 } else {
 	document.addEventListener('DOMContentLoaded', function(event) { 
 		registerHelpers();
+		document.getElementById('gosearch').addEventListener('click', function() {
+			var searchText = document.getElementById('searchtext').value;
+			renderSearchResults(searchText);
+		})
 	});
 
 	Papa.parse('./data/ebird.csv', {
@@ -487,6 +506,7 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 		header: true,
 		complete: function(results) {
 			gSightings = new SightingList(results.data);
+			gSightings.addToIndex(gIndex);
 			routeBasedOnHash();
 		},
 	});
