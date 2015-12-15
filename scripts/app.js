@@ -163,7 +163,7 @@ function renderHome() {
 function renderChrono() {
 	var earliestByCommonName = gSightings.earliestByCommonName();
 	var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
-	lifeSightingsChronological.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+	lifeSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
 
 	renderTemplate('chrono', 'Life List', {
 		firstSightings: lifeSightingsChronological,
@@ -435,7 +435,6 @@ function loadPhotos() {
 			var newDate = new Date(fixedDateString);
 			photo['DateObject'] = newDate;
 		}
-		console.log('loaded photos', gPhotos.length, gPhotos);
 	});
 	oReq.open('GET', './data/photos.json');
 	oReq.send();
