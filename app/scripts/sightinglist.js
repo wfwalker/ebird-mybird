@@ -100,7 +100,7 @@ SightingList.prototype.addRows = function(inRows) {
 
 	this.multipleLocations = this.locations.length > 1;
 
-	this.dateObjects.sort(function(a, b) { return a - b; });
+	this.dateObjects.sort(function(a, b) { return b - a; });
 
 	// TODO: this is probably unnecessary sort!
 	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });		
