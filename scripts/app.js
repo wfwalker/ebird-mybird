@@ -177,6 +177,19 @@ function renderTrips() {
 	});
 }
 
+function renderBigDays() {
+	// Object.entries(gSightings.speciesByDate).filter(function (x) { return x[1].length>100; });
+
+	var bigDays = Object.entries(gSightings.speciesByDate).filter(function (x) { return x[1].length > 100; });
+	bigDays = bigDays.map(function (x) { return { 'date': x[0], 'count': x[1].length }});
+	bigDays.sort(function (x,y) { return y.count - x.count; } );
+
+	renderTemplate('bigdays', 'Big Days', {
+		bigDays: bigDays,
+		customDayNames: gCustomDayNames,
+	});
+}
+
 function renderTrip(inDate) {
 	var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
 	var tripSightingList = new SightingList(tripSightings);
@@ -360,6 +373,7 @@ var routingMap = {
 	'#chrono' : renderChrono,
 	'#photos' : renderPhotos,
 	'#photo' : renderPhoto,
+	'#bigdays' : renderBigDays,
 	'#trips' : renderTrips,
 	'#trip' : renderTrip,
 	'#year' : renderYear,
