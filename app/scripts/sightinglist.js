@@ -26,6 +26,7 @@ var SightingList = function (inRows) {
 	this.rows = [];
 	this.rowsByYear = {};
 	this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] };
+	this.speciesByDate = {};
 	this.earliestRowByCommonName = {};
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
@@ -83,6 +84,13 @@ SightingList.prototype.addRows = function(inRows) {
 				this.rowsByMonth[pieces[0]] = [];
 			}
 			this.rowsByMonth[pieces[0]].push(sighting);
+
+			if (! this.speciesByDate[sighting['Date']]) {
+				this.speciesByDate[sighting['Date']] = [];
+			}
+			if (this.speciesByDate[sighting['Date']].indexOf(sighting['Common Name']) < 0) {
+				this.speciesByDate[sighting['Date']].push(sighting['Common Name']);
+			}
 
 			if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
 				if (! this.earliestRowByCommonName[sighting['Common Name']]) {
