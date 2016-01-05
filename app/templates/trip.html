@@ -24,8 +24,8 @@
 <div class="biglist">
 {{#each taxons}}
   <div>
-    {{#if sightingList.multipleLocations}}
-    <a href='#location/{{encode this.Location}}'>{{this.Location}}</a>
+    {{#if ../sightingList.multipleLocations}}
+      <a href='#location/{{encode this.Location}}'>{{this.Location}}</a>
     {{/if}}
     <a href='#taxon/{{encode this}}'>{{this}}</a>
   </div>
