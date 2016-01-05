@@ -58,8 +58,11 @@ function hideAllSections() {
 function barGraphCountsForSightings(inData, inElement) {
 	var labels = Object.keys(inData).map(function(k){return k;});
 	var values = Object.keys(inData).map(function(k){return inData[k].length;});
-	var values2 = Object.keys(inData).map(function(k){return new SightingList(inData[k]).getUniqueValues('Common Name').length;});
-	var values3 = Object.keys(inData).map(function(k){return new SightingList(inData[k]).locations.length;});
+
+	var tempSightingLists = Object.keys(inData).map(function(k) { return new SightingList(inData[k]); });
+
+	var values2 = tempSightingLists.map(function(l) { return Object.keys(l.earliestByCommonName()).length; });
+	var values3 = tempSightingLists.map(function(l) { return l.locations.length; });
 
 	labels.unshift('x');
 	values.unshift('sightings');
