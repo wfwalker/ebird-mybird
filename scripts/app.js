@@ -181,9 +181,8 @@ function renderTrips() {
 }
 
 function renderBigDays() {
-	// Object.entries(gSightings.speciesByDate).filter(function (x) { return x[1].length>100; });
-
-	var bigDays = Object.entries(gSightings.speciesByDate).filter(function (x) { return x[1].length > 100; });
+	var bigDays = Object.keys(gSightings.speciesByDate).map(function (key) { return [key, gSightings.speciesByDate[key]]; });
+	var bigDays = bigDays.filter(function (x) { return x[1].length > 100; });
 	bigDays = bigDays.map(function (x) { return { 'date': x[0], 'count': x[1].length }});
 	bigDays.sort(function (x,y) { return y.count - x.count; } );
 
