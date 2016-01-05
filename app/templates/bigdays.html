@@ -1,7 +1,11 @@
 <h3>Big days</h3>
 
 <div>
-{{#each bigDays}}
-    <div><a href="#trip/{{this.date}}">{{this.date}}</a>: {{this.count}} species</div>
-{{/each}}
+	{{#each bigDays}}
+		<div>
+			<a href="#trip/{{this.date}}">{{this.date}}</a>:
+			{{this.count}} species,
+			{{lookup ../customDayNames this.date}}
+		</div>
+	{{/each}}
 </div>
