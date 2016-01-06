@@ -201,7 +201,7 @@ function renderTrip(inDate) {
 		photos: gPhotos.filter(function(p){return p.Date == inDate;}),
 		customName: gCustomDayNames[inDate],
 		comments: tripSightingList.getUniqueValues('Checklist Comments'),
-		taxons: tripSightingList.getUniqueValues('Common Name'),
+		taxons: tripSightingList.commonNames,
 		sightingList: tripSightingList,
 	});
 }
@@ -215,7 +215,7 @@ function renderYear(inYear) {
 		year: inYear,
 		photos: gPhotos.filter(function(p){return p.Date.substring(6,10) == inYear;}),
 		yearSightings: yearSightings,
-		yearSpecies: yearSightingList.getUniqueValues('Common Name'),
+		yearSpecies: yearSightingList.commonNames,
 	});
 }
 
@@ -269,7 +269,7 @@ function renderLocation(inLocationName) {
 		longitude: locationSightingsTaxonomic[0]['Longitude'],
 		latitude: locationSightingsTaxonomic[0]['Latitude'],
 		sightingList: locationSightingList,
-		taxons: locationSightingList.getUniqueValues('Common Name'),
+		taxons: locationSightingList.commonNames,
 		customDayNames: gCustomDayNames,
 	});
 }
@@ -288,7 +288,7 @@ function renderCounty(inCountyName) {
 		state: countySightingsTaxonomic[0]['State/Province'],
 		sightingList: countySightingList,
 		countySightingsTaxonomic: countySightingsTaxonomic,
-		taxons: countySightingList.getUniqueValues('Common Name'),
+		taxons: countySightingList.commonNames,
 		customDayNames: gCustomDayNames,
 	});
 }
@@ -351,7 +351,7 @@ function renderDebug() {
 		photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.Location) < 0; }),
 		photosBadScientificName: photosBadScientificName,
 		photos: gPhotos,
-		brokenLocations: brokenLocationSightingList.getUniqueValues('Location'),
+		brokenLocations: brokenLocationSightingList.locations,
 		missingSightingsForCustomDayNames: missingSightingsForCustomDayNames,
 	});
 }
@@ -365,7 +365,7 @@ function renderSearchResults(inTerm) {
 
 	renderTemplate('searchresults', 'Search Results', {
 		comments: searchResultsSightingList.getUniqueValues('Checklist Comments'),
-		taxons: searchResultsSightingList.getUniqueValues('Common Name'),
+		taxons: searchResultsSightingList.commonNames,
 		sightingList: searchResultsSightingList,
 	});
 }
