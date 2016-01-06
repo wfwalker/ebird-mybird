@@ -31,6 +31,7 @@ var SightingList = function (inRows) {
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
 	this.locations = [];
+	this.commonNames = [];
 	this.multipleLocations = false;
 	this.checklists = [];
 	this.dates = [];
@@ -61,6 +62,10 @@ SightingList.prototype.addRows = function(inRows) {
 
 			if (this.locations.indexOf(sighting['Location']) < 0) {
 				this.locations.push(sighting['Location']);
+			}
+
+			if (this.commonNames.indexOf(sighting['Common Name']) < 0) {
+				this.commonNames.push(sighting['Common Name']);
 			}
 
 			if (this.checklists.indexOf(sighting['Submission ID']) < 0) {
