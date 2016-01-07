@@ -531,8 +531,8 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 
 	document.getElementById('loading').textContent = 'parsing ebird data';
 
-	Papa.RemoteChunkSize = 200000;
-	Papa.LocalChunkSize = 200000;
+	// Papa.RemoteChunkSize = 200000;
+	// Papa.LocalChunkSize = 200000;
 
 	gSightings = new SightingList();
 
