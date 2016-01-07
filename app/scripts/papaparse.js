@@ -536,8 +536,6 @@
 			}
 
 			xhr.open("GET", this._input, !IS_WORKER);
-			console.log('ASDFASDF');
-			xhr.setRequestHeader("Accept", "text/plain, text/csv; charset=UTF-8"); // don't accept gzip
 			
 			if (this._config.chunkSize)
 			{
