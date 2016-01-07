@@ -7,8 +7,8 @@ var gPhotos = [];
 var gCompiledTemplates = {};
 var gCountyByLocation = {};
 var gIndex = lunr(function () {
-    this.field('body')
-    this.ref('id')
+    this.field('body');
+    this.ref('id');
 });
 
 function renderTemplate(inPrefix, inPageTitle, inData) {
@@ -98,8 +98,8 @@ function barGraphCountsForSightings(inData, inElement) {
 		},
 		tooltip: {
 			format: {
-				value: d3.format(',') // apply to all
-			}
+				value: d3.format(','), // apply to all
+			},
 		},
 	});
 }
@@ -143,8 +143,8 @@ function byMonthForSightings(inData, inElement) {
 		},
 		tooltip: {
 			format: {
-				value: d3.format(',') // apply to all
-			}
+				value: d3.format(','), // apply to all
+			},
 		},
     });
 }
@@ -183,7 +183,7 @@ function renderTrips() {
 function renderBigDays() {
 	var bigDays = Object.keys(gSightings.speciesByDate).map(function (key) { return [key, gSightings.speciesByDate[key]]; });
 	var bigDays = bigDays.filter(function (x) { return x[1].length > 100; });
-	bigDays = bigDays.map(function (x) { return { 'date': x[0], 'count': x[1].length }});
+	bigDays = bigDays.map(function (x) { return { date: x[0], count: x[1].length }; });
 	bigDays.sort(function (x,y) { return y.count - x.count; } );
 
 	renderTemplate('bigdays', 'Big Days', {
@@ -492,10 +492,10 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerPartial('thumbnails',
-		'<div>
-		{{#each photos}}
-		  <span><a href="#photo/{{id}}"><img width="85px" height="85px" src="{{[Thumbnail URL]}}"></a></span>
-		{{/each}}
+		'<div> \
+		{{#each photos}} \
+		  <span><a href="#photo/{{id}}"><img width="85px" height="85px" src="{{[Thumbnail URL]}}"></a></span> \
+		{{/each}} \
 		</div>'
 	);
 
@@ -526,7 +526,7 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 		document.getElementById('gosearch').addEventListener('click', function() {
 			var searchText = document.getElementById('searchtext').value;
 			renderSearchResults(searchText);
-		})
+		});
 	});
 
 	document.getElementById('loading').textContent = 'parsing ebird data';
