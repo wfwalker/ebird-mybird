@@ -37,7 +37,9 @@ var SightingList = function (inRows) {
 	this.dates = [];
 	this.dateObjects = [];
 
-	this.addRows(inRows);
+	if (inRows) {
+		this.addRows(inRows);
+	}
 };
 
 SightingList.prototype.addRows = function(inRows) {
