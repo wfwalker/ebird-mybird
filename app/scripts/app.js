@@ -536,7 +536,7 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 
 	Papa.SCRIPT_PATH = 'scripts/papaparse.js';
 
-	Papa.parse('/data/ebird.csv', {
+	Papa.parse(window.location.pathname + 'data/ebird.csv', {
 		download: true,
 		header: true,
 		worker: true,
