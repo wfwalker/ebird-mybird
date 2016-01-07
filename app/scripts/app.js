@@ -472,6 +472,12 @@ function registerHelpers() {
 		);
 	});
 
+	Handlebars.registerHelper('sortabledate', function(inDate) {
+		return new Handlebars.SafeString (
+			d3.time.format('%Y-%m-%d')(inDate)
+		);
+	});
+
 	Handlebars.registerHelper('spacetodash', function(inString) {
 		return new Handlebars.SafeString (
 			inString.replace(' ', '-')
@@ -525,17 +531,25 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 
 	document.getElementById('loading').textContent = 'parsing ebird data';
 
+	Papa.RemoteChunkSize = 200000;
+	Papa.LocalChunkSize = 200000;
+
+	gSightings = new SightingList();
+
 	Papa.parse('./data/ebird.csv', {
 		download: true,
 		header: true,
+		chunk: function(results) {
+			document.getElementById('loading').textContent = gSightings.rows.length;
+			gSightings.addRows(results.data);
+		},
 		complete: function(results) {
-			document.getElementById('loading').textContent = 'loading ebird data';
-			gSightings = new SightingList(results.data);
-			gSightings.addToIndex(gIndex);
 			document.getElementById('loading').textContent = 'loaded ebird data';
 			routeBasedOnHash();
+			gSightings.addToIndex(gIndex);
 		},
 	});
+
 
 	window.onhashchange = routeBasedOnHash;
 
