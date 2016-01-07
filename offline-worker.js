@@ -1,225 +1,139 @@
-/**
- * Copyright 2015 Google Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-// This generated service worker JavaScript will precache your site's resources.
-// The code needs to be saved in a .js file at the top-level of your site, and registered
-// from your pages in order to be used. See
-// https://github.com/googlechrome/sw-precache/blob/master/demo/app/js/service-worker-registration.js
-// for an example of how you can register this script and handle various service worker events.
-
-/* eslint-env worker, serviceworker */
-/* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren */
-'use strict';
+/* Any copyright is dedicated to the Public Domain.
+ * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 
+(function (self) {
+  'use strict';
 
-/* eslint-disable quotes, comma-spacing */
-var PrecacheConfig = [["data/day-names.json","0db02287a3907bd0b4105cb429fb31dc"],["data/ebird.csv","4a2291d976997116e248415f05cbace5"],["data/omitted-common-names.json","d9b1c11d9ab44ac15f2270bd79c26b55"],["data/photos.json","a6be5a79e7c1e89bb5dcb35d4fd17a09"],["images/bg_hr.png","96bb1f23f7691879f1e8c0c63783fa7e"],["images/blacktocat.png","d9d270173d87906eaf549a52b528ad2a"],["images/cookbook.png","e94858809e6d4487704b70413cb6cadc"],["images/ebird-favicon.ico","a3e8fd36115cface96265ee62864e01c"],["images/ebird-favicon.png","c3f48186834f16ee120269d63c941daa"],["images/icon_download.png","eeac879dbdf05fbe48af50fd445c466f"],["images/sprite_download.png","eb935db9daa680716f110018580d323b"],["index.html","7c9174aa8e7afb85a7f0784522f58261"],["scripts/compressed.js","03eb2f30338abb0f72d5e1896eb5439e"],["styles/app.css","c41f5770ae34f7d7aed793c1ece4ff1b"],["styles/bundle.css","e6cc0cd77df869c351dfd9997c780bf2"],["styles/c3.min.css","91de9ba975bf863f6b9922ebe2a987ad"],["styles/github-light.css","937829407edf61f2b3c7da0fb82d994b"],["styles/stylesheet.css","1a14b18b62d54587a95f34823d6f4bf2"]];
-/* eslint-enable quotes, comma-spacing */
-var CacheNamePrefix = 'sw-precache-v1-wfwalker/ebird-mybird-' + (self.registration ? self.registration.scope : '') + '-';
-
-
-var IgnoreUrlParametersMatching = [/./];
-
-
-
-var addDirectoryIndex = function (originalUrl, index) {
-    var url = new URL(originalUrl);
-    if (url.pathname.slice(-1) === '/') {
-      url.pathname += index;
-    }
-    return url.toString();
-  };
-
-var getCacheBustedUrl = function (url, now) {
-    now = now || Date.now();
-
-    var urlWithCacheBusting = new URL(url);
-    urlWithCacheBusting.search += (urlWithCacheBusting.search ? '&' : '') + 'sw-precache=' + now;
-
-    return urlWithCacheBusting.toString();
-  };
-
-var populateCurrentCacheNames = function (precacheConfig,
-    cacheNamePrefix, baseUrl) {
-    var absoluteUrlToCacheName = {};
-    var currentCacheNamesToAbsoluteUrl = {};
-
-    precacheConfig.forEach(function(cacheOption) {
-      var absoluteUrl = new URL(cacheOption[0], baseUrl).toString();
-      var cacheName = cacheNamePrefix + absoluteUrl + '-' + cacheOption[1];
-      currentCacheNamesToAbsoluteUrl[cacheName] = absoluteUrl;
-      absoluteUrlToCacheName[absoluteUrl] = cacheName;
-    });
-
-    return {
-      absoluteUrlToCacheName: absoluteUrlToCacheName,
-      currentCacheNamesToAbsoluteUrl: currentCacheNamesToAbsoluteUrl
-    };
-  };
-
-var stripIgnoredUrlParameters = function (originalUrl,
-    ignoreUrlParametersMatching) {
-    var url = new URL(originalUrl);
-
-    url.search = url.search.slice(1) // Exclude initial '?'
-      .split('&') // Split into an array of 'key=value' strings
-      .map(function(kv) {
-        return kv.split('='); // Split each 'key=value' string into a [key, value] array
-      })
-      .filter(function(kv) {
-        return ignoreUrlParametersMatching.every(function(ignoredRegex) {
-          return !ignoredRegex.test(kv[0]); // Return true iff the key doesn't match any of the regexes.
-        });
-      })
-      .map(function(kv) {
-        return kv.join('='); // Join each [key, value] array into a 'key=value' string
-      })
-      .join('&'); // Join the array of 'key=value' strings into a string with '&' in between each
-
-    return url.toString();
-  };
-
-
-var mappings = populateCurrentCacheNames(PrecacheConfig, CacheNamePrefix, self.location);
-var AbsoluteUrlToCacheName = mappings.absoluteUrlToCacheName;
-var CurrentCacheNamesToAbsoluteUrl = mappings.currentCacheNamesToAbsoluteUrl;
-
-function deleteAllCaches() {
-  return caches.keys().then(function(cacheNames) {
-    return Promise.all(
-      cacheNames.map(function(cacheName) {
-        return caches.delete(cacheName);
-      })
-    );
+  // On install, cache resources and skip waiting so the worker won't
+  // wait for clients to be closed before becoming active.
+  self.addEventListener('install', function (event) {
+    event.waitUntil(oghliner.cacheResources().then(function () {
+      return self.skipWaiting();
+    }));
   });
-}
 
-self.addEventListener('install', function(event) {
-  var now = Date.now();
+  // On activation, delete old caches and start controlling the clients
+  // without waiting for them to reload.
+  self.addEventListener('activate', function (event) {
+    event.waitUntil(oghliner.clearOtherCaches().then(function () {
+      return self.clients.claim();
+    }));
+  });
 
-  event.waitUntil(
-    caches.keys().then(function(allCacheNames) {
-      return Promise.all(
-        Object.keys(CurrentCacheNamesToAbsoluteUrl).filter(function(cacheName) {
-          return allCacheNames.indexOf(cacheName) === -1;
-        }).map(function(cacheName) {
-          var urlWithCacheBusting = getCacheBustedUrl(CurrentCacheNamesToAbsoluteUrl[cacheName],
-            now);
+  // Retrieves the request following oghliner strategy.
+  self.addEventListener('fetch', function (event) {
+    if (event.request.method === 'GET') {
+      event.respondWith(oghliner.get(event.request));
+    } else {
+      event.respondWith(self.fetch(event.request));
+    }
+  });
 
-          return caches.open(cacheName).then(function(cache) {
-            var request = new Request(urlWithCacheBusting, {credentials: 'same-origin'});
-            return fetch(request).then(function(response) {
-              if (response.ok) {
-                return cache.put(CurrentCacheNamesToAbsoluteUrl[cacheName], response);
-              }
+  var oghliner = self.oghliner = {
 
-              console.error('Request for %s returned a response with status %d, so not attempting to cache it.',
-                urlWithCacheBusting, response.status);
-              // Get rid of the empty cache if we can't add a successful response to it.
-              return caches.delete(cacheName);
-            });
+    // This is the unique prefix for all the caches controlled by this worker.
+    CACHE_PREFIX: 'offline-cache:wfwalker/ebird-mybird:' + (self.registration ? self.registration.scope : '') + ':',
+
+    // This is the unique name for the cache controlled by this version of the worker.
+    get CACHE_NAME() {
+      return this.CACHE_PREFIX + '979184ad341693bd4fec5ab025b72ab1f7970a39';
+    },
+
+    // This is a list of resources that will be cached.
+    RESOURCES: [
+      './', // cache always the current root to make the default page available
+      './images/bg_hr.png', // b07cc73aaf2fc0e9841a68d05a46fe53dcbaf0a1
+      './images/blacktocat.png', // b3f0b0d7c7f103e37c8c05ffbec11d07b3a23645
+      './images/cookbook.png', // 14236001cf83475d4018ab7e66f9be83199b6953
+      './images/ebird-favicon.ico', // 783739b89f16a72a7a0a55720ff6acc34048351c
+      './images/ebird-favicon.png', // 3f841e97f2ecb0dc0f16478fa57c9dd00b65300f
+      './images/icon_download.png', // 166867841b1cd0c08246cc00a16f36b8777f0fff
+      './images/sprite_download.png', // 6e7e6d4aafb6b0f526feb0369038efd8c8f1fb6d
+      './index.html', // 99557a3ef7a38337315ce1e0058e0586d67412d3
+      './scripts/compressed.js', // 250b3cb6872669bcadc15a332e38251bbe06aeaf
+      './data/day-names.json', // b3f7ae075cba79adddd0d413a0138c8a273e020a
+      './data/ebird.csv', // 69a5aacea861887696adb297f3fdfa108a7815a6
+      './data/omitted-common-names.json', // 2a2dfcf3b8c01de450738adc77352c1b53d97081
+      './data/photos.json', // fe84f9692db9890741f2c58259c81b8cf31d7c96
+      './styles/app.css', // 23e5fc2156d56e3ced92a54a61d58c3bd14e66ac
+      './styles/bundle.css', // dd1d0e9ed24e8f5658e45a8da0dfaba515b706bb
+      './styles/c3.min.css', // 0ed505e8458512b29c9925c83316a48b1b838b10
+      './styles/github-light.css', // 70cce7c65d29afbb8e5c5f6068e20c41ac4c8fde
+      './styles/stylesheet.css', // 50a86a6576fa01c3fe7fecfcb3f043ac1dd58456
+
+    ],
+
+    // Adds the resources to the cache controlled by this worker.
+    cacheResources: function () {
+      var now = Date.now();
+      var baseUrl = self.location;
+      return this.prepareCache()
+      .then(function (cache) {
+        return Promise.all(this.RESOURCES.map(function (resource) {
+          // Bust the request to get a fresh response
+          var url = new URL(resource, baseUrl);
+          var bustParameter = (url.search ? '&' : '') + '__bust=' + now;
+          var bustedUrl = new URL(url.toString());
+          bustedUrl.search += bustParameter;
+
+          // But cache the response for the original request
+          var requestConfig = { credentials: 'same-origin' };
+          var originalRequest = new Request(url.toString(), requestConfig);
+          var bustedRequest = new Request(bustedUrl.toString(), requestConfig);
+          return fetch(bustedRequest).then(function (response) {
+            if (response.ok) {
+              return cache.put(originalRequest, response);
+            }
+            console.error('Error fetching ' + url + ', status was ' + response.status);
           });
-        })
-      ).then(function() {
-        return Promise.all(
-          allCacheNames.filter(function(cacheName) {
-            return cacheName.indexOf(CacheNamePrefix) === 0 &&
-                   !(cacheName in CurrentCacheNamesToAbsoluteUrl);
-          }).map(function(cacheName) {
-            return caches.delete(cacheName);
-          })
-        );
+        }));
+      }.bind(this));
+    },
+
+    // Remove the offline caches not controlled by this worker.
+    clearOtherCaches: function () {
+      var deleteIfNotCurrent = function (cacheName) {
+        if (cacheName.indexOf(this.CACHE_PREFIX) !== 0 || cacheName === this.CACHE_NAME) {
+          return Promise.resolve();
+        }
+        return self.caches.delete(cacheName);
+      }.bind(this);
+
+      return self.caches.keys()
+      .then(function (cacheNames) {
+        return Promise.all(cacheNames.map(deleteIfNotCurrent));
       });
-    }).then(function() {
-      if (typeof self.skipWaiting === 'function') {
-        // Force the SW to transition from installing -> active state
-        self.skipWaiting();
+
+    },
+
+    // Get a response from the current offline cache or from the network.
+    get: function (request) {
+      return this.openCache()
+      .then(function (cache) {
+        return cache.match(request);
+      })
+      .then(function (response) {
+        if (response) {
+          return response;
+        }
+        return self.fetch(request);
+      });
+    },
+
+    // Prepare the cache for installation, deleting it before if it already exists.
+    prepareCache: function () {
+      return self.caches.delete(this.CACHE_NAME).then(this.openCache.bind(this));
+    },
+
+    // Open and cache the offline cache promise to improve the performance when
+    // serving from the offline-cache.
+    openCache: function () {
+      if (!this._cache) {
+        this._cache = self.caches.open(this.CACHE_NAME);
       }
-    })
-  );
-});
-
-if (self.clients && (typeof self.clients.claim === 'function')) {
-  self.addEventListener('activate', function(event) {
-    event.waitUntil(self.clients.claim());
-  });
-}
-
-self.addEventListener('message', function(event) {
-  if (event.data.command === 'delete_all') {
-    console.log('About to delete all caches...');
-    deleteAllCaches().then(function() {
-      console.log('Caches deleted.');
-      event.ports[0].postMessage({
-        error: null
-      });
-    }).catch(function(error) {
-      console.log('Caches not deleted:', error);
-      event.ports[0].postMessage({
-        error: error
-      });
-    });
-  }
-});
-
-
-self.addEventListener('fetch', function(event) {
-  if (event.request.method === 'GET') {
-    var urlWithoutIgnoredParameters = stripIgnoredUrlParameters(event.request.url,
-      IgnoreUrlParametersMatching);
-
-    var cacheName = AbsoluteUrlToCacheName[urlWithoutIgnoredParameters];
-    var directoryIndex = 'index.html';
-    if (!cacheName && directoryIndex) {
-      urlWithoutIgnoredParameters = addDirectoryIndex(urlWithoutIgnoredParameters, directoryIndex);
-      cacheName = AbsoluteUrlToCacheName[urlWithoutIgnoredParameters];
+      return this._cache;
     }
 
-    var navigateFallback = '';
-    // Ideally, this would check for event.request.mode === 'navigate', but that is not widely
-    // supported yet:
-    // https://code.google.com/p/chromium/issues/detail?id=540967
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1209081
-    if (!cacheName && navigateFallback && event.request.headers.has('accept') &&
-        event.request.headers.get('accept').includes('text/html')) {
-      var navigateFallbackUrl = new URL(navigateFallback, self.location);
-      cacheName = AbsoluteUrlToCacheName[navigateFallbackUrl.toString()];
-    }
-
-    if (cacheName) {
-      event.respondWith(
-        // Rely on the fact that each cache we manage should only have one entry, and return that.
-        caches.open(cacheName).then(function(cache) {
-          return cache.keys().then(function(keys) {
-            return cache.match(keys[0]).then(function(response) {
-              if (response) {
-                return response;
-              }
-              // If for some reason the response was deleted from the cache,
-              // raise and exception and fall back to the fetch() triggered in the catch().
-              throw Error('The cache ' + cacheName + ' is empty.');
-            });
-          });
-        }).catch(function(e) {
-          console.warn('Couldn\'t serve response for "%s" from cache: %O', event.request.url, e);
-          return fetch(event.request);
-        })
-      );
-    }
-  }
-});
-
+  };
+}(self));
