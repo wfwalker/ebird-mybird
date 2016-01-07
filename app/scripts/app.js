@@ -414,7 +414,6 @@ function loadCustomDayNames() {
 	oReq.addEventListener('load', function() {
 	  gCustomDayNames = JSON.parse(this.responseText);
 	  console.log('loaded custom day names', Object.keys(gCustomDayNames).length);
-	  document.getElementById('loading').textContent = 'loaded day names';
 	});
 	oReq.open('GET', './data/day-names.json');
 	oReq.send();
@@ -425,7 +424,6 @@ function loadOmittedCommonNames() {
 	oReq.addEventListener('load', function() {
 	  gOmittedCommonNames = JSON.parse(this.responseText);
 	  console.log('loaded omitted common names', gOmittedCommonNames.length);
-	  document.getElementById('loading').textContent = 'loaded omitted species names';
 	});
 	oReq.open('GET', './data/omitted-common-names.json');
 	oReq.send();
@@ -453,7 +451,6 @@ function loadPhotos() {
 			var newDate = new Date(fixedDateString);
 			photo['DateObject'] = newDate;
 		}
-		document.getElementById('loading').textContent = 'loaded photos';
 	});
 	oReq.open('GET', './data/photos.json');
 	oReq.send();
@@ -516,6 +513,10 @@ function registerHelpers() {
 	});
 }
 
+function progress(inString) {
+	document.getElementById('loading').textContent = inString;
+}
+
 // REDIRECT to HTTPS!
 var host = 'wfwalker.github.io';
 if ((host == window.location.host) && (window.location.protocol != 'https:')) {
@@ -529,21 +530,19 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 		});
 	});
 
-	document.getElementById('loading').textContent = 'parsing ebird data';
-
-	// Papa.RemoteChunkSize = 200000;
-	// Papa.LocalChunkSize = 200000;
-
 	gSightings = new SightingList();
 
-	Papa.parse('./data/ebird.csv', {
+	document.getElementById('loading').textContent = 'foo';
+
+	Papa.SCRIPT_PATH = 'scripts/papaparse.js';
+
+	Papa.parse('/data/ebird.csv', {
 		download: true,
 		header: true,
+		worker: true,
 		complete: function(results) {
-			document.getElementById('loading').textContent = 'loading ebird data';
 			gSightings = new SightingList(results.data);
 			gSightings.addToIndex(gIndex);
-			document.getElementById('loading').textContent = 'loaded ebird data';
 			routeBasedOnHash();
 		},
 	});
