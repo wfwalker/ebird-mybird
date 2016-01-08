@@ -57,8 +57,8 @@ function barGraphCountsForSightings(inData, inElement) {
 
 	var tempSightingLists = Object.keys(inData).map(function(k) { return new SightingList(inData[k]); });
 
-	var values2 = tempSightingLists.map(function(l) { return Object.keys(l.earliestByCommonName()).length; });
-	var values3 = tempSightingLists.map(function(l) { return l.locations.length; });
+	var values2 = tempSightingLists.map(function(l) { return l.getUniqueValues('Common Name').length; });
+	var values3 = tempSightingLists.map(function(l) { return l.getUniqueValues('Location').length; });
 
 	labels.unshift('x');
 	values.unshift('sightings');
@@ -152,7 +152,7 @@ function renderHome() {
 		sightingsByMonth: gSightings.byMonth(),
 		yearChartID: 'byYear' + Date.now(),
 		monthChartID: 'byMonth' + Date.now(),
-		numChecklists: gSightings.checklists.length,
+		numChecklists: gSightings.getUniqueValues('Submission ID').length,
 		earliest: gSightings.earliestDateObject,
 		latest: gSightings.latestDateObject,
 		owner: 'Bill Walker',
@@ -203,10 +203,7 @@ function renderTrip(inDate) {
 		photos: gPhotos.filter(function(p){return p.Date == inDate;}),
 		customName: gCustomDayNames[inDate],
 		comments: tripSightingList.getUniqueValues('Checklist Comments'),
-		taxons: tripSightingList.commonNames,
 		sightingList: tripSightingList,
-		locations: tripSightingList.getLocations(),
-		multipleLocations: (tripSightingList.getLocations().length > 1),
 	});
 }
 
@@ -219,7 +216,7 @@ function renderYear(inYear) {
 		year: inYear,
 		photos: gPhotos.filter(function(p){return p.Date.substring(6,10) == inYear;}),
 		yearSightings: yearSightings,
-		yearSpecies: yearSightingList.commonNames,
+		yearSpecies: yearSightingList.getUniqueValues('Common Name'),
 	});
 }
 
@@ -251,7 +248,7 @@ function renderPhotos() {
 
 function renderLocations() {
 	renderTemplate('locations', 'Locations', {
-		locations: gSightings.getLocations(),
+		locations: gSightings.getUniqueValues('Location'),
 	});
 }
 
@@ -461,6 +458,18 @@ function registerHelpers() {
 		return new Handlebars.SafeString (
 			d3.time.format('%b %d, %Y')(inDate)
 		);
+	});
+
+	Handlebars.registerHelper('values', function(inList, inPropertyName) {
+		return inList.getUniqueValues(inPropertyName);
+	});
+
+	Handlebars.registerHelper('valuecount', function(inList, inPropertyName) {
+		return inList.getUniqueValues(inPropertyName).length;
+	});
+
+	Handlebars.registerHelper('multiplevalues', function(inList, inPropertyName) {
+		return inList.getUniqueValues(inPropertyName).length > 1;
 	});
 
 	Handlebars.registerHelper('ebirddate', function(inDate) {
