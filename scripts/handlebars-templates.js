@@ -496,7 +496,7 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
     + "\n"
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<div>\n"
-    + ((stack1 = helpers.each.call(alias1,(helpers.values || (depth0 && depth0.values) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Checklist",{"name":"values","hash":{},"data":data}),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(alias1,(helpers.values || (depth0 && depth0.values) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Submission ID",{"name":"values","hash":{},"data":data}),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n\n<h4>\n  "
     + alias3((helpers.valuecount || (depth0 && depth0.valuecount) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"valuecount","hash":{},"data":data}))
     + " species at\n"
