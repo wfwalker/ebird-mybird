@@ -30,7 +30,7 @@ var SightingList = function (inRows) {
 	this.earliestRowByCommonName = {};
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
-	this.locations = [];
+	this._locations = [];
 	this.commonNames = [];
 	this.multipleLocations = false;
 	this.checklists = [];
@@ -46,6 +46,19 @@ var SightingList = function (inRows) {
 		}
 	}
 };
+
+SightingList.prototype.getLocations = function() {
+	this._locations = [];
+
+	for (var index = 0; index < this.rows.length; index++) {
+		var sighting = this.rows[index];
+		if (this._locations.indexOf(sighting['Location']) < 0) {
+			this._locations.push(sighting['Location']);
+		}
+	}
+
+	return this._locations;
+}
 
 SightingList.prototype.addRows = function(inRows) {
 	for (var index = 0; index < inRows.length; index++) {
@@ -65,10 +78,6 @@ SightingList.prototype.addRows = function(inRows) {
 			if (this.dates.indexOf(sighting['Date']) < 0) {
 				this.dates.push(sighting['Date']);
 				this.dateObjects.push(newDate);
-			}
-
-			if (this.locations.indexOf(sighting['Location']) < 0) {
-				this.locations.push(sighting['Location']);
 			}
 
 			if (this.commonNames.indexOf(sighting['Common Name']) < 0) {
@@ -118,7 +127,7 @@ SightingList.prototype.addRows = function(inRows) {
 
 	this.rows = this.rows.concat(inRows);
 
-	this.multipleLocations = this.locations.length > 1;
+	this.multipleLocations = this.getLocations().length > 1;
 
 	this.dateObjects.sort(function(a, b) { return b - a; });
 
