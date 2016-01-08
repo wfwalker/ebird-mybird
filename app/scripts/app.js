@@ -220,6 +220,12 @@ function renderYear(inYear) {
 	});
 }
 
+function renderSighting(inID) {
+	renderTemplate('sighting', gSightings.rows[inID]['Common Name'],
+		gSightings.rows[inID]
+	);
+}
+
 function renderPhoto(inID) {
 	renderTemplate('photo', gPhotos[inID]['Common Name'],
 		gPhotos[inID]
@@ -376,6 +382,7 @@ var routingMap = {
 	'#chrono' : renderChrono,
 	'#photos' : renderPhotos,
 	'#photo' : renderPhoto,
+	'#sighting' : renderSighting,
 	'#bigdays' : renderBigDays,
 	'#trips' : renderTrips,
 	'#trip' : renderTrip,
