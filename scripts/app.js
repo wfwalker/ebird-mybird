@@ -166,7 +166,7 @@ function renderLoading() {
 }
 
 function renderChrono() {
-	var earliestByCommonName = gSightings.earliestByCommonName();
+	var earliestByCommonName = gSightings.getEarliestByCommonName();
 	var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
 	lifeSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
 
@@ -301,7 +301,7 @@ function renderCounty(inCountyName) {
 }
 
 function renderTaxons() {
-	var earliestByCommonName = gSightings.earliestByCommonName();
+	var earliestByCommonName = gSightings.getEarliestByCommonName();
 	var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){ return earliestByCommonName[k]; });
 	lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
@@ -462,9 +462,13 @@ function loadPhotos() {
 
 function registerHelpers() {
 	Handlebars.registerHelper('nicedate', function(inDate) {
-		return new Handlebars.SafeString (
-			d3.time.format('%b %d, %Y')(inDate)
-		);
+		if (inDate) {
+			return new Handlebars.SafeString (
+				d3.time.format('%b %d, %Y')(inDate)
+			);
+		} else {
+			return new Handlebars.SafeString ('NaN');
+		}
 	});
 
 	Handlebars.registerHelper('values', function(inList, inPropertyName) {

@@ -28,7 +28,7 @@ var SightingList = function (inRows) {
 	this.rowsByYear = {};
 	this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] };
 	this._speciesByDate = {};
-	this.earliestRowByCommonName = {};
+	this._earliestRowByCommonName = {};
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
 	this.dates = [];
@@ -82,15 +82,8 @@ SightingList.prototype.addRows = function(inRows) {
 			}
 			this.rowsByMonth[pieces[0]].push(sighting);
 
-			if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
-				if (! this.earliestRowByCommonName[sighting['Common Name']]) {
-					this.earliestRowByCommonName[sighting['Common Name']] = sighting;
-				} else if (sighting.DateObject < this.earliestRowByCommonName[sighting['Common Name']].DateObject) {
-					this.earliestRowByCommonName[sighting['Common Name']] = sighting;
-				}	
-			} else {
-				console.log('omit', sighting['Common Name']);
-			}
+		} else {
+			console.log('ERROR SIGHTING HAS NO DATE', index, JSON.stringify(sighting));
 		}
 	}
 
@@ -139,10 +132,6 @@ SightingList.prototype.byMonth = function() {
 	];
 };
 
-SightingList.prototype.earliestByCommonName = function() {
-	return this.earliestRowByCommonName;
-};
-
 SightingList.prototype.addToIndex = function(inIndex) {
 	for (var index = 0; index < this.rows.length; index++) {
 		var aValue = this.rows[index];
@@ -189,6 +178,26 @@ SightingList.prototype.getSpeciesByDate = function() {
 	};
 
 	return this._speciesByDate;
+};
+
+SightingList.prototype.getEarliestByCommonName = function() {
+	console.log('computing earliestByCommonName');
+	
+	for (var index = 0; index < this.rows.length; index++) {
+		var sighting = this.rows[index];
+
+		if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
+			if (! this._earliestRowByCommonName[sighting['Common Name']]) {
+				this._earliestRowByCommonName[sighting['Common Name']] = sighting;
+			} else if (sighting.DateObject < this._earliestRowByCommonName[sighting['Common Name']].DateObject) {
+				this._earliestRowByCommonName[sighting['Common Name']] = sighting;
+			}	
+		} else {
+			console.log('omit', sighting['Common Name']);
+		}
+	};
+
+	return this._earliestRowByCommonName;
 };
 
 
