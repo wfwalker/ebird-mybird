@@ -52,7 +52,7 @@ describe('SightingList', function() {
 
 		it('should calculate a list of one location name', function () {
 			var tmp = new SightingList([sampleRow]);
-			assert.equal('Charleston Slough', tmp.getLocations()[0]);
+			assert.equal('Charleston Slough', tmp.getUniqueValues('Location')[0]);
 		});
 	});
 
