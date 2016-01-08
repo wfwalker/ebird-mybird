@@ -37,8 +37,13 @@ var SightingList = function (inRows) {
 	this.dates = [];
 	this.dateObjects = [];
 
+
 	if (inRows) {
-		this.addRows(inRows);
+		if (inRows instanceof Array) {
+			this.addRows(inRows);
+		} else {
+			throw new Error('not an array');
+		}
 	}
 };
 
