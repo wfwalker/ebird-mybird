@@ -37,7 +37,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + 'ed70e08040720b1f11a29edd8cafdeaa23f91653';
+      return this.CACHE_PREFIX + 'd3ee506046fb81034e3a5193b710dcceccd1fae8';
     },
 
     // This is a list of resources that will be cached.
@@ -56,8 +56,8 @@
       './data/ebird.csv', // 69a5aacea861887696adb297f3fdfa108a7815a6
       './data/omitted-common-names.json', // 2a2dfcf3b8c01de450738adc77352c1b53d97081
       './data/photos.json', // fe84f9692db9890741f2c58259c81b8cf31d7c96
-      './styles/app.css', // 23e5fc2156d56e3ced92a54a61d58c3bd14e66ac
-      './styles/bundle.css', // dd1d0e9ed24e8f5658e45a8da0dfaba515b706bb
+      './styles/app.css', // 15756eb8ae0f716387bc6f9c346e9cd7c8df9c23
+      './styles/bundle.css', // fa81877fa3627e8391be7dafc5d7cbf36429fdd5
       './styles/c3.min.css', // 0ed505e8458512b29c9925c83316a48b1b838b10
       './styles/github-light.css', // 70cce7c65d29afbb8e5c5f6068e20c41ac4c8fde
       './styles/stylesheet.css', // 50a86a6576fa01c3fe7fecfcb3f043ac1dd58456
