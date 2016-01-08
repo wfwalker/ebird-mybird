@@ -54,7 +54,7 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['app/scripts/sightinglist.js', 'app/scripts/app.js']).pipe(eslint({
+  return gulp.src(['app/scripts/sightinglist.js', 'app/scripts/app.js', 'app/test/test.js']).pipe(eslint({
     'rules':{
         'quotes': [1, 'single'],
         'semi': [1, 'always'],
