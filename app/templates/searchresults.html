@@ -1,34 +1,26 @@
 <h3>search results</h3>
 
-{{#each results}}
-  <div>
-  	{{[Common Name]}}
-    <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
-    <a href="#location/{{encode this.Location}}">{{this.Location}}</a>
-  </div>
-{{/each}}
-
-
-{{#if sightingList.multipleLocations}}
-	<h4>{{sightingList.locations.length}} locations</h4>
-
-	<div class="biglist">
-	{{#each sightingList.locations}}
-	<div><a href="#location/{{encode this}}">{{this}}</a></div>
-	{{/each}}
-	</div>
-
-	<h4>{{taxons.length}} species</h4>
-{{else}}
-	<h4>{{sightingList.locations}}</h4>
-{{/if}}
+<h4>{{dates.length}} Dates</h4>
 
 <div class="biglist">
-{{#each taxons}}
+  {{#each dates}}
+    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+  {{/each}}
+</div>
+
+<h4>{{valuecount sightingList 'Location'}} Locations</h4>
+
+<div class="biglist">
+  {{#each (values sightingList 'Location')}}
+    <div><a href="#location/{{encode this}}">{{this}}</a></div>
+  {{/each}}
+</div>
+
+<h4>{{valuecount sightingList 'Common Name'}} Species</h4>
+
+<div class="biglist">
+{{#each (values sightingList 'Common Name')}}
   <div>
-    {{#if sightingList.multipleLocations}}
-    <a href='#location/{{encode this.Location}}'>{{this.Location}}</a>
-    {{/if}}
     <a href='#taxon/{{encode this}}'>{{this}}</a>
   </div>
 {{/each}}
