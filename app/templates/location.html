@@ -3,10 +3,10 @@
 
 {{> thumbnails}}
 
-<h4>{{taxons.length}} species</h4>
+<h4>{{valuecount sightingList "Common Name"}} species</h4>
 
 <div class="biglist">
-{{#each taxons}}
+{{#each (values sightingList "Common Name")}}
   <div>
     <a href="#taxon/{{encode this}}">{{this}}</a>
   </div>
