@@ -7,27 +7,34 @@
 {{> thumbnails}}
 
 <div>
-{{#each sightingList.checklists}}
+{{#each (values sightingList "Checklist")}}
   <span><a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>{{this}}</a></span>
 {{/each}}
 </div>
 
 <h4>
-  {{taxons.length}} species at
-  {{#if sightingList.multipleLocations}}
-    {{sightingList.locations.length}} locations
+  {{valuecount sightingList "Common Name"}} species at
+  {{#if (multiplevalues sightingList "Location")}}
+    {{valuecount sightingList "Location"}} locations
   {{else}}
-    {{sightingList.locations}}
+    {{values sightingList "Location"}}
   {{/if}}
 </h4>
 
 <div class="biglist">
-{{#each taxons}}
-  <div>
-    {{#if ../sightingList.multipleLocations}}
-      <a href='#location/{{encode this.Location}}'>{{this.Location}}</a>
-    {{/if}}
-    <a href='#taxon/{{encode this}}'>{{this}}</a>
-  </div>
-{{/each}}
+  {{#if (multiplevalues sightingList "Location")}}
+    MULTI
+    {{#each (values sightingList "Common Name")}}
+      <div>
+        <a href='#taxon/{{encode this}}'>{{this}}</a>
+      </div>
+    {{/each}}
+  {{else}}
+    SINGLE
+    {{#each (values sightingList "Common Name")}}
+      <div>
+        <a href='#taxon/{{encode this}}'>{{this}}</a>
+      </div>
+    {{/each}}
+  {{/if}}
 </div>
