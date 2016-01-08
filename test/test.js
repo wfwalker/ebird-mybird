@@ -6,22 +6,22 @@ var SightingList = require ('../scripts/sightinglist.js');
 var Papa = require ('../scripts/papaparse.js');
 
 var sampleRow = {
-	"Submission ID":"S7756102",
-	"Common Name":"Canada Goose",
-	"Scientific Name":"Branta canadensis",
-	"Taxonomic Order":"277",
-	"Count":"X",
-	"State/Province":"US-CA",
-	"County":"Santa Clara",
-	"Location":"Charleston Slough",
-	"Latitude":"37.4347763",
-	"Longitude":"-122.0990601",
-	"Date":"02-10-1996",
-	"Time":"",
-	"Protocol":"eBird - Casual Observation",
-	"Duration (Min)":"0",
-	"All Obs Reported":"1",
-	"DateObject":"1996-02-10T08:00:00.000Z"
+	'Submission ID':'S7756102',
+	'Common Name':'Canada Goose',
+	'Scientific Name':'Branta canadensis',
+	'Taxonomic Order':'277',
+	'Count':'X',
+	'State/Province':'US-CA',
+	'County':'Santa Clara',
+	'Location':'Charleston Slough',
+	'Latitude':'37.4347763',
+	'Longitude':'-122.0990601',
+	'Date':'02-10-1996',
+	'Time':'',
+	'Protocol':'eBird - Casual Observation',
+	'Duration (Min)':'0',
+	'All Obs Reported':'1',
+	'DateObject':'1996-02-10T08:00:00.000Z'
 };
 
 // needed by SightingList constructor
@@ -52,7 +52,7 @@ describe('SightingList', function() {
 
 		it('should calculate a list of one location name', function () {
 			var tmp = new SightingList([sampleRow]);
-			assert.equal("Charleston Slough", tmp.locations[0]);
+			assert.equal('Charleston Slough', tmp.getLocations()[0]);
 		});
 	});
 

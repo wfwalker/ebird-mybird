@@ -205,6 +205,8 @@ function renderTrip(inDate) {
 		comments: tripSightingList.getUniqueValues('Checklist Comments'),
 		taxons: tripSightingList.commonNames,
 		sightingList: tripSightingList,
+		locations: tripSightingList.getLocations(),
+		multipleLocations: (tripSightingList.getLocations().length > 1),
 	});
 }
 
@@ -249,7 +251,7 @@ function renderPhotos() {
 
 function renderLocations() {
 	renderTemplate('locations', 'Locations', {
-		locations: gSightings.locations,
+		locations: gSightings.getLocations(),
 	});
 }
 
@@ -480,7 +482,6 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerHelper('encode', function(inString) {
-		console.log('encode', inString, encodeURIComponent(inString));
 		return new Handlebars.SafeString (
 			encodeURIComponent(inString)
 		);
