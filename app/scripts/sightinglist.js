@@ -24,16 +24,13 @@
 
 var SightingList = function (inRows) {
 	this.rows = [];
+	this._uniqueValuesCache = {};
 	this.rowsByYear = {};
 	this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] };
 	this.speciesByDate = {};
 	this.earliestRowByCommonName = {};
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
-	this._locations = [];
-	this.commonNames = [];
-	this.multipleLocations = false;
-	this.checklists = [];
 	this.dates = [];
 	this.dateObjects = [];
 
@@ -46,19 +43,6 @@ var SightingList = function (inRows) {
 		}
 	}
 };
-
-SightingList.prototype.getLocations = function() {
-	this._locations = [];
-
-	for (var index = 0; index < this.rows.length; index++) {
-		var sighting = this.rows[index];
-		if (this._locations.indexOf(sighting['Location']) < 0) {
-			this._locations.push(sighting['Location']);
-		}
-	}
-
-	return this._locations;
-}
 
 SightingList.prototype.addRows = function(inRows) {
 	for (var index = 0; index < inRows.length; index++) {
@@ -78,14 +62,6 @@ SightingList.prototype.addRows = function(inRows) {
 			if (this.dates.indexOf(sighting['Date']) < 0) {
 				this.dates.push(sighting['Date']);
 				this.dateObjects.push(newDate);
-			}
-
-			if (this.commonNames.indexOf(sighting['Common Name']) < 0) {
-				this.commonNames.push(sighting['Common Name']);
-			}
-
-			if (this.checklists.indexOf(sighting['Submission ID']) < 0) {
-				this.checklists.push(sighting['Submission ID']);
 			}
 
 			if (this.earliestDateObject == null || newDate < this.earliestDateObject) {
@@ -126,8 +102,6 @@ SightingList.prototype.addRows = function(inRows) {
 	}
 
 	this.rows = this.rows.concat(inRows);
-
-	this.multipleLocations = this.getLocations().length > 1;
 
 	this.dateObjects.sort(function(a, b) { return b - a; });
 
@@ -190,16 +164,21 @@ SightingList.prototype.addToIndex = function(inIndex) {
 };
 
 SightingList.prototype.getUniqueValues = function(fieldName) {
-	var values = [];
-
-	for (var index = 0; index < this.rows.length; index++) {
-		var aValue = this.rows[index][fieldName];
-		if (values.indexOf(aValue) < 0) {
-			values.push(aValue);
+	if (this._uniqueValuesCache[fieldName]) {
+		console.log('returning cached unique values for', fieldName);
+	} else {
+		console.log('computing unique values for', fieldName);
+		var tmpValues = [];
+		for (var index = 0; index < this.rows.length; index++) {
+			var aValue = this.rows[index][fieldName];
+			if (tmpValues.indexOf(aValue) < 0) {
+				tmpValues.push(aValue);
+			}
 		}
+		this._uniqueValuesCache[fieldName] = tmpValues;
 	}
 
-	return values;
+	return this._uniqueValuesCache[fieldName];
 };
 
 if (typeof module != 'undefined') {
