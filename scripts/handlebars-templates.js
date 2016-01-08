@@ -164,6 +164,13 @@ this["ebirdmybird"]["home"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"ma
     + alias4((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.monthChartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
     + "\n";
 },"useData":true});
+this["ebirdmybird"]["loading"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "<h3>"
+    + container.escapeExpression(((helper = (helper = helpers.owner || (depth0 != null ? depth0.owner : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"owner","hash":{},"data":data}) : helper)))
+    + "&apos;s eBird</h3>\n\n<div>\nLOADING\n</div>\n\n<h4>Sightings by Year</h4>\n\n<div style='padding-top: 10px'></div>\n\nLOADING\n\n<h4>Sightings by Month</h4>\n\n<div style='padding-top: 10px'></div>\n\nLOADING";
+},"useData":true});
 this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 

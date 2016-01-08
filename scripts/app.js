@@ -26,10 +26,6 @@ function renderTemplate(inPrefix, inPageTitle, inData) {
 	    results.removeChild(results.firstChild);
 	}
 
-    // hide loading section
-	document.getElementById('loading').classList.remove('visible');
-	document.getElementById('loading').classList.add('hidden');
-
 	hideAllSections();
 
 	// show rendered template
@@ -159,6 +155,12 @@ function renderHome() {
 		numChecklists: gSightings.checklists.length,
 		earliest: gSightings.earliestDateObject,
 		latest: gSightings.latestDateObject,
+		owner: 'Bill Walker',
+	});
+}
+
+function renderLoading() {
+	renderTemplate('loading', 'Loading', {
 		owner: 'Bill Walker',
 	});
 }
@@ -388,10 +390,6 @@ var routingMap = {
 };
 
 function routeBasedOnHash() {
-	// show loading section
-	document.getElementById('loading').classList.add('visible');
-	document.getElementById('loading').classList.remove('hidden');
-
 	// On every hash change the render function is called with the new hash.
 	// This is how the navigation of our app happens.
 	var theHashParts = window.location.hash.split('/');
@@ -513,10 +511,6 @@ function registerHelpers() {
 	});
 }
 
-function progress(inString) {
-	document.getElementById('loading').textContent = inString;
-}
-
 // REDIRECT to HTTPS!
 var host = 'wfwalker.github.io';
 if ((host == window.location.host) && (window.location.protocol != 'https:')) {
@@ -524,6 +518,9 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 } else {
 	document.addEventListener('DOMContentLoaded', function(event) { 
 		registerHelpers();
+
+		renderLoading();
+
 		document.getElementById('gosearch').addEventListener('click', function() {
 			var searchText = document.getElementById('searchtext').value;
 			renderSearchResults(searchText);
@@ -531,8 +528,6 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 	});
 
 	gSightings = new SightingList();
-
-	document.getElementById('loading').textContent = 'foo';
 
 	Papa.SCRIPT_PATH = 'scripts/papaparse.js';
 
