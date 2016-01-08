@@ -183,7 +183,8 @@ function renderTrips() {
 }
 
 function renderBigDays() {
-	var bigDays = Object.keys(gSightings.speciesByDate).map(function (key) { return [key, gSightings.speciesByDate[key]]; });
+	var speciesByDate = gSightings.getSpeciesByDate();
+	var bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]]; });
 	var bigDays = bigDays.filter(function (x) { return x[1].length > 100; });
 	bigDays = bigDays.map(function (x) { return { date: x[0], count: x[1].length }; });
 	bigDays.sort(function (x,y) { return y.count - x.count; } );
@@ -276,7 +277,6 @@ function renderLocation(inLocationName) {
 		longitude: locationSightingsTaxonomic[0]['Longitude'],
 		latitude: locationSightingsTaxonomic[0]['Latitude'],
 		sightingList: locationSightingList,
-		taxons: locationSightingList.commonNames,
 		customDayNames: gCustomDayNames,
 	});
 }

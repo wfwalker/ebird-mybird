@@ -204,7 +204,7 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + alias3(helpers.lookup.call(alias1,(depths[1] != null ? depths[1].customDayNames : depths[1]),(helpers.ebirddate || (depth0 && depth0.ebirddate) || alias2).call(alias1,depth0,{"name":"ebirddate","hash":{},"data":data}),{"name":"lookup","hash":{},"data":data}))
     + "</div>\n	  </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<h3>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
@@ -229,11 +229,11 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + "</a></div>\n\n"
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<h4>"
-    + alias4(alias5(((stack1 = (depth0 != null ? depth0.taxons : depth0)) != null ? stack1.length : stack1), depth0))
+    + alias4((helpers.valuecount || (depth0 && depth0.valuecount) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"valuecount","hash":{},"data":data}))
     + " species</h4>\n\n<div class=\"biglist\">\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.taxons : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(alias1,(helpers.values || (depth0 && depth0.values) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"values","hash":{},"data":data}),{"name":"each","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n\n<h4>"
-    + alias4(alias5(((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.dateObjects : stack1)) != null ? stack1.length : stack1), depth0))
+    + alias4(container.lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.dateObjects : stack1)) != null ? stack1.length : stack1), depth0))
     + " dates</h4>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.showChart : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.program(5, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + "\n\n";

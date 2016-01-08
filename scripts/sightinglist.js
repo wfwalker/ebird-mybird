@@ -27,7 +27,7 @@ var SightingList = function (inRows) {
 	this._uniqueValuesCache = {};
 	this.rowsByYear = {};
 	this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] };
-	this.speciesByDate = {};
+	this._speciesByDate = {};
 	this.earliestRowByCommonName = {};
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
@@ -81,13 +81,6 @@ SightingList.prototype.addRows = function(inRows) {
 				this.rowsByMonth[pieces[0]] = [];
 			}
 			this.rowsByMonth[pieces[0]].push(sighting);
-
-			if (! this.speciesByDate[sighting['Date']]) {
-				this.speciesByDate[sighting['Date']] = [];
-			}
-			if (this.speciesByDate[sighting['Date']].indexOf(sighting['Common Name']) < 0) {
-				this.speciesByDate[sighting['Date']].push(sighting['Common Name']);
-			}
 
 			if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
 				if (! this.earliestRowByCommonName[sighting['Common Name']]) {
@@ -180,6 +173,24 @@ SightingList.prototype.getUniqueValues = function(fieldName) {
 
 	return this._uniqueValuesCache[fieldName];
 };
+
+SightingList.prototype.getSpeciesByDate = function() {
+	console.log('computing speciesByDate');
+	
+	for (var index = 0; index < this.rows.length; index++) {
+		var sighting = this.rows[index];
+
+		if (! this._speciesByDate[sighting['Date']]) {
+			this._speciesByDate[sighting['Date']] = [];
+		}
+		if (this._speciesByDate[sighting['Date']].indexOf(sighting['Common Name']) < 0) {
+			this._speciesByDate[sighting['Date']].push(sighting['Common Name']);
+		}
+	};
+
+	return this._speciesByDate;
+};
+
 
 if (typeof module != 'undefined') {
 	module.exports = SightingList;
