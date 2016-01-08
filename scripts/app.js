@@ -370,9 +370,11 @@ function renderSearchResults(inTerm) {
 
     var searchResultsSightingList = new SightingList(rawResults);
 
+    console.log('search results', searchResultsSightingList);
+
 	renderTemplate('searchresults', 'Search Results', {
-		comments: searchResultsSightingList.getUniqueValues('Checklist Comments'),
-		taxons: searchResultsSightingList.commonNames,
+		dates: searchResultsSightingList.dateObjects,
+		customDayNames: gCustomDayNames,
 		sightingList: searchResultsSightingList,
 	});
 }
@@ -556,8 +558,8 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 		worker: true,
 		complete: function(results) {
 			gSightings = new SightingList(results.data);
-			gSightings.addToIndex(gIndex);
 			routeBasedOnHash();
+			gSightings.addToIndex(gIndex);
 		},
 	});
 
