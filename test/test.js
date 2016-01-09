@@ -54,6 +54,13 @@ describe('SightingList', function() {
 			var tmp = new SightingList([sampleRow]);
 			assert.equal('Charleston Slough', tmp.getUniqueValues('Location')[0]);
 		});
+
+		it('should calculate a list of one earliest sighting name', function () {
+			var tmp = new SightingList([sampleRow]);
+			var earliestByCommonName = tmp.getEarliestByCommonName();
+			assert.deepEqual(['Canada Goose'], Object.keys(earliestByCommonName));
+			assert.deepEqual(sampleRow, earliestByCommonName['Canada Goose']);
+		});
 	});
 
 });
