@@ -332,6 +332,7 @@ function renderDebug() {
 	var brokenLocationSightingList = new SightingList(tmp);
 	var photosBadScientificName = [];
 	var missingSightingsForCustomDayNames = {};
+	var allLocations = gSightings.getUniqueValues('Location');
 
 	for (var index = 0; index < gPhotos.length; index++) {
 		var photo = gPhotos[index];
@@ -353,7 +354,7 @@ function renderDebug() {
 
 	renderTemplate('debug', 'Debug', {
 		photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.Date) < 0; }),
-		photosMissingLocation: gPhotos.filter(function(p) { return gSightings.locations.indexOf(p.Location) < 0; }),
+		photosMissingLocation: gPhotos.filter(function(p) { return allLocations.indexOf(p.Location) < 0; }),
 		photosBadScientificName: photosBadScientificName,
 		photos: gPhotos,
 		brokenLocations: brokenLocationSightingList.locations,
