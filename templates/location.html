@@ -1,9 +1,16 @@
-<h3>{{name}} <span style='font-weight: lighter'>| <a href="#county/{{county}}">{{county}}</a>, {{state}}</span></h3>
-<div><a target="_blank" href="https://www.openstreetmap.org/?mlat={{latitude}}&mlon={{longitude}}#map=10/{{latitude}}/{{longitude}}">{{latitude}},{{longitude}}</a></div>
+<h3>
+	{{sightingList.rows.0.Location}}<span style='font-weight: lighter'>| <a href="#county/{{sightingList.rows.0.County}}">{{sightingList.rows.0.County}}</a>, {{sightingList.rows.0.[State/Province]}}</span></h3>
+
+<div>
+	<a target="_blank" href="https://www.openstreetmap.org/?mlat={{sightingList.rows.0.Latitude}}&mlon={{sightingList.rows.0.Longitude}}#map=10/{{sightingList.rows.0.Latitude}}/{{sightingList.rows.0.Longitude}}">
+		{{sightingList.rows.0.Latitude}},{{sightingList.rows.0.Latitude}}
+	</a>
+</div>
+
 
 {{> thumbnails}}
 
-<h4>{{valuecount sightingList "Common Name"}} species</h4>
+<h4>{{valuecount sightingList "Common Name"}} Species</h4>
 
 <div class="biglist">
 {{#each (values sightingList "Common Name")}}
@@ -13,7 +20,7 @@
 {{/each}}
 </div>
 
-<h4>{{sightingList.dateObjects.length}} dates</h4>
+<h4>{{valuecount sightingList "Date"}} Dates</h4>
 
 {{#if this.showChart}}
 	<div id={{chartID}} style='padding-top: 10px'></div>
