@@ -11,11 +11,11 @@
 	{{monthgraph sightingsByMonth chartID}}
 {{else}}
 	<div class="biglist">
-	{{#each sightings}}
-	  <div>
-	    <a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
-	    <a href="#location/{{encode this.Location}}">{{this.Location}}</a>
-	  </div>
-	{{/each}}
+		{{#each sightings}}
+			<div>
+				<a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
+				<a href="#location/{{encode this.Location}}">{{this.Location}}</a>
+			</div>
+		{{/each}}
 	</div>
 {{/if}}

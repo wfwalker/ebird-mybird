@@ -380,15 +380,15 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
 },"4":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing;
 
-  return "	  <div>\n	    <a href=\"#trip/"
+  return "			<div>\n				<a href=\"#trip/"
     + alias2(alias1((depth0 != null ? depth0.Date : depth0), depth0))
     + "\">"
     + alias2((helpers.nicedate || (depth0 && depth0.nicedate) || alias4).call(alias3,(depth0 != null ? depth0.DateObject : depth0),{"name":"nicedate","hash":{},"data":data}))
-    + "</a>\n	    <a href=\"#location/"
+    + "</a>\n				<a href=\"#location/"
     + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,(depth0 != null ? depth0.Location : depth0),{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias2(alias1((depth0 != null ? depth0.Location : depth0), depth0))
-    + "</a>\n	  </div>\n";
+    + "</a>\n			</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
