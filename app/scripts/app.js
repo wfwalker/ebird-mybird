@@ -271,11 +271,7 @@ function renderLocation(inLocationName) {
 		showChart: locationSightingsTaxonomic.length > 100,
 		sightingsByMonth: locationSightingList.byMonth(),
 		photos: gPhotos.filter(function(p) { return p.Location == inLocationName; }),
-		county: locationSightingsTaxonomic[0]['County'],
-		state: locationSightingsTaxonomic[0]['State/Province'],
 		locationSightingsTaxonomic: locationSightingsTaxonomic,
-		longitude: locationSightingsTaxonomic[0]['Longitude'],
-		latitude: locationSightingsTaxonomic[0]['Latitude'],
 		sightingList: locationSightingList,
 		customDayNames: gCustomDayNames,
 	});
@@ -286,12 +282,14 @@ function renderCounty(inCountyName) {
 	countySightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 	var countySightingList = new SightingList(countySightingsTaxonomic);
+	var countyLocations = countySightingList.getUniqueValues('Location');
+
 
 	renderTemplate('county', inCountyName + ' County', {
 		name: inCountyName,
 		chartID: 'bymonth' + Date.now(),
 		sightingsByMonth: countySightingList.byMonth(),
-		photos: gPhotos.filter(function(p) { return countySightingList.locations.indexOf(p.Location) >= 0; }),
+		photos: gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; }),
 		state: countySightingsTaxonomic[0]['State/Province'],
 		sightingList: countySightingList,
 		countySightingsTaxonomic: countySightingsTaxonomic,
