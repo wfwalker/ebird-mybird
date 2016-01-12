@@ -1,7 +1,13 @@
 <h3>{{locations.length}} locations</h3>
 
 <div class="biglist">
-{{#each locations}}
-<div><a href="#location/{{encode this}}">{{this}}</a></div>
-{{/each}}
+	{{#each hierarchy}}
+		<h2>{{@key}}</h2>
+		{{#each this}}
+			<h3><a href="#county/{{encode @key}}">{{@key}}</a> County</h3>
+			{{#each this}}
+				<div><a href="#location/{{encode this}}">{{this}}</a></div>
+			{{/each}}
+		{{/each}}
+	{{/each}}
 </div>

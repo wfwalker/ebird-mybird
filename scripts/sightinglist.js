@@ -163,6 +163,32 @@ SightingList.prototype.getUniqueValues = function(fieldName) {
 	return this._uniqueValuesCache[fieldName];
 };
 
+SightingList.prototype.getLocationHierarchy = function() {
+	var provinces = {};
+
+	for (var index = 0; index < this.rows.length; index++) {
+		var aSighting = this.rows[index];
+		var province = aSighting['State/Province'];
+		var county = aSighting['County'];
+		var location = aSighting['Location'];
+
+		if (! provinces[province]) {
+			provinces[province] = {};
+		}
+
+		if (! provinces[province][county]) {
+			provinces[province][county] = [];
+		}
+
+		if (provinces[province][county].indexOf(location) < 0) {
+			provinces[province][county].push(location);
+		}
+	}
+
+	return provinces;
+};
+
+
 SightingList.prototype.getSpeciesByDate = function() {
 	console.log('computing speciesByDate');
 	

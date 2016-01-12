@@ -37,7 +37,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + 'fd015b8d6e3e84d925cf13c3d44391f8139da4f4';
+      return this.CACHE_PREFIX + 'c528d2c2a546f2eb5bbae8ba4654c519a080a567';
     },
 
     // This is a list of resources that will be cached.
@@ -50,8 +50,8 @@
       './images/ebird-favicon.png', // 3f841e97f2ecb0dc0f16478fa57c9dd00b65300f
       './images/icon_download.png', // 166867841b1cd0c08246cc00a16f36b8777f0fff
       './images/sprite_download.png', // 6e7e6d4aafb6b0f526feb0369038efd8c8f1fb6d
-      './index.html', // 2026a58e64ffeb98be0acc05593828a863efc88f
-      './scripts/compressed.js', // 783e1cde90ad0b40122d1d6e16687eed9bf97f1e
+      './index.html', // e73d1300c9323b1e30985ac864239832493074aa
+      './scripts/compressed.js', // 8fda4d3971188f5b207607f81797f00dd2ae7671
       './data/day-names.json', // b3f7ae075cba79adddd0d413a0138c8a273e020a
       './data/ebird.csv', // 69a5aacea861887696adb297f3fdfa108a7815a6
       './data/omitted-common-names.json', // 2a2dfcf3b8c01de450738adc77352c1b53d97081
