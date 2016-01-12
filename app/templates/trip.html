@@ -31,9 +31,9 @@
     {{/each}}
   {{else}}
     SINGLE
-    {{#each (values sightingList "Common Name")}}
+    {{#each sightingList.rows}}
       <div>
-        <a href='#taxon/{{encode this}}'>{{this}}</a>
+        <a href='#taxon/{{encode [Common Name]}}'>{{[Common Name]}}</a> {{Count}}
       </div>
     {{/each}}
   {{/if}}
