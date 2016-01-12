@@ -503,6 +503,12 @@ function registerHelpers() {
 		);
 	});
 
+	Handlebars.registerHelper('spacetounder', function(inString) {
+		return new Handlebars.SafeString (
+			inString.replace(' ', '_')
+		);
+	});
+
 	Handlebars.registerHelper('encode', function(inString) {
 		return encodeURIComponent(inString)
 	});

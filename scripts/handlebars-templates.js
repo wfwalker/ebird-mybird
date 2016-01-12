@@ -396,9 +396,11 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + " <span style='font-weight: lighter'>| "
     + alias4(((helper = (helper = helpers.scientificName || (depth0 != null ? depth0.scientificName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"scientificName","hash":{},"data":data}) : helper)))
-    + "</span></h3>\n\n<div><a target=\"_blank\" href=\"http://www.xeno-canto.org/species/"
+    + "</span></h3>\n\n<div>\n	<a target=\"_blank\" href=\"http://www.xeno-canto.org/species/"
     + alias4((helpers.spacetodash || (depth0 && depth0.spacetodash) || alias2).call(alias1,(depth0 != null ? depth0.scientificName : depth0),{"name":"spacetodash","hash":{},"data":data}))
-    + "\">xeno-canto sounds</a></div>\n\n"
+    + "\">xeno-canto</a> |\n	<a target=\"_blank\" href=\"http://en.wikipedia.org/wiki/"
+    + alias4((helpers.spacetounder || (depth0 && depth0.spacetounder) || alias2).call(alias1,(depth0 != null ? depth0.name : depth0),{"name":"spacetounder","hash":{},"data":data}))
+    + "\">wikipedia</a>\n</div>\n\n"
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<h4>"
     + alias4((helpers.nicenumber || (depth0 && depth0.nicenumber) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.sightings : depth0)) != null ? stack1.length : stack1),{"name":"nicenumber","hash":{},"data":data}))
@@ -456,10 +458,20 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
     + alias1(container.lambda(depth0, depth0))
     + "</a>\n      </div>\n";
 },"12":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : {};
+    var stack1;
 
   return "    SINGLE\n"
-    + ((stack1 = helpers.each.call(alias1,(helpers.values || (depth0 && depth0.values) || helpers.helperMissing).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"values","hash":{},"data":data}),{"name":"each","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1),{"name":"each","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"13":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression, alias4="function";
+
+  return "      <div>\n        <a href='#taxon/"
+    + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,(depth0 != null ? depth0["Common Name"] : depth0),{"name":"encode","hash":{},"data":data}))
+    + "'>"
+    + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
+    + "</a> "
+    + alias3(((helper = (helper = helpers.Count || (depth0 != null ? depth0.Count : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Count","hash":{},"data":data}) : helper)))
+    + "\n      </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 

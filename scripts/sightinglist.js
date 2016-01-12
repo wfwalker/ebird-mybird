@@ -28,7 +28,7 @@ var SightingList = function (inRows) {
 	this.rowsByYear = {};
 	this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] };
 	this._speciesByDate = {};
-	this._earliestRowByCommonName = {};
+	this._earliestRowByCommonName = null;
 	this.earliestDateObject = null;
 	this.latestDateObject = null;
 	this.dates = [];
@@ -182,7 +182,9 @@ SightingList.prototype.getSpeciesByDate = function() {
 
 SightingList.prototype.getEarliestByCommonName = function() {
 	console.log('computing earliestByCommonName');
-	
+
+	this._earliestRowByCommonName = {};
+
 	for (var index = 0; index < this.rows.length; index++) {
 		var sighting = this.rows[index];
 
