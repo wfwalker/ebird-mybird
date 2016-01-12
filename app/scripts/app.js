@@ -394,6 +394,7 @@ var routingMap = {
 	'#taxons' : renderTaxons,
 	'#taxon' : renderTaxon,
 	'#debug' : renderDebug,
+	'#search' : renderSearchResults,
 };
 
 function routeBasedOnHash() {
@@ -543,6 +544,7 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 
 		document.getElementById('gosearch').addEventListener('click', function() {
 			var searchText = document.getElementById('searchtext').value;
+			history.pushState({ searchText: searchText }, 'ebird-mybird | Search', '#search/' + searchText);
 			renderSearchResults(searchText);
 		});
 	});
