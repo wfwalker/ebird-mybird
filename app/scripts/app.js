@@ -255,7 +255,7 @@ function renderPhotos() {
 
 function renderLocations() {
 	renderTemplate('locations', 'Locations', {
-		locations: gSightings.getUniqueValues('Location'),
+		hierarchy: gSightings.getLocationHierarchy(),
 	});
 }
 
