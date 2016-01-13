@@ -476,18 +476,25 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
 },"12":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "    SINGLE\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1),{"name":"each","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1),{"name":"each","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"13":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression, alias4="function";
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
   return "      <div>\n        <a href='#taxon/"
     + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,(depth0 != null ? depth0["Common Name"] : depth0),{"name":"encode","hash":{},"data":data}))
     + "'>"
-    + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
-    + "</a> "
-    + alias3(((helper = (helper = helpers.Count || (depth0 != null ? depth0.Count : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Count","hash":{},"data":data}) : helper)))
-    + "\n      </div>\n";
+    + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
+    + "</a>\n"
+    + ((stack1 = helpers["if"].call(alias1,(helpers.isnumber || (depth0 && depth0.isnumber) || alias2).call(alias1,(depth0 != null ? depth0.Count : depth0),{"name":"isnumber","hash":{},"data":data}),{"name":"if","hash":{},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        <a href=\"#sighting/"
+    + alias3(container.lambda((depth0 != null ? depth0.id : depth0), depth0))
+    + "\">+</a>\n      </div>\n";
+},"14":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "          "
+    + container.escapeExpression(((helper = (helper = helpers.Count || (depth0 != null ? depth0.Count : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"Count","hash":{},"data":data}) : helper)))
+    + "\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 

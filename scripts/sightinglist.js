@@ -44,6 +44,13 @@ var SightingList = function (inRows) {
 	}
 };
 
+SightingList.prototype.setGlobalIDs = function() {
+	for (var index = 0; index < this.rows.length; index++) {
+		var sighting = this.rows[index];
+		sighting.id = index;
+	}
+}
+
 SightingList.prototype.addRows = function(inRows) {
 	for (var index = 0; index < inRows.length; index++) {
 		var sighting = inRows[index];

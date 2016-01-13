@@ -485,6 +485,10 @@ function registerHelpers() {
 		return inList.getUniqueValues(inPropertyName).length > 1;
 	});
 
+	Handlebars.registerHelper('isnumber', function(inValue) {
+		return !isNaN(inValue);
+	});
+
 	Handlebars.registerHelper('ebirddate', function(inDate) {
 		return new Handlebars.SafeString (
 			d3.time.format('%m-%d-%Y')(inDate)
@@ -567,6 +571,7 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 			gSightings = new SightingList(results.data);
 			routeBasedOnHash();
 			gSightings.addToIndex(gIndex);
+			gSightings.setGlobalIDs();
 		},
 	});
 
