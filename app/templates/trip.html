@@ -30,10 +30,13 @@
       </div>
     {{/each}}
   {{else}}
-    SINGLE
     {{#each sightingList.rows}}
       <div>
-        <a href='#taxon/{{encode [Common Name]}}'>{{[Common Name]}}</a> {{Count}}
+        <a href='#taxon/{{encode [Common Name]}}'>{{[Common Name]}}</a>
+        {{#if (isnumber Count)}}
+          {{Count}}
+        {{/if}}
+        <a href="#sighting/{{this.id}}">+</a>
       </div>
     {{/each}}
   {{/if}}
