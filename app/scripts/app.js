@@ -510,7 +510,7 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerHelper('encode', function(inString) {
-		return encodeURIComponent(inString)
+		return encodeURIComponent(inString);
 	});
 
 	Handlebars.registerPartial('thumbnails',
