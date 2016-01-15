@@ -415,30 +415,56 @@ function routeBasedOnHash() {
 	}	
 }
 
-function loadCustomDayNames() {
-	var oReq = new XMLHttpRequest();
-	oReq.addEventListener('load', function() {
-	  gCustomDayNames = JSON.parse(this.responseText);
-	  console.log('loaded custom day names', Object.keys(gCustomDayNames).length);
+function getText(url) {
+	// Return a new promise.
+	return new Promise(function(resolve, reject) {
+	    // Do the usual XHR stuff
+	    var req = new XMLHttpRequest();
+	    req.open('GET', url);
+
+	    req.onload = function() {
+			// This is called even on 404 etc
+			// so check the status
+			if (req.status == 200) {
+				// Resolve the promise with the response text
+				resolve(req.response);
+		    }
+		    else {
+		        // Otherwise reject with the status text
+		        // which will hopefully be a meaningful error
+		        reject(Error(req.statusText));
+		    }
+		};
+
+	    // Handle network errors
+	    req.onerror = function() {
+			reject(Error("Network Error"));
+	    };
+
+	    // Make the request
+	    req.send();
 	});
-	oReq.open('GET', './data/day-names.json');
-	oReq.send();
+}
+
+function loadCustomDayNames() {
+	return getText('./data/day-names.json').then(function(results) {
+		gCustomDayNames = JSON.parse(results);
+		console.log('loaded custom day names', Object.keys(gCustomDayNames).length);
+	});
 }
 
 function loadOmittedCommonNames() {
-	var oReq = new XMLHttpRequest();
-	oReq.addEventListener('load', function() {
-	  gOmittedCommonNames = JSON.parse(this.responseText);
-	  console.log('loaded omitted common names', gOmittedCommonNames.length);
+	return getText('./data/omitted-common-names.json').then(function(results) {
+		gOmittedCommonNames = JSON.parse(results);
+		console.log('loaded omitted common names', Object.keys(gOmittedCommonNames).length);
 	});
-	oReq.open('GET', './data/omitted-common-names.json');
-	oReq.send();
 }
 
 function loadPhotos() {
-	var oReq = new XMLHttpRequest();
-	oReq.addEventListener('load', function() {
-		gPhotos = JSON.parse(this.responseText);
+	return getText('./data/photos.json').then(function(results) {
+		gPhotos = JSON.parse(results);
+		console.log('loaded photos', Object.keys(gPhotos).length);
+
 		for (var index = 0; index < gPhotos.length; index++)
 		{
 			var photo = gPhotos[index];
@@ -458,8 +484,6 @@ function loadPhotos() {
 			photo['DateObject'] = newDate;
 		}
 	});
-	oReq.open('GET', './data/photos.json');
-	oReq.send();
 }
 
 function registerHelpers() {
