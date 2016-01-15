@@ -542,6 +542,18 @@ function registerHelpers() {
 	});
 }
 
+function csvParse(file) {
+	return new Promise(function(resolve, reject) {
+		Papa.parse(file, {
+			download: true,
+			header: true,
+			worker: true,
+			complete: resolve,
+			error: reject,
+		});
+	});
+}
+
 // REDIRECT to HTTPS!
 var host = 'wfwalker.github.io';
 if ((host == window.location.host) && (window.location.protocol != 'https:')) {
@@ -559,20 +571,13 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 		});
 	});
 
-	gSightings = new SightingList();
-
 	Papa.SCRIPT_PATH = 'scripts/papaparse.js';
 
-	Papa.parse(window.location.pathname + 'data/ebird.csv', {
-		download: true,
-		header: true,
-		worker: true,
-		complete: function(results) {
-			gSightings = new SightingList(results.data);
-			routeBasedOnHash();
-			gSightings.addToIndex(gIndex);
-			gSightings.setGlobalIDs();
-		},
+	csvParse(window.location.pathname + 'data/ebird.csv').then(function(results) {
+		gSightings = new SightingList(results.data);
+		gSightings.setGlobalIDs();
+		routeBasedOnHash();
+		gSightings.addToIndex(gIndex);
 	});
 
 	window.onhashchange = routeBasedOnHash;
