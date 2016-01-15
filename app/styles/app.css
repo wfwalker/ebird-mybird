@@ -12,3 +12,9 @@
 	-webkit-columns: 15em;
 	columns: 15em;
 }
+
+.biglist-item {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

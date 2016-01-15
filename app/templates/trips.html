@@ -1,7 +1,10 @@
 <h3>{{nicenumber trips.length}} trips</h3>
 
 <div class="biglist">
-{{#each trips}}
-<div style='white-space: nowrap'><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
-{{/each}}
+	{{#each trips}}
+		<div class='biglist-item'>
+			<a href="#trip/{{ebirddate this}}">{{nicedate this}}</a>
+			{{lookup ../customDayNames (ebirddate this)}}
+		</div>
+	{{/each}}
 </div>

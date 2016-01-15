@@ -15,7 +15,7 @@
 {{else}}
 	<div class="biglist">
 		{{#each sightings}}
-			<div>
+			<div class='biglist-item'>
 				<a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
 				<a href="#location/{{encode this.Location}}">{{this.Location}}</a>
 			</div>

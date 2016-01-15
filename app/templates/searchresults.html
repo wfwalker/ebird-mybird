@@ -4,7 +4,7 @@
 
 <div class="biglist">
   {{#each dates}}
-    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+    <div class='biglist-item'><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
   {{/each}}
 </div>
 
@@ -12,7 +12,7 @@
 
 <div class="biglist">
   {{#each (values sightingList 'Location')}}
-    <div><a href="#location/{{encode this}}">{{this}}</a></div>
+    <div class='biglist-item'><a href="#location/{{encode this}}">{{this}}</a></div>
   {{/each}}
 </div>
 
@@ -20,7 +20,7 @@
 
 <div class="biglist">
 {{#each (values sightingList 'Common Name')}}
-  <div>
+  <div class='biglist-item'>
     <a href='#taxon/{{encode this}}'>{{this}}</a>
   </div>
 {{/each}}
