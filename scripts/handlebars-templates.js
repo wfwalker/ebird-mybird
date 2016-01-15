@@ -39,7 +39,7 @@ this["ebirdmybird"]["chrono"] = Handlebars.template({"1":function(container,dept
 this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
-  return "    <div><a href=\"#location/"
+  return "    <div class='biglist-item'><a href=\"#location/"
     + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias1(container.lambda(depth0, depth0))
@@ -47,7 +47,7 @@ this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,dept
 },"3":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
-  return "  <div>\n    <a href=\"#taxon/"
+  return "  <div class='biglist-item'>\n    <a href=\"#taxon/"
     + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias1(container.lambda(depth0, depth0))
@@ -174,7 +174,7 @@ this["ebirdmybird"]["loading"] = Handlebars.template({"compiler":[7,">= 4.0.0"],
 this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
-  return "  <div>\n    <a href=\"#taxon/"
+  return "  <div class='biglist-item'>\n    <a href=\"#taxon/"
     + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias1(container.lambda(depth0, depth0))
@@ -196,7 +196,7 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
 },"6":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
-  return "	  <div>\n	    <div><a href=\"#trip/"
+  return "	  <div class='biglist-item'>\n	    <div><a href=\"#trip/"
     + alias3((helpers.ebirddate || (depth0 && depth0.ebirddate) || alias2).call(alias1,depth0,{"name":"ebirddate","hash":{},"data":data}))
     + "\">"
     + alias3((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,depth0,{"name":"nicedate","hash":{},"data":data}))
@@ -257,7 +257,7 @@ this["ebirdmybird"]["locations"] = Handlebars.template({"1":function(container,d
 },"3":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
-  return "				<div><a href=\"#location/"
+  return "				<div class='biglist-item'><a href=\"#location/"
     + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias1(container.lambda(depth0, depth0))
@@ -308,7 +308,7 @@ this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,dept
 this["ebirdmybird"]["searchresults"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
-  return "    <div><a href=\"#trip/"
+  return "    <div class='biglist-item'><a href=\"#trip/"
     + alias3((helpers.ebirddate || (depth0 && depth0.ebirddate) || alias2).call(alias1,depth0,{"name":"ebirddate","hash":{},"data":data}))
     + "\">"
     + alias3((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,depth0,{"name":"nicedate","hash":{},"data":data}))
@@ -318,7 +318,7 @@ this["ebirdmybird"]["searchresults"] = Handlebars.template({"1":function(contain
 },"3":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
-  return "    <div><a href=\"#location/"
+  return "    <div class='biglist-item'><a href=\"#location/"
     + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias1(container.lambda(depth0, depth0))
@@ -326,7 +326,7 @@ this["ebirdmybird"]["searchresults"] = Handlebars.template({"1":function(contain
 },"5":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
-  return "  <div>\n    <a href='#taxon/"
+  return "  <div class='biglist-item'>\n    <a href='#taxon/"
     + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
     + "'>"
     + alias1(container.lambda(depth0, depth0))
@@ -396,7 +396,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
 },"4":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing;
 
-  return "			<div>\n				<a href=\"#trip/"
+  return "			<div class='biglist-item'>\n				<a href=\"#trip/"
     + alias2(alias1((depth0 != null ? depth0.Date : depth0), depth0))
     + "\">"
     + alias2((helpers.nicedate || (depth0 && depth0.nicedate) || alias4).call(alias3,(depth0 != null ? depth0.DateObject : depth0),{"name":"nicedate","hash":{},"data":data}))
@@ -426,7 +426,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
 this["ebirdmybird"]["taxons"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
-  return "<div><a href=\"#taxon/"
+  return "<div class='biglist-item'><a href=\"#taxon/"
     + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,(depth0 != null ? depth0["Common Name"] : depth0),{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
@@ -468,7 +468,7 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
 },"10":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
-  return "      <div>\n        <a href='#taxon/"
+  return "      <div class='biglist-item'>\n        <a href='#taxon/"
     + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
     + "'>"
     + alias1(container.lambda(depth0, depth0))
@@ -478,17 +478,19 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
 
   return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1),{"name":"each","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"13":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression, alias4="function";
 
-  return "      <div>\n        <a href='#taxon/"
+  return "      <div class='biglist-item'>\n        <a href='#taxon/"
     + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,(depth0 != null ? depth0["Common Name"] : depth0),{"name":"encode","hash":{},"data":data}))
     + "'>"
-    + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
+    + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
     + "</a>\n"
     + ((stack1 = helpers["if"].call(alias1,(helpers.isnumber || (depth0 && depth0.isnumber) || alias2).call(alias1,(depth0 != null ? depth0.Count : depth0),{"name":"isnumber","hash":{},"data":data}),{"name":"if","hash":{},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        <a href=\"#sighting/"
     + alias3(container.lambda((depth0 != null ? depth0.id : depth0), depth0))
-    + "\">+</a>\n      </div>\n";
+    + "\">+</a>\n      </div>\n      <span>\n        "
+    + alias3(((helper = (helper = helpers["Species Comments"] || (depth0 != null ? depth0["Species Comments"] : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Species Comments","hash":{},"data":data}) : helper)))
+    + "\n      </span>\n";
 },"14":function(container,depth0,helpers,partials,data) {
     var helper;
 
@@ -519,13 +521,13 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
 this["ebirdmybird"]["trips"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
-  return "<div style='white-space: nowrap'><a href=\"#trip/"
+  return "		<div class='biglist-item'>\n			<a href=\"#trip/"
     + alias3((helpers.ebirddate || (depth0 && depth0.ebirddate) || alias2).call(alias1,depth0,{"name":"ebirddate","hash":{},"data":data}))
     + "\">"
     + alias3((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,depth0,{"name":"nicedate","hash":{},"data":data}))
-    + "</a> "
+    + "</a>\n			"
     + alias3(helpers.lookup.call(alias1,(depths[1] != null ? depths[1].customDayNames : depths[1]),(helpers.ebirddate || (depth0 && depth0.ebirddate) || alias2).call(alias1,depth0,{"name":"ebirddate","hash":{},"data":data}),{"name":"lookup","hash":{},"data":data}))
-    + "</div>\n";
+    + "\n		</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
@@ -538,7 +540,7 @@ this["ebirdmybird"]["trips"] = Handlebars.template({"1":function(container,depth
 this["ebirdmybird"]["year"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
-  return "  <div><a href=\"#taxon/"
+  return "  <div class='biglist-item'><a href=\"#taxon/"
     + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias1(container.lambda(depth0, depth0))

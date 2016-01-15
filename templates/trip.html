@@ -25,19 +25,22 @@
   {{#if (multiplevalues sightingList "Location")}}
     MULTI
     {{#each (values sightingList "Common Name")}}
-      <div>
+      <div class='biglist-item'>
         <a href='#taxon/{{encode this}}'>{{this}}</a>
       </div>
     {{/each}}
   {{else}}
     {{#each sightingList.rows}}
-      <div>
+      <div class='biglist-item'>
         <a href='#taxon/{{encode [Common Name]}}'>{{[Common Name]}}</a>
         {{#if (isnumber Count)}}
           {{Count}}
         {{/if}}
         <a href="#sighting/{{this.id}}">+</a>
       </div>
+      <span>
+        {{[Species Comments]}}
+      </span>
     {{/each}}
   {{/if}}
 </div>

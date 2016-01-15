@@ -14,7 +14,7 @@
 
 <div class="biglist">
 {{#each (values sightingList "Common Name")}}
-  <div>
+  <div class='biglist-item'>
     <a href="#taxon/{{encode this}}">{{this}}</a>
   </div>
 {{/each}}
@@ -28,7 +28,7 @@
 {{else}}
 	<div class="biglist">
 	{{#each sightingList.dateObjects}}
-	  <div>
+	  <div class='biglist-item'>
 	    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
 	  </div>
 	{{/each}}

@@ -37,7 +37,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + '98f01bb58eb65a8322e15df17dcd2e67daec07c9';
+      return this.CACHE_PREFIX + '96f1ad781155c671d9952f262fb9aecf4d25617d';
     },
 
     // This is a list of resources that will be cached.
@@ -51,13 +51,13 @@
       './images/icon_download.png', // 166867841b1cd0c08246cc00a16f36b8777f0fff
       './images/sprite_download.png', // 6e7e6d4aafb6b0f526feb0369038efd8c8f1fb6d
       './index.html', // 776a262d7899c9a1c4edc62986753d8a2607851a
-      './scripts/compressed.js', // 748f64e2a7379cf150efe3256565c4af4b15c725
+      './scripts/compressed.js', // c72f88c73b930f5e57d97cb3cc04e0f0dcef949e
       './data/day-names.json', // 0b81931bb173999bde160303ecb4225840cafb46
       './data/ebird.csv', // 69a5aacea861887696adb297f3fdfa108a7815a6
       './data/omitted-common-names.json', // 2a2dfcf3b8c01de450738adc77352c1b53d97081
       './data/photos.json', // edf660a905f5165e580ccc26f88077a4b8d55adb
-      './styles/app.css', // 15756eb8ae0f716387bc6f9c346e9cd7c8df9c23
-      './styles/bundle.css', // 237d2ddf1736396cd54e581e146364987d99851d
+      './styles/app.css', // 10d1fd63dca95c39a2c273bd4d9eca23b2cae7e0
+      './styles/bundle.css', // 13afea256f48a3010d2d2e808b6fbd263176dce4
       './styles/c3.min.css', // 0ed505e8458512b29c9925c83316a48b1b838b10
       './styles/github-light.css', // 70cce7c65d29afbb8e5c5f6068e20c41ac4c8fde
       './styles/stylesheet.css', // eb63af06a216272c796103c67c290023e9e867dd
