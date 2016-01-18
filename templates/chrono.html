@@ -1,5 +1,9 @@
 <h3>{{nicenumber firstSightings.length}} species</h3>
 
+<div class="biglist">
 {{#each firstSightings}}
-	<div>{{nicedate this.DateObject}} <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a></div>
+	<div class='biglist-item'>
+		{{nicedate this.DateObject}} <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a>
+	</div>
 {{/each}}
+</div>
