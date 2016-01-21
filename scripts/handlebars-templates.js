@@ -58,7 +58,7 @@ this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,dept
 
   return "<h3>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + " <span style='font-weight: lighter'>| "
+    + " County<span style='font-weight: lighter'>| "
     + alias4(((helper = (helper = helpers.state || (depth0 != null ? depth0.state : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"state","hash":{},"data":data}) : helper)))
     + "</span></h3>\n\n"
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
@@ -213,9 +213,9 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1), depth0))
     + "\">"
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1), depth0))
-    + "</a>, "
+    + " County</a>, "
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1["State/Province"] : stack1), depth0))
-    + "</span></h3>\n\n<div>\n	<a target=\"_blank\" href=\"https://www.openstreetmap.org/?mlat="
+    + "</span>\n</h3>\n\n<div>\n	<a target=\"_blank\" href=\"https://www.openstreetmap.org/?mlat="
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Latitude : stack1), depth0))
     + "&mlon="
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Longitude : stack1), depth0))
@@ -253,7 +253,7 @@ this["ebirdmybird"]["locations"] = Handlebars.template({"1":function(container,d
     + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,(data && data.key),{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias3(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
-    + "</a> County</h3>\n"
+    + " County</a></h3>\n"
     + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"3":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
