@@ -12,46 +12,6 @@ var gIndex = lunr(function () {
     this.ref('id');
 });
 
-function renderTemplate(inPrefix, inPageTitle, inData) {
-	var compiledTemplate = ebirdmybird[inPrefix];
-	var newDiv = document.createElement('div');
-	newDiv.innerHTML = compiledTemplate(inData);
-
-	var results = document.getElementById(inPrefix + '-results');
-
-	if (! results) {
-		throw new Error('internal error, missing div for ' + inPrefix);
-	}
-
-	while (results.firstChild) {
-	    results.removeChild(results.firstChild);
-	}
-
-	hideAllSections();
-
-	// show rendered template
-    results.appendChild(newDiv);
-	showSection('section#' + inPrefix);
-	document.title = 'ebird-mybird | ' + inPageTitle;
-}
-
-
-function showSection(inSelector) {
-	var sections = document.querySelectorAll(inSelector);
-	for (var index = 0; index < sections.length; index++) {
-		sections[index].classList.remove('hidden');
-		sections[index].classList.add('visible');
-	}
-}
-
-function hideAllSections() {
-	var sections = document.querySelectorAll('section.card');
-	for (var index = 0; index < sections.length; index++) {
-		sections[index].classList.remove('visible');
-		sections[index].classList.add('hidden');
-	}
-}
-
 function barGraphCountsForSightings(inData, inElement) {
 	var labels = Object.keys(inData).map(function(k){return k;});
 	var values = Object.keys(inData).map(function(k){return inData[k].length;});
