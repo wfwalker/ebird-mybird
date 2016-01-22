@@ -49,7 +49,7 @@ SightingList.prototype.setGlobalIDs = function() {
 		var sighting = this.rows[index];
 		sighting.id = index;
 	}
-}
+};
 
 SightingList.prototype.addRows = function(inRows) {
 	for (var index = 0; index < inRows.length; index++) {
