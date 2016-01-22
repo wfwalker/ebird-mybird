@@ -54,7 +54,7 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['app/scripts/sightinglist.js', 'app/scripts/app.js', 'app/test/test.js']).pipe(eslint({
+  return gulp.src(['app/scripts/sightinglist.js', 'app/scripts/renders.js', 'app/scripts/app.js', 'app/test/test.js']).pipe(eslint({
     'rules':{
         'quotes': [1, 'single'],
         'semi': [1, 'always'],
@@ -88,6 +88,7 @@ gulp.task('compress', ['templates'], function(){
     'app/scripts/handlebars-templates.js',
     'app/scripts/sightinglist.js',
     'app/scripts/app.js',
+    'app/scripts/renders.js',
   ])
     .pipe(sourcemaps.init())
     .pipe(concat('compressed.js'))
