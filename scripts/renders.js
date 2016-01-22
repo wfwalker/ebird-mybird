@@ -13,13 +13,13 @@ Render.prototype.renderHome = function() {
 		latest: gSightings.latestDateObject,
 		owner: 'Bill Walker',
 	});
-}
+};
 
 Render.prototype.renderLoading = function() {
 	renderTemplate('loading', 'Loading', {
 		owner: 'Bill Walker',
 	});
-}
+};
 
 Render.prototype.renderChrono = function() {
 	var earliestByCommonName = gSightings.getEarliestByCommonName();
@@ -29,14 +29,14 @@ Render.prototype.renderChrono = function() {
 	renderTemplate('chrono', 'Life List', {
 		firstSightings: lifeSightingsChronological,
 	});
-}
+};
 
 Render.prototype.renderTrips = function() {
 	renderTemplate('trips', 'Trips', {
 		trips: gSightings.dateObjects,
 		customDayNames: gCustomDayNames,
 	});
-}
+};
 
 Render.prototype.renderBigDays = function() {
 	var speciesByDate = gSightings.getSpeciesByDate();
@@ -49,7 +49,7 @@ Render.prototype.renderBigDays = function() {
 		bigDays: bigDays,
 		customDayNames: gCustomDayNames,
 	});
-}
+};
 
 Render.prototype.renderTrip = function(inDate) {
 	var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
@@ -62,7 +62,7 @@ Render.prototype.renderTrip = function(inDate) {
 		comments: tripSightingList.getUniqueValues('Checklist Comments'),
 		sightingList: tripSightingList,
 	});
-}
+};
 
 Render.prototype.renderYear = function(inYear) {
 	var yearSightings = gSightings.byYear()[inYear];
@@ -75,19 +75,19 @@ Render.prototype.renderYear = function(inYear) {
 		yearSightings: yearSightings,
 		yearSpecies: yearSightingList.getUniqueValues('Common Name'),
 	});
-}
+};
 
 Render.prototype.renderSighting = function(inID) {
 	renderTemplate('sighting', gSightings.rows[inID]['Common Name'],
 		gSightings.rows[inID]
 	);
-}
+};
 
 Render.prototype.renderPhoto = function(inID) {
 	renderTemplate('photo', gPhotos[inID]['Common Name'],
 		gPhotos[inID]
 	);
-}
+};
 
 Render.prototype.renderPhotos = function() {
 	var photoCommonNames = [];
@@ -107,7 +107,7 @@ Render.prototype.renderPhotos = function() {
 		photos: gPhotos,
 		photoCommonNames: photoCommonNames,
 	});
-}
+};
 
 Render.prototype.renderLocations = function() {
 	renderTemplate('locations', 'Locations', {
@@ -162,7 +162,7 @@ Render.prototype.renderTaxons = function() {
 	renderTemplate('taxons', 'Species', {
 		lifeSightings: lifeSightingsTaxonomic,
 	});
-}
+};
 
 Render.prototype.renderTaxon = function(inCommonName) {
 	var taxonSightings = gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
@@ -181,7 +181,7 @@ Render.prototype.renderTaxon = function(inCommonName) {
 		sightings: taxonSightings,
 		chartID: 'bymonth' + Date.now(),
 	});
-}
+};
 
 Render.prototype.renderDebug = function() {
 	var tmp = gSightings.filter(function(s) { return s['Location'] && s['Location'].indexOf('/') >= 0; });
@@ -216,7 +216,7 @@ Render.prototype.renderDebug = function() {
 		brokenLocations: brokenLocationSightingList.locations,
 		missingSightingsForCustomDayNames: missingSightingsForCustomDayNames,
 	});
-}
+};
 
 Render.prototype.renderSearchResults = function(inTerm) {
     var rawResults = gIndex.search(inTerm).map(function (result) {
@@ -232,4 +232,4 @@ Render.prototype.renderSearchResults = function(inTerm) {
 		customDayNames: gCustomDayNames,
 		sightingList: searchResultsSightingList,
 	});
-}
+};
