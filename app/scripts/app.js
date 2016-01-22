@@ -1,5 +1,6 @@
 'use strict';
 
+var gRender = new Render();
 var gSightings = null;
 var gOmittedCommonNames = [];
 var gCustomDayNames = [];
@@ -146,22 +147,22 @@ function byMonthForSightings(inData, inElement) {
 }
 
 var routingMap = {
-	'#home' : renderHome,
-	'#chrono' : renderChrono,
-	'#photos' : renderPhotos,
-	'#photo' : renderPhoto,
-	'#sighting' : renderSighting,
-	'#bigdays' : renderBigDays,
-	'#trips' : renderTrips,
-	'#trip' : renderTrip,
-	'#year' : renderYear,
-	'#locations' : renderLocations,
-	'#location' : renderLocation,
-	'#county' : renderCounty,
-	'#taxons' : renderTaxons,
-	'#taxon' : renderTaxon,
-	'#debug' : renderDebug,
-	'#search' : renderSearchResults,
+	'#home' : gRender.renderHome,
+	'#chrono' : gRender.renderChrono,
+	'#photos' : gRender.renderPhotos,
+	'#photo' : gRender.renderPhoto,
+	'#sighting' : gRender.renderSighting,
+	'#bigdays' : gRender.renderBigDays,
+	'#trips' : gRender.renderTrips,
+	'#trip' : gRender.renderTrip,
+	'#year' : gRender.renderYear,
+	'#locations' : gRender.renderLocations,
+	'#location' : gRender.renderLocation,
+	'#county' : gRender.renderCounty,
+	'#taxons' : gRender.renderTaxons,
+	'#taxon' : gRender.renderTaxon,
+	'#debug' : gRender.renderDebug,
+	'#search' : gRender.renderSearchResults,
 };
 
 function routeBasedOnHash() {
@@ -353,7 +354,7 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 	document.addEventListener('DOMContentLoaded', function(event) { 
 		registerHelpers();
 
-		renderLoading();
+		gRender.renderLoading();
 
 		document.getElementById('gosearch').addEventListener('click', function() {
 			var searchText = document.getElementById('searchtext').value;

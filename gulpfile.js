@@ -87,8 +87,8 @@ gulp.task('compress', ['templates'], function(){
     'app/scripts/handlebars-v4.0.4.js',
     'app/scripts/handlebars-templates.js',
     'app/scripts/sightinglist.js',
-    'app/scripts/app.js',
     'app/scripts/renders.js',
+    'app/scripts/app.js',
   ])
     .pipe(sourcemaps.init())
     .pipe(concat('compressed.js'))
