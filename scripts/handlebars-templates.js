@@ -143,7 +143,7 @@ this["ebirdmybird"]["debug"] = Handlebars.template({"1":function(container,depth
     + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.brokenLocations : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 this["ebirdmybird"]["home"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<h3>"
     + alias4(((helper = (helper = helpers.owner || (depth0 != null ? depth0.owner : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"owner","hash":{},"data":data}) : helper)))
@@ -155,7 +155,9 @@ this["ebirdmybird"]["home"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"ma
     + alias4((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,(depth0 != null ? depth0.earliest : depth0),{"name":"nicedate","hash":{},"data":data}))
     + " - "
     + alias4((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,(depth0 != null ? depth0.latest : depth0),{"name":"nicedate","hash":{},"data":data}))
-    + "\n</div>\n\n<h4>Sightings by Year</h4>\n\n<div id="
+    + "\n</div>\n\n<h4>Photo Of The Week</h4>\n\n<img src=\""
+    + alias4(container.lambda(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Photo URL"] : stack1), depth0))
+    + "\">\n\n<h4>Sightings by Year</h4>\n\n<div id="
     + alias4(((helper = (helper = helpers.yearChartID || (depth0 != null ? depth0.yearChartID : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"yearChartID","hash":{},"data":data}) : helper)))
     + " style='padding-top: 10px'></div>\n\n"
     + alias4((helpers.bargraph || (depth0 && depth0.bargraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByYear : depth0),(depth0 != null ? depth0.yearChartID : depth0),{"name":"bargraph","hash":{},"data":data}))
