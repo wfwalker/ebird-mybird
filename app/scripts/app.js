@@ -23,7 +23,11 @@ var gCustomDayNames = [];
 var gPhotos = [];
 var gCompiledTemplates = {};
 var gIndex = lunr(function () {
-    this.field('body');
+    this.field('location');
+    this.field('common');
+    this.field('county');
+    this.field('trip');
+    this.field('scientific');
     this.ref('id');
 });
 
@@ -392,11 +396,15 @@ function renderDebug() {
 }
 
 function renderSearchResults(inTerm) {
-    var rawResults = gIndex.search(inTerm).map(function (result) {
+	var rawResults = gIndex.search(inTerm);
+
+	console.log('raw', rawResults);
+
+    var resultsAsSightings = rawResults.map(function (result) {
 		return gSightings.rows[result.ref];
     });
 
-    var searchResultsSightingList = new SightingList(rawResults);
+    var searchResultsSightingList = new SightingList(resultsAsSightings);
 
     console.log('search results', searchResultsSightingList);
 
