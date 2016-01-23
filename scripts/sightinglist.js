@@ -139,11 +139,20 @@ SightingList.prototype.byMonth = function() {
 	];
 };
 
-SightingList.prototype.addToIndex = function(inIndex) {
+SightingList.prototype.createIndex = function() {
+	var tmpIndex = lunr(function () {
+	    this.field('location');
+	    this.field('common');
+	    this.field('county');
+	    this.field('trip');
+	    this.field('scientific');
+	    this.ref('id');
+	});
+
 	for (var index = 0; index < this.rows.length; index++) {
 		var aValue = this.rows[index];
 
-		inIndex.add({
+		tmpIndex.add({
 			location: aValue['Location'],
 			county: aValue['County'],
 			common: aValue['Common Name'],
@@ -152,6 +161,8 @@ SightingList.prototype.addToIndex = function(inIndex) {
 			id: index,
 		});
 	}
+
+	return tmpIndex;
 };
 
 SightingList.prototype.getUniqueValues = function(fieldName) {
