@@ -22,7 +22,6 @@ var gOmittedCommonNames = [];
 var gCustomDayNames = [];
 var gPhotos = [];
 var gCompiledTemplates = {};
-var gCountyByLocation = {};
 var gIndex = lunr(function () {
     this.field('body');
     this.ref('id');
