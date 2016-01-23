@@ -262,12 +262,12 @@ this["ebirdmybird"]["locations"] = Handlebars.template({"1":function(container,d
     + alias1(container.lambda(depth0, depth0))
     + "</a></div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
   return "<h3>"
-    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.locations : depth0)) != null ? stack1.length : stack1), depth0))
-    + " locations</h3>\n\n<div class=\"biglist\">\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.hierarchy : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + container.escapeExpression(((helper = (helper = helpers.count || (depth0 != null ? depth0.count : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"count","hash":{},"data":data}) : helper)))
+    + " Locations</h3>\n\n<div class=\"biglist\">\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.hierarchy : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n";
 },"useData":true});
 this["ebirdmybird"]["photo"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
