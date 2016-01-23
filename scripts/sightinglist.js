@@ -142,11 +142,13 @@ SightingList.prototype.byMonth = function() {
 SightingList.prototype.addToIndex = function(inIndex) {
 	for (var index = 0; index < this.rows.length; index++) {
 		var aValue = this.rows[index];
-		var searchString = [aValue['Common Name'], aValue['Scientific Name'], aValue['Location']].join(' ');
 
 		inIndex.add({
-			body: searchString,
-			kind: 'species',
+			location: aValue['Location'],
+			county: aValue['County'],
+			common: aValue['Common Name'],
+			trip: gCustomDayNames[aValue['Date']],
+			scientific: aValue['Scientific Name'],
 			id: index,
 		});
 	}
