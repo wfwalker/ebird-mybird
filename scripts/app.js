@@ -162,8 +162,6 @@ function renderHome() {
 	var currentWeekOfYear = new Date().getWeek();
 	var photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });
 
-	console.log(photosThisWeek);
-
 	renderTemplate('home', 'Home', {
 		photoOfTheWeek: photosThisWeek.pop(),
 		owner: 'Bill Walker',
@@ -259,22 +257,29 @@ function renderPhoto(inID) {
 }
 
 function renderPhotos() {
-	var photoCommonNames = [];
+	var photoCommonNames = {};
+	var earliestByCommonName = gSightings.getEarliestByCommonName();
 
 	for (var index = 0; index < gPhotos.length; index++) {
 		var aValue = gPhotos[index]['Common Name'];
-		if (photoCommonNames.indexOf(aValue) < 0) {
-			photoCommonNames.push(aValue);
+		if (! photoCommonNames[aValue]) {
+			if (earliestByCommonName[aValue]) {
+				photoCommonNames[aValue] = earliestByCommonName[aValue]['Taxonomic Order'];
+			} else {
+				console.log('cant find taxo order', aValue);
+			}
 		}
 	}
 
-	photoCommonNames.sort();
+	//var arr = Object.keys(obj).map(function (key) {return obj[key]});
+	var pairs = Object.keys(photoCommonNames).map(function(key) { return [key, photoCommonNames[key]]; });
+	pairs.sort(function (x, y) { return x[1] - y[1]; });
 
-	console.log(photoCommonNames);
+	console.log('photo sort', photoCommonNames);
 
 	renderTemplate('photos', 'Photos', {
 		photos: gPhotos,
-		photoCommonNames: photoCommonNames,
+		photoCommonNames: pairs.map(function (x) { return x[0]; }),
 	});
 }
 
