@@ -169,6 +169,13 @@ function renderHome() {
 	console.log(photosThisWeek);
 
 	renderTemplate('home', 'Home', {
+		photoOfTheWeek: photosThisWeek.pop(),
+		owner: 'Bill Walker',
+	});
+}
+
+function renderStats() {
+	renderTemplate('stats', 'Statistics', {
 		numSightings: gSightings.count(),
 		sightingsByYear: gSightings.byYear(),
 		sightingsByMonth: gSightings.byMonth(),
@@ -177,7 +184,6 @@ function renderHome() {
 		numChecklists: gSightings.getUniqueValues('Submission ID').length,
 		earliest: gSightings.earliestDateObject,
 		latest: gSightings.latestDateObject,
-		photoOfTheWeek: photosThisWeek.pop(),
 		owner: 'Bill Walker',
 	});
 }
@@ -403,6 +409,7 @@ function renderSearchResults(inTerm) {
 
 var routingMap = {
 	'#home' : renderHome,
+	'#stats' : renderStats,
 	'#chrono' : renderChrono,
 	'#photos' : renderPhotos,
 	'#photo' : renderPhoto,
