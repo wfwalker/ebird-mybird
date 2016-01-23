@@ -284,6 +284,7 @@ function renderPhotos() {
 
 function renderLocations() {
 	renderTemplate('locations', 'Locations', {
+		count: gSightings.getUniqueValues('Location').length,
 		hierarchy: gSightings.getLocationHierarchy(),
 	});
 }
