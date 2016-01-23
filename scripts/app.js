@@ -271,7 +271,6 @@ function renderPhotos() {
 		}
 	}
 
-	//var arr = Object.keys(obj).map(function (key) {return obj[key]});
 	var pairs = Object.keys(photoCommonNames).map(function(key) { return [key, photoCommonNames[key]]; });
 	pairs.sort(function (x, y) { return x[1] - y[1]; });
 
