@@ -210,8 +210,8 @@ function renderTrips() {
 function renderBigDays() {
 	var speciesByDate = gSightings.getSpeciesByDate();
 	var bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]]; });
-	var bigDays = bigDays.filter(function (x) { return x[1].length > 100; });
-	bigDays = bigDays.map(function (x) { return { date: x[0], count: x[1].length }; });
+	var bigDays = bigDays.filter(function (x) { return x[1].commonNames.length > 100; });
+	bigDays = bigDays.map(function (x) { return { date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length }; });
 	bigDays.sort(function (x,y) { return y.count - x.count; } );
 
 	renderTemplate('bigdays', 'Big Days', {
