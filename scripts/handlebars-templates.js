@@ -1,16 +1,16 @@
 this["ebirdmybird"] = this["ebirdmybird"] || {};
 this["ebirdmybird"]["bigdays"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
-    var alias1=container.lambda, alias2=container.escapeExpression;
+    var alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {};
 
-  return "		<div>\n			<a href=\"#trip/"
-    + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "\">"
-    + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "</a>:\n			"
+  return "		<div>\n			"
     + alias2(alias1((depth0 != null ? depth0.count : depth0), depth0))
-    + " species,\n			"
-    + alias2(helpers.lookup.call(depth0 != null ? depth0 : {},(depths[1] != null ? depths[1].customDayNames : depths[1]),(depth0 != null ? depth0.date : depth0),{"name":"lookup","hash":{},"data":data}))
-    + "\n		</div>\n";
+    + " species,\n			<a href=\"#trip/"
+    + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
+    + "\">\n				"
+    + alias2((helpers.nicedate || (depth0 && depth0.nicedate) || helpers.helperMissing).call(alias3,(depth0 != null ? depth0.dateObject : depth0),{"name":"nicedate","hash":{},"data":data}))
+    + ": "
+    + alias2(helpers.lookup.call(alias3,(depths[1] != null ? depths[1].customDayNames : depths[1]),(depth0 != null ? depth0.date : depth0),{"name":"lookup","hash":{},"data":data}))
+    + "\n			</a>\n		</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1;
 

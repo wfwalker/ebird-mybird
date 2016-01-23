@@ -3,9 +3,10 @@
 <div>
 	{{#each bigDays}}
 		<div>
-			<a href="#trip/{{this.date}}">{{this.date}}</a>:
 			{{this.count}} species,
-			{{lookup ../customDayNames this.date}}
+			<a href="#trip/{{this.date}}">
+				{{nicedate this.dateObject}}: {{lookup ../customDayNames this.date}}
+			</a>
 		</div>
 	{{/each}}
 </div>

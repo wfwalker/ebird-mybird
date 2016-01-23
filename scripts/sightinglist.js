@@ -216,10 +216,13 @@ SightingList.prototype.getSpeciesByDate = function() {
 		var sighting = this.rows[index];
 
 		if (! this._speciesByDate[sighting['Date']]) {
-			this._speciesByDate[sighting['Date']] = [];
+			this._speciesByDate[sighting['Date']] = {
+				commonNames: [],
+				dateObject: sighting['DateObject'],
+			};
 		}
-		if (this._speciesByDate[sighting['Date']].indexOf(sighting['Common Name']) < 0) {
-			this._speciesByDate[sighting['Date']].push(sighting['Common Name']);
+		if (this._speciesByDate[sighting['Date']].commonNames.indexOf(sighting['Common Name']) < 0) {
+			this._speciesByDate[sighting['Date']].commonNames.push(sighting['Common Name']);
 		}
 	};
 
