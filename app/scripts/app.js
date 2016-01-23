@@ -22,14 +22,7 @@ var gOmittedCommonNames = [];
 var gCustomDayNames = [];
 var gPhotos = [];
 var gCompiledTemplates = {};
-var gIndex = lunr(function () {
-    this.field('location');
-    this.field('common');
-    this.field('county');
-    this.field('trip');
-    this.field('scientific');
-    this.ref('id');
-});
+var gIndex = null;
 
 function renderTemplate(inPrefix, inPageTitle, inData) {
 	var compiledTemplate = ebirdmybird[inPrefix];
@@ -639,7 +632,7 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 		gSightings = new SightingList(results.data);
 		gSightings.setGlobalIDs();
 		routeBasedOnHash();
-		gSightings.addToIndex(gIndex);
+		gIndex = gSightings.createIndex();
 	});
 
 	window.onhashchange = routeBasedOnHash;
