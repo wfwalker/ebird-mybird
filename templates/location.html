@@ -4,7 +4,10 @@
 
 <div>
 	<a target="_blank" href="https://www.openstreetmap.org/?mlat={{sightingList.rows.0.Latitude}}&mlon={{sightingList.rows.0.Longitude}}#map=10/{{sightingList.rows.0.Latitude}}/{{sightingList.rows.0.Longitude}}">
-		{{sightingList.rows.0.Latitude}},{{sightingList.rows.0.Latitude}}
+		map {{sightingList.rows.0.Latitude}},{{sightingList.rows.0.Latitude}}
+	</a>|
+	<a target="_blank" href="http://forecast.io/#/f/{{sightingList.rows.0.Latitude}},{{sightingList.rows.0.Longitude}}">
+		forecast.io
 	</a>
 </div>
 
