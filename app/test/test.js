@@ -4,6 +4,7 @@ var assert = require('assert');
 
 var SightingList = require ('../scripts/sightinglist.js');
 var Papa = require ('../scripts/papaparse.js');
+var huge = require('./ebird.json');
 
 var sampleRow = {
 	'Submission ID':'S7756102',
@@ -21,7 +22,7 @@ var sampleRow = {
 	'Protocol':'eBird - Casual Observation',
 	'Duration (Min)':'0',
 	'All Obs Reported':'1',
-	'DateObject':'1996-02-10T08:00:00.000Z'
+	'DateObject':'1996-02-10T08:00:00.000Z',
 };
 
 // needed by SightingList constructor
@@ -32,6 +33,19 @@ describe('Array', function() {
 		it('should return -1 when the value is not present', function () {
 			assert.equal(-1, [1,2,3].indexOf(5));
 			assert.equal(-1, [1,2,3].indexOf(0));
+		});
+	});
+});
+
+describe('huge', function() {
+	describe('big', function() {
+		it('has lots of entries', function() {
+			assert.equal(28515, huge.length);
+		});
+
+		it('should have quite a few common names', function () {
+			hugeList = new SightingList(huge);
+			assert.equal(1200, hugeList.getUniqueValues('Common Name').length);
 		});
 	});
 });

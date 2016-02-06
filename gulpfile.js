@@ -32,6 +32,16 @@ var csswring = require('csswring');
 var path = require('path');
 var debounce = require('lodash.debounce');
 var mocha = require('gulp-mocha');
+var convert = require('gulp-convert');
+ 
+gulp.task('testdata', function(){
+  gulp.src(['app/data/ebird.csv'])
+    .pipe(convert({
+      from: 'csv',
+      to: 'json'
+     }))
+    .pipe(gulp.dest('app/test/'));
+});
 
 gulp.task('test', function () {
   return gulp.src('app/test/test.js', { read: false })

@@ -17,6 +17,7 @@
     "css-mqpacker": "^4.0.0",
     "csswring": "^4.0.0",
     "gulp-concat": "^2.6.0",
+    "gulp-convert": "^0.2.0",
     "gulp-declare": "^0.3.0",
     "gulp-eslint": "^1.1.0",
     "gulp-handlebars": "^4.0.0",
