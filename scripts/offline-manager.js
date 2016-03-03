@@ -8,7 +8,7 @@ function updateFound() {
         // Only show the prompt if there is currently a controller so it is not
         // shown on first load.
         if (navigator.serviceWorker.controller &&
-            window.confirm('An updated version of this page is available, would you like to update?')) {
+            window.confirm('An updated version of ebird-mybird is available, would you like to update?')) {
           window.location.reload();
           return;
         }
