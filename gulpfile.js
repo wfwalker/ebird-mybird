@@ -16,7 +16,7 @@
 
 'use strict';
 
-var connect = require('gulp-connect');
+// var connect = require('gulp-connect');
 var gulp = require('gulp');
 var oghliner = require('oghliner');
 var handlebars = require('gulp-handlebars');
@@ -33,6 +33,7 @@ var path = require('path');
 var debounce = require('lodash.debounce');
 var mocha = require('gulp-mocha');
 var convert = require('gulp-convert');
+var nodemon = require('gulp-nodemon');
  
 gulp.task('testdata', function(){
   gulp.src(['app/data/ebird.csv'])
@@ -132,7 +133,7 @@ gulp.task('offline', ['build'], function() {
 });
 
 gulp.task('serve', ['offline'], function () {
-  connect.server({
-    root: 'dist',
-  });
-});
+  nodemon({
+    script: 'server/server.js'
+  })
+})
