@@ -632,7 +632,8 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 
 	Papa.SCRIPT_PATH = 'scripts/papaparse.js';
 
-	csvParse(window.location.pathname + 'data/ebird.csv').then(function(results) {
+	var ebirdURL = window.location.protocol + '//' + window.location.host + '/data/ebird.csv';
+	csvParse(ebirdURL).then(function(results) {
 		gSightings = new SightingList(results.data);
 		gSightings.setGlobalIDs();
 		routeBasedOnHash();
