@@ -290,21 +290,28 @@ function renderLocations() {
 }
 
 function renderLocation(inLocationName) {
-	var locationSightingsTaxonomic = gSightings.filter(function(s) { return s['Location'] == inLocationName; });
-	locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var locationRequest = new XMLHttpRequest();
 
-	var locationSightingList = new SightingList(locationSightingsTaxonomic);
+	locationRequest.onload = function(e) {
+		console.log('LOADED', locationRequest.response);
 
-	renderTemplate('location', inLocationName, {
-		name: inLocationName,
-		chartID: 'bymonth' + Date.now(),
-		showChart: locationSightingsTaxonomic.length > 100,
-		sightingsByMonth: locationSightingList.byMonth(),
-		photos: gPhotos.filter(function(p) { return p.Location == inLocationName; }),
-		locationSightingsTaxonomic: locationSightingsTaxonomic,
-		sightingList: locationSightingList,
-		customDayNames: gCustomDayNames,
-	});
+		var tmp = JSON.parse(locationRequest.response);
+		var locationSightingList = new SightingList(tmp);
+
+		renderTemplate('location', inLocationName, {
+			name: inLocationName,
+			chartID: 'bymonth' + Date.now(),
+			showChart: locationSightingList.length > 100,
+			sightingsByMonth: locationSightingList.byMonth(),
+			photos: gPhotos.filter(function(p) { return p.Location == inLocationName; }),
+			sightingList: locationSightingList,
+			customDayNames: gCustomDayNames,
+		});
+
+	}
+
+	locationRequest.open("GET", '/locationSightingsTaxonomic/' + inLocationName);
+	locationRequest.send();
 }
 
 function renderCounty(inCountyName) {

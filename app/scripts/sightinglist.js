@@ -114,7 +114,7 @@ SightingList.prototype.filter = function(filterFunc) {
 	return this.rows.filter(filterFunc);
 };
 
-SightingList.prototype.count = function() {
+SightingList.prototype.length = function() {
 	return this.rows.length;
 };
 
