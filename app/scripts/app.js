@@ -301,7 +301,7 @@ function renderLocation(inLocationName) {
 		renderTemplate('location', inLocationName, {
 			name: inLocationName,
 			chartID: 'bymonth' + Date.now(),
-			showChart: locationSightingList.length > 100,
+			showChart: locationSightingList.length() > 100,
 			sightingsByMonth: locationSightingList.byMonth(),
 			photos: gPhotos.filter(function(p) { return p.Location == inLocationName; }),
 			sightingList: locationSightingList,
