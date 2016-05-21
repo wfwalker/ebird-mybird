@@ -293,7 +293,7 @@ function renderLocation(inLocationName) {
 	var locationRequest = new XMLHttpRequest();
 
 	locationRequest.onload = function(e) {
-		console.log('LOADED', locationRequest.response);
+		console.log('location loaded', locationRequest.response);
 
 		var tmp = JSON.parse(locationRequest.response);
 		var locationSightingList = new SightingList(tmp);
@@ -315,24 +315,29 @@ function renderLocation(inLocationName) {
 }
 
 function renderCounty(inCountyName) {
-	var countySightingsTaxonomic = gSightings.filter(function(s) { return s['County'] == inCountyName; });
-	countySightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var countyRequest = new XMLHttpRequest();
 
-	var countySightingList = new SightingList(countySightingsTaxonomic);
-	var countyLocations = countySightingList.getUniqueValues('Location');
+	countyRequest.onload = function(e) {
+		console.log('county loaded', countyRequest.response);
 
+		var tmp = JSON.parse(countyRequest.response);
+		var countySightingList = new SightingList(tmp);
+		var countyLocations = countySightingList.getUniqueValues('Location');
 
-	renderTemplate('county', inCountyName + ' County', {
-		name: inCountyName,
-		chartID: 'bymonth' + Date.now(),
-		sightingsByMonth: countySightingList.byMonth(),
-		photos: gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; }),
-		state: countySightingsTaxonomic[0]['State/Province'],
-		sightingList: countySightingList,
-		countySightingsTaxonomic: countySightingsTaxonomic,
-		taxons: countySightingList.commonNames,
-		customDayNames: gCustomDayNames,
-	});
+		renderTemplate('county', inCountyName + ' County', {
+			name: inCountyName,
+			chartID: 'bymonth' + Date.now(),
+			sightingsByMonth: countySightingList.byMonth(),
+			photos: gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; }),
+			state: countySightingList.rows[0]['State/Province'],
+			sightingList: countySightingList,
+			taxons: countySightingList.commonNames,
+			customDayNames: gCustomDayNames,
+		});
+	}
+
+	countyRequest.open("GET", '/countySightingsTaxonomic/' + inCountyName);
+	countyRequest.send();
 }
 
 function renderTaxons() {

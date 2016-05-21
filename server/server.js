@@ -34,7 +34,17 @@ app.get('/locationSightingsTaxonomic/:location_name', function(req, resp, next) 
 	var locationSightingsTaxonomic = gSightings.filter(function(s) { return s['Location'] == req.params.location_name; });
 	locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
-	console.log('name', req.params.location_name, locationSightingsTaxonomic.length);
+	console.log('location sightings', req.params.location_name, locationSightingsTaxonomic.length);
 
 	resp.json(locationSightingsTaxonomic);
+});
+
+
+app.get('/countySightingsTaxonomic/:county_name', function(req, resp, next) {
+	var countySightingsTaxonomic = gSightings.filter(function(s) { return s['County'] == req.params.county_name; });
+	countySightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	console.log('county sightings', req.params.county_name, countySightingsTaxonomic.length);
+
+	resp.json(countySightingsTaxonomic);
 });
