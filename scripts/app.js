@@ -159,13 +159,23 @@ function byMonthForSightings(inData, inElement) {
 }
 
 function renderHome() {
-	var currentWeekOfYear = new Date().getWeek();
-	var photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });
+	var photosThisWeekRequest = new XMLHttpRequest();
 
-	renderTemplate('home', 'Home', {
-		photoOfTheWeek: photosThisWeek.pop(),
-		owner: 'Bill Walker',
-	});
+	photosThisWeekRequest.onload = function(e) {
+		console.log('home loaded', photosThisWeekRequest.response);
+
+		var tmp = JSON.parse(photosThisWeekRequest.response);
+		var photosThisWeekData = new SightingList(tmp);
+
+		console.log(photosThisWeekData);
+		renderTemplate('home', 'Home', {
+			photoOfTheWeek: photosThisWeekData.rows.pop(),
+			owner: 'Bill Walker',
+		});
+	}
+
+	photosThisWeekRequest.open("GET", '/photosThisWeek');
+	photosThisWeekRequest.send();
 }
 
 function renderStats() {
@@ -633,8 +643,6 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 	document.addEventListener('DOMContentLoaded', function(event) { 
 		registerHelpers();
 
-		renderLoading();
-
 		document.getElementById('gosearch').addEventListener('click', function() {
 			var searchText = document.getElementById('searchtext').value;
 			history.pushState({ searchText: searchText }, 'ebird-mybird | Search', '#search/' + searchText);
@@ -642,15 +650,9 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 		});
 	});
 
-	Papa.SCRIPT_PATH = 'scripts/papaparse.js';
+	gSightings = [];
 
-	var ebirdURL = window.location.protocol + '//' + window.location.host + '/data/ebird.csv';
-	csvParse(ebirdURL).then(function(results) {
-		gSightings = new SightingList(results.data);
-		gSightings.setGlobalIDs();
-		routeBasedOnHash();
-		gIndex = gSightings.createIndex();
-	});
+	routeBasedOnHash();
 
 	window.onhashchange = routeBasedOnHash;
 
