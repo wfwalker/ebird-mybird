@@ -2,6 +2,7 @@
 
 var express = require('express');
 var babyParse = require('babyparse');
+var SightingList = require('../app/scripts/sightinglist.js');
 var fs = require('fs');
 
 var myPort = process.env.PORT || 8090;
@@ -19,13 +20,31 @@ app.use("/", express.static('dist'));
 
 var gSightings = [];
 var gPhotos = [];
+var gOmittedCommonNames = [];
+var gCustomDayNames = [];
+var gPhotos = [];
+var gIndex = null;
+
+fs.readFile('app/data/day-names.json', 'utf8', function(err, data) {
+	if (err) throw err;
+
+	gCustomDayNames = JSON.parse(data);
+	console.log('loaded custom day names', Object.keys(gCustomDayNames).length);
+});
+
+fs.readFile('app/data/omitted-common-names.json', 'utf8', function(err, data) {
+	if (err) throw err;
+
+	gOmittedCommonNames = JSON.parse(data);
+	console.log('loaded ommitted common names', Object.keys(gOmittedCommonNames).length);
+});
 
 fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 	if (err) throw err;
 	var ebird = babyParse.parse(data, {
 			header: true,
 		});
-	console.log('parsed', ebird.data.length);
+	console.log('parsed ebird', ebird.data.length);
 	gSightings = ebird.data;
 });
 
@@ -51,6 +70,8 @@ fs.readFile('app/data/photos.json', 'utf8', function(err, data) {
 		var newDate = new Date(fixedDateString);
 		photo['DateObject'] = newDate;
 	}
+
+	console.log('parsed photos', gPhotos.length);
 });
 
 // ADD getWeek to Date class
@@ -71,21 +92,30 @@ app.get('/photosThisWeek', function(req, resp, next) {
 	resp.json(photosThisWeek);
 });
 
-app.get('/locationSightingsTaxonomic/:location_name', function(req, resp, next) {
-	var locationSightingsTaxonomic = gSightings.filter(function(s) { return s['Location'] == req.params.location_name; });
-	locationSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+app.get('/location/:location_name', function(req, resp, next) {
+	var tmp = gSightings.filter(function(s) { return s['Location'] == req.params.location_name; });
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var photos = gPhotos.filter(function(p) { return p.Location == req.params.location_name; });
 
-	console.log('location sightings', req.params.location_name, locationSightingsTaxonomic.length);
+	var locationSightingList = new SightingList(tmp, photos);
 
-	resp.json(locationSightingsTaxonomic);
+	console.log('location sightings', req.params.location_name, locationSightingList.rows.length);
+
+	resp.json(locationSightingList);
 });
 
 
-app.get('/countySightingsTaxonomic/:county_name', function(req, resp, next) {
-	var countySightingsTaxonomic = gSightings.filter(function(s) { return s['County'] == req.params.county_name; });
-	countySightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+app.get('/county/:county_name', function(req, resp, next) {
+	var tmp = gSightings.filter(function(s) { return s['County'] == req.params.county_name; });
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
-	console.log('county sightings', req.params.county_name, countySightingsTaxonomic.length);
+	var countySightingList = new SightingList(tmp);
+	// TODO: can't compute photos before creating list
+	var countyLocations = countySightingList.getUniqueValues('Location');
+	countySightingList.photos = gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; });
 
-	resp.json(countySightingsTaxonomic);
+
+	console.log('county sightings', req.params.county_name, countySightingList.length());
+
+	resp.json(countySightingList);
 });
