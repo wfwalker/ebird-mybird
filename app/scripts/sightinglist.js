@@ -52,12 +52,16 @@ SightingList.prototype.initialize = function(inData) {
 	this.rowsByMonth = inData.rowsByMonth;
 	this._speciesByDate = inData.speciesByDate;
 	this._earliestRowByCommonName = inData._earliestRowByCommonName;
-	this.earliestDateObject = inData.earliestDateObject;
-	this.latestDateObject = inData.latestDateObject;
+	this.earliestDateObject = new Date(inData.earliestDateObject);
+	this.latestDateObject = new Date(inData.latestDateObject);
 	this.dates = inData.dates;
-	// TODO: this is not a list of date objects!
 	this.dateObjects = inData.dateObjects;
 	this.photos = inData.photos;
+
+	// fix the dates
+	for (var index = 0; index < this.dateObjects.length; index++) {
+		this.dateObjects[index] = new Date(this.dateObjects[index]);
+	}
 };
 
 SightingList.prototype.setGlobalIDs = function() {
