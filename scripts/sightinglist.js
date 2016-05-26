@@ -22,7 +22,7 @@
 // Species Comments,
 // Checklist Comments
 
-var SightingList = function (inRows) {
+var SightingList = function (inRows, inPhotos) {
 	this.rows = [];
 	this._uniqueValuesCache = {};
 	this.rowsByYear = {};
@@ -33,6 +33,7 @@ var SightingList = function (inRows) {
 	this.latestDateObject = null;
 	this.dates = [];
 	this.dateObjects = [];
+	this.photos = inPhotos;
 
 
 	if (inRows) {
@@ -42,6 +43,21 @@ var SightingList = function (inRows) {
 			throw new Error('not an array');
 		}
 	}
+};
+
+SightingList.prototype.initialize = function(inData) {
+	this.rows = inData.rows;
+	this._uniqueValuesCache = inData._uniqueValuesCache;
+	this.rowsByYear = inData.rowsByYear;
+	this.rowsByMonth = inData.rowsByMonth;
+	this._speciesByDate = inData.speciesByDate;
+	this._earliestRowByCommonName = inData._earliestRowByCommonName;
+	this.earliestDateObject = inData.earliestDateObject;
+	this.latestDateObject = inData.latestDateObject;
+	this.dates = inData.dates;
+	// TODO: this is not a list of date objects!
+	this.dateObjects = inData.dateObjects;
+	this.photos = inData.photos;
 };
 
 SightingList.prototype.setGlobalIDs = function() {

@@ -17,12 +17,7 @@ Date.prototype.getWeek = function() {
   return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
 };
 
-var gSightings = null;
-var gOmittedCommonNames = [];
-var gCustomDayNames = [];
-var gPhotos = [];
 var gCompiledTemplates = {};
-var gIndex = null;
 
 function renderTemplate(inPrefix, inPageTitle, inData) {
 	var compiledTemplate = ebirdmybird[inPrefix];
@@ -303,24 +298,24 @@ function renderLocation(inLocationName) {
 	var locationRequest = new XMLHttpRequest();
 
 	locationRequest.onload = function(e) {
-		console.log('location loaded', locationRequest.response);
+		console.log('location loaded');
 
 		var tmp = JSON.parse(locationRequest.response);
-		var locationSightingList = new SightingList(tmp);
+		var locationSightingList = new SightingList();
+		locationSightingList.initialize(tmp);
 
 		renderTemplate('location', inLocationName, {
 			name: inLocationName,
 			chartID: 'bymonth' + Date.now(),
 			showChart: locationSightingList.length() > 100,
 			sightingsByMonth: locationSightingList.byMonth(),
-			photos: gPhotos.filter(function(p) { return p.Location == inLocationName; }),
+			photos: locationSightingList.photos,
 			sightingList: locationSightingList,
-			customDayNames: gCustomDayNames,
 		});
 
 	}
 
-	locationRequest.open("GET", '/locationSightingsTaxonomic/' + inLocationName);
+	locationRequest.open("GET", '/location/' + inLocationName);
 	locationRequest.send();
 }
 
@@ -328,25 +323,24 @@ function renderCounty(inCountyName) {
 	var countyRequest = new XMLHttpRequest();
 
 	countyRequest.onload = function(e) {
-		console.log('county loaded', countyRequest.response);
+		console.log('county loaded');
 
 		var tmp = JSON.parse(countyRequest.response);
-		var countySightingList = new SightingList(tmp);
-		var countyLocations = countySightingList.getUniqueValues('Location');
+		var countySightingList = new SightingList();
+		countySightingList.initialize(tmp);
 
 		renderTemplate('county', inCountyName + ' County', {
 			name: inCountyName,
 			chartID: 'bymonth' + Date.now(),
 			sightingsByMonth: countySightingList.byMonth(),
-			photos: gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; }),
+			photos: countySightingList.photos,
 			state: countySightingList.rows[0]['State/Province'],
 			sightingList: countySightingList,
 			taxons: countySightingList.commonNames,
-			customDayNames: gCustomDayNames,
 		});
 	}
 
-	countyRequest.open("GET", '/countySightingsTaxonomic/' + inCountyName);
+	countyRequest.open("GET", '/county/' + inCountyName);
 	countyRequest.send();
 }
 
@@ -503,46 +497,6 @@ function getText(url) {
 	});
 }
 
-function loadCustomDayNames() {
-	return getText('./data/day-names.json').then(function(results) {
-		gCustomDayNames = JSON.parse(results);
-		console.log('loaded custom day names', Object.keys(gCustomDayNames).length);
-	});
-}
-
-function loadOmittedCommonNames() {
-	return getText('./data/omitted-common-names.json').then(function(results) {
-		gOmittedCommonNames = JSON.parse(results);
-		console.log('loaded omitted common names', Object.keys(gOmittedCommonNames).length);
-	});
-}
-
-function loadPhotos() {
-	return getText('./data/photos.json').then(function(results) {
-		gPhotos = JSON.parse(results);
-		console.log('loaded photos', Object.keys(gPhotos).length);
-
-		for (var index = 0; index < gPhotos.length; index++)
-		{
-			var photo = gPhotos[index];
-
-			// set the photos's ID as its index in this array.
-			// TODO: not permanently stable
-			photo.id = index;
-
-			// Parse the date
-			var pieces = photo['Date'].split('-');
-
-			// order the pieces in a sensible way
-			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
-
-			// create and save the new dat
-			var newDate = new Date(fixedDateString);
-			photo['DateObject'] = newDate;
-		}
-	});
-}
-
 function registerHelpers() {
 	Handlebars.registerHelper('nicedate', function(inDate) {
 		if (inDate) {
@@ -623,18 +577,6 @@ function registerHelpers() {
 	});
 }
 
-function csvParse(file) {
-	return new Promise(function(resolve, reject) {
-		Papa.parse(file, {
-			download: true,
-			header: true,
-			worker: true,
-			complete: resolve,
-			error: reject,
-		});
-	});
-}
-
 // REDIRECT to HTTPS!
 var host = 'wfwalker.github.io';
 if ((host == window.location.host) && (window.location.protocol != 'https:')) {
@@ -655,10 +597,6 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 	routeBasedOnHash();
 
 	window.onhashchange = routeBasedOnHash;
-
-	loadCustomDayNames();
-	loadOmittedCommonNames();
-	loadPhotos();
 }
 
 
