@@ -329,10 +329,17 @@ function renderPhotos() {
 }
 
 function renderLocations() {
-	renderTemplate('locations', 'Locations', {
-		count: gSightings.getUniqueValues('Location').length,
-		hierarchy: gSightings.getLocationHierarchy(),
-	});
+	var locationsRequest = new XMLHttpRequest();
+
+	locationsRequest.onload = function(e) {
+		console.log('locations loaded');
+
+		var locationsData = JSON.parse(locationsRequest.response);
+		renderTemplate('locations', 'locations', locationsData);
+	}
+
+	locationsRequest.open("GET", '/locations');
+	locationsRequest.send();
 }
 
 function renderLocation(inLocationName) {

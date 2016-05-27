@@ -90,6 +90,13 @@ app.get('/photosThisWeek', function(req, resp, next) {
 	resp.json(photosThisWeek);
 });
 
+app.get('/locations', function(req, resp, next) {
+	resp.json({
+		count: gSightingList.getUniqueValues('Location').length,
+		hierarchy: gSightingList.getLocationHierarchy(),
+	});
+});
+
 app.get('/location/:location_name', function(req, resp, next) {
 	var tmp = gSightingList.filter(function(s) { return s['Location'] == req.params.location_name; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
