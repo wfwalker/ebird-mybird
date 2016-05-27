@@ -1,5 +1,9 @@
 // server.js
 
+var gSightingList = null;
+var gPhotos = [];
+var gIndex = null;
+
 var express = require('express');
 var babyParse = require('babyparse');
 var SightingList = require('../app/scripts/sightinglist.js');
@@ -18,25 +22,18 @@ app.use("/", express.static('dist'));
 
 // parse the ebird data so we can make a REST API for it
 
-var gSightings = [];
-var gPhotos = [];
-var gOmittedCommonNames = [];
-var gCustomDayNames = [];
-var gPhotos = [];
-var gIndex = null;
-
 fs.readFile('app/data/day-names.json', 'utf8', function(err, data) {
 	if (err) throw err;
 
-	gCustomDayNames = JSON.parse(data);
-	console.log('loaded custom day names', Object.keys(gCustomDayNames).length);
+	SightingList.setCustomDayNames(JSON.parse(data));
+	console.log('loaded custom day names', Object.keys(SightingList.customDayNames).length);
 });
 
 fs.readFile('app/data/omitted-common-names.json', 'utf8', function(err, data) {
 	if (err) throw err;
 
-	gOmittedCommonNames = JSON.parse(data);
-	console.log('loaded ommitted common names', Object.keys(gOmittedCommonNames).length);
+	SightingList.setOmittedCommonNames(JSON.parse(data));
+	console.log('loaded omitted common names', Object.keys(SightingList.omittedCommonNames).length);
 });
 
 fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
@@ -45,7 +42,8 @@ fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 			header: true,
 		});
 	console.log('parsed ebird', ebird.data.length);
-	gSightings = ebird.data;
+	gSightingList = new SightingList();
+	gSightingList.addRows(ebird.data);
 });
 
 fs.readFile('app/data/photos.json', 'utf8', function(err, data) {
@@ -93,7 +91,7 @@ app.get('/photosThisWeek', function(req, resp, next) {
 });
 
 app.get('/location/:location_name', function(req, resp, next) {
-	var tmp = gSightings.filter(function(s) { return s['Location'] == req.params.location_name; });
+	var tmp = gSightingList.filter(function(s) { return s['Location'] == req.params.location_name; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 	var photos = gPhotos.filter(function(p) { return p.Location == req.params.location_name; });
 
@@ -104,9 +102,40 @@ app.get('/location/:location_name', function(req, resp, next) {
 	resp.json(locationSightingList);
 });
 
+app.get('/taxon/:common_name', function(req, resp, next) {
+	var tmp = gSightingList.filter(function(s) { return s['Common Name'] == req.params.common_name; });
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var photos = gPhotos.filter(function(p) { return p['Common Name'] == req.params.common_name; });
+
+	var taxonSightingList = new SightingList(tmp, photos);
+
+	console.log('taxon sightings', req.params.common_name, taxonSightingList.rows.length);
+
+	resp.json(taxonSightingList);
+});
+
+app.get('/trips', function(req, resp, next) {
+	// TODO: feature envy; move this into sighting list?
+	resp.json({
+		trips: gSightingList.dateObjects,
+		customDayNames: SightingList.customDayNames,		
+	});
+});
+
+app.get('/trip/:trip_date', function(req, resp, next) {
+	var tmp = gSightingList.filter(function(s) { return s['Date'] == req.params.trip_date; });
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var photos = gPhotos.filter(function(p) { return p.Date == req.params.trip_date; });
+
+	var tripSightingList = new SightingList(tmp, photos);
+
+	console.log('trip sightings', req.params.trip_date, tripSightingList.rows.length);
+
+	resp.json(tripSightingList);
+});
 
 app.get('/county/:county_name', function(req, resp, next) {
-	var tmp = gSightings.filter(function(s) { return s['County'] == req.params.county_name; });
+	var tmp = gSightingList.filter(function(s) { return s['County'] == req.params.county_name; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 	var countySightingList = new SightingList(tmp);

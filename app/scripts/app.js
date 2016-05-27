@@ -157,7 +157,7 @@ function renderHome() {
 	var photosThisWeekRequest = new XMLHttpRequest();
 
 	photosThisWeekRequest.onload = function(e) {
-		console.log('home loaded', photosThisWeekRequest.response);
+		console.log('home loaded');
 
 		var tmp = JSON.parse(photosThisWeekRequest.response);
 		var photosThisWeekData = new SightingList(tmp);
@@ -204,10 +204,22 @@ function renderChrono() {
 }
 
 function renderTrips() {
-	renderTemplate('trips', 'Trips', {
-		trips: gSightings.dateObjects,
-		customDayNames: gCustomDayNames,
-	});
+	var tripsRequest = new XMLHttpRequest();
+
+	tripsRequest.onload = function(e) {
+		console.log('trips loaded');
+
+		// TODO: need special magic decorator around JSON.parse that reinflates DateObjects
+		
+		var tripsData = JSON.parse(tripsRequest.response);
+		for (var index = 0; index < tripsData.trips.length; index++) {
+			tripsData.trips[index] = new Date(tripsData.trips[index]);
+		}
+		renderTemplate('trips', 'Trips', tripsData);
+	}
+
+	tripsRequest.open("GET", '/trips');
+	tripsRequest.send();
 }
 
 function renderBigDays() {
@@ -224,16 +236,26 @@ function renderBigDays() {
 }
 
 function renderTrip(inDate) {
-	var tripSightings = gSightings.filter(function(s) { return s['Date'] == inDate; });
-	var tripSightingList = new SightingList(tripSightings);
+	var tripRequest = new XMLHttpRequest();
 
-	renderTemplate('trip', inDate, {
-		tripDate: tripSightings[0].DateObject,
-		photos: gPhotos.filter(function(p){return p.Date == inDate;}),
-		customName: gCustomDayNames[inDate],
-		comments: tripSightingList.getUniqueValues('Checklist Comments'),
-		sightingList: tripSightingList,
-	});
+	tripRequest.onload = function(e) {
+		console.log('trip loaded');
+
+		var tmp = JSON.parse(tripRequest.response);
+		var tripSightingList = new SightingList();
+		tripSightingList.initialize(tmp);
+
+		renderTemplate('trip', inDate, {
+			tripDate: tripSightingList.rows[0].DateObject,
+			photos: tripSightingList.photos,
+			customName: tripSightingList.dayNames[0],
+			comments: tripSightingList.getUniqueValues('Checklist Comments'),
+			sightingList: tripSightingList,
+		});
+	};
+
+	tripRequest.open("GET", '/trip/' + inDate);
+	tripRequest.send();
 }
 
 function renderYear(inYear) {
@@ -355,22 +377,30 @@ function renderTaxons() {
 }
 
 function renderTaxon(inCommonName) {
-	var taxonSightings = gSightings.filter(function(s) { return s['Common Name'] == inCommonName; });
-	taxonSightings.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });
+	var taxonRequest = new XMLHttpRequest();
 
-	var taxonSightingsList = new SightingList(taxonSightings);
+	taxonRequest.onload = function(e) {
+		console.log('taxon loaded');
 
-	var scientificName = taxonSightings[0]['Scientific Name'];
+		var tmp = JSON.parse(taxonRequest.response);
+		var taxonSightingList = new SightingList();
+		taxonSightingList.initialize(tmp);
+		var scientificName = taxonSightingList.rows[0]['Scientific Name'];
 
-	renderTemplate('taxon', inCommonName, {
-		name: inCommonName,
-		showChart: taxonSightings.length > 30,
-		photos: gPhotos.filter(function(p){return p['Scientific Name'] == scientificName;}),
-		scientificName: scientificName,
-		sightingsByMonth: taxonSightingsList.byMonth(),
-		sightings: taxonSightings,
-		chartID: 'bymonth' + Date.now(),
-	});
+		renderTemplate('taxon', inCommonName, {
+			name: inCommonName,
+			showChart: taxonSightingList.length() > 30,
+			scientificName: scientificName,
+			sightingsByMonth: taxonSightingList.byMonth(),
+			photos: taxonSightingList.photos,
+			sightingList: taxonSightingList,
+			chartID: 'bymonth' + Date.now(),
+		});
+
+	}
+
+	taxonRequest.open("GET", '/taxon/' + inCommonName);
+	taxonRequest.send();
 }
 
 function renderDebug() {
