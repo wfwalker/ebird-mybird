@@ -122,6 +122,17 @@ app.get('/trips', function(req, resp, next) {
 	});
 });
 
+app.get('/year/:year', function(req, resp, next) {
+	var tmp = gSightingList.byYear()[req.params.year];
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var photos =  gPhotos.filter(function(p){ return p.Date.substring(6,10) == req.params.year; });
+	var yearSightingList = new SightingList(tmp, photos);
+
+	console.log('year', req.params.year, yearSightingList.rows.length);
+
+	resp.json(yearSightingList);
+});
+
 app.get('/trip/:trip_date', function(req, resp, next) {
 	var tmp = gSightingList.filter(function(s) { return s['Date'] == req.params.trip_date; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });

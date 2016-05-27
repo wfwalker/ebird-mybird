@@ -259,16 +259,25 @@ function renderTrip(inDate) {
 }
 
 function renderYear(inYear) {
-	var yearSightings = gSightings.byYear()[inYear];
-	yearSightings.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-	var yearSightingList = new SightingList(yearSightings);
+	var yearRequest = new XMLHttpRequest();
 
-	renderTemplate('year', inYear, {
-		year: inYear,
-		photos: gPhotos.filter(function(p){return p.Date.substring(6,10) == inYear;}),
-		yearSightings: yearSightings,
-		yearSpecies: yearSightingList.getUniqueValues('Common Name'),
-	});
+	yearRequest.onload = function(e) {
+		console.log('year loaded');
+
+		var tmp = JSON.parse(yearRequest.response);
+		var yearSightingList = new SightingList();
+		yearSightingList.initialize(tmp);
+
+		renderTemplate('year', inYear, {
+			year: inYear,
+			photos: yearSightingList.photos,
+			yearSightings: yearSightingList.rows,
+			yearSpecies: yearSightingList.getUniqueValues('Common Name'),
+		});
+	};
+
+	yearRequest.open("GET", '/year/' + inYear);
+	yearRequest.send();
 }
 
 function renderSighting(inID) {
