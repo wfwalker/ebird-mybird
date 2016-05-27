@@ -133,6 +133,11 @@ app.get('/year/:year', function(req, resp, next) {
 	resp.json(yearSightingList);
 });
 
+app.get('/sighting/:sighting_id', function(req, resp, next) {
+	console.log('sighting', req.params.sighting_id);
+	resp.json(gSightingList.rows[req.params.sighting_id]);
+});
+
 app.get('/trip/:trip_date', function(req, resp, next) {
 	var tmp = gSightingList.filter(function(s) { return s['Date'] == req.params.trip_date; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });

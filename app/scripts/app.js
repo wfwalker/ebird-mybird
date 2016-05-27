@@ -281,9 +281,19 @@ function renderYear(inYear) {
 }
 
 function renderSighting(inID) {
-	renderTemplate('sighting', gSightings.rows[inID]['Common Name'],
-		gSightings.rows[inID]
-	);
+	var sightingRequest = new XMLHttpRequest();
+
+	sightingRequest.onload = function (e) {
+		var sighting = JSON.parse(sightingRequest.response);
+		sighting.DateObject = new Date(sighting.DateObject);
+
+		renderTemplate('sighting', sighting['Common Name'],
+			sighting
+		);
+	};
+
+	sightingRequest.open('GET', '/sighting/' + inID);
+	sightingRequest.send();
 }
 
 function renderPhoto(inID) {
