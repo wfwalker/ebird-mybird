@@ -7,14 +7,14 @@
 
 {{> thumbnails}}
 
-<h4>{{nicenumber sightings.length}} sightings</h4>
+<h4>{{nicenumber sightingList.rows.length}} sightings</h4>
 
 {{#if this.showChart}}
 	<div id={{chartID}} style='padding-top: 10px'></div>
 	{{monthgraph sightingsByMonth chartID}}
 {{else}}
 	<div class="biglist">
-		{{#each sightings}}
+		{{#each sightingList.rows}}
 			<div class='biglist-item'>
 				<a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
 				<a href="#location/{{encode this.Location}}">{{this.Location}}</a>

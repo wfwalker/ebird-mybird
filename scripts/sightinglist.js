@@ -22,6 +22,7 @@
 // Species Comments,
 // Checklist Comments
 
+
 var SightingList = function (inRows, inPhotos) {
 	this.rows = [];
 	this._uniqueValuesCache = {};
@@ -33,6 +34,7 @@ var SightingList = function (inRows, inPhotos) {
 	this.latestDateObject = null;
 	this.dates = [];
 	this.dateObjects = [];
+	this.dayNames = [];
 	this.photos = inPhotos;
 
 
@@ -43,6 +45,17 @@ var SightingList = function (inRows, inPhotos) {
 			throw new Error('not an array');
 		}
 	}
+};
+
+SightingList.omittedCommonNames = [];
+SightingList.customDayNames = [];
+
+SightingList.setCustomDayNames = function(inNames) {
+	SightingList.customDayNames = inNames;
+};
+
+SightingList.setOmittedCommonNames = function(inNames) {
+	SightingList.omittedCommonNames = inNames;
 };
 
 SightingList.prototype.initialize = function(inData) {
@@ -56,11 +69,16 @@ SightingList.prototype.initialize = function(inData) {
 	this.latestDateObject = new Date(inData.latestDateObject);
 	this.dates = inData.dates;
 	this.dateObjects = inData.dateObjects;
+	this.dayNames = inData.dayNames;
 	this.photos = inData.photos;
 
 	// fix the dates
 	for (var index = 0; index < this.dateObjects.length; index++) {
 		this.dateObjects[index] = new Date(this.dateObjects[index]);
+	}
+
+	for (index = 0; index < this.rows.length; index++) {
+		this.rows[index].DateObject = new Date(this.rows[index].DateObject);
 	}
 };
 
@@ -89,6 +107,7 @@ SightingList.prototype.addRows = function(inRows) {
 			if (this.dates.indexOf(sighting['Date']) < 0) {
 				this.dates.push(sighting['Date']);
 				this.dateObjects.push(newDate);
+				this.dayNames.push(SightingList.customDayNames[sighting['Date']]);
 			}
 
 			if (this.earliestDateObject == null || newDate < this.earliestDateObject) {
