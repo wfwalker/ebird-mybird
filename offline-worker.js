@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + 'e176bef81c74069198404533b7d4140bcd6a9779';
+      return this.CACHE_PREFIX + 'ee3679fa08c5eae933e9bc09b250f5523003c1f1';
     },
 
     // This is a list of resources that will be cached.
@@ -52,7 +52,7 @@
       './images/icon_download.png', // 166867841b1cd0c08246cc00a16f36b8777f0fff
       './images/sprite_download.png', // 6e7e6d4aafb6b0f526feb0369038efd8c8f1fb6d
       './index.html', // 512aebfa178bdfe3414b1e0fa3bd23e684b9ee82
-      './scripts/compressed.js', // e6e805df3eb398b669072b62ec26c50144dd8d63
+      './scripts/compressed.js', // 303aa781b9204d4ab76daca3dd021299cef17427
       './data/day-names.json', // e9da9014f20be3ac55f8e66aeaaf0d4d1809d5c7
       './data/ebird.csv', // 23129c9037d5eb551c209111723cda9dadc9e413
       './data/omitted-common-names.json', // 2a2dfcf3b8c01de450738adc77352c1b53d97081

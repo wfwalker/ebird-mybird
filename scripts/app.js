@@ -296,10 +296,21 @@ function renderSighting(inID) {
 	sightingRequest.send();
 }
 
+
 function renderPhoto(inID) {
-	renderTemplate('photo', gPhotos[inID]['Common Name'],
-		gPhotos[inID]
-	);
+	var photoRequest = new XMLHttpRequest();
+
+	photoRequest.onload = function (e) {
+		var photo = JSON.parse(photoRequest.response);
+		photo['DateObject'] = new Date(photo['DateObject']);
+
+		renderTemplate('photo', photo['Common Name'],
+			photo
+		);
+	};
+
+	photoRequest.open('GET', '/photo/' + inID);
+	photoRequest.send();
 }
 
 function renderPhotos() {
@@ -329,10 +340,17 @@ function renderPhotos() {
 }
 
 function renderLocations() {
-	renderTemplate('locations', 'Locations', {
-		count: gSightings.getUniqueValues('Location').length,
-		hierarchy: gSightings.getLocationHierarchy(),
-	});
+	var locationsRequest = new XMLHttpRequest();
+
+	locationsRequest.onload = function(e) {
+		console.log('locations loaded');
+
+		var locationsData = JSON.parse(locationsRequest.response);
+		renderTemplate('locations', 'locations', locationsData);
+	}
+
+	locationsRequest.open("GET", '/locations');
+	locationsRequest.send();
 }
 
 function renderLocation(inLocationName) {
