@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + '0c804fb5dc247c7fe101a4c1ba4d897aa5398e37';
+      return this.CACHE_PREFIX + '344913b0795d671fcc8a91263f33c50a3ad8dec1';
     },
 
     // This is a list of resources that will be cached.
@@ -52,10 +52,10 @@
       './images/icon_download.png', // 166867841b1cd0c08246cc00a16f36b8777f0fff
       './images/sprite_download.png', // 6e7e6d4aafb6b0f526feb0369038efd8c8f1fb6d
       './index.html', // 512aebfa178bdfe3414b1e0fa3bd23e684b9ee82
-      './scripts/compressed.js', // ce0876756cd80d0e78985ff4e6e8b2ff4c7f96b4
+      './scripts/compressed.js', // 0a05e3357fd0d4fc74eb56573ca522e2ae3d187c
       './data/day-names.json', // e9da9014f20be3ac55f8e66aeaaf0d4d1809d5c7
       './data/ebird.csv', // 23129c9037d5eb551c209111723cda9dadc9e413
-      './data/omitted-common-names.json', // 2a2dfcf3b8c01de450738adc77352c1b53d97081
+      './data/omitted-common-names.json', // 9588ea11a273a4aee73a993b83240d49a5c05dfc
       './data/photos.json', // 1165b2e21278f1109e7d23105749fc49355ac0bc
       './styles/app.css', // 10d1fd63dca95c39a2c273bd4d9eca23b2cae7e0
       './styles/bundle.css', // 13afea256f48a3010d2d2e808b6fbd263176dce4

@@ -194,13 +194,22 @@ function renderLoading() {
 }
 
 function renderChrono() {
-	var earliestByCommonName = gSightings.getEarliestByCommonName();
-	var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
-	lifeSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
+	var chronoRequest = new XMLHttpRequest();
 
-	renderTemplate('chrono', 'Life List', {
-		firstSightings: lifeSightingsChronological,
-	});
+	chronoRequest.onload = function(e) {
+		console.log('chrono loaded');
+
+		// TODO: need special magic decorator around JSON.parse that reinflates DateObjects
+		
+		var chronoData = JSON.parse(chronoRequest.response);
+		for (var index = 0; index < chronoData.firstSightings.length; index++) {
+			chronoData.firstSightings[index]['DateObject'] = new Date(chronoData.firstSightings[index]['DateObject']);
+		}
+		renderTemplate('chrono', 'chrono', chronoData);
+	}
+
+	chronoRequest.open("GET", '/chrono');
+	chronoRequest.send();
 }
 
 function renderTrips() {
