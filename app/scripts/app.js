@@ -404,13 +404,20 @@ function renderCounty(inCountyName) {
 }
 
 function renderTaxons() {
-	var earliestByCommonName = gSightings.getEarliestByCommonName();
-	var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){ return earliestByCommonName[k]; });
-	lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var taxonsRequest = new XMLHttpRequest();
 
-	renderTemplate('taxons', 'Species', {
-		lifeSightings: lifeSightingsTaxonomic,
-	});
+	taxonsRequest.onload = function(e) {
+		console.log('taxons loaded');
+
+		var taxonsData = JSON.parse(taxonsRequest.response);
+		// for (var index = 0; index < taxonsData.taxons.length; index++) {
+		// 	taxonsData.taxons[index] = new Date(taxonsData.taxons[index]);
+		// }
+		renderTemplate('taxons', 'taxons', taxonsData);
+	}
+
+	taxonsRequest.open("GET", '/taxons');
+	taxonsRequest.send();
 }
 
 function renderTaxon(inCommonName) {

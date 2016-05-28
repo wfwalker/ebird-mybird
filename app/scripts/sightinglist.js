@@ -276,7 +276,7 @@ SightingList.prototype.getEarliestByCommonName = function() {
 	for (var index = 0; index < this.rows.length; index++) {
 		var sighting = this.rows[index];
 
-		if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
+		if (SightingList.omittedCommonNames.indexOf(sighting['Common Name']) < 0) {
 			if (! this._earliestRowByCommonName[sighting['Common Name']]) {
 				this._earliestRowByCommonName[sighting['Common Name']] = sighting;
 			} else if (sighting.DateObject < this._earliestRowByCommonName[sighting['Common Name']].DateObject) {
