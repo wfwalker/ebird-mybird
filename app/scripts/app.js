@@ -232,16 +232,24 @@ function renderTrips() {
 }
 
 function renderBigDays() {
-	var speciesByDate = gSightings.getSpeciesByDate();
-	var bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]]; });
-	var bigDays = bigDays.filter(function (x) { return x[1].commonNames.length > 100; });
-	bigDays = bigDays.map(function (x) { return { date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length }; });
-	bigDays.sort(function (x,y) { return y.count - x.count; } );
 
-	renderTemplate('bigdays', 'Big Days', {
-		bigDays: bigDays,
-		customDayNames: gCustomDayNames,
-	});
+	var bigDaysRequest = new XMLHttpRequest();
+
+	bigDaysRequest.onload = function(e) {
+		console.log('bigDays loaded');
+
+		// TODO: need special magic decorator around JSON.parse that reinflates DateObjects
+		
+		var bigDaysData = JSON.parse(bigDaysRequest.response);
+		for (var index = 0; index < bigDaysData.bigDays.length; index++) {
+			// TODO: different capitalization of dateObject
+			bigDaysData.bigDays[index]['dateObject'] = new Date(bigDaysData.bigDays[index]['date']);
+		}
+		renderTemplate('bigdays', 'Big Days', bigDaysData);
+	}
+
+	bigDaysRequest.open("GET", '/bigDays');
+	bigDaysRequest.send();
 }
 
 function renderTrip(inDate) {
