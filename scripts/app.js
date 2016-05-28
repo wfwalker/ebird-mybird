@@ -323,29 +323,18 @@ function renderPhoto(inID) {
 }
 
 function renderPhotos() {
-	var photoCommonNames = {};
-	var earliestByCommonName = gSightings.getEarliestByCommonName();
+	var photosRequest = new XMLHttpRequest();
 
-	for (var index = 0; index < gPhotos.length; index++) {
-		var aValue = gPhotos[index]['Common Name'];
-		if (! photoCommonNames[aValue]) {
-			if (earliestByCommonName[aValue]) {
-				photoCommonNames[aValue] = earliestByCommonName[aValue]['Taxonomic Order'];
-			} else {
-				console.log('cant find taxo order', aValue);
-			}
-		}
-	}
+	photosRequest.onload = function (e) {
+		var photos = JSON.parse(photosRequest.response);
 
-	var pairs = Object.keys(photoCommonNames).map(function(key) { return [key, photoCommonNames[key]]; });
-	pairs.sort(function (x, y) { return x[1] - y[1]; });
+		renderTemplate('photos', 'Photos',
+			photos
+		);
+	};
 
-	console.log('photo sort', photoCommonNames);
-
-	renderTemplate('photos', 'Photos', {
-		photos: gPhotos,
-		photoCommonNames: pairs.map(function (x) { return x[0]; }),
-	});
+	photosRequest.open('GET', '/photos');
+	photosRequest.send();
 }
 
 function renderLocations() {
