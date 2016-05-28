@@ -117,6 +117,14 @@ app.get('/taxons', function(req, resp, next) {
 	resp.json({lifeSightings: lifeSightingsTaxonomic});
 });
 
+app.get('/chrono', function(req, resp, next) {
+	var earliestByCommonName = gSightingList.getEarliestByCommonName();
+	var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
+	lifeSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
+
+	resp.json({firstSightings: lifeSightingsChronological});
+});
+
 app.get('/taxon/:common_name', function(req, resp, next) {
 	var tmp = gSightingList.filter(function(s) { return s['Common Name'] == req.params.common_name; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
