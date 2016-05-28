@@ -296,10 +296,21 @@ function renderSighting(inID) {
 	sightingRequest.send();
 }
 
+
 function renderPhoto(inID) {
-	renderTemplate('photo', gPhotos[inID]['Common Name'],
-		gPhotos[inID]
-	);
+	var photoRequest = new XMLHttpRequest();
+
+	photoRequest.onload = function (e) {
+		var photo = JSON.parse(photoRequest.response);
+		photo['DateObject'] = new Date(photo['DateObject']);
+
+		renderTemplate('photo', photo['Common Name'],
+			photo
+		);
+	};
+
+	photoRequest.open('GET', '/photo/' + inID);
+	photoRequest.send();
 }
 
 function renderPhotos() {

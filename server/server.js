@@ -145,6 +145,11 @@ app.get('/sighting/:sighting_id', function(req, resp, next) {
 	resp.json(gSightingList.rows[req.params.sighting_id]);
 });
 
+app.get('/photo/:photo_id', function(req, resp, next) {
+	console.log('photo', req.params.photo_id);
+	resp.json(gPhotos[req.params.photo_id]);
+});
+
 app.get('/trip/:trip_date', function(req, resp, next) {
 	var tmp = gSightingList.filter(function(s) { return s['Date'] == req.params.trip_date; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
