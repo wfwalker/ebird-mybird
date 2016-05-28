@@ -90,6 +90,27 @@ app.get('/photosThisWeek', function(req, resp, next) {
 	resp.json(photosThisWeek);
 });
 
+app.get('/photos', function(req, resp, next) {
+	var photoCommonNames = {};
+	var earliestByCommonName = gSightingList.getEarliestByCommonName();
+
+	for (var index = 0; index < gPhotos.length; index++) {
+		var aValue = gPhotos[index]['Common Name'];
+		if (! photoCommonNames[aValue]) {
+			if (earliestByCommonName[aValue]) {
+				photoCommonNames[aValue] = earliestByCommonName[aValue]['Taxonomic Order'];
+			} else {
+				console.log('cant find taxo order', aValue);
+			}
+		}
+	}
+
+	var pairs = Object.keys(photoCommonNames).map(function(key) { return [key, photoCommonNames[key]]; });
+	pairs.sort(function (x, y) { return x[1] - y[1]; });
+
+	resp.json({photos: gPhotos, photoCommonNames: pairs.map(function (x) { return x[0]; })});
+});
+
 app.get('/locations', function(req, resp, next) {
 	resp.json({
 		count: gSightingList.getUniqueValues('Location').length,
