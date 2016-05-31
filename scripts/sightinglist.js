@@ -178,32 +178,6 @@ SightingList.prototype.byMonth = function() {
 	];
 };
 
-SightingList.prototype.createIndex = function() {
-	var tmpIndex = lunr(function () {
-	    this.field('location');
-	    this.field('common');
-	    this.field('county');
-	    this.field('trip');
-	    this.field('scientific');
-	    this.ref('id');
-	});
-
-	for (var index = 0; index < this.rows.length; index++) {
-		var aValue = this.rows[index];
-
-		tmpIndex.add({
-			location: aValue['Location'],
-			county: aValue['County'],
-			common: aValue['Common Name'],
-			trip: gCustomDayNames[aValue['Date']],
-			scientific: aValue['Scientific Name'],
-			id: index,
-		});
-	}
-
-	return tmpIndex;
-};
-
 SightingList.prototype.getUniqueValues = function(fieldName) {
 	if (this._uniqueValuesCache[fieldName]) {
 		console.log('returning cached unique values for', fieldName);

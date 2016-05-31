@@ -21,6 +21,11 @@ var gCompiledTemplates = {};
 
 function renderTemplate(inPrefix, inPageTitle, inData) {
 	var compiledTemplate = ebirdmybird[inPrefix];
+
+	if (compiledTemplate == null) {
+		throw new Error('missing template "' + inPrefix + '"');
+	}
+
 	var newDiv = document.createElement('div');
 	newDiv.innerHTML = compiledTemplate(inData);
 
@@ -489,23 +494,25 @@ function renderDebug() {
 }
 
 function renderSearchResults(inTerm) {
-	var rawResults = gIndex.search(inTerm);
+	var searchRequest = new XMLHttpRequest();
 
-	console.log('raw', rawResults);
+	searchRequest.onload = function(e) {
+		var searchData = JSON.parse(searchRequest.response);
+		var tmp = new SightingList();
+		tmp.initialize(searchData.sightingList);
+		console.log('initalized sighting list', tmp);
+		searchData.sightingList = tmp;
 
-    var resultsAsSightings = rawResults.map(function (result) {
-		return gSightings.rows[result.ref];
-    });
+		for (var index = 0; index < searchData.dates.length; index++) {
+			searchData.dates[index] = new Date(searchData.dates[index]);
+		}
 
-    var searchResultsSightingList = new SightingList(resultsAsSightings);
+		console.log('search loaded', searchData);
+		renderTemplate('searchresults', 'Search Results', searchData);
+	};
 
-    console.log('search results', searchResultsSightingList);
-
-	renderTemplate('searchresults', 'Search Results', {
-		dates: searchResultsSightingList.dateObjects,
-		customDayNames: gCustomDayNames,
-		sightingList: searchResultsSightingList,
-	});
+	searchRequest.open("GET", '/search/' + inTerm);
+	searchRequest.send();
 }
 
 var routingMap = {
