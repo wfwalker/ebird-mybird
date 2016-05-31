@@ -93,8 +93,6 @@ gulp.task('compress', ['templates'], function(){
   return gulp.src([
     'app/scripts/d3.v3.js',
     'app/scripts/c3.min.js',
-    'app/scripts/lunr.js',
-    'app/scripts/papaparse.js',
     'app/scripts/handlebars-v4.0.4.js',
     'app/scripts/handlebars-templates.js',
     'app/scripts/sightinglist.js',
@@ -126,7 +124,6 @@ gulp.task('offline', ['build'], function() {
       'images/**',
       'index.html',
       'scripts/compressed.js',
-      'data/**',
       'styles/**',
     ],
   });

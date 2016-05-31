@@ -5,6 +5,7 @@ var gPhotos = [];
 var gIndex = null;
 
 var express = require('express');
+var lunr = require('lunr');
 var babyParse = require('babyparse');
 var SightingList = require('../app/scripts/sightinglist.js');
 var fs = require('fs');
@@ -38,12 +39,37 @@ fs.readFile('app/data/omitted-common-names.json', 'utf8', function(err, data) {
 
 fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 	if (err) throw err;
+
 	var ebird = babyParse.parse(data, {
 			header: true,
 		});
+
 	console.log('parsed ebird', ebird.data.length);
+
 	gSightingList = new SightingList();
 	gSightingList.addRows(ebird.data);
+
+	gIndex = lunr(function () {
+	    this.field('location');
+	    this.field('common');
+	    this.field('county');
+	    this.field('trip');
+	    this.field('scientific');
+	    this.ref('id');
+	});
+
+	for (var index = 0; index < gSightingList.rows.length; index++) {
+		var aValue = gSightingList.rows[index];
+
+		gIndex.add({
+			location: aValue['Location'],
+			county: aValue['County'],
+			common: aValue['Common Name'],
+			trip: SightingList.customDayNames[aValue['Date']],
+			scientific: aValue['Scientific Name'],
+			id: index,
+		});
+	}
 });
 
 fs.readFile('app/data/photos.json', 'utf8', function(err, data) {
@@ -191,6 +217,24 @@ app.get('/trips', function(req, resp, next) {
 	resp.json({
 		trips: gSightingList.dateObjects,
 		customDayNames: SightingList.customDayNames,		
+	});
+});
+
+app.get('/search/:terms', function(req, resp, next) {
+	var rawResults = gIndex.search(req.params.terms);
+
+    var resultsAsSightings = rawResults.map(function (result) {
+		return gSightingList.rows[result.ref];
+    });
+
+    var searchResultsSightingList = new SightingList(resultsAsSightings);
+
+    console.log('search results', resultsAsSightings.length, searchResultsSightingList.rows.length);
+
+	resp.json({
+		dates: searchResultsSightingList.dateObjects,
+		customDayNames: SightingList.customDayNames,
+		sightingList: searchResultsSightingList,
 	});
 });
 
