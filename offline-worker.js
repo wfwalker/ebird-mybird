@@ -39,18 +39,14 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + '8d948d2cb8ed7c01aa6a634008aa1c8240ef6c92';
+      return this.CACHE_PREFIX + '881a824fcc1f553e8463df699bb3f48895abe8d5';
     },
 
     // This is a list of resources that will be cached.
     RESOURCES: [
       './images/bg_hr.png', // b07cc73aaf2fc0e9841a68d05a46fe53dcbaf0a1
-      './images/blacktocat.png', // b3f0b0d7c7f103e37c8c05ffbec11d07b3a23645
-      './images/cookbook.png', // 14236001cf83475d4018ab7e66f9be83199b6953
       './images/ebird-favicon.ico', // 783739b89f16a72a7a0a55720ff6acc34048351c
       './images/ebird-favicon.png', // 3f841e97f2ecb0dc0f16478fa57c9dd00b65300f
-      './images/icon_download.png', // 166867841b1cd0c08246cc00a16f36b8777f0fff
-      './images/sprite_download.png', // 6e7e6d4aafb6b0f526feb0369038efd8c8f1fb6d
       './index.html', // 801ced4453b908f023e2522eaecdab3ef39e8f1a
       './scripts/compressed.js', // 59ebd5e85129c851e42758aea6d0928539eea799
       './styles/app.css', // 10d1fd63dca95c39a2c273bd4d9eca23b2cae7e0
