@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + '3caedda2948a20cfffd0e3c32d26d16d43d2e3bb';
+      return this.CACHE_PREFIX + '5af50004c2aa4c4822a37557a00407210edcf5f9';
     },
 
     // This is a list of resources that will be cached.
@@ -47,13 +47,12 @@
       './images/bg_hr.png', // b07cc73aaf2fc0e9841a68d05a46fe53dcbaf0a1
       './images/ebird-favicon.ico', // 783739b89f16a72a7a0a55720ff6acc34048351c
       './images/ebird-favicon.png', // 3f841e97f2ecb0dc0f16478fa57c9dd00b65300f
-      './index.html', // 801ced4453b908f023e2522eaecdab3ef39e8f1a
+      './index.html', // e667da339bda0b6b5ce6644fc0a1e1550a03ae92
       './scripts/compressed.js', // a000783eac7c0a3eaece5fa952d23c631aa3e61f
       './styles/app.css', // 10d1fd63dca95c39a2c273bd4d9eca23b2cae7e0
-      './styles/bundle.css', // 13afea256f48a3010d2d2e808b6fbd263176dce4
+      './styles/bundle.css', // 8347c80c3df0dad0a81d233c770b2e83cc48fbab
       './styles/c3.min.css', // 0ed505e8458512b29c9925c83316a48b1b838b10
-      './styles/github-light.css', // 70cce7c65d29afbb8e5c5f6068e20c41ac4c8fde
-      './styles/stylesheet.css', // eb63af06a216272c796103c67c290023e9e867dd
+      './styles/stylesheet.css', // 4d9dc681f755d8294bc44c1ddce4a04279cf7153
 
     ],
 
