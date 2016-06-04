@@ -16,128 +16,128 @@
   </head>
 
   <body>
+  <div class='container'>
+    <div class="header">
+      <h1 class="header-heading">BirdWalker</h1>
+    </div>
     <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <div>
-            <a data-hash="photos" href="#photos">photos</a>
-            <a data-hash="trips" href="#trips">trips</a>
-            <a data-hash="bigdays" href="#bigdays">big days</a>
-            <a data-hash="locations" href="#locations">locations</a>
-            <a data-hash="taxons" href="#taxons">species</a>
-            <a data-hash="home" href="#home">home</a>
-            <a data-hash="chrono" href="#chrono">chrono</a>
-            <input id="searchtext" type="text" size="20" />
-            <button id="gosearch">search</button>
-        </div>
-        </header>
+    <div class='nav-bar'>
+          <ul class='nav'>
+            <li><a data-hash="photos" href="#photos">photos</a></li>
+            <li><a data-hash="trips" href="#trips">trips</a></li>
+            <li><a data-hash="bigdays" href="#bigdays">big days</a></li>
+            <li><a data-hash="locations" href="#locations">locations</a></li>
+            <li><a data-hash="taxons" href="#taxons">species</a></li>
+            <li><a data-hash="home" href="#home">home</a></li>
+            <li><a data-hash="chrono" href="#chrono">chrono</a></li>
+            <li><input id="searchtext" type="text" size="20" /> <button id="gosearch">search</button>&nbsp;</li>
+        </ul>
     </div>
 
     <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="loading" class="hidden card inner">
+    <div class="content">
+      <section id="loading" class="hidden main">
         <div id="loading-results" class="inner">
         </div>
       </section>
 
-      <section id="home" class="hidden card inner">
+      <section id="home" class="hidden main">
         <div id='home-results' class='inner'>
         </div>
       </section>
 
-      <section id="stats" class="hidden card inner">
+      <section id="stats" class="hidden main">
         <div id='stats-results' class='inner'>
         </div>
       </section>
 
-      <section id="photos" class="hidden card inner">
+      <section id="photos" class="hidden main">
         <div id='photos-results' class='inner'>
         </div>
       </section>
 
-      <section id="photo" class="hidden card inner">
+      <section id="photo" class="hidden main">
         <div id='photo-results' class='inner'>
         </div>
       </section>
 
-      <section id="sighting" class="hidden card inner">
+      <section id="sighting" class="hidden main">
         <div id='sighting-results' class='inner'>
         </div>
       </section>
 
-      <section id="locations" class="hidden card inner">
+      <section id="locations" class="hidden main">
         <div id='locations-results' class='inner'>
         </div>
       </section>
 
-      <section id="location" class="hidden card inner">
+      <section id="location" class="hidden main">
         <div id='location-results' class='inner'>
         </div>
       </section>
 
-      <section id="county" class="hidden card inner">
+      <section id="county" class="hidden main">
         <div id='county-results' class='inner'>
         </div>
       </section>
 
-      <section id="bigdays" class="hidden card inner">
+      <section id="bigdays" class="hidden main">
         <div id='bigdays-results' class='inner'>
         </div>
       </section>
 
-      <section id="trips" class="hidden card inner">
+      <section id="trips" class="hidden main">
         <div id='trips-results' class='inner'>
         </div>
       </section>
 
-      <section id="trip" class="hidden card inner">
+      <section id="trip" class="hidden main">
         <div id='trip-results' class='inner'>
         </div>
       </section>
 
-      <section id="year" class="hidden card inner">
+      <section id="year" class="hidden main">
         <div id='year-results' class='inner'>
         </div>
       </section>
 
-      <section id="taxons" class="hidden card inner">
+      <section id="taxons" class="hidden main">
         <div id='taxons-results' class='inner'>
         </div>
       </section>
 
-      <section id="chrono" class="hidden card inner">
+      <section id="chrono" class="hidden main">
         <div id='chrono-results' class='inner'>
         </div>
       </section>
 
-      <section id="taxon" class="hidden card inner">
+      <section id="taxon" class="hidden main">
         <div id='taxon-results' class='inner'>
         </div>
       </section>
 
-      <section id="debug" class="hidden card inner">
+      <section id="debug" class="hidden main">
         <div id='debug-results' class='inner'>
         </div>
       </section>
 
-      <section id="searchresults" class="hidden card inner">
+      <section id="searchresults" class="hidden main">
         <div id='searchresults-results' class='inner'>
         </div>
       </section>
     </div>
 
     <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">
-          ebird-mybird |
-          Bootstrapped with <a target="_blank_" href="https://github.com/mozilla/oghliner/">oghliner</a> | 
-          <a target="_blank_" href="https://github.com/wfwalker/ebird-mybird">source code</a> |
-          <a target="_blank_" href="https://github.com/wfwalker/ebird-mybird/issues">bug reports</a>
-        </p>
-      </footer>
+    <div class="footer">
+      <p class="copyright">
+        ebird-mybird |
+        Bootstrapped with <a target="_blank_" href="https://github.com/mozilla/oghliner/">oghliner</a> | 
+        <a target="_blank_" href="https://github.com/wfwalker/ebird-mybird">source code</a> |
+        <a target="_blank_" href="https://github.com/wfwalker/ebird-mybird/issues">bug reports</a>
+      </p>
     </div>
 
     <script src="scripts/compressed.js"></script>
+  </div>
   </body>
 </html>

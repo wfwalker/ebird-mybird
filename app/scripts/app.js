@@ -57,7 +57,7 @@ function showSection(inSelector) {
 }
 
 function hideAllSections() {
-	var sections = document.querySelectorAll('section.card');
+	var sections = document.querySelectorAll('section.main');
 	for (var index = 0; index < sections.length; index++) {
 		sections[index].classList.remove('visible');
 		sections[index].classList.add('hidden');
@@ -530,7 +530,8 @@ function routeBasedOnHash() {
 		theHashParts[0] = '#home';
 	}
 
-	if(routingMap[theHashParts[0]]) {
+	// TODO: catch exception
+	if (routingMap[theHashParts[0]]) {
 		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
 	} else {
 		console.log('not found', window.location.hash);
