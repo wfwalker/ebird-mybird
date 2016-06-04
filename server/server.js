@@ -9,6 +9,16 @@ var lunr = require('lunr');
 var babyParse = require('babyparse');
 var SightingList = require('../app/scripts/sightinglist.js');
 var fs = require('fs');
+var winston = require('winston');
+
+var logger = new (winston.Logger)({
+    transports: [
+      new (winston.transports.Console)({
+		'timestamp': true,
+		'level': 'debug'
+      })
+    ]
+});
 
 var myPort = process.env.PORT || 8090;
 var mHost = process.env.VCAP_APP_HOST || "127.0.0.1";
@@ -27,14 +37,14 @@ fs.readFile('app/data/day-names.json', 'utf8', function(err, data) {
 	if (err) throw err;
 
 	SightingList.setCustomDayNames(JSON.parse(data));
-	console.log('loaded custom day names', Object.keys(SightingList.customDayNames).length);
+	logger.info('loaded custom day names', Object.keys(SightingList.customDayNames).length);
 });
 
 fs.readFile('app/data/omitted-common-names.json', 'utf8', function(err, data) {
 	if (err) throw err;
 
 	SightingList.setOmittedCommonNames(JSON.parse(data));
-	console.log('loaded omitted common names', Object.keys(SightingList.omittedCommonNames).length);
+	logger.info('loaded omitted common names', Object.keys(SightingList.omittedCommonNames).length);
 });
 
 fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
@@ -44,7 +54,7 @@ fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 			header: true,
 		});
 
-	console.log('parsed ebird', ebird.data.length);
+	logger.info('parsed ebird', ebird.data.length);
 
 	gSightingList = new SightingList();
 	gSightingList.addRows(ebird.data);
@@ -95,7 +105,7 @@ fs.readFile('app/data/photos.json', 'utf8', function(err, data) {
 		photo['DateObject'] = newDate;
 	}
 
-	console.log('parsed photos', gPhotos.length);
+	logger.info('parsed photos', gPhotos.length);
 });
 
 // ADD getWeek to Date class
@@ -111,12 +121,14 @@ app.get('/photosThisWeek', function(req, resp, next) {
 	var currentWeekOfYear = new Date().getWeek();
 	var photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
 
-	console.log('photos of the week', photosThisWeek.length);
+	logger.debug('photos of the week', photosThisWeek.length);
 
 	resp.json(photosThisWeek);
 });
 
 app.get('/photos', function(req, resp, next) {
+	logger.debug('/photos', gPhotos.length);
+
 	var photoCommonNames = {};
 	var earliestByCommonName = gSightingList.getEarliestByCommonName();
 
@@ -126,7 +138,7 @@ app.get('/photos', function(req, resp, next) {
 			if (earliestByCommonName[aValue]) {
 				photoCommonNames[aValue] = earliestByCommonName[aValue]['Taxonomic Order'];
 			} else {
-				console.log('cant find taxo order', aValue);
+				logger.error('cant find taxo order', aValue);
 			}
 		}
 	}
@@ -138,6 +150,8 @@ app.get('/photos', function(req, resp, next) {
 });
 
 app.get('/locations', function(req, resp, next) {
+	logger.debug('/locations', gPhotos.length);
+
 	resp.json({
 		count: gSightingList.getUniqueValues('Location').length,
 		hierarchy: gSightingList.getLocationHierarchy(),
@@ -146,6 +160,8 @@ app.get('/locations', function(req, resp, next) {
 
 
 app.get('/bigdays', function(req, resp, next) {
+	logger.debug('/bigdays');
+
 	var speciesByDate = gSightingList.getSpeciesByDate();
 	var bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]]; });
 	var bigDays = bigDays.filter(function (x) { return x[1].commonNames.length > 100; });
@@ -160,18 +176,6 @@ app.get('/bigdays', function(req, resp, next) {
 	});
 });
 
-	
-	// var speciesByDate = gSightings.getSpeciesByDate();
-	// var bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]]; });
-	// var bigDays = bigDays.filter(function (x) { return x[1].commonNames.length > 100; });
-	// bigDays = bigDays.map(function (x) { return { date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length }; });
-	// bigDays.sort(function (x,y) { return y.count - x.count; } );
-
-	// renderTemplate('bigdays', 'Big Days', {
-	// 	bigDays: bigDays,
-	// 	customDayNames: gCustomDayNames,
-	// });
-
 app.get('/location/:location_name', function(req, resp, next) {
 	var tmp = gSightingList.filter(function(s) { return s['Location'] == req.params.location_name; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
@@ -179,7 +183,7 @@ app.get('/location/:location_name', function(req, resp, next) {
 
 	var locationSightingList = new SightingList(tmp, photos);
 
-	console.log('location sightings', req.params.location_name, locationSightingList.rows.length);
+	logger.debug('/location/', req.params.location_name, locationSightingList.rows.length);
 
 	resp.json(locationSightingList);
 });
@@ -188,6 +192,8 @@ app.get('/taxons', function(req, resp, next) {
 	var earliestByCommonName = gSightingList.getEarliestByCommonName();
 	var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){ return earliestByCommonName[k]; });
 	lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	logger.debug('/taxons');
 
 	resp.json({lifeSightings: lifeSightingsTaxonomic});
 });
@@ -207,12 +213,14 @@ app.get('/taxon/:common_name', function(req, resp, next) {
 
 	var taxonSightingList = new SightingList(tmp, photos);
 
-	console.log('taxon sightings', req.params.common_name, taxonSightingList.rows.length);
+	logger.debug('/taxon/', req.params.common_name, taxonSightingList.rows.length);
 
 	resp.json(taxonSightingList);
 });
 
 app.get('/trips', function(req, resp, next) {
+	logger.debug('/trips');
+
 	// TODO: feature envy; move this into sighting list?
 	resp.json({
 		trips: gSightingList.dateObjects,
@@ -229,7 +237,7 @@ app.get('/search/:terms', function(req, resp, next) {
 
     var searchResultsSightingList = new SightingList(resultsAsSightings);
 
-    console.log('search results', resultsAsSightings.length, searchResultsSightingList.rows.length);
+    logger.debug('/search/', resultsAsSightings.length, searchResultsSightingList.rows.length);
 
 	resp.json({
 		dates: searchResultsSightingList.dateObjects,
@@ -244,18 +252,18 @@ app.get('/year/:year', function(req, resp, next) {
 	var photos =  gPhotos.filter(function(p){ return p.Date.substring(6,10) == req.params.year; });
 	var yearSightingList = new SightingList(tmp, photos);
 
-	console.log('year', req.params.year, yearSightingList.rows.length);
+	logger.debug('/year/', req.params.year, yearSightingList.rows.length);
 
 	resp.json(yearSightingList);
 });
 
 app.get('/sighting/:sighting_id', function(req, resp, next) {
-	console.log('sighting', req.params.sighting_id);
+	logger.debug('/sighting/', req.params.sighting_id);
 	resp.json(gSightingList.rows[req.params.sighting_id]);
 });
 
 app.get('/photo/:photo_id', function(req, resp, next) {
-	console.log('photo', req.params.photo_id);
+	logger.debug('/photo/', req.params.photo_id);
 	resp.json(gPhotos[req.params.photo_id]);
 });
 
@@ -266,7 +274,7 @@ app.get('/trip/:trip_date', function(req, resp, next) {
 
 	var tripSightingList = new SightingList(tmp, photos);
 
-	console.log('trip sightings', req.params.trip_date, tripSightingList.rows.length);
+	logger.debug('/trip/', req.params.trip_date, tripSightingList.rows.length);
 
 	resp.json(tripSightingList);
 });
@@ -281,7 +289,7 @@ app.get('/county/:county_name', function(req, resp, next) {
 	countySightingList.photos = gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; });
 
 
-	console.log('county sightings', req.params.county_name, countySightingList.length());
+	logger.debug('/county/', req.params.county_name, countySightingList.length());
 
 	resp.json(countySightingList);
 });
