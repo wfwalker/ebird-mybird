@@ -101,6 +101,10 @@ footer p {
   color: #f2f2f2;
 }
 
+header a {
+  color: #f2f2f2;
+}
+
 a {
   text-decoration: none;
   color: #007edf;
@@ -266,7 +270,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 800px;
+  max-width: 60em;
   margin: 0 auto;
 }
 
