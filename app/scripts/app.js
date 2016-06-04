@@ -227,15 +227,15 @@ function renderBigDays() {
 	var bigDaysRequest = new XMLHttpRequest();
 
 	bigDaysRequest.onload = function(e) {
-		console.log('bigDays loaded');
-
 		// TODO: need special magic decorator around JSON.parse that reinflates DateObjects
 		
 		var bigDaysData = JSON.parse(bigDaysRequest.response);
+
 		for (var index = 0; index < bigDaysData.bigDays.length; index++) {
 			// TODO: different capitalization of dateObject
-			bigDaysData.bigDays[index]['dateObject'] = new Date(bigDaysData.bigDays[index]['date']);
+			bigDaysData.bigDays[index]['dateObject'] = new Date(bigDaysData.bigDays[index]['dateObject']);
 		}
+
 		renderTemplate('bigdays', 'Big Days', bigDaysData);
 	}
 
