@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git@github.com:wfwalker/ebird-mybird.git"
   },
+  "scripts": {
+    "start": "gulp serve"
+  },  
   "license": "Apache-2.0",
   "dependencies": {
     "babyparse": "^0.4.6",
