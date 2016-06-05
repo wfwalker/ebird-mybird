@@ -2,9 +2,9 @@
 
 <div class="biglist">
 	{{#each hierarchy}}
-		<h2>{{@key}}</h2>
+		<h3>{{@key}}</h3>
 		{{#each this}}
-			<h3><a href="#county/{{encode @key}}">{{@key}} County</a></h3>
+			<h4><a href="#county/{{encode @key}}">{{@key}} County</a></h4>
 			{{#each this}}
 				<div class='biglist-item'><a href="#location/{{encode this}}">{{this}}</a></div>
 			{{/each}}
