@@ -192,10 +192,11 @@ app.get('/taxons', function(req, resp, next) {
 	var earliestByCommonName = gSightingList.getEarliestByCommonName();
 	var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){ return earliestByCommonName[k]; });
 	lifeSightingsTaxonomic.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var lifeSightingsList = new SightingList(lifeSightingsTaxonomic);
 
 	logger.debug('/taxons');
 
-	resp.json({lifeSightings: lifeSightingsTaxonomic});
+	resp.json({ hierarchy: lifeSightingsList.getTaxonomyHierarchy() });
 });
 
 app.get('/chrono', function(req, resp, next) {
