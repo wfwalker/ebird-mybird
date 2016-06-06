@@ -58,6 +58,31 @@ SightingList.setOmittedCommonNames = function(inNames) {
 	SightingList.omittedCommonNames = inNames;
 };
 
+SightingList.families = [];
+SightingList.families.push(['ducks', 0.0, 600.0]);
+SightingList.families.push(['game birds', 600.0, 1500.0]);
+SightingList.families.push(['loons and grebes', 1500.0, 1700.0]);
+SightingList.families.push(['seabirds', 1700.0, 2100.0]);
+SightingList.families.push(['wading birds', 2100.0, 2300.0]);
+SightingList.families.push(['vultures and kites', 2300.0, 2600.0]);
+SightingList.families.push(['hawks and eagles', 2600.0, 3100.0]);
+SightingList.families.push(['rails', 3200.0, 3700.0]);
+SightingList.families.push(['shorebirds', 3700.0, 4100.0]);
+SightingList.families.push(['gulls and alcids', 4100.0, 4400.0]);
+SightingList.families.push(['terns', 4400.0, 4600.0]);
+SightingList.families.push(['doves', 4600.0, 5100.0]);
+SightingList.families.push(['cuckoos', 6500.0, 6900.0]);
+SightingList.families.push(['owls', 6900.0, 7700.0]);
+SightingList.families.push(['nightjars', 7700.0, 7900.0]);
+SightingList.families.push(['cuckoos', 7900.0, 8000.0]);
+SightingList.families.push(['hummingbirds and switfts', 8000.0, 10000.0]);
+SightingList.families.push(['woodpeckers', 10000.0, 115000.0]);
+SightingList.families.push(['falcons', 11500.0, 12000.0]);
+SightingList.families.push(['flycatchers', 14000.0, 15000.0]);
+SightingList.families.push(['kingbirds', 15000.0, 16000.0]);
+SightingList.families.push(['ictarids', 30000.0, 31000.0]);
+SightingList.families.push(['finches', 31000.0, 32000.0]);
+
 SightingList.prototype.initialize = function(inData) {
 	this.rows = inData.rows;
 	this._uniqueValuesCache = inData._uniqueValuesCache;
@@ -221,6 +246,48 @@ SightingList.prototype.getLocationHierarchy = function() {
 	return provinces;
 };
 
+SightingList.getFamily = function(inTaxonomicOrderID) {
+	for (var index = 0; index < SightingList.families.length; index++) {
+		var tmp = SightingList.families[index];
+		if ((tmp[1] < inTaxonomicOrderID) && (inTaxonomicOrderID < tmp[2])) {
+			return tmp[0];
+		}
+	}
+
+	return null;
+}
+
+SightingList.prototype.getTaxonomyHierarchy = function() {
+	var byFamily = {};
+
+	console.log(byFamily);
+
+	for (var index = 0; index < this.rows.length; index++) {
+		var aSighting = this.rows[index];
+		var commonName = aSighting['Common Name'];
+		if (aSighting['Taxonomic Order']) {
+			var taxoID = parseFloat(aSighting['Taxonomic Order']);
+			var aFamily = SightingList.getFamily(taxoID);
+
+			if (aFamily == null) {
+				console.log(taxoID, commonName);
+				continue;
+			}
+
+			if (! byFamily[aFamily]) {
+				byFamily[aFamily] = [];
+			}
+
+			if (byFamily[aFamily].indexOf(commonName) < 0) {
+				byFamily[aFamily].push(commonName);
+			}
+		} else {
+			console.log('no scientific name', aSighting);
+		}
+	}
+
+	return byFamily;
+};
 
 SightingList.prototype.getSpeciesByDate = function() {
 	console.log('computing speciesByDate');
