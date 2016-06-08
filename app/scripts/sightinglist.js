@@ -78,10 +78,12 @@ SightingList.families.push(['cuckoos', 7900.0, 8000.0]);
 SightingList.families.push(['hummingbirds and switfts', 8000.0, 10000.0]);
 SightingList.families.push(['woodpeckers', 10000.0, 11500.0]);
 SightingList.families.push(['falcons', 11500.0, 12000.0]);
+SightingList.families.push(['tyrants', 13000.0, 14000.0]);
 SightingList.families.push(['flycatchers', 14000.0, 15000.0]);
 SightingList.families.push(['kingbirds', 15000.0, 16000.0]);
 SightingList.families.push(['vireos', 17000.0, 18000.0]);
 SightingList.families.push(['jays and crows', 18000.0, 19000.0]);
+SightingList.families.push(['swallows', 19000.0, 20000.0]);
 SightingList.families.push(['wrens', 21000.0, 22000.0]);
 SightingList.families.push(['thrushes', 24000.0, 25000.0]);
 SightingList.families.push(['mimics', 26000.0, 27000.0]);
@@ -169,10 +171,12 @@ SightingList.prototype.addRows = function(inRows) {
 	this.rows = this.rows.concat(inRows);
 
 	this.dateObjects.sort(function(a, b) { return b - a; });
+};
 
+SightingList.prototype.sortByDate = function() {
 	// TODO: this is probably unnecessary sort!
 	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });		
-};
+}
 
 SightingList.prototype.earliestDateObject = function() {
 	return this.earliestDateObject;
