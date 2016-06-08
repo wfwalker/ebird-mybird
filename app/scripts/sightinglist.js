@@ -60,38 +60,40 @@ SightingList.setOmittedCommonNames = function(inNames) {
 
 SightingList.families = [];
 SightingList.families.push(['ducks', 0.0, 600.0]);
-SightingList.families.push(['game birds', 600.0, 1500.0]);
-SightingList.families.push(['loons and grebes', 1500.0, 1700.0]);
+SightingList.families.push(['game birds', 600.0, 1554.0]);
+SightingList.families.push(['loons and grebes', 1555.0, 1700.0]);
 SightingList.families.push(['seabirds', 1700.0, 2100.0]);
-SightingList.families.push(['wading birds', 2100.0, 2300.0]);
-SightingList.families.push(['vultures and kites', 2300.0, 2600.0]);
-SightingList.families.push(['hawks and eagles', 2600.0, 3100.0]);
+SightingList.families.push(['wading birds', 2100.0, 2324.0]);
+SightingList.families.push(['vultures and kites', 2325.0, 2558.0]);
+SightingList.families.push(['hawks and eagles', 2559.0, 3100.0]);
 SightingList.families.push(['rails', 3200.0, 3700.0]);
-SightingList.families.push(['shorebirds', 3700.0, 4100.0]);
-SightingList.families.push(['gulls and alcids', 4100.0, 4400.0]);
+SightingList.families.push(['shorebirds', 3700.0, 4138.0]);
+SightingList.families.push(['gulls and alcids', 4139.0, 4400.0]);
 SightingList.families.push(['terns', 4400.0, 4600.0]);
 SightingList.families.push(['doves', 4600.0, 5100.0]);
-SightingList.families.push(['cuckoos', 6500.0, 6900.0]);
-SightingList.families.push(['owls', 6900.0, 7700.0]);
+SightingList.families.push(['cuckoos', 6500.0, 6951.0]);
+SightingList.families.push(['owls', 6952.0, 7700.0]);
 SightingList.families.push(['nightjars', 7700.0, 7900.0]);
-SightingList.families.push(['cuckoos', 7900.0, 8000.0]);
-SightingList.families.push(['hummingbirds and switfts', 8000.0, 10000.0]);
+SightingList.families.push(['hummingbirds and switfts', 8000.0, 9240.0]);
+SightingList.families.push(['trogons and allies', 9250.0, 9450.0]);
 SightingList.families.push(['woodpeckers', 10000.0, 11500.0]);
-SightingList.families.push(['falcons', 11500.0, 12000.0]);
+SightingList.families.push(['falcons', 11500.0, 11583.0]);
+SightingList.families.push(['parrots', 11587.0, 11600.0]);
 SightingList.families.push(['tyrants', 13000.0, 14000.0]);
 SightingList.families.push(['flycatchers', 14000.0, 15000.0]);
 SightingList.families.push(['kingbirds', 15000.0, 16000.0]);
 SightingList.families.push(['vireos', 17000.0, 18000.0]);
-SightingList.families.push(['jays and crows', 18000.0, 19000.0]);
-SightingList.families.push(['swallows', 19000.0, 20000.0]);
-SightingList.families.push(['wrens', 21000.0, 22000.0]);
+SightingList.families.push(['jays and crows', 18000.0, 19134.0]);
+SightingList.families.push(['swallows', 19135.0, 20000.0]);
+SightingList.families.push(['chickadees and titmice', 20000.0, 20883.0]);
+SightingList.families.push(['wrens', 20884.0, 22000.0]);
 SightingList.families.push(['thrushes', 24000.0, 25000.0]);
 SightingList.families.push(['mimics', 26000.0, 27000.0]);
 SightingList.families.push(['warblers', 27000.0, 28000.0]);
 SightingList.families.push(['tanagers', 28000.0, 29000.0]);
-SightingList.families.push(['sparrows', 29000.0, 30000.0]);
-SightingList.families.push(['ictarids', 30000.0, 31000.0]);
-SightingList.families.push(['finches', 31000.0, 32000.0]);
+SightingList.families.push(['sparrows', 29000.0, 30338.0]);
+SightingList.families.push(['ictarids', 30339.0, 30693.0]);
+SightingList.families.push(['finches', 30694.0, 32000.0]);
 
 SightingList.prototype.initialize = function(inData) {
 	this.rows = inData.rows;
@@ -292,6 +294,7 @@ SightingList.prototype.getTaxonomyHierarchy = function() {
 
 			if (byFamily[aFamily].indexOf(commonName) < 0) {
 				byFamily[aFamily].push(commonName);
+				// byFamily[aFamily].push(commonName + ' ' + aSighting['Taxonomic Order']);
 			}
 		} else {
 			console.log('no scientific name', aSighting);

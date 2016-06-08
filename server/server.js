@@ -196,7 +196,10 @@ app.get('/taxons', function(req, resp, next) {
 
 	logger.debug('/taxons');
 
-	resp.json({ hierarchy: lifeSightingsList.getTaxonomyHierarchy() });
+	resp.json({
+		lifeSightingsCount: lifeSightingsList.length(),
+		hierarchy: lifeSightingsList.getTaxonomyHierarchy()
+	});
 });
 
 app.get('/chrono', function(req, resp, next) {
