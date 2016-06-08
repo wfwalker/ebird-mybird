@@ -407,10 +407,7 @@ function renderTaxons() {
 		console.log('taxons loaded');
 
 		var taxonsData = JSON.parse(taxonsRequest.response);
-		// for (var index = 0; index < taxonsData.taxons.length; index++) {
-		// 	taxonsData.taxons[index] = new Date(taxonsData.taxons[index]);
-		// }
-		renderTemplate('taxons', 'taxons', taxonsData);
+		renderTemplate('taxons', 'Species', taxonsData);
 	}
 
 	taxonsRequest.open("GET", '/taxons');

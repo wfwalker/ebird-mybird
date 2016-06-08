@@ -468,7 +468,7 @@ this["ebirdmybird"]["taxons"] = Handlebars.template({"1":function(container,dept
     var stack1, alias1=depth0 != null ? depth0 : {};
 
   return "<h3>"
-    + container.escapeExpression((helpers.nicenumber || (depth0 && depth0.nicenumber) || helpers.helperMissing).call(alias1,((stack1 = (depth0 != null ? depth0.lifeSightings : depth0)) != null ? stack1.length : stack1),{"name":"nicenumber","hash":{},"data":data}))
+    + container.escapeExpression((helpers.nicenumber || (depth0 && depth0.nicenumber) || helpers.helperMissing).call(alias1,(depth0 != null ? depth0.lifeSightingsCount : depth0),{"name":"nicenumber","hash":{},"data":data}))
     + " species</h3>\n\n<div class=\"biglist\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.hierarchy : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n";
