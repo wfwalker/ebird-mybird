@@ -20,6 +20,9 @@ Date.prototype.getWeek = function() {
 var gCompiledTemplates = {};
 
 function renderTemplate(inPrefix, inPageTitle, inData) {
+	console.log('DONE LOADING', inPrefix);
+	hideSection('#loading');
+
 	var compiledTemplate = ebirdmybird[inPrefix];
 
 	if (compiledTemplate == null) {
@@ -53,6 +56,14 @@ function showSection(inSelector) {
 	for (var index = 0; index < sections.length; index++) {
 		sections[index].classList.remove('hidden');
 		sections[index].classList.add('visible');
+	}
+}
+
+function hideSection(inSelector) {
+	var sections = document.querySelectorAll(inSelector);
+	for (var index = 0; index < sections.length; index++) {
+		sections[index].classList.remove('visible');
+		sections[index].classList.add('hidden');
 	}
 }
 
@@ -520,7 +531,8 @@ function routeBasedOnHash() {
 	// On every hash change the render function is called with the new hash.
 	// This is how the navigation of our app happens.
 	var theHashParts = window.location.hash.split('/');
-	console.log('changed', theHashParts[0], theHashParts[1]);
+	console.log('LOADING', theHashParts[0], theHashParts[1]);
+	showSection('#loading');
 
 	if (! theHashParts[0]) {
 		// TODO: should use push state
