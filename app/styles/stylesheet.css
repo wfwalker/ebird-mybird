@@ -105,6 +105,10 @@ header a {
   color: #f2f2f2;
 }
 
+header span {
+  color: #f2f2f2;
+}
+
 a {
   text-decoration: none;
   color: #007edf;
