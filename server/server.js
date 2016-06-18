@@ -58,6 +58,7 @@ fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 
 	gSightingList = new SightingList();
 	gSightingList.addRows(ebird.data);
+	gSightingList.setGlobalIDs();
 
 	gIndex = lunr(function () {
 	    this.field('location');
@@ -80,6 +81,36 @@ fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 			id: index,
 		});
 	}
+});
+
+// read and parse the full taxonomy list for eBird
+
+fs.readFile('app/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
+	if (err) throw err;
+
+	var familyRanges = {};
+
+	var ebirdAll = babyParse.parse(data, {
+			header: true,
+		});
+
+	logger.info('parsed ebird all', ebirdAll.data.length);
+
+	for (var index = 0; index < ebirdAll.data.length; index++) {
+		var aValue = ebirdAll.data[index];
+		var aFamily = familyRanges[aValue['FAMILY']];
+		var taxoValue = parseInt(aValue['TAXON_ORDER']);
+
+		if (aFamily != null) {
+			// do nothing
+			familyRanges[aValue['FAMILY']][0] = Math.min(taxoValue, aFamily[0]);
+			familyRanges[aValue['FAMILY']][1] = Math.max(taxoValue, aFamily[1]);
+		} else {
+			familyRanges[aValue['FAMILY']] = [taxoValue, taxoValue];
+		}
+	}
+
+	console.log('familyRanges', familyRanges);
 });
 
 fs.readFile('app/data/photos.json', 'utf8', function(err, data) {
