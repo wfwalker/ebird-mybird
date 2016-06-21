@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + '150e8476ea504eadf7065a90f77d209c4a0765db';
+      return this.CACHE_PREFIX + '087bdb9050d67f45b1c8f4c3608f18866a0bb4de';
     },
 
     // This is a list of resources that will be cached.
@@ -47,10 +47,10 @@
       './images/bg_hr.png', // b07cc73aaf2fc0e9841a68d05a46fe53dcbaf0a1
       './images/ebird-favicon.ico', // 783739b89f16a72a7a0a55720ff6acc34048351c
       './images/ebird-favicon.png', // 3f841e97f2ecb0dc0f16478fa57c9dd00b65300f
-      './index.html', // 1377e6d0d7c44a01e7a029b5b3aad4b93f867c7c
-      './scripts/compressed.js', // 5b09323777da63e6ae6e264f42c6d078434e5f33
-      './styles/app.css', // 10d1fd63dca95c39a2c273bd4d9eca23b2cae7e0
-      './styles/bundle.css', // 44fb015cde7082c5d49e0349838ca199a5a67818
+      './index.html', // ba1b66f3b197d36db93d65b0754a0fd30887afc6
+      './scripts/compressed.js', // f94a10fcc4e00812bdde111faed40f39afe8cc92
+      './styles/app.css', // b278a7883889176dc82dec16673c3e858fab29dc
+      './styles/bundle.css', // c7e5462d6f596fdb9108b9390b9af7da639e9fed
       './styles/c3.min.css', // 0ed505e8458512b29c9925c83316a48b1b838b10
       './styles/stylesheet.css', // f2255c9674c0146ffa195212c5069d0d9815ffe3
 

@@ -19,6 +19,10 @@ Date.prototype.getWeek = function() {
 
 var gCompiledTemplates = {};
 
+function renderNetworkError(e) {
+	console.log('network error', e);
+}
+
 function renderTemplate(inPrefix, inPageTitle, inData) {
 	console.log('DONE LOADING', inPrefix);
 	hideSection('#loading');
@@ -185,6 +189,7 @@ function renderHome() {
 		});
 	}
 
+	photosThisWeekRequest.onerror = renderNetworkError;
 	photosThisWeekRequest.open("GET", '/photosThisWeek');
 	photosThisWeekRequest.send();
 }
@@ -210,6 +215,7 @@ function renderChrono() {
 		renderTemplate('chrono', 'chrono', chronoData);
 	}
 
+	chronoRequest.onerror = renderNetworkError;
 	chronoRequest.open("GET", '/chrono');
 	chronoRequest.send();
 }
@@ -229,6 +235,7 @@ function renderTrips() {
 		renderTemplate('trips', 'Trips', tripsData);
 	}
 
+	tripsRequest.onerror = renderNetworkError;
 	tripsRequest.open("GET", '/trips');
 	tripsRequest.send();
 }
@@ -250,6 +257,7 @@ function renderBigDays() {
 		renderTemplate('bigdays', 'Big Days', bigDaysData);
 	}
 
+	bigDaysRequest.onerror = renderNetworkError;
 	bigDaysRequest.open("GET", '/bigDays');
 	bigDaysRequest.send();
 }
@@ -273,6 +281,7 @@ function renderTrip(inDate) {
 		});
 	};
 
+	tripRequest.onerror = renderNetworkError;
 	tripRequest.open("GET", '/trip/' + inDate);
 	tripRequest.send();
 }
@@ -295,6 +304,7 @@ function renderYear(inYear) {
 		});
 	};
 
+	yearRequest.onerror = renderNetworkError;
 	yearRequest.open("GET", '/year/' + inYear);
 	yearRequest.send();
 }
@@ -311,6 +321,7 @@ function renderSighting(inID) {
 		);
 	};
 
+	sightingRequest.onerror = renderNetworkError;
 	sightingRequest.open('GET', '/sighting/' + inID);
 	sightingRequest.send();
 }
@@ -328,6 +339,7 @@ function renderPhoto(inID) {
 		);
 	};
 
+	photoRequest.onerror = renderNetworkError;
 	photoRequest.open('GET', '/photo/' + inID);
 	photoRequest.send();
 }
@@ -343,6 +355,7 @@ function renderPhotos() {
 		);
 	};
 
+	photosRequest.onerror = renderNetworkError;
 	photosRequest.open('GET', '/photos');
 	photosRequest.send();
 }
@@ -357,6 +370,7 @@ function renderLocations() {
 		renderTemplate('locations', 'locations', locationsData);
 	}
 
+	locationsRequest.onerror = renderNetworkError;
 	locationsRequest.open("GET", '/locations');
 	locationsRequest.send();
 }
@@ -382,6 +396,7 @@ function renderLocation(inLocationName) {
 
 	}
 
+	locationRequest.onerror = renderNetworkError;
 	locationRequest.open("GET", '/location/' + inLocationName);
 	locationRequest.send();
 }
@@ -407,6 +422,7 @@ function renderCounty(inCountyName) {
 		});
 	}
 
+	countyRequest.onerror = renderNetworkError;
 	countyRequest.open("GET", '/county/' + inCountyName);
 	countyRequest.send();
 }
@@ -421,6 +437,7 @@ function renderTaxons() {
 		renderTemplate('taxons', 'Species', taxonsData);
 	}
 
+	taxonsRequest.onerror = renderNetworkError;
 	taxonsRequest.open("GET", '/taxons');
 	taxonsRequest.send();
 }
@@ -448,6 +465,7 @@ function renderTaxon(inCommonName) {
 
 	}
 
+	taxonRequest.onerror = renderNetworkError;
 	taxonRequest.open("GET", '/taxon/' + inCommonName);
 	taxonRequest.send();
 }
@@ -505,6 +523,7 @@ function renderSearchResults(inTerm) {
 		renderTemplate('searchresults', 'Search Results', searchData);
 	};
 
+	searchRequest.onerror = renderNetworkError;
 	searchRequest.open("GET", '/search/' + inTerm);
 	searchRequest.send();
 }
@@ -546,36 +565,36 @@ function routeBasedOnHash() {
 	}	
 }
 
-function getText(url) {
-	// Return a new promise.
-	return new Promise(function(resolve, reject) {
-	    // Do the usual XHR stuff
-	    var req = new XMLHttpRequest();
-	    req.open('GET', url);
+// function getText(url) {
+// 	// Return a new promise.
+// 	return new Promise(function(resolve, reject) {
+// 	    // Do the usual XHR stuff
+// 	    var req = new XMLHttpRequest();
+// 	    req.open('GET', url);
 
-	    req.onload = function() {
-			// This is called even on 404 etc
-			// so check the status
-			if (req.status == 200) {
-				// Resolve the promise with the response text
-				resolve(req.response);
-		    }
-		    else {
-		        // Otherwise reject with the status text
-		        // which will hopefully be a meaningful error
-		        reject(Error(req.statusText));
-		    }
-		};
+// 	    req.onload = function() {
+// 			// This is called even on 404 etc
+// 			// so check the status
+// 			if (req.status == 200) {
+// 				// Resolve the promise with the response text
+// 				resolve(req.response);
+// 		    }
+// 		    else {
+// 		        // Otherwise reject with the status text
+// 		        // which will hopefully be a meaningful error
+// 		        reject(Error(req.statusText));
+// 		    }
+// 		};
 
-	    // Handle network errors
-	    req.onerror = function() {
-			reject(Error('Network Error'));
-	    };
+// 	    // Handle network errors
+// 	    req.onerror = function() {
+// 			reject(Error('Network Error'));
+// 	    };
 
-	    // Make the request
-	    req.send();
-	});
-}
+// 	    // Make the request
+// 	    req.send();
+// 	});
+// }
 
 function registerHelpers() {
 	Handlebars.registerHelper('nicedate', function(inDate) {
