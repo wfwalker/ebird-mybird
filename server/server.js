@@ -247,6 +247,7 @@ app.get('/taxon/:common_name', function(req, resp, next) {
 	var photos = gPhotos.filter(function(p) { return p['Common Name'] == req.params.common_name; });
 
 	var taxonSightingList = new SightingList(tmp, photos);
+	taxonSightingList.sortByDate();
 
 	logger.debug('/taxon/', req.params.common_name, taxonSightingList.rows.length);
 
