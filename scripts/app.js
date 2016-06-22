@@ -51,7 +51,7 @@ function renderTemplate(inPrefix, inPageTitle, inData) {
 	// show rendered template
     results.appendChild(newDiv);
 	showSection('section#' + inPrefix);
-	document.title = 'BirdWalker | ' + inPageTitle;
+	document.title = 'ebird-mybird | ' + inPageTitle;
 }
 
 
@@ -686,7 +686,7 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 
 		document.getElementById('gosearch').addEventListener('click', function() {
 			var searchText = document.getElementById('searchtext').value;
-			history.pushState({ searchText: searchText }, 'BirdWalker | Search', '#search/' + searchText);
+			history.pushState({ searchText: searchText }, 'ebird-mybird | Search', '#search/' + searchText);
 			routeBasedOnHash();
 		});
 	});
