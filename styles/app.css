@@ -21,4 +21,6 @@
 
 .menubar a {
 	padding-right: 1em;
+	text-transform: capitalize;
+	font-size: 90%;
 }

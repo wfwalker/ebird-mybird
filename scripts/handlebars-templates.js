@@ -372,11 +372,11 @@ this["ebirdmybird"]["sighting"] = Handlebars.template({"1":function(container,de
     + alias3(((helper = (helper = helpers["Scientific Name"] || (depth0 != null ? depth0["Scientific Name"] : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"Scientific Name","hash":{},"data":data}) : helper)))
     + "\",\n    \"Common Name\": \""
     + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
-    + "\",\n    \"Thumbnail URL\": \"http://birdwalker.com/images/thumb/"
+    + "\",\n    \"Thumbnail URL\": \"https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/"
     + alias3((helpers.sortabledate || (depth0 && depth0.sortabledate) || alias4).call(alias1,(depth0 != null ? depth0.DateObject : depth0),{"name":"sortabledate","hash":{},"data":data}))
     + "-"
     + alias3((helpers.spacetodash || (depth0 && depth0.spacetodash) || alias4).call(alias1,(depth0 != null ? depth0["Scientific Name"] : depth0),{"name":"spacetodash","hash":{},"data":data}))
-    + "-NNNNNN.jpg\",\n    \"Photo URL\": \"http://birdwalker.com/images/photo/"
+    + "-NNNNNN.jpg\",\n    \"Photo URL\": \"https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/"
     + alias3((helpers.sortabledate || (depth0 && depth0.sortabledate) || alias4).call(alias1,(depth0 != null ? depth0.DateObject : depth0),{"name":"sortabledate","hash":{},"data":data}))
     + "-"
     + alias3((helpers.spacetodash || (depth0 && depth0.spacetodash) || alias4).call(alias1,(depth0 != null ? depth0["Scientific Name"] : depth0),{"name":"spacetodash","hash":{},"data":data}))
