@@ -430,7 +430,9 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,(depth0 != null ? depth0.Location : depth0),{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias2(alias1((depth0 != null ? depth0.Location : depth0), depth0))
-    + "</a>\n			</div>\n";
+    + "</a>\n				<a href=\"#sighting/"
+    + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
+    + "\">+</a>\n			</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
