@@ -59,42 +59,6 @@ SightingList.setOmittedCommonNames = function(inNames) {
 };
 
 SightingList.families = [];
-SightingList.families.push(['Ducks', 0.0, 600.0]);
-SightingList.families.push(['Game birds', 600.0, 1554.0]);
-SightingList.families.push(['Loons and Grebes', 1555.0, 1700.0]);
-SightingList.families.push(['Seabirds', 1700.0, 2100.0]);
-SightingList.families.push(['Wading birds', 2100.0, 2325.0]);
-SightingList.families.push(['Vultures and kites', 2326.0, 2558.0]);
-SightingList.families.push(['Hawks and Eagles', 2559.0, 3100.0]);
-SightingList.families.push(['Rails', 3200.0, 3700.0]);
-SightingList.families.push(['Shorebirds', 3700.0, 4139.0]);
-SightingList.families.push(['Gulls and Alcids', 4139.0, 4400.0]);
-SightingList.families.push(['Terns', 4400.0, 4600.0]);
-SightingList.families.push(['Doves', 4600.0, 5100.0]);
-SightingList.families.push(['Cuckoos', 6500.0, 6952.0]);
-SightingList.families.push(['Owls', 6952.0, 7700.0]);
-SightingList.families.push(['Nightjars', 7700.0, 7900.0]);
-SightingList.families.push(['Hummingbirds and Switfts', 8000.0, 9240.0]);
-SightingList.families.push(['Trogons and allies', 9250.0, 9450.0]);
-SightingList.families.push(['Kingfishers', 9900.0, 10000.0]);
-SightingList.families.push(['Wwoodpeckers', 10000.0, 11500.0]);
-SightingList.families.push(['Falcons', 11500.0, 11583.0]);
-SightingList.families.push(['Parrots', 11587.0, 11600.0]);
-SightingList.families.push(['Tyrants', 13000.0, 14000.0]);
-SightingList.families.push(['Flycatchers', 14000.0, 15000.0]);
-SightingList.families.push(['Kingbirds', 15000.0, 16000.0]);
-SightingList.families.push(['Vireos', 17000.0, 18000.0]);
-SightingList.families.push(['Jays and Crows', 18000.0, 19135.0]);
-SightingList.families.push(['Swallows', 19135.0, 20000.0]);
-SightingList.families.push(['Chickadees and Titmice', 20000.0, 20884.0]);
-SightingList.families.push(['Wrens', 20884.0, 22000.0]);
-SightingList.families.push(['Thrushes', 24000.0, 25000.0]);
-SightingList.families.push(['Mimics', 26000.0, 27000.0]);
-SightingList.families.push(['Warblers', 27000.0, 28000.0]);
-SightingList.families.push(['Tanagers', 28000.0, 29000.0]);
-SightingList.families.push(['Sparrows', 29000.0, 30338.0]);
-SightingList.families.push(['Ictarids', 30339.0, 30693.0]);
-SightingList.families.push(['Finches', 30694.0, 32000.0]);
 
 SightingList.prototype.initialize = function(inData) {
 	this.rows = inData.rows;

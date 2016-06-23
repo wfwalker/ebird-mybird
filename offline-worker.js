@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + 'b3863eb7bebff5946181bdd150fa2bddaf2391fc';
+      return this.CACHE_PREFIX + '28ed57af6d5418013fce79f0dfbebe6466e72d99';
     },
 
     // This is a list of resources that will be cached.
@@ -48,7 +48,7 @@
       './images/ebird-favicon.ico', // 783739b89f16a72a7a0a55720ff6acc34048351c
       './images/ebird-favicon.png', // 3f841e97f2ecb0dc0f16478fa57c9dd00b65300f
       './index.html', // 7ff975cc695f08cca8bcddaaa4827401f859f643
-      './scripts/compressed.js', // e13db64dd5445683c4b73ff4d395a9cf418064a2
+      './scripts/compressed.js', // a9c30bece1963ad3a29dc33f4232c5ba18b4f4de
       './styles/app.css', // bbc88b7bc89a0312ac26cbb1289762850dc0362c
       './styles/bundle.css', // 735e2092100d2136f016fda9b5b9e80e56daf193
       './styles/c3.min.css', // 0ed505e8458512b29c9925c83316a48b1b838b10
