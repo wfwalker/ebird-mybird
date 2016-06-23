@@ -637,7 +637,7 @@ function registerHelpers() {
 
 	Handlebars.registerHelper('spacetodash', function(inString) {
 		return new Handlebars.SafeString (
-			inString.replace(' ', '-')
+			inString.toLowerCase().replace(' ', '-')
 		);
 	});
 
