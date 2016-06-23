@@ -101,8 +101,11 @@ fs.readFile('app/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
 		var aFamily = familyRanges[aValue['FAMILY']];
 		var taxoValue = parseInt(aValue['TAXON_ORDER']);
 
+		if (aValue['FAMILY'] == '') {
+			continue;
+		}
+
 		if (aFamily != null) {
-			// do nothing
 			familyRanges[aValue['FAMILY']][0] = Math.min(taxoValue, aFamily[0]);
 			familyRanges[aValue['FAMILY']][1] = Math.max(taxoValue, aFamily[1]);
 		} else {
@@ -110,7 +113,13 @@ fs.readFile('app/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
 		}
 	}
 
-	console.log('familyRanges', familyRanges);
+	var familyKeys = Object.keys(familyRanges);
+
+	for (index = 0; index < familyKeys.length; index++) {
+		var aKey = familyKeys[index];
+		var triple = [aKey, familyRanges[aKey][0], familyRanges[aKey][1]];
+		SightingList.families.push(triple);
+	}
 });
 
 fs.readFile('app/data/photos.json', 'utf8', function(err, data) {
