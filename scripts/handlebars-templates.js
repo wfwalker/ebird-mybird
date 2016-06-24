@@ -143,24 +143,22 @@ this["ebirdmybird"]["debug"] = Handlebars.template({"1":function(container,depth
     + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.brokenLocations : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 this["ebirdmybird"]["home"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression, alias4=container.lambda;
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing;
 
-  return "<h3>"
-    + alias3(((helper = (helper = helpers.owner || (depth0 != null ? depth0.owner : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"owner","hash":{},"data":data}) : helper)))
-    + "&apos;s eBird</h3>\n\n<h4>Photo Of The Week</h4>\n\n<img src=\""
-    + alias3(alias4(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Photo URL"] : stack1), depth0))
+  return "<h3>Welcome to BirdWalker</h3>\n\n<h4>Photo Of The Week</h4>\n\n<img src=\""
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Photo URL"] : stack1), depth0))
     + "\">\n\n<div>\n	<a href=\"#taxon/"
-    + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Common Name"] : stack1),{"name":"encode","hash":{},"data":data}))
+    + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Common Name"] : stack1),{"name":"encode","hash":{},"data":data}))
     + "\">"
-    + alias3(alias4(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Common Name"] : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Common Name"] : stack1), depth0))
     + "</a>,\n	<a href=\"#location/"
-    + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.Location : stack1),{"name":"encode","hash":{},"data":data}))
+    + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.Location : stack1),{"name":"encode","hash":{},"data":data}))
     + "\">"
-    + alias3(alias4(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.Location : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.Location : stack1), depth0))
     + "</a>,\n	<a href=\"#trip/"
-    + alias3((helpers.ebirddate || (depth0 && depth0.ebirddate) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.DateObject : stack1),{"name":"ebirddate","hash":{},"data":data}))
+    + alias2((helpers.ebirddate || (depth0 && depth0.ebirddate) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.DateObject : stack1),{"name":"ebirddate","hash":{},"data":data}))
     + "\">"
-    + alias3((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.DateObject : stack1),{"name":"nicedate","hash":{},"data":data}))
+    + alias2((helpers.nicedate || (depth0 && depth0.nicedate) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.DateObject : stack1),{"name":"nicedate","hash":{},"data":data}))
     + "</a>\n</div>\n\n";
 },"useData":true});
 this["ebirdmybird"]["loading"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
