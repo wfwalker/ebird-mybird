@@ -5,6 +5,8 @@ var gPhotos = [];
 var gIndex = null;
 
 var express = require('express');
+var compression = require('compression');
+var expires = require('expires-middleware');
 var lunr = require('lunr');
 var babyParse = require('babyparse');
 var SightingList = require('../app/scripts/sightinglist.js');
@@ -25,11 +27,13 @@ var mHost = process.env.VCAP_APP_HOST || "127.0.0.1";
 
 var app = express();
 
+app.use(compression());
+app.use(expires('24h'));
+
 app.listen(myPort);
 
 // serve up the dist directory as the root so we get the client
 app.use("/", express.static('dist'));
-
 
 // parse the ebird data so we can make a REST API for it
 
