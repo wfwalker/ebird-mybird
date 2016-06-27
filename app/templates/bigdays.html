@@ -2,7 +2,7 @@
 
 <div>
 	{{#each bigDays}}
-		<div>
+		<div class='biglist-item'>
 			{{this.count}} species,
 			<a href="#trip/{{this.date}}">
 				{{nicedate this.dateObject}}: {{lookup ../customDayNames this.date}}
