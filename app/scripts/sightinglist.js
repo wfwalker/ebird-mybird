@@ -304,7 +304,7 @@ SightingList.prototype.getEarliestByCommonName = function() {
 				this._earliestRowByCommonName[sighting['Common Name']] = sighting;
 			}	
 		} else {
-			console.log('omit', sighting['Common Name']);
+			// console.log('omit', sighting['Common Name']);
 		}
 	};
 
