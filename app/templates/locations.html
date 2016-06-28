@@ -4,7 +4,9 @@
 	{{#each hierarchy}}
 		<h3>{{@key}}</h3>
 		{{#each this}}
-			<h4><a href="#county/{{encode @key}}">{{@key}} County</a></h4>
+			{{#if @key}}
+				<h4><a href="#county/{{encode @key}}">{{@key}} County</a></h4>
+			{{/if}}
 			{{#each this}}
 				<div class='biglist-item'><a href="#location/{{encode this}}">{{this}}</a></div>
 			{{/each}}
