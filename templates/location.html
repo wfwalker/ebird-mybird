@@ -1,5 +1,11 @@
 <h3>
-	{{sightingList.rows.0.Location}}<span style='font-weight: lighter'> | <a href="#county/{{sightingList.rows.0.County}}">{{sightingList.rows.0.County}} County</a>, {{sightingList.rows.0.[State/Province]}}</span>
+	{{sightingList.rows.0.Location}}
+	<span style='font-weight: lighter'> |
+		{{#if sightingList.rows.0.County}}
+			<a href="#county/{{sightingList.rows.0.County}}">{{sightingList.rows.0.County}} County</a>,
+		{{/if}}
+		{{sightingList.rows.0.[State/Province]}}
+	</span>
 </h3>
 
 <div>

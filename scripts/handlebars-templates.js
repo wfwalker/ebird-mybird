@@ -169,6 +169,14 @@ this["ebirdmybird"]["loading"] = Handlebars.template({"compiler":[7,">= 4.0.0"],
     + "&apos;s eBird</h3>\n\n<div>\nLOADING\n</div>\n";
 },"useData":true});
 this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "			<a href=\"#county/"
+    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1), depth0))
+    + "\">"
+    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1), depth0))
+    + " County</a>,\n";
+},"3":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
   return "  <div class='biglist-item'>\n    <a href=\"#taxon/"
@@ -176,7 +184,7 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + "\">"
     + alias1(container.lambda(depth0, depth0))
     + "</a>\n  </div>\n";
-},"3":function(container,depth0,helpers,partials,data) {
+},"5":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
   return "	<div id="
@@ -184,13 +192,13 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + " style='padding-top: 10px'></div>\n	"
     + alias3((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.chartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
     + "\n";
-},"5":function(container,depth0,helpers,partials,data,blockParams,depths) {
+},"7":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1;
 
   return "	<div class=\"biglist\">\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.dateObjects : stack1),{"name":"each","hash":{},"fn":container.program(6, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.dateObjects : stack1),{"name":"each","hash":{},"fn":container.program(8, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "	</div>\n";
-},"6":function(container,depth0,helpers,partials,data,blockParams,depths) {
+},"8":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
   return "	  <div class='biglist-item'>\n	    <div><a href=\"#trip/"
@@ -205,13 +213,11 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
 
   return "<h3>\n	"
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Location : stack1), depth0))
-    + "<span style='font-weight: lighter'> | <a href=\"#county/"
-    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1), depth0))
-    + "\">"
-    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1), depth0))
-    + " County</a>, "
+    + "\n	<span style='font-weight: lighter'> |\n"
+    + ((stack1 = helpers["if"].call(alias3,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "		"
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1["State/Province"] : stack1), depth0))
-    + "</span>\n</h3>\n\n<div>\n	<a target=\"_blank\" href=\"https://www.openstreetmap.org/?mlat="
+    + "\n	</span>\n</h3>\n\n<div>\n	<a target=\"_blank\" href=\"https://www.openstreetmap.org/?mlat="
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Latitude : stack1), depth0))
     + "&mlon="
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Longitude : stack1), depth0))
@@ -232,11 +238,11 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + "\n<h4>"
     + alias2((helpers.valuecount || (depth0 && depth0.valuecount) || alias4).call(alias3,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"valuecount","hash":{},"data":data}))
     + " Species</h4>\n\n<div class=\"biglist\">\n"
-    + ((stack1 = helpers.each.call(alias3,(helpers.values || (depth0 && depth0.values) || alias4).call(alias3,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"values","hash":{},"data":data}),{"name":"each","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(alias3,(helpers.values || (depth0 && depth0.values) || alias4).call(alias3,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"values","hash":{},"data":data}),{"name":"each","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n\n<h4>"
     + alias2((helpers.valuecount || (depth0 && depth0.valuecount) || alias4).call(alias3,(depth0 != null ? depth0.sightingList : depth0),"Date",{"name":"valuecount","hash":{},"data":data}))
     + " Dates</h4>\n\n"
-    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.showChart : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.program(5, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.showChart : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0, blockParams, depths),"inverse":container.program(7, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + "\n\n";
 },"usePartial":true,"useData":true,"useDepths":true});
 this["ebirdmybird"]["locations"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
@@ -424,7 +430,9 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
 },"4":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing;
 
-  return "			<div class='biglist-item'>\n				<a href=\"#trip/"
+  return "			<div class='biglist-item'>\n				<a href=\"#sighting/"
+    + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
+    + "\">+</a>\n				<a href=\"#trip/"
     + alias2(alias1((depth0 != null ? depth0.Date : depth0), depth0))
     + "\">"
     + alias2((helpers.nicedate || (depth0 && depth0.nicedate) || alias4).call(alias3,(depth0 != null ? depth0.DateObject : depth0),{"name":"nicedate","hash":{},"data":data}))
@@ -432,9 +440,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,(depth0 != null ? depth0.Location : depth0),{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias2(alias1((depth0 != null ? depth0.Location : depth0), depth0))
-    + "</a>\n				<a href=\"#sighting/"
-    + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
-    + "\">+</a>\n			</div>\n";
+    + "</a>\n			</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
@@ -515,18 +521,18 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
 
   return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1),{"name":"each","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"13":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression, alias4="function";
+    var stack1, helper, alias1=container.escapeExpression, alias2=depth0 != null ? depth0 : {}, alias3=helpers.helperMissing, alias4="function";
 
-  return "      <div class='biglist-item'>\n        <a href='#taxon/"
-    + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,(depth0 != null ? depth0["Common Name"] : depth0),{"name":"encode","hash":{},"data":data}))
+  return "      <div class='biglist-item'>\n        <a href=\"#sighting/"
+    + alias1(container.lambda((depth0 != null ? depth0.id : depth0), depth0))
+    + "\">+</a>\n        <a href='#taxon/"
+    + alias1((helpers.encode || (depth0 && depth0.encode) || alias3).call(alias2,(depth0 != null ? depth0["Common Name"] : depth0),{"name":"encode","hash":{},"data":data}))
     + "'>"
-    + alias3(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
+    + alias1(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"Common Name","hash":{},"data":data}) : helper)))
     + "</a>\n"
-    + ((stack1 = helpers["if"].call(alias1,(helpers.isnumber || (depth0 && depth0.isnumber) || alias2).call(alias1,(depth0 != null ? depth0.Count : depth0),{"name":"isnumber","hash":{},"data":data}),{"name":"if","hash":{},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "        <a href=\"#sighting/"
-    + alias3(container.lambda((depth0 != null ? depth0.id : depth0), depth0))
-    + "\">+</a>\n      </div>\n      <span>\n        "
-    + alias3(((helper = (helper = helpers["Species Comments"] || (depth0 != null ? depth0["Species Comments"] : depth0)) != null ? helper : alias2),(typeof helper === alias4 ? helper.call(alias1,{"name":"Species Comments","hash":{},"data":data}) : helper)))
+    + ((stack1 = helpers["if"].call(alias2,(helpers.isnumber || (depth0 && depth0.isnumber) || alias3).call(alias2,(depth0 != null ? depth0.Count : depth0),{"name":"isnumber","hash":{},"data":data}),{"name":"if","hash":{},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "      </div>\n      <span>\n        "
+    + alias1(((helper = (helper = helpers["Species Comments"] || (depth0 != null ? depth0["Species Comments"] : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"Species Comments","hash":{},"data":data}) : helper)))
     + "\n      </span>\n";
 },"14":function(container,depth0,helpers,partials,data) {
     var helper;

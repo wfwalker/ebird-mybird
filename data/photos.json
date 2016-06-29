@@ -8584,7 +8584,7 @@
 		"Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2014-07-02-gcrfin-DM6C1296.jpg"
 },
 {
-		"Location": "Rural Areas of Mono County",
+		"Location": "Old State Hwy Rd just south of Oil Plant",
 		"Date": "07-04-2014",
 		"Scientific Name": "Pooecetes gramineus",
 		"Common Name": "Vesper Sparrow",
@@ -8654,5 +8654,13 @@
 	"Common Name": "Hooded Warbler",
 	"Thumbnail URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/2016-04-20-setophaga-citrina-IMG_9953.jpg",
 	"Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-04-20-setophaga-citrina-IMG_9953.jpg"
+},
+{
+	"Date": "04-20-2016",
+	"Location": "Dry Tortugas NP",
+	"Scientific Name": "Setophaga tigrina",
+	"Common Name": "Cape May Warbler",
+	"Thumbnail URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/2016-04-20-setophaga-tigrina-IMG_9792.jpg",
+	"Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-04-20-setophaga-tigrina-IMG_9792.jpg"
 }
 ]
