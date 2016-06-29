@@ -13,6 +13,12 @@
 	columns: 15em;
 }
 
+.biglist h3 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .biglist-item {
 	white-space: nowrap;
 	overflow: hidden;
