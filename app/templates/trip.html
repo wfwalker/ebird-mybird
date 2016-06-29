@@ -32,11 +32,11 @@
   {{else}}
     {{#each sightingList.rows}}
       <div class='biglist-item'>
+        <a href="#sighting/{{this.id}}">+</a>
         <a href='#taxon/{{encode [Common Name]}}'>{{[Common Name]}}</a>
         {{#if (isnumber Count)}}
           {{Count}}
         {{/if}}
-        <a href="#sighting/{{this.id}}">+</a>
       </div>
       <span>
         {{[Species Comments]}}
