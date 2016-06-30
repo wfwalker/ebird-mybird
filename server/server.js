@@ -173,6 +173,9 @@ app.get('/photosThisWeek', function(req, resp, next) {
 app.get('/photos', function(req, resp, next) {
 	logger.debug('/photos', gPhotos.length);
 
+	// Create a map from common names of species photographed to taxonomic order #
+	// NB: assume there is a eBird sighting for each species photographed
+
 	var photoCommonNames = {};
 	var earliestByCommonName = gSightingList.getEarliestByCommonName();
 
@@ -187,9 +190,13 @@ app.get('/photos', function(req, resp, next) {
 		}
 	}
 
+	// Convert the map into an array of pairs, then sort the pairs by the second value
+	// to get taxonomic ordering
+
 	var pairs = Object.keys(photoCommonNames).map(function(key) { return [key, photoCommonNames[key]]; });
 	pairs.sort(function (x, y) { return x[1] - y[1]; });
 
+	// pass down to the page template all the photo data plus the list of common names in taxo order
 	resp.json({photos: gPhotos, photoCommonNames: pairs.map(function (x) { return x[0]; })});
 });
 
