@@ -1,3 +1,9 @@
+#loading {
+	position: fixed;
+	top: 80px;
+	left: 50px;
+}
+
 .hidden {
 	display: none;
 }
