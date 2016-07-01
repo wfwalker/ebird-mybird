@@ -58,7 +58,7 @@ this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,dept
 
   return "<h3>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + " County<span style='font-weight: lighter'> | "
+    + " County<span class='lighter'>"
     + alias4(((helper = (helper = helpers.state || (depth0 != null ? depth0.state : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"state","hash":{},"data":data}) : helper)))
     + "</span></h3>\n\n"
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
@@ -213,11 +213,11 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
 
   return "<h3>\n	"
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Location : stack1), depth0))
-    + "\n	<span style='font-weight: lighter'> |\n"
+    + "\n	<span class='lighter'>\n"
     + ((stack1 = helpers["if"].call(alias3,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "		"
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1["State/Province"] : stack1), depth0))
-    + "\n	</span>\n</h3>\n\n<div>\n	<a target=\"_blank\" href=\"https://www.openstreetmap.org/?mlat="
+    + "\n	</span>\n	<a target=\"_blank\" href=\"https://www.openstreetmap.org/?mlat="
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Latitude : stack1), depth0))
     + "&mlon="
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Longitude : stack1), depth0))
@@ -225,15 +225,11 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Latitude : stack1), depth0))
     + "/"
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Longitude : stack1), depth0))
-    + "\">\n		map "
-    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Latitude : stack1), depth0))
-    + ","
-    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Latitude : stack1), depth0))
-    + "\n	</a>|\n	<a target=\"_blank\" href=\"http://forecast.io/#/f/"
+    + "\">\n		map\n	</a>\n	<a target=\"_blank\" href=\"http://forecast.io/#/f/"
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Latitude : stack1), depth0))
     + ","
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Longitude : stack1), depth0))
-    + "\">\n		forecast.io\n	</a>\n</div>\n\n\n"
+    + "\">\n		weather\n	</a>\n</h3>\n\n"
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<h4>"
     + alias2((helpers.valuecount || (depth0 && depth0.valuecount) || alias4).call(alias3,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"valuecount","hash":{},"data":data}))
@@ -287,7 +283,7 @@ this["ebirdmybird"]["photo"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"m
 
   return "<h3>"
     + alias4(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
-    + " <span style='font-weight: lighter'>| "
+    + " <span class='lighter'>"
     + alias4(((helper = (helper = helpers["Scientific Name"] || (depth0 != null ? depth0["Scientific Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Scientific Name","hash":{},"data":data}) : helper)))
     + "</span></h3>\n<div>"
     + alias4(((helper = (helper = helpers.Location || (depth0 != null ? depth0.Location : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Location","hash":{},"data":data}) : helper)))
@@ -446,7 +442,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
 
   return "<h3>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + " <span style='font-weight: lighter'>| "
+    + " <span class='lighter'>"
     + alias4(((helper = (helper = helpers.scientificName || (depth0 != null ? depth0.scientificName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"scientificName","hash":{},"data":data}) : helper)))
     + "</span></h3>\n\n<div>\n	<a target=\"_blank\" href=\"http://www.xeno-canto.org/species/"
     + alias4((helpers.spacetodash || (depth0 && depth0.spacetodash) || alias2).call(alias1,(depth0 != null ? depth0.scientificName : depth0),{"name":"spacetodash","hash":{},"data":data}))
@@ -545,7 +541,7 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
 
   return "<h3>"
     + alias3((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,(depth0 != null ? depth0.tripDate : depth0),{"name":"nicedate","hash":{},"data":data}))
-    + " <span style='font-weight: lighter'>| "
+    + " <span class='lighter'>"
     + alias3(((helper = (helper = helpers.customName || (depth0 != null ? depth0.customName : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"customName","hash":{},"data":data}) : helper)))
     + "</span></h3>\n\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.comments : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")

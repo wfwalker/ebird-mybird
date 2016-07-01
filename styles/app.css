@@ -36,3 +36,11 @@
 	padding-right: 1em;
 	text-transform: capitalize;
 }
+
+.lighter {
+	color: #999;
+}
+
+.lighter a {
+	color: #99B;
+}
