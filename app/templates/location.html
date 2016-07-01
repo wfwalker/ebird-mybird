@@ -1,22 +1,18 @@
 <h3>
 	{{sightingList.rows.0.Location}}
-	<span style='font-weight: lighter'> |
+	<span class='lighter'>
 		{{#if sightingList.rows.0.County}}
 			<a href="#county/{{sightingList.rows.0.County}}">{{sightingList.rows.0.County}} County</a>,
 		{{/if}}
 		{{sightingList.rows.0.[State/Province]}}
 	</span>
-</h3>
-
-<div>
 	<a target="_blank" href="https://www.openstreetmap.org/?mlat={{sightingList.rows.0.Latitude}}&mlon={{sightingList.rows.0.Longitude}}#map=10/{{sightingList.rows.0.Latitude}}/{{sightingList.rows.0.Longitude}}">
-		map {{sightingList.rows.0.Latitude}},{{sightingList.rows.0.Latitude}}
-	</a>|
-	<a target="_blank" href="http://forecast.io/#/f/{{sightingList.rows.0.Latitude}},{{sightingList.rows.0.Longitude}}">
-		forecast.io
+		map
 	</a>
-</div>
-
+	<a target="_blank" href="http://forecast.io/#/f/{{sightingList.rows.0.Latitude}},{{sightingList.rows.0.Longitude}}">
+		weather
+	</a>
+</h3>
 
 {{> thumbnails}}
 
