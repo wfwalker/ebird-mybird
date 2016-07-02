@@ -259,7 +259,6 @@ SightingList.prototype.getTaxonomyHierarchy = function() {
 
 			if (byFamily[aFamily].indexOf(commonName) < 0) {
 				byFamily[aFamily].push(commonName);
-				// byFamily[aFamily].push(commonName + ' ' + aSighting['Taxonomic Order']);
 			}
 		} else {
 			console.log('no scientific name', aSighting);

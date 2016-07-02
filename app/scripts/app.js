@@ -21,6 +21,8 @@ var gCompiledTemplates = {};
 
 function renderNetworkError(e) {
 	console.log('network error', e);
+	hideSection('#loading');
+	// TODO: show error something?
 }
 
 function renderTemplate(inPrefix, inPageTitle, inData) {
