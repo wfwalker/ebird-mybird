@@ -112,7 +112,7 @@ fs.readFile('app/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
 	for (var index = 0; index < ebirdAll.data.length; index++) {
 		var aValue = ebirdAll.data[index];
 		var aFamily = familyRanges[aValue['FAMILY']];
-		var taxoValue = parseInt(aValue['TAXON_ORDER']);
+		var taxoValue = parseFloat(aValue['TAXON_ORDER']);
 
 		if (aValue['FAMILY'] == '') {
 			continue;
