@@ -1,7 +1,10 @@
-<h3>{{nicenumber photos.length}} photos of {{nicenumber photoCommonNames.length}} species</h3>
+<h3>{{nicenumber numPhotos}} photos of {{nicenumber numSpecies}} species</h3>
 
 <div class="biglist">
-{{#each photoCommonNames}}
-	<div class='biglist-item'><a href="#taxon/{{encode this}}">{{this}}</a></div>
-{{/each}}
+	{{#each hierarchy}}
+		<h3>{{@key}}</h3>
+		{{#each this}}
+			<div class='biglist-item'><a href="#taxon/{{encode this}}">{{this}}</a></div>
+		{{/each}}
+	{{/each}}
 </div>
