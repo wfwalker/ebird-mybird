@@ -228,7 +228,7 @@ SightingList.prototype.getLocationHierarchy = function() {
 SightingList.getFamily = function(inTaxonomicOrderID) {
 	for (var index = 0; index < SightingList.families.length; index++) {
 		var tmp = SightingList.families[index];
-		if ((tmp[1] <= inTaxonomicOrderID) && (inTaxonomicOrderID < tmp[2])) {
+		if ((tmp[1] <= inTaxonomicOrderID) && (inTaxonomicOrderID <= tmp[2])) {
 			return tmp[0];
 		}
 	}
