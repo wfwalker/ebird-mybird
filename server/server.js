@@ -8,6 +8,7 @@ var express = require('express');
 var compression = require('compression');
 var expires = require('expires-middleware');
 var lunr = require('lunr');
+var iso3166 = require('iso-3166-2');
 var babyParse = require('babyparse');
 var SightingList = require('../app/scripts/sightinglist.js');
 var fs = require('fs');
@@ -75,6 +76,14 @@ fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 
 	for (var index = 0; index < gSightingList.rows.length; index++) {
 		var aValue = gSightingList.rows[index];
+
+		if (aValue['State/Province']) {
+			var tmp = iso3166.subdivision(aValue['State/Province']);
+			if (tmp) {
+				aValue['Region'] = tmp['name'];
+				aValue['Country'] = tmp['countryName'];
+			}
+		}
 
 		gIndex.add({
 			location: aValue['Location'],
