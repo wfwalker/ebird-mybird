@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + 'cc0e48758ffa3bf894480119eb7d6712713a7b44';
+      return this.CACHE_PREFIX + 'baee49f87f35cf67e072d3bb0ec3e1f4ffbab627';
     },
 
     // This is a list of resources that will be cached.
@@ -51,11 +51,11 @@
       './images/weather.png', // ac9c676c285f1ca8418e6bda8bccd0afdd922571
       './index.html', // d90f503e3913a97de192e0bd3ae88e0126ed386a
       './scripts/compressed.js', // 8f7d19b2c001aa67053a3f023bfd4d5f88965c8d
-      './styles/app.css', // e6dea4b06640f2948c0f05f1ff16d7087b73f275
-      './styles/bundle.css', // 3357e96a01b3e956c877d19ab7505373551bc9ee
+      './styles/app.css', // 97a9e161770e646eea69459033dcb91dc9798da7
+      './styles/bundle.css', // 464c30053797699c3fedabd3e5fcdd2d97d8935c
       './styles/c3.min.css', // 0ed505e8458512b29c9925c83316a48b1b838b10
       './styles/spinner.css', // cadac5f4fce4b28bfb8ab8de2ed9fc879d321252
-      './styles/stylesheet.css', // 76b56b998b4622cbabd5c4e89e0096afbb37edbe
+      './styles/stylesheet.css', // 162e5d9d8ff40b4fdce495aaaba97c211b9e5141
 
     ],
 
