@@ -195,6 +195,8 @@ app.get('/photos', function(req, resp, next) {
 	var photosByTaxo = [];
 	var speciesPhotographed = 0;
 
+	// make an array of common name, taxonomic id, and family name
+
 	for (var index = 0; index < gPhotos.length; index++) {
 		var aPhoto = gPhotos[index];
 		aPhoto.taxonomicSort = privateGetTaxoFromCommonName(aPhoto['Common Name']);
@@ -202,7 +204,11 @@ app.get('/photos', function(req, resp, next) {
 		photosByTaxo.push({'Common Name': aPhoto['Common Name'], taxonomicSort: aPhoto.taxonomicSort, family: aPhoto.family});
 	}
 
+	// sort that array by taxonomic id
+
 	photosByTaxo.sort(function (x,y) { return x.taxonomicSort - y.taxonomicSort; } );
+
+	// loop through that array and group into families
 
 	for (index = 0; index < photosByTaxo.length; index++) {
 		aPhoto = photosByTaxo[index];
