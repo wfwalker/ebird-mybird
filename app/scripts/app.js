@@ -654,7 +654,7 @@ function registerHelpers() {
 	Handlebars.registerPartial('thumbnails',
 		'<div> \
 		{{#each photos}} \
-		  <span><a href="#photo/{{id}}"><img width="85px" height="85px" src="{{[Thumbnail URL]}}"></a></span> \
+		  <span><a href="#photo/{{id}}"><img class="framed" width="85px" height="85px" src="{{[Thumbnail URL]}}"></a></span> \
 		{{/each}} \
 		</div>'
 	);
