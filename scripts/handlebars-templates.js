@@ -289,7 +289,7 @@ this["ebirdmybird"]["photo"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"m
     + alias4(((helper = (helper = helpers.Location || (depth0 != null ? depth0.Location : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Location","hash":{},"data":data}) : helper)))
     + ", "
     + alias4((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,(depth0 != null ? depth0.DateObject : depth0),{"name":"nicedate","hash":{},"data":data}))
-    + "</div>\n\n<img src=\""
+    + "</div>\n\n<img class='framed' src=\""
     + alias4(((helper = (helper = helpers["Photo URL"] || (depth0 != null ? depth0["Photo URL"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Photo URL","hash":{},"data":data}) : helper)))
     + "\">";
 },"useData":true});
