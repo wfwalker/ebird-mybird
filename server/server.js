@@ -2,6 +2,7 @@
 
 var gSightingList = null;
 var gPhotos = [];
+var gEBirdAll = [];
 var gIndex = null;
 
 var express = require('express');
@@ -103,14 +104,14 @@ fs.readFile('app/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
 
 	var familyRanges = {};
 
-	var ebirdAll = babyParse.parse(data, {
-			header: true,
-		});
+	gEBirdAll = babyParse.parse(data, {
+		header: true,
+	});
 
-	logger.info('parsed ebird all', ebirdAll.data.length);
+	logger.info('parsed ebird all', gEBirdAll.data.length);
 
-	for (var index = 0; index < ebirdAll.data.length; index++) {
-		var aValue = ebirdAll.data[index];
+	for (var index = 0; index < gEBirdAll.data.length; index++) {
+		var aValue = gEBirdAll.data[index];
 		var aFamily = familyRanges[aValue['FAMILY']];
 		var taxoValue = parseFloat(aValue['TAXON_ORDER']);
 
@@ -134,6 +135,16 @@ fs.readFile('app/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
 		SightingList.families.push(triple);
 	}
 });
+
+function privateGetTaxoFromCommonName(inCommonName) {
+	for (var index = 0; index < gEBirdAll.data.length; index++) {
+		if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] == inCommonName) {
+			return parseFloat(gEBirdAll.data[index]['TAXON_ORDER']);
+		}
+	}
+
+	return 'Unknown';
+}
 
 fs.readFile('app/data/photos.json', 'utf8', function(err, data) {
 	if (err) throw err;
@@ -180,33 +191,40 @@ app.get('/photosThisWeek', function(req, resp, next) {
 });
 
 app.get('/photos', function(req, resp, next) {
-	logger.debug('/photos', gPhotos.length);
-
-	// Create a map from common names of species photographed to taxonomic order #
-	// NB: assume there is a eBird sighting for each species photographed
-
-	var photoCommonNames = {};
-	var earliestByCommonName = gSightingList.getEarliestByCommonName();
+	var byFamily = {};
+	var photosByTaxo = [];
+	var speciesPhotographed = 0;
 
 	for (var index = 0; index < gPhotos.length; index++) {
-		var aValue = gPhotos[index]['Common Name'];
-		if (! photoCommonNames[aValue]) {
-			if (earliestByCommonName[aValue]) {
-				photoCommonNames[aValue] = earliestByCommonName[aValue]['Taxonomic Order'];
-			} else {
-				logger.error('cant find taxo order', aValue);
-			}
-		}
+		var aPhoto = gPhotos[index];
+		aPhoto.taxonomicSort = privateGetTaxoFromCommonName(aPhoto['Common Name']);
+		aPhoto.family = SightingList.getFamily(aPhoto.taxonomicSort);
+		photosByTaxo.push({'Common Name': aPhoto['Common Name'], taxonomicSort: aPhoto.taxonomicSort, family: aPhoto.family});
 	}
 
-	// Convert the map into an array of pairs, then sort the pairs by the second value
-	// to get taxonomic ordering
+	photosByTaxo.sort(function (x,y) { return x.taxonomicSort - y.taxonomicSort; } );
 
-	var pairs = Object.keys(photoCommonNames).map(function(key) { return [key, photoCommonNames[key]]; });
-	pairs.sort(function (x, y) { return x[1] - y[1]; });
+	for (index = 0; index < photosByTaxo.length; index++) {
+		aPhoto = photosByTaxo[index];
+		if (aPhoto.family == null) {
+			console.log(aPhoto);
+			continue;
+		}
+
+		if (! byFamily[aPhoto.family ]) {
+			byFamily[aPhoto.family ] = [];
+		}
+
+		if (byFamily[aPhoto.family].indexOf(aPhoto['Common Name']) < 0) {
+			byFamily[aPhoto.family].push(aPhoto['Common Name']);
+			speciesPhotographed = speciesPhotographed + 1;
+		}
+	};
+
+	logger.debug('/photos', gPhotos.length);
 
 	// pass down to the page template all the photo data plus the list of common names in taxo order
-	resp.json({photos: gPhotos, photoCommonNames: pairs.map(function (x) { return x[0]; })});
+	resp.json({numPhotos: gPhotos.length, numSpecies: speciesPhotographed, hierarchy: byFamily});
 });
 
 app.get('/locations', function(req, resp, next) {
