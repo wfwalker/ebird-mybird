@@ -58,8 +58,10 @@ this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,dept
 
   return "<h3>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + " County<span class='lighter'>"
-    + alias4(((helper = (helper = helpers.state || (depth0 != null ? depth0.state : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"state","hash":{},"data":data}) : helper)))
+    + " County <span class='lighter'>"
+    + alias4(((helper = (helper = helpers.Region || (depth0 != null ? depth0.Region : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Region","hash":{},"data":data}) : helper)))
+    + ", "
+    + alias4(((helper = (helper = helpers.Country || (depth0 != null ? depth0.Country : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Country","hash":{},"data":data}) : helper)))
     + "</span></h3>\n\n"
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<div id="
