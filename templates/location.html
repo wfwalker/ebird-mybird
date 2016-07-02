@@ -4,14 +4,17 @@
 		{{#if sightingList.rows.0.County}}
 			<a href="#county/{{sightingList.rows.0.County}}">{{sightingList.rows.0.County}} County</a>,
 		{{/if}}
-		{{sightingList.rows.0.[State/Province]}}
+		{{sightingList.rows.0.[Region]}},
+		{{sightingList.rows.0.[Country]}}
 	</span>
+	<span style='float: right'>
 	<a target="_blank" href="https://www.openstreetmap.org/?mlat={{sightingList.rows.0.Latitude}}&mlon={{sightingList.rows.0.Longitude}}#map=10/{{sightingList.rows.0.Latitude}}/{{sightingList.rows.0.Longitude}}">
 		map
 	</a>
 	<a target="_blank" href="http://forecast.io/#/f/{{sightingList.rows.0.Latitude}},{{sightingList.rows.0.Longitude}}">
 		weather
 	</a>
+	</span>
 </h3>
 
 {{> thumbnails}}
