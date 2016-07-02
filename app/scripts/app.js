@@ -416,7 +416,8 @@ function renderCounty(inCountyName) {
 			chartID: 'bymonth' + Date.now(),
 			sightingsByMonth: countySightingList.byMonth(),
 			photos: countySightingList.photos,
-			state: countySightingList.rows[0]['State/Province'],
+			Region: countySightingList.rows[0]['Region'],
+			Country: countySightingList.rows[0]['Country'],
 			sightingList: countySightingList,
 			taxons: countySightingList.commonNames,
 		});
