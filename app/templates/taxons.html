@@ -2,7 +2,7 @@
 
 <div class="biglist">
 	{{#each hierarchy}}
-		<h3>{{@key}}</h3>
+		<h3>{{stripLatinFromEbirdFamily @key}}</h3>
 		{{#each this}}
 			<div class='biglist-item'><a href="#taxon/{{encode this}}">{{this}}</a></div>
 		{{/each}}
