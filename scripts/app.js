@@ -614,6 +614,10 @@ function registerHelpers() {
 		return inList.getUniqueValues(inPropertyName);
 	});
 
+	Handlebars.registerHelper('stripLatinFromEbirdFamily', function(inString) {
+		return inString.replace(/.*\((.*)\)/, '$1');
+	});
+
 	Handlebars.registerHelper('valuecount', function(inList, inPropertyName) {
 		return inList.getUniqueValues(inPropertyName).length;
 	});

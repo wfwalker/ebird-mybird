@@ -298,10 +298,10 @@ this["ebirdmybird"]["photo"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"m
     + "\">";
 },"useData":true});
 this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {};
+    var stack1, alias1=depth0 != null ? depth0 : {};
 
   return "		<h3>"
-    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
+    + container.escapeExpression((helpers.stripLatinFromEbirdFamily || (depth0 && depth0.stripLatinFromEbirdFamily) || helpers.helperMissing).call(alias1,(data && data.key),{"name":"stripLatinFromEbirdFamily","hash":{},"data":data}))
     + "</h3>\n"
     + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"2":function(container,depth0,helpers,partials,data) {
@@ -467,10 +467,10 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.showChart : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "");
 },"usePartial":true,"useData":true});
 this["ebirdmybird"]["taxons"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {};
+    var stack1, alias1=depth0 != null ? depth0 : {};
 
   return "		<h3>"
-    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
+    + container.escapeExpression((helpers.stripLatinFromEbirdFamily || (depth0 && depth0.stripLatinFromEbirdFamily) || helpers.helperMissing).call(alias1,(data && data.key),{"name":"stripLatinFromEbirdFamily","hash":{},"data":data}))
     + "</h3>\n"
     + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"2":function(container,depth0,helpers,partials,data) {
