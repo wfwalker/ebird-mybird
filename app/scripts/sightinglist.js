@@ -273,6 +273,21 @@ SightingList.prototype.getTaxonomyHierarchy = function() {
 	return byFamily;
 };
 
+SightingList.prototype.mapLocationToSubmissionID = function() {
+	var tmpMap = {};
+
+	for (var index = 0; index < this.rows.length; index++) {
+		var sighting = this.rows[index];
+		var location = sighting['Location'];
+
+		if (! tmpMap[location]) {
+			tmpMap[location] = sighting['Submission ID'];
+		}
+	}
+
+	return tmpMap;
+}
+
 SightingList.prototype.getSpeciesByDate = function() {
 	console.log('computing speciesByDate');
 	
