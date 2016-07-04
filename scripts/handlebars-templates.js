@@ -507,13 +507,15 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
     + alias3((helpers.valuecount || (depth0 && depth0.valuecount) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"valuecount","hash":{},"data":data}))
     + " species</h4>\n";
 },"4":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=container.escapeExpression;
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
-  return "    <div class='biglist-item'>\n      <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID="
-    + alias1(container.lambda(depth0, depth0))
+  return "    <div class='biglist-item'>\n      <a target='_blank' href='#location/"
+    + alias3((helpers.encode || (depth0 && depth0.encode) || alias2).call(alias1,(data && data.key),{"name":"encode","hash":{},"data":data}))
     + "'>"
-    + alias1(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"key","hash":{},"data":data}) : helper)))
-    + "</a>\n    </div>\n";
+    + alias3(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
+    + "</a>\n      <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID="
+    + alias3(container.lambda(depth0, depth0))
+    + "'><img src='/images/ebird-favicon.png' /></a>\n    </div>\n";
 },"6":function(container,depth0,helpers,partials,data) {
     var alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
