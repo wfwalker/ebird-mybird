@@ -279,6 +279,7 @@ function renderTrip(inDate) {
 			photos: tripSightingList.photos,
 			customName: tripSightingList.dayNames[0],
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
+			locationToSubmissionID: tripSightingList.mapLocationToSubmissionID(),
 			sightingList: tripSightingList,
 		});
 	};

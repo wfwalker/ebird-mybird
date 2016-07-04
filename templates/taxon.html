@@ -7,7 +7,7 @@
 
 {{> thumbnails}}
 
-<h4>{{nicenumber sightingList.rows.length}} sightings</h4>
+<h4>{{nicenumber sightingList.rows.length}} sightings at {{valuecount sightingList "Location"}} locations</h4>
 
 {{#if this.showChart}}
 	<div id={{chartID}} style='padding-top: 10px'></div>
