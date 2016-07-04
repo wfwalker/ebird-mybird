@@ -12,7 +12,8 @@
   <div class='biglist'>
   {{#each locationToSubmissionID}}
     <div class='biglist-item'>
-      <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>{{@key}}</a>
+      <a target='_blank' href='#location/{{encode @key}}'>{{@key}}</a>
+      <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'><img src='/images/ebird-favicon.png' /></a>
     </div>
   {{/each}}
   </div>
