@@ -5,3 +5,4 @@ app/scripts/compressed.js
 app/scripts/compressed.js.map
 app/styles/bundle.css
 app/test/ebird.json
+.DS_Store
