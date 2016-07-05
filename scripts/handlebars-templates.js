@@ -297,14 +297,22 @@ this["ebirdmybird"]["photo"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"m
     + alias4(((helper = (helper = helpers["Photo URL"] || (depth0 != null ? depth0["Photo URL"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Photo URL","hash":{},"data":data}) : helper)))
     + "\">";
 },"useData":true});
-this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : {};
+this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing;
 
   return "		<h3>"
-    + container.escapeExpression((helpers.stripLatinFromEbirdFamily || (depth0 && depth0.stripLatinFromEbirdFamily) || helpers.helperMissing).call(alias1,(data && data.key),{"name":"stripLatinFromEbirdFamily","hash":{},"data":data}))
-    + "</h3>\n"
-    + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+    + container.escapeExpression((helpers.stripLatinFromEbirdFamily || (depth0 && depth0.stripLatinFromEbirdFamily) || alias2).call(alias1,(data && data.key),{"name":"stripLatinFromEbirdFamily","hash":{},"data":data}))
+    + "</h3>\n\n"
+    + ((stack1 = helpers["with"].call(alias1,(helpers.random || (depth0 && depth0.random) || alias2).call(alias1,(depths[1] != null ? depths[1].photosByFamily : depths[1]),(data && data.key),{"name":"random","hash":{},"data":data}),{"name":"with","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(4, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"2":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "			<img width='85px' src='"
+    + container.escapeExpression(((helper = (helper = helpers["Thumbnail URL"] || (depth0 != null ? depth0["Thumbnail URL"] : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"Thumbnail URL","hash":{},"data":data}) : helper)))
+    + "' />\n";
+},"4":function(container,depth0,helpers,partials,data) {
     var alias1=container.escapeExpression;
 
   return "			<div class='biglist-item'><a href=\"#taxon/"
@@ -312,7 +320,7 @@ this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,dept
     + "\">"
     + alias1(container.lambda(depth0, depth0))
     + "</a></div>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
   return "<h3>"
@@ -320,9 +328,9 @@ this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,dept
     + " photos of "
     + alias3((helpers.nicenumber || (depth0 && depth0.nicenumber) || alias2).call(alias1,(depth0 != null ? depth0.numSpecies : depth0),{"name":"nicenumber","hash":{},"data":data}))
     + " species</h3>\n\n<div class=\"biglist\">\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.hierarchy : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.hierarchy : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n";
-},"useData":true});
+},"useData":true,"useDepths":true});
 this["ebirdmybird"]["searchresults"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 

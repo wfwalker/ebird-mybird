@@ -3,6 +3,11 @@
 <div class="biglist">
 	{{#each hierarchy}}
 		<h3>{{stripLatinFromEbirdFamily @key}}</h3>
+
+		{{#with (random ../photosByFamily @key)}}
+			<img width='85px' src='{{[Thumbnail URL]}}' />
+		{{/with}}
+
 		{{#each this}}
 			<div class='biglist-item'><a href="#taxon/{{encode this}}">{{this}}</a></div>
 		{{/each}}
