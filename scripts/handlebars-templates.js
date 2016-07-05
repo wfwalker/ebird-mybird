@@ -523,7 +523,9 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
     + alias3((helpers.valuecount || (depth0 && depth0.valuecount) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"valuecount","hash":{},"data":data}))
     + " species at "
     + alias3((helpers.values || (depth0 && depth0.values) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Location",{"name":"values","hash":{},"data":data}))
-    + "\n  </h4>\n";
+    + "\n    <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID="
+    + alias3((helpers.values || (depth0 && depth0.values) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Submission ID",{"name":"values","hash":{},"data":data}))
+    + "'><img src='/images/ebird-favicon.png' /></a>\n  </h4>\n";
 },"8":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
