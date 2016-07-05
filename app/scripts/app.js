@@ -615,6 +615,10 @@ function registerHelpers() {
 		return inList.getUniqueValues(inPropertyName);
 	});
 
+	Handlebars.registerHelper('random', function(inDictionary, inKey) {
+		return inDictionary[inKey][0];
+	});
+
 	Handlebars.registerHelper('stripLatinFromEbirdFamily', function(inString) {
 		return inString.replace(/.*\((.*)\)/, '$1');
 	});
