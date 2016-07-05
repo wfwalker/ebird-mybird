@@ -191,8 +191,9 @@ app.get('/photosThisWeek', function(req, resp, next) {
 });
 
 app.get('/photos', function(req, resp, next) {
-	var byFamily = {};
-	var photosByTaxo = [];
+	var commonNamesByFamily = {};
+	var photosByFamily = {};
+	var photoCommonNamesByFamily = [];
 	var speciesPhotographed = 0;
 
 	// make an array of common name, taxonomic id, and family name
@@ -201,36 +202,42 @@ app.get('/photos', function(req, resp, next) {
 		var aPhoto = gPhotos[index];
 		aPhoto.taxonomicSort = privateGetTaxoFromCommonName(aPhoto['Common Name']);
 		aPhoto.family = SightingList.getFamily(aPhoto.taxonomicSort);
-		photosByTaxo.push({'Common Name': aPhoto['Common Name'], taxonomicSort: aPhoto.taxonomicSort, family: aPhoto.family});
+		photoCommonNamesByFamily.push({'Common Name': aPhoto['Common Name'], taxonomicSort: aPhoto.taxonomicSort, family: aPhoto.family});
+
+		if (! photosByFamily[aPhoto.family]) {
+			photosByFamily[aPhoto.family] = [];
+		}
+
+		photosByFamily[aPhoto.family].push(aPhoto);
 	}
 
 	// sort that array by taxonomic id
 
-	photosByTaxo.sort(function (x,y) { return x.taxonomicSort - y.taxonomicSort; } );
+	photoCommonNamesByFamily.sort(function (x,y) { return x.taxonomicSort - y.taxonomicSort; } );
 
 	// loop through that array and group into families
 
-	for (index = 0; index < photosByTaxo.length; index++) {
-		aPhoto = photosByTaxo[index];
+	for (index = 0; index < photoCommonNamesByFamily.length; index++) {
+		aPhoto = photoCommonNamesByFamily[index];
 		if (aPhoto.family == null) {
 			console.log(aPhoto);
 			continue;
 		}
 
-		if (! byFamily[aPhoto.family ]) {
-			byFamily[aPhoto.family ] = [];
+		if (! commonNamesByFamily[aPhoto.family ]) {
+			commonNamesByFamily[aPhoto.family ] = [];
 		}
 
-		if (byFamily[aPhoto.family].indexOf(aPhoto['Common Name']) < 0) {
-			byFamily[aPhoto.family].push(aPhoto['Common Name']);
+		if (commonNamesByFamily[aPhoto.family].indexOf(aPhoto['Common Name']) < 0) {
+			commonNamesByFamily[aPhoto.family].push(aPhoto['Common Name']);
 			speciesPhotographed = speciesPhotographed + 1;
 		}
 	};
 
-	logger.debug('/photos', gPhotos.length);
+	logger.debug('/photos');
 
 	// pass down to the page template all the photo data plus the list of common names in taxo order
-	resp.json({numPhotos: gPhotos.length, numSpecies: speciesPhotographed, hierarchy: byFamily});
+	resp.json({numPhotos: gPhotos.length, numSpecies: speciesPhotographed, photosByFamily: photosByFamily, hierarchy: commonNamesByFamily});
 });
 
 app.get('/locations', function(req, resp, next) {
