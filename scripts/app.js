@@ -214,6 +214,7 @@ function renderChrono() {
 		for (var index = 0; index < chronoData.firstSightings.length; index++) {
 			chronoData.firstSightings[index]['DateObject'] = new Date(chronoData.firstSightings[index]['DateObject']);
 		}
+		chronoData.firstSightings.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
 		renderTemplate('chrono', 'chrono', chronoData);
 	}
 
