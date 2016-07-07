@@ -2,14 +2,14 @@
 
 <div class="biglist">
 	{{#each hierarchy}}
-		<h3>{{stripLatinFromEbirdFamily @key}}</h3>
+		<div class='biglist-item'>
+			{{#with (random ../photosByFamily @key)}}
+				<div style='float: left; padding-right: 10px'>
+					<a href='#family/{{@key}}'><img width='85px' height='85px' src='{{[Thumbnail URL]}}' /></a>
+				</div>
+			{{/with}}
 
-		{{#with (random ../photosByFamily @key)}}
-			<img width='85px' src='{{[Thumbnail URL]}}' />
-		{{/with}}
-
-		{{#each this}}
-			<div class='biglist-item'><a href="#taxon/{{encode this}}">{{this}}</a></div>
-		{{/each}}
+			<div>{{stripLatinFromEbirdFamily @key}}</div>
+		</div>
 	{{/each}}
 </div>

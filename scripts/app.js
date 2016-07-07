@@ -432,6 +432,31 @@ function renderCounty(inCountyName) {
 	countyRequest.send();
 }
 
+function renderFamily(inFamilyName) {
+	var familyRequest = new XMLHttpRequest();
+
+	familyRequest.onload = function(e) {
+		console.log('county loaded');
+
+		var tmp = JSON.parse(familyRequest.response);
+		var familySightingList = new SightingList();
+		familySightingList.initialize(tmp);
+
+		renderTemplate('family', inFamilyName, {
+			name: inFamilyName,
+			chartID: 'bymonth' + Date.now(),
+			sightingsByMonth: familySightingList.byMonth(),
+			photos: familySightingList.photos,
+			sightingList: familySightingList,
+			taxons: familySightingList.commonNames,
+		});
+	}
+
+	familyRequest.onerror = renderNetworkError;
+	familyRequest.open("GET", '/family/' + inFamilyName);
+	familyRequest.send();
+}
+
 function renderTaxons() {
 	var taxonsRequest = new XMLHttpRequest();
 
@@ -548,6 +573,7 @@ var routingMap = {
 	'#county' : renderCounty,
 	'#taxons' : renderTaxons,
 	'#taxon' : renderTaxon,
+	'#family' : renderFamily,
 	'#search' : renderSearchResults,
 };
 
@@ -617,7 +643,8 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerHelper('random', function(inDictionary, inKey) {
-		return inDictionary[inKey][0];
+		var tmp = inDictionary[inKey].length;
+		return inDictionary[inKey][Math.trunc(Math.random() * tmp)];
 	});
 
 	Handlebars.registerHelper('stripLatinFromEbirdFamily', function(inString) {
