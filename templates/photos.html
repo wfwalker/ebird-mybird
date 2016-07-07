@@ -4,12 +4,14 @@
 	{{#each hierarchy}}
 		<div class='biglist-item'>
 			{{#with (random ../photosByFamily @key)}}
-				<div style='float: left; padding-right: 10px'>
+				<div style='float: left; padding-right: 10px; padding-bottom: 5px'>
 					<a href='#family/{{@key}}'><img width='85px' height='85px' src='{{[Thumbnail URL]}}' /></a>
 				</div>
 			{{/with}}
 
-			<div>{{stripLatinFromEbirdFamily @key}}</div>
+			<div>
+				<a href='#family/{{@key}}'>{{stripLatinFromEbirdFamily @key}}</a>
+			</div>
 		</div>
 	{{/each}}
 </div>
