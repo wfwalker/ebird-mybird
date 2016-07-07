@@ -279,6 +279,18 @@ app.get('/location/:location_name', function(req, resp, next) {
 	resp.json(locationSightingList);
 });
 
+app.get('/family/:family_name', function(req, resp, next) {
+	var tmp = gSightingList.filter(function(s) { return SightingList.getFamily(s['Taxonomic Order']) == req.params.family_name; });
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	var photos = gPhotos.filter(function(p) { return SightingList.getFamily(privateGetTaxoFromCommonName(p['Common Name'])) == req.params.family_name; });
+
+	var familySightingList = new SightingList(tmp, photos);
+
+	logger.debug('/family/', req.params.family_name, familySightingList.rows.length);
+
+	resp.json(familySightingList);
+});
+
 app.get('/taxons', function(req, resp, next) {
 	var earliestByCommonName = gSightingList.getEarliestByCommonName();
 	var lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function(k){ return earliestByCommonName[k]; });
