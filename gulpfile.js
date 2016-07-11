@@ -34,6 +34,13 @@ var debounce = require('lodash.debounce');
 var mocha = require('gulp-mocha');
 var convert = require('gulp-convert');
 var nodemon = require('gulp-nodemon');
+
+// The directory in which the app will be built, and from which it is offlined
+// and deployed.  This is also the prefix that will be stripped from the front
+// of paths cached by the offline worker, so it should include a trailing slash
+// to ensure the leading slash of the path is stripped, i.e. to ensure
+// dist/css/style.css becomes css/style.css, not /css/style.css.
+var rootDir = 'dist/';
  
 gulp.task('testdata', function(){
   gulp.src(['app/data/ebird.csv'])
@@ -42,6 +49,16 @@ gulp.task('testdata', function(){
       to: 'json'
      }))
     .pipe(gulp.dest('app/test/'));
+});
+
+gulp.task('copy-js-libs', function() {
+    return gulp.src([
+          'node_modules/handlebars/dist/handlebars.js',
+        ])
+        .pipe(gulp.dest(function(file) {
+            file.path = file.base + path.basename(file.path);
+            return 'app/scripts';
+        }));
 });
 
 gulp.task('test', function () {
@@ -60,7 +77,7 @@ gulp.task('configure', oghliner.configure);
 
 gulp.task('deploy', function() {
   return oghliner.deploy({
-    rootDir: 'dist',
+    rootDir: rootDir,
   });
 });
 
@@ -93,7 +110,7 @@ gulp.task('compress', ['templates'], function(){
   return gulp.src([
     'app/scripts/d3.v3.js',
     'app/scripts/c3.min.js',
-    'app/scripts/handlebars-v4.0.4.js',
+    'app/scripts/handlebars.js',
     'app/scripts/handlebars-templates.js',
     'app/scripts/sightinglist.js',
     'app/scripts/app.js',
@@ -117,9 +134,9 @@ gulp.task('css', function() {
     .pipe(gulp.dest('app/styles'));
 });
 
-gulp.task('offline', ['build'], function() {
+gulp.task('offline', ['copy-js-libs', 'build'], function() {
   return oghliner.offline({
-    rootDir: 'dist/',
+    rootDir: rootDir,
     fileGlobs: [
       'images/**',
       'index.html',

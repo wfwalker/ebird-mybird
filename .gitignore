@@ -1,6 +1,7 @@
 node_modules/
 dist/
 app/scripts/handlebars-templates.js
+app/scripts/handlebars.js
 app/scripts/compressed.js
 app/scripts/compressed.js.map
 app/styles/bundle.css
