@@ -54,6 +54,7 @@ gulp.task('testdata', function(){
 gulp.task('copy-js-libs', function() {
     return gulp.src([
           'node_modules/handlebars/dist/handlebars.js',
+          'node_modules/d3/d3.js',
         ])
         .pipe(gulp.dest(function(file) {
             file.path = file.base + path.basename(file.path);
@@ -108,7 +109,7 @@ gulp.task('templates', function(){
 
 gulp.task('compress', ['templates'], function(){
   return gulp.src([
-    'app/scripts/d3.v3.js',
+    'app/scripts/d3.js',
     'app/scripts/c3.min.js',
     'app/scripts/handlebars.js',
     'app/scripts/handlebars-templates.js',

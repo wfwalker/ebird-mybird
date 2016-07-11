@@ -16,6 +16,7 @@
     "compression": "^1.6.2",
     "css-mqpacker": "^4.0.0",
     "csswring": "^4.0.0",
+    "d3": "~3.5.6",
     "expires-middleware": "0.0.1",
     "express": "^4.13.4",
     "gulp": "^3.9.0",
