@@ -13,6 +13,7 @@
   "dependencies": {
     "babyparse": "^0.4.6",
     "browser-sync": "^2.10.0",
+    "c3": "^0.4.11",
     "compression": "^1.6.2",
     "css-mqpacker": "^4.0.0",
     "csswring": "^4.0.0",

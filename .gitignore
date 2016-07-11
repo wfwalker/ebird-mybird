@@ -3,6 +3,7 @@ dist/
 app/scripts/handlebars-templates.js
 app/scripts/handlebars.js
 app/scripts/d3.js
+app/scripts/c3.js
 app/scripts/compressed.js
 app/scripts/compressed.js.map
 app/styles/bundle.css
