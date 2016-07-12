@@ -60,6 +60,13 @@ SightingList.setOmittedCommonNames = function(inNames) {
 
 SightingList.families = [];
 
+function convertDate(inDate) {
+	var tmp = new Date(inDate);
+	tmp.setTime( tmp.getTime() + tmp.getTimezoneOffset()*60*1000 );
+	console.log('wrong', inDate, tmp);
+	return tmp;
+}
+
 SightingList.prototype.initialize = function(inData) {
 	this.rows = inData.rows;
 	this._uniqueValuesCache = inData._uniqueValuesCache;
@@ -67,8 +74,8 @@ SightingList.prototype.initialize = function(inData) {
 	this.rowsByMonth = inData.rowsByMonth;
 	this._speciesByDate = inData.speciesByDate;
 	this._earliestRowByCommonName = inData._earliestRowByCommonName;
-	this.earliestDateObject = new Date(inData.earliestDateObject);
-	this.latestDateObject = new Date(inData.latestDateObject);
+	this.earliestDateObject = convertDate(inData.earliestDateObject);
+	this.latestDateObject = convertDate(inData.latestDateObject);
 	this.dates = inData.dates;
 	this.dateObjects = inData.dateObjects;
 	this.dayNames = inData.dayNames;
@@ -76,11 +83,11 @@ SightingList.prototype.initialize = function(inData) {
 
 	// fix the dates
 	for (var index = 0; index < this.dateObjects.length; index++) {
-		this.dateObjects[index] = new Date(this.dateObjects[index]);
+		this.dateObjects[index] = convertDate(this.dateObjects[index]);
 	}
 
 	for (index = 0; index < this.rows.length; index++) {
-		this.rows[index].DateObject = new Date(this.rows[index].DateObject);
+		this.rows[index].DateObject = convertDate(this.rows[index].DateObject);
 	}
 };
 
@@ -103,7 +110,7 @@ SightingList.prototype.addRows = function(inRows) {
 			var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
 
 			// create and save the new dat
-			var newDate = new Date(fixedDateString);
+			var newDate = convertDate(fixedDateString);
 			sighting['DateObject'] = newDate;
 
 			if (this.dates.indexOf(sighting['Date']) < 0) {
