@@ -63,7 +63,6 @@ SightingList.families = [];
 function convertDate(inDate) {
 	var tmp = new Date(inDate);
 	tmp.setTime( tmp.getTime() + tmp.getTimezoneOffset()*60*1000 );
-	console.log('wrong', inDate, tmp);
 	return tmp;
 }
 
