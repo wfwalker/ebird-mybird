@@ -632,6 +632,8 @@ function routeBasedOnHash() {
 function registerHelpers() {
 	Handlebars.registerHelper('nicedate', function(inDate) {
 		if (inDate) {
+			// TODO: wrong date format
+			console.log('WRONGWRONG', inDate, d3.time.format('%b %d, %Y')(inDate) );
 			return new Handlebars.SafeString (
 				d3.time.format('%b %d, %Y')(inDate)
 			);
