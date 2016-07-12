@@ -52,15 +52,25 @@ gulp.task('testdata', function(){
 });
 
 gulp.task('copy-js-libs', function() {
-    return gulp.src([
-          'node_modules/handlebars/dist/handlebars.js',
-          'node_modules/d3/d3.js',
-          'node_modules/c3/c3.js',
-        ])
-        .pipe(gulp.dest(function(file) {
-            file.path = file.base + path.basename(file.path);
-            return 'app/scripts';
-        }));
+  return gulp.src([
+        'node_modules/handlebars/dist/handlebars.js',
+        'node_modules/d3/d3.js',
+        'node_modules/c3/c3.js',
+      ])
+      .pipe(gulp.dest(function(file) {
+          file.path = file.base + path.basename(file.path);
+          return 'app/scripts';
+      }));
+});
+
+gulp.task('copy-css', function() {
+  return gulp.src([
+        'node_modules/c3/c3.css',
+      ])
+      .pipe(gulp.dest(function(file) {
+          file.path = file.base + path.basename(file.path);
+          return 'app/styles';
+      }));
 });
 
 gulp.task('test', function () {
@@ -108,7 +118,7 @@ gulp.task('templates', function(){
     .pipe(gulp.dest('./app/scripts'));
 });
 
-gulp.task('compress', ['templates'], function(){
+gulp.task('compress', ['copy-js-libs', 'templates'], function(){
   return gulp.src([
     'app/scripts/d3.js',
     'app/scripts/c3.js',
@@ -124,7 +134,7 @@ gulp.task('compress', ['templates'], function(){
     .pipe(gulp.dest('app/scripts'));
 });
 
-gulp.task('css', function() {
+gulp.task('css', ['copy-css'], function() {
   var processors = [
     mqpacker,
     csswring,
@@ -136,7 +146,7 @@ gulp.task('css', function() {
     .pipe(gulp.dest('app/styles'));
 });
 
-gulp.task('offline', ['copy-js-libs', 'build'], function() {
+gulp.task('offline', ['build'], function() {
   return oghliner.offline({
     rootDir: rootDir,
     fileGlobs: [

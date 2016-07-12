@@ -6,6 +6,7 @@ app/scripts/d3.js
 app/scripts/c3.js
 app/scripts/compressed.js
 app/scripts/compressed.js.map
+app/styles/c3.css
 app/styles/bundle.css
 app/test/ebird.json
 .DS_Store
