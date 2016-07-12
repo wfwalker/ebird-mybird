@@ -233,10 +233,8 @@ function renderTrips() {
 		
 		var tripsData = JSON.parse(tripsRequest.response);
 		for (var index = 0; index < tripsData.trips.length; index++) {
-			// TODO: wrong timezone?
 			var tmp = new Date(tripsData.trips[index]);
 			tmp.setTime( tmp.getTime() + tmp.getTimezoneOffset()*60*1000 );
-			console.log('wrong', tripsData.trips[index], tmp);
 			tripsData.trips[index] = tmp;
 		}
 		renderTemplate('trips', 'Trips', tripsData);
