@@ -234,8 +234,10 @@ function renderTrips() {
 		var tripsData = JSON.parse(tripsRequest.response);
 		for (var index = 0; index < tripsData.trips.length; index++) {
 			// TODO: wrong timezone?
-			console.log('wrong', tripsData.trips[index], new Date(tripsData.trips[index]));
-			tripsData.trips[index] = new Date(tripsData.trips[index]);
+			var tmp = new Date(tripsData.trips[index]);
+			tmp.setTime( tmp.getTime() + tmp.getTimezoneOffset()*60*1000 );
+			console.log('wrong', tripsData.trips[index], tmp);
+			tripsData.trips[index] = tmp;
 		}
 		renderTemplate('trips', 'Trips', tripsData);
 	}
@@ -632,8 +634,6 @@ function routeBasedOnHash() {
 function registerHelpers() {
 	Handlebars.registerHelper('nicedate', function(inDate) {
 		if (inDate) {
-			// TODO: wrong date format
-			console.log('WRONGWRONG', inDate, d3.time.format('%b %d, %Y')(inDate) );
 			return new Handlebars.SafeString (
 				d3.time.format('%b %d, %Y')(inDate)
 			);
