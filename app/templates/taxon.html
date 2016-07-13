@@ -10,7 +10,7 @@
 <h4>{{nicenumber sightingList.rows.length}} sightings at {{valuecount sightingList "Location"}} locations</h4>
 
 {{#if this.showChart}}
-	<div id={{chartID}} style='padding-top: 10px'></div>
+	<div id={{chartID}} class='bargraph'></div>
 	{{monthgraph sightingsByMonth chartID}}
 {{else}}
 	<div class="biglist">

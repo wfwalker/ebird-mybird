@@ -32,7 +32,7 @@
 <h4>{{valuecount sightingList "Date"}} Dates</h4>
 
 {{#if this.showChart}}
-	<div id={{chartID}} style='padding-top: 10px'></div>
+	<div id={{chartID}} class='bargraph'></div>
 	{{monthgraph sightingsByMonth chartID}}
 {{else}}
 	<div class="biglist">
