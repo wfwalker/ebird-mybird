@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + '53811ad05a2787831ebfb27f71af245edf99b072';
+      return this.CACHE_PREFIX + '80b03b826991533c1bd8bb1d17b7f154cdca56f9';
     },
 
     // This is a list of resources that will be cached.
@@ -50,9 +50,9 @@
       './images/openmap.png', // 4dafe3882887be3afcf51d54948c5ceb830616d3
       './images/weather.png', // ac9c676c285f1ca8418e6bda8bccd0afdd922571
       './index.html', // bf400527ef65c18afd672309f2aa76e79c676d9f
-      './scripts/compressed.js', // 34eaf23686313d5c4cf5ffa2587c38811e2cbb67
-      './styles/app.css', // 97a9e161770e646eea69459033dcb91dc9798da7
-      './styles/bundle.css', // a5adf2942f9f76b29b2b6298883d5511b8cdf027
+      './scripts/compressed.js', // 0c24d16871e7a95efba177945d528f9dcb45ad58
+      './styles/app.css', // de956e9dab945598f0ff13f67e6f2bb15d16d62d
+      './styles/bundle.css', // a85335ddc6907bb2e46b8c68b45b7c84fd83faa8
       './styles/c3.css', // 317ac8c41b6db673f5c7143526a6157d49cb64b6
       './styles/spinner.css', // cadac5f4fce4b28bfb8ab8de2ed9fc879d321252
       './styles/stylesheet.css', // 162e5d9d8ff40b4fdce495aaaba97c211b9e5141

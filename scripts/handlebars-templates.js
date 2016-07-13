@@ -66,7 +66,7 @@ this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,dept
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<div id="
     + alias4(((helper = (helper = helpers.chartID || (depth0 != null ? depth0.chartID : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"chartID","hash":{},"data":data}) : helper)))
-    + " style='padding-top: 10px'></div>\n\n"
+    + " class='bargraph'></div>\n\n"
     + alias4((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.chartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
     + "\n\n<h4>"
     + alias4((helpers.valuecount || (depth0 && depth0.valuecount) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Location",{"name":"valuecount","hash":{},"data":data}))
@@ -169,7 +169,7 @@ this["ebirdmybird"]["family"] = Handlebars.template({"1":function(container,dept
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<div id="
     + alias3(((helper = (helper = helpers.chartID || (depth0 != null ? depth0.chartID : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"chartID","hash":{},"data":data}) : helper)))
-    + " style='padding-top: 10px'></div>\n\n"
+    + " class='bargraph'></div>\n\n"
     + alias3((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.chartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
     + "\n\n<h4>"
     + alias3((helpers.valuecount || (depth0 && depth0.valuecount) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Location",{"name":"valuecount","hash":{},"data":data}))
@@ -230,7 +230,7 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
 
   return "	<div id="
     + alias3(((helper = (helper = helpers.chartID || (depth0 != null ? depth0.chartID : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"chartID","hash":{},"data":data}) : helper)))
-    + " style='padding-top: 10px'></div>\n	"
+    + " class='bargraph'></div>\n	"
     + alias3((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.chartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
     + "\n";
 },"7":function(container,depth0,helpers,partials,data,blockParams,depths) {
@@ -454,11 +454,11 @@ this["ebirdmybird"]["stats"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"m
     + alias4((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,(depth0 != null ? depth0.latest : depth0),{"name":"nicedate","hash":{},"data":data}))
     + "\n</div>\n\n<h4>Sightings by Year</h4>\n\n<div id="
     + alias4(((helper = (helper = helpers.yearChartID || (depth0 != null ? depth0.yearChartID : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"yearChartID","hash":{},"data":data}) : helper)))
-    + " style='padding-top: 10px'></div>\n\n"
+    + " class='bargraph'></div>\n\n"
     + alias4((helpers.bargraph || (depth0 && depth0.bargraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByYear : depth0),(depth0 != null ? depth0.yearChartID : depth0),{"name":"bargraph","hash":{},"data":data}))
     + "\n\n<h4>Sightings by Month</h4>\n\n<div id="
     + alias4(((helper = (helper = helpers.monthChartID || (depth0 != null ? depth0.monthChartID : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"monthChartID","hash":{},"data":data}) : helper)))
-    + " style='padding-top: 10px'></div>\n\n"
+    + " class='bargraph'></div>\n\n"
     + alias4((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.monthChartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
     + "\n";
 },"useData":true});
@@ -467,7 +467,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
 
   return "	<div id="
     + alias3(((helper = (helper = helpers.chartID || (depth0 != null ? depth0.chartID : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"chartID","hash":{},"data":data}) : helper)))
-    + " style='padding-top: 10px'></div>\n	"
+    + " class='bargraph'></div>\n	"
     + alias3((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.chartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
     + "\n";
 },"3":function(container,depth0,helpers,partials,data) {

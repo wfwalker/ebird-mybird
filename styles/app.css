@@ -48,3 +48,8 @@
 a img {
 	vertical-align: middle;
 }
+
+.bargraph {
+	padding-top: 10px;
+	width: 400px;
+}

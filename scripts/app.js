@@ -19,6 +19,8 @@ Date.prototype.getWeek = function() {
 
 var gCompiledTemplates = {};
 
+var gBarGraphHeight = 100;
+
 function renderNetworkError(e) {
 	console.log('network error', e);
 	hideSection('#loading');
@@ -98,7 +100,7 @@ function barGraphCountsForSightings(inData, inElement) {
 	var chart = c3.generate({
 		bindto: d3.select(inElement),
 		size: {
-			height: 150,
+			height: gBarGraphHeight,
 		},
 		axis: {
 			y: {
@@ -139,7 +141,7 @@ function byMonthForSightings(inData, inElement) {
 	var chart = c3.generate({
 		bindto: d3.select(inElement),
 		size: {
-			height: 150,
+			height: gBarGraphHeight,
 		},
 		bar: {
 			width: {
