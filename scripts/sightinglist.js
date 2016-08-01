@@ -294,6 +294,21 @@ SightingList.prototype.mapLocationToSubmissionID = function() {
 	return tmpMap;
 }
 
+SightingList.prototype.mapSubmissionIDToChecklistComments = function() {
+	var tmpMap = {};
+
+	for (var index = 0; index < this.rows.length; index++) {
+		var sighting = this.rows[index];
+		var submissionID = sighting['Submission ID'];
+
+		if (! tmpMap[submissionID]) {
+			tmpMap[submissionID] = sighting['Checklist Comments'];
+		}
+	}
+
+	return tmpMap;
+}
+
 SightingList.prototype.getSpeciesByDate = function() {
 	console.log('computing speciesByDate');
 	

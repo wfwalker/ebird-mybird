@@ -394,7 +394,7 @@ this["ebirdmybird"]["searchresults"] = Handlebars.template({"1":function(contain
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, alias1=container.escapeExpression, alias2=depth0 != null ? depth0 : {}, alias3=helpers.helperMissing;
 
-  return "<h3>search results</h3>\n\n<h4>"
+  return "<h3>Search Results</h3>\n\n<h4>"
     + alias1(container.lambda(((stack1 = (depth0 != null ? depth0.dates : depth0)) != null ? stack1.length : stack1), depth0))
     + " Dates</h4>\n\n<div class=\"biglist\">\n"
     + ((stack1 = helpers.each.call(alias2,(depth0 != null ? depth0.dates : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
