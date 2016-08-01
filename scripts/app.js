@@ -24,6 +24,7 @@ var gBarGraphHeight = 100;
 function renderNetworkError(e) {
 	console.log('network error', e);
 	hideSection('#loading');
+	alert('network error, please try again');
 	// TODO: show error something?
 }
 
@@ -283,6 +284,7 @@ function renderTrip(inDate) {
 			tripDate: tripSightingList.rows[0].DateObject,
 			photos: tripSightingList.photos,
 			customName: tripSightingList.dayNames[0],
+			submissionIDToChecklistComments: tripSightingList.mapSubmissionIDToChecklistComments(),
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
 			locationToSubmissionID: tripSightingList.mapLocationToSubmissionID(),
 			sightingList: tripSightingList,
