@@ -735,6 +735,15 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 			history.pushState({ searchText: searchText }, 'BirdWalker | Search', '#search/' + searchText);
 			routeBasedOnHash();
 		});
+
+		document.getElementById('menutoggler').addEventListener('click', function() {
+		    var x = document.getElementById("myTopnav");
+		    if (x.className === "topnav") {
+		        x.className += " responsive";
+		    } else {
+		        x.className = "topnav";
+		    }
+		});
 	});
 
 	gSightings = [];
