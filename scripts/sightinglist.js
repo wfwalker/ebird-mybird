@@ -148,7 +148,31 @@ SightingList.prototype.addRows = function(inRows) {
 
 SightingList.prototype.sortByDate = function() {
 	// TODO: this is probably unnecessary sort!
-	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });		
+	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });           
+}
+
+SightingList.prototype.sortByLocation = function() {
+	this.rows.sort(function(a, b) {
+		if (a['Region'] < b['Region']) {
+			return -1;
+		} else if (a['Region'] > b['Region']) {
+			return 1;
+		} else {
+			if (a['County'] < b['County']) {
+				return -1;
+			} else if (a['County'] > b['County']) {
+				return 1;
+			} else {
+				if (a['Location'] < b['Location']) {
+					return -1;
+				} else if (a['Location'] > b['Location']) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		}
+	});
 }
 
 SightingList.prototype.earliestDateObject = function() {
@@ -207,6 +231,8 @@ SightingList.prototype.getUniqueValues = function(fieldName) {
 };
 
 SightingList.prototype.getLocationHierarchy = function() {
+	this.sortByLocation();
+
 	var provinces = {};
 
 	for (var index = 0; index < this.rows.length; index++) {
