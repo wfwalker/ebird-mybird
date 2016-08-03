@@ -377,6 +377,23 @@ SightingList.prototype.getEarliestByCommonName = function() {
 	return this._earliestRowByCommonName;
 };
 
+// Return as many as possible recent photos from the list, up to the supplied limit
+SightingList.prototype.getLatestPhotos = function(inPhotoCount) {
+	if (this.photos.length <= inPhotoCount) {
+		// if the limit exceeds the available photos, return all of them.
+		return this.photos;
+	} else {
+		// sort the photos into date order and return up to the supplied limit
+		// NOTE: assumes you have read the photos and added DatObject field to them.
+		// see server.js code for reading photos.json
+		this.photos.sort(function(a, b) {
+			return a.DateObject < b.DateObject;
+		});
+
+		return this.photos.slice(0, inPhotoCount);
+	}
+}
+
 
 if (typeof module != 'undefined') {
 	module.exports = SightingList;
