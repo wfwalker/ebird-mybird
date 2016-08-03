@@ -308,7 +308,7 @@ function renderYear(inYear) {
 
 		renderTemplate('year', inYear, {
 			year: inYear,
-			photos: yearSightingList.photos,
+			photos: yearSightingList.getLatestPhotos(20),
 			yearSightings: yearSightingList.rows,
 			yearSpecies: yearSightingList.getUniqueValues('Common Name'),
 		});
@@ -400,7 +400,7 @@ function renderLocation(inLocationName) {
 			chartID: 'bymonth' + Date.now(),
 			showChart: locationSightingList.length() > 100,
 			sightingsByMonth: locationSightingList.byMonth(),
-			photos: locationSightingList.photos,
+			photos: locationSightingList.getLatestPhotos(20),
 			sightingList: locationSightingList,
 		});
 
@@ -425,7 +425,7 @@ function renderCounty(inCountyName) {
 			name: inCountyName,
 			chartID: 'bymonth' + Date.now(),
 			sightingsByMonth: countySightingList.byMonth(),
-			photos: countySightingList.photos,
+			photos: countySightingList.getLatestPhotos(20),
 			Region: countySightingList.rows[0]['Region'],
 			Country: countySightingList.rows[0]['Country'],
 			sightingList: countySightingList,
@@ -452,7 +452,7 @@ function renderFamily(inFamilyName) {
 			name: inFamilyName,
 			chartID: 'bymonth' + Date.now(),
 			sightingsByMonth: familySightingList.byMonth(),
-			photos: familySightingList.photos,
+			photos: familySightingList.getLatestPhotos(20),
 			sightingList: familySightingList,
 			taxons: familySightingList.commonNames,
 		});
@@ -596,6 +596,7 @@ function routeBasedOnHash() {
 	}
 
 	if(routingMap[theHashParts[0]]) {
+		// TODO: hard coded to a single parameter, won't work for location hierarchy
 		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
 	} else {
 		console.log('not found', window.location.hash);

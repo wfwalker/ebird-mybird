@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + '7b3b1ce390569e9714ec5b4350efd7a0568fc066';
+      return this.CACHE_PREFIX + '99e1595adc9658e4028f8c7a8683f6954d593645';
     },
 
     // This is a list of resources that will be cached.
@@ -50,7 +50,7 @@
       './images/openmap.png', // 4dafe3882887be3afcf51d54948c5ceb830616d3
       './images/weather.png', // ac9c676c285f1ca8418e6bda8bccd0afdd922571
       './index.html', // c4128aeae76ca7aa1fbe51b9445c40826b9609dc
-      './scripts/compressed.js', // 64831e452fbcc61ba9114dbdf0147776805f4943
+      './scripts/compressed.js', // 1ad3841f8c7b0a95f94aa16038d25e67485b543c
       './styles/app.css', // f2ca99f997817289bff5566fe0ddcbbfad55409a
       './styles/bundle.css', // 2ec2aa764ec16fb4c03e425fb7b9b4f329075765
       './styles/c3.css', // 317ac8c41b6db673f5c7143526a6157d49cb64b6
