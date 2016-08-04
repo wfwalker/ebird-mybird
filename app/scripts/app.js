@@ -270,8 +270,9 @@ function renderBigDays() {
 	bigDaysRequest.send();
 }
 
-function renderTrip(inDate) {
+function renderTrip(inHashParts) {
 	var tripRequest = new XMLHttpRequest();
+	var inDate = decodeURI(inHashParts[1]);
 
 	tripRequest.onload = function(e) {
 		console.log('trip loaded');
@@ -296,8 +297,9 @@ function renderTrip(inDate) {
 	tripRequest.send();
 }
 
-function renderYear(inYear) {
+function renderYear(inHashParts) {
 	var yearRequest = new XMLHttpRequest();
+	var inYear = decodeURI(inHashParts[1]);
 
 	yearRequest.onload = function(e) {
 		console.log('year loaded');
@@ -319,8 +321,9 @@ function renderYear(inYear) {
 	yearRequest.send();
 }
 
-function renderSighting(inID) {
+function renderSighting(inHashParts) {
 	var sightingRequest = new XMLHttpRequest();
+	var inSightingID = decodeURI(inHashParts[1]);
 
 	sightingRequest.onload = function (e) {
 		var sighting = JSON.parse(sightingRequest.response);
@@ -332,13 +335,14 @@ function renderSighting(inID) {
 	};
 
 	sightingRequest.onerror = renderNetworkError;
-	sightingRequest.open('GET', '/sighting/' + inID);
+	sightingRequest.open('GET', '/sighting/' + inSightingID);
 	sightingRequest.send();
 }
 
 
-function renderPhoto(inID) {
+function renderPhoto(inHashParts) {
 	var photoRequest = new XMLHttpRequest();
+	var inPhotoID = decodeURI(inHashParts[1]);
 
 	photoRequest.onload = function (e) {
 		var photo = JSON.parse(photoRequest.response);
@@ -350,7 +354,7 @@ function renderPhoto(inID) {
 	};
 
 	photoRequest.onerror = renderNetworkError;
-	photoRequest.open('GET', '/photo/' + inID);
+	photoRequest.open('GET', '/photo/' + inPhotoID);
 	photoRequest.send();
 }
 
@@ -385,8 +389,9 @@ function renderLocations() {
 	locationsRequest.send();
 }
 
-function renderLocation(inLocationName) {
+function renderLocation(inHashParts) {
 	var locationRequest = new XMLHttpRequest();
+	var inLocationName = decodeURI(inHashParts[1]);
 
 	locationRequest.onload = function(e) {
 		console.log('location loaded');
@@ -411,8 +416,9 @@ function renderLocation(inLocationName) {
 	locationRequest.send();
 }
 
-function renderCounty(inCountyName) {
+function renderCounty(inHashParts) {
 	var countyRequest = new XMLHttpRequest();
+	var inCountyName = decodeURI(inHashParts[1]);
 
 	countyRequest.onload = function(e) {
 		console.log('county loaded');
@@ -438,8 +444,9 @@ function renderCounty(inCountyName) {
 	countyRequest.send();
 }
 
-function renderFamily(inFamilyName) {
+function renderFamily(inHashParts) {
 	var familyRequest = new XMLHttpRequest();
+	var inFamilyName = decodeURI(inHashParts[1]);
 
 	familyRequest.onload = function(e) {
 		console.log('county loaded');
@@ -478,8 +485,9 @@ function renderTaxons() {
 	taxonsRequest.send();
 }
 
-function renderTaxon(inCommonName) {
+function renderTaxon(inHashParts) {
 	var taxonRequest = new XMLHttpRequest();
+	var inCommonName = decodeURI(inHashParts[1]);
 
 	taxonRequest.onload = function(e) {
 		console.log('taxon loaded');
@@ -541,8 +549,9 @@ function renderDebug() {
 	});
 }
 
-function renderSearchResults(inTerm) {
+function renderSearchResults(inHashParts) {
 	var searchRequest = new XMLHttpRequest();
+	var inTerm = decodeURI(inHashParts[1]);
 
 	searchRequest.onload = function(e) {
 		var searchData = JSON.parse(searchRequest.response);
@@ -597,7 +606,9 @@ function routeBasedOnHash() {
 
 	if(routingMap[theHashParts[0]]) {
 		// TODO: hard coded to a single parameter, won't work for location hierarchy
-		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
+
+		// routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
+		routingMap[theHashParts[0]](theHashParts);
 	} else {
 		console.log('not found', window.location.hash);
 	}	
