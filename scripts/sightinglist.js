@@ -238,11 +238,7 @@ SightingList.prototype.getLocationHierarchy = function() {
 	for (var index = 0; index < this.rows.length; index++) {
 		var aSighting = this.rows[index];
 
-		var province = aSighting['Region'];
-		if (province == null) {
-			province = aSighting['State/Province'];
-		}
-
+		var province = aSighting['State/Province'];
 		var county = aSighting['County'];
 		var location = aSighting['Location'];
 

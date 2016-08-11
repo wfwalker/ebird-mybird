@@ -270,8 +270,9 @@ function renderBigDays() {
 	bigDaysRequest.send();
 }
 
-function renderTrip(inDate) {
+function renderTrip(inHashParts) {
 	var tripRequest = new XMLHttpRequest();
+	var inDate = decodeURI(inHashParts[1]);
 
 	tripRequest.onload = function(e) {
 		console.log('trip loaded');
@@ -296,8 +297,9 @@ function renderTrip(inDate) {
 	tripRequest.send();
 }
 
-function renderYear(inYear) {
+function renderYear(inHashParts) {
 	var yearRequest = new XMLHttpRequest();
+	var inYear = decodeURI(inHashParts[1]);
 
 	yearRequest.onload = function(e) {
 		console.log('year loaded');
@@ -319,8 +321,9 @@ function renderYear(inYear) {
 	yearRequest.send();
 }
 
-function renderSighting(inID) {
+function renderSighting(inHashParts) {
 	var sightingRequest = new XMLHttpRequest();
+	var inSightingID = decodeURI(inHashParts[1]);
 
 	sightingRequest.onload = function (e) {
 		var sighting = JSON.parse(sightingRequest.response);
@@ -332,13 +335,14 @@ function renderSighting(inID) {
 	};
 
 	sightingRequest.onerror = renderNetworkError;
-	sightingRequest.open('GET', '/sighting/' + inID);
+	sightingRequest.open('GET', '/sighting/' + inSightingID);
 	sightingRequest.send();
 }
 
 
-function renderPhoto(inID) {
+function renderPhoto(inHashParts) {
 	var photoRequest = new XMLHttpRequest();
+	var inPhotoID = decodeURI(inHashParts[1]);
 
 	photoRequest.onload = function (e) {
 		var photo = JSON.parse(photoRequest.response);
@@ -350,7 +354,7 @@ function renderPhoto(inID) {
 	};
 
 	photoRequest.onerror = renderNetworkError;
-	photoRequest.open('GET', '/photo/' + inID);
+	photoRequest.open('GET', '/photo/' + inPhotoID);
 	photoRequest.send();
 }
 
@@ -385,11 +389,27 @@ function renderLocations() {
 	locationsRequest.send();
 }
 
-function renderLocation(inLocationName) {
+function renderPlace(inHashParts) {
+	if (inHashParts.length == 4) {
+		renderLocation(inHashParts);
+	} else if (inHashParts.length == 3) {
+		renderCounty(inHashParts);
+	} else if (inHashParts.length == 2) {
+		// TODO: not done yet
+		renderState(inHashParts);
+	} else {
+		throw new Error('missing arguments to render place', inHashParts);
+	}
+}
+
+function renderLocation(inHashParts) {
 	var locationRequest = new XMLHttpRequest();
+	var inStateName = decodeURI(inHashParts[1]);
+	var inCountyName = decodeURI(inHashParts[2]);
+	var inLocationName = decodeURI(inHashParts[3]);
 
 	locationRequest.onload = function(e) {
-		console.log('location loaded');
+		console.log('location loaded', inStateName, inCountyName, inLocationName);
 
 		var tmp = JSON.parse(locationRequest.response);
 		var locationSightingList = new SightingList();
@@ -407,12 +427,14 @@ function renderLocation(inLocationName) {
 	}
 
 	locationRequest.onerror = renderNetworkError;
-	locationRequest.open("GET", '/location/' + inLocationName);
+	locationRequest.open("GET", '/place/' + inStateName + '/' + inCountyName + '/' + inLocationName);
 	locationRequest.send();
 }
 
-function renderCounty(inCountyName) {
+function renderCounty(inHashParts) {
 	var countyRequest = new XMLHttpRequest();
+	var inStateName = decodeURI(inHashParts[1]);
+	var inCountyName = decodeURI(inHashParts[2]);
 
 	countyRequest.onload = function(e) {
 		console.log('county loaded');
@@ -426,6 +448,7 @@ function renderCounty(inCountyName) {
 			chartID: 'bymonth' + Date.now(),
 			sightingsByMonth: countySightingList.byMonth(),
 			photos: countySightingList.getLatestPhotos(20),
+			State: countySightingList.rows[0]['State/Province'],
 			Region: countySightingList.rows[0]['Region'],
 			Country: countySightingList.rows[0]['Country'],
 			sightingList: countySightingList,
@@ -434,12 +457,13 @@ function renderCounty(inCountyName) {
 	}
 
 	countyRequest.onerror = renderNetworkError;
-	countyRequest.open("GET", '/county/' + inCountyName);
+	countyRequest.open("GET", '/place/' + inStateName + '/' + inCountyName);
 	countyRequest.send();
 }
 
-function renderFamily(inFamilyName) {
+function renderFamily(inHashParts) {
 	var familyRequest = new XMLHttpRequest();
+	var inFamilyName = decodeURI(inHashParts[1]);
 
 	familyRequest.onload = function(e) {
 		console.log('county loaded');
@@ -478,8 +502,9 @@ function renderTaxons() {
 	taxonsRequest.send();
 }
 
-function renderTaxon(inCommonName) {
+function renderTaxon(inHashParts) {
 	var taxonRequest = new XMLHttpRequest();
+	var inCommonName = decodeURI(inHashParts[1]);
 
 	taxonRequest.onload = function(e) {
 		console.log('taxon loaded');
@@ -541,8 +566,9 @@ function renderDebug() {
 	});
 }
 
-function renderSearchResults(inTerm) {
+function renderSearchResults(inHashParts) {
 	var searchRequest = new XMLHttpRequest();
+	var inTerm = decodeURI(inHashParts[1]);
 
 	searchRequest.onload = function(e) {
 		var searchData = JSON.parse(searchRequest.response);
@@ -575,8 +601,7 @@ var routingMap = {
 	'#trip' : renderTrip,
 	'#year' : renderYear,
 	'#locations' : renderLocations,
-	'#location' : renderLocation,
-	'#county' : renderCounty,
+	'#place' : renderPlace,
 	'#taxons' : renderTaxons,
 	'#taxon' : renderTaxon,
 	'#family' : renderFamily,
@@ -597,7 +622,9 @@ function routeBasedOnHash() {
 
 	if(routingMap[theHashParts[0]]) {
 		// TODO: hard coded to a single parameter, won't work for location hierarchy
-		routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
+
+		// routingMap[theHashParts[0]](decodeURI(theHashParts[1]));
+		routingMap[theHashParts[0]](theHashParts);
 	} else {
 		console.log('not found', window.location.hash);
 	}	
@@ -647,6 +674,32 @@ function registerHelpers() {
 
 	Handlebars.registerHelper('values', function(inList, inPropertyName) {
 		return inList.getUniqueValues(inPropertyName);
+	});
+
+	Handlebars.registerHelper('locations', function(inList) {
+		var triples = [];
+		var tmp = [];
+
+		for (var index = 0; index < inList.rows.length; index++) {
+			var row = inList.rows[index];
+			var triple = [row['State/Province'], row['County'], row['Location']];
+			var code = triple.join('-');
+
+			if (tmp.indexOf(code) == -1) {
+				triples.push(triple);
+				tmp.push(code);
+			}
+		}
+
+		return triples;
+	});
+
+	Handlebars.registerHelper('addnone', function(inString) {
+		if (inString == '') {
+			return 'none';
+		} else {
+			return inString;
+		}
 	});
 
 	Handlebars.registerHelper('random', function(inDictionary, inKey) {

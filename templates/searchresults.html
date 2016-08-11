@@ -11,8 +11,8 @@
 <h4>{{valuecount sightingList 'Location'}} Locations</h4>
 
 <div class="biglist">
-  {{#each (values sightingList 'Location')}}
-    <div class='biglist-item'><a href="#location/{{encode this}}">{{this}}</a></div>
+  {{#each (locations sightingList)}}
+    <div class='biglist-item'><a href="#place/{{this.[0]}}/{{this.[1]}}/{{this.[2]}}">{{this.[2]}}</a></div>
   {{/each}}
 </div>
 
