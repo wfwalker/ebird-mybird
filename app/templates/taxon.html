@@ -18,7 +18,7 @@
 			<div class='biglist-item'>
 				<a href="#sighting/{{this.id}}">+</a>
 				<a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
-				<a href="#location/{{encode this.Location}}">{{this.Location}}</a>
+				<a href="#place/{{this.[State/Province]}}/{{this.County}}/{{encode this.Location}}">{{this.Location}}</a>
 			</div>
 		{{/each}}
 	</div>

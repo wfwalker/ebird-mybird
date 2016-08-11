@@ -267,18 +267,6 @@ app.get('/bigdays', function(req, resp, next) {
 	});
 });
 
-app.get('/location/:location_name', function(req, resp, next) {
-	var tmp = gSightingList.filter(function(s) { return s['Location'] == req.params.location_name; });
-	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-	var photos = gPhotos.filter(function(p) { return p.Location == req.params.location_name; });
-
-	var locationSightingList = new SightingList(tmp, photos);
-
-	logger.debug('/location/', req.params.location_name, locationSightingList.rows.length);
-
-	resp.json(locationSightingList);
-});
-
 app.get('/family/:family_name', function(req, resp, next) {
 	var tmp = gSightingList.filter(function(s) { return SightingList.getFamily(s['Taxonomic Order']) == req.params.family_name; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
@@ -387,8 +375,31 @@ app.get('/trip/:trip_date', function(req, resp, next) {
 	resp.json(tripSightingList);
 });
 
-app.get('/county/:county_name', function(req, resp, next) {
-	var tmp = gSightingList.filter(function(s) { return s['County'] == req.params.county_name; });
+app.get('/place/:state_name', function(req, resp, next) {
+	var tmp = gSightingList.filter(function(s) {
+		return s['State/Province'] == req.params.state_name;
+	});
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	var stateSightingList = new SightingList(tmp);
+	// TODO: can't compute photos before creating list
+	var stateLocations = stateSightingList.getUniqueValues('Location');
+	stateSightingList.photos = gPhotos.filter(function(p) { return stateLocations.indexOf(p.Location) >= 0; });
+
+
+	logger.debug('/state/', req.params.state_name, stateSightingList.length());
+
+	resp.json(stateSightingList);
+});
+
+app.get('/place/:state_name/:county_name', function(req, resp, next) {
+	if (req.params.county_name == 'none') {
+		req.params.county_name = '';
+	}
+
+	var tmp = gSightingList.filter(function(s) {
+		return (s['State/Province'] == req.params.state_name) && (s['County'] == req.params.county_name);
+	});
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 	var countySightingList = new SightingList(tmp);
@@ -396,8 +407,29 @@ app.get('/county/:county_name', function(req, resp, next) {
 	var countyLocations = countySightingList.getUniqueValues('Location');
 	countySightingList.photos = gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; });
 
-
 	logger.debug('/county/', req.params.county_name, countySightingList.length());
 
 	resp.json(countySightingList);
 });
+
+app.get('/place/:state_name/:county_name/:location_name', function(req, resp, next) {
+	if (req.params.county_name == 'none') {
+		req.params.county_name = '';
+	}
+
+	var tmp = gSightingList.filter(function(s) {
+		return (s['State/Province'] == req.params.state_name) && (s['County'] == req.params.county_name) && (s['Location'] == req.params.location_name);
+	});
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+	// TODO: wrong, doesn't handle duplication location names
+	var photos = gPhotos.filter(function(p) { return p.Location == req.params.location_name; });
+
+	var locationSightingList = new SightingList(tmp, photos);
+
+	logger.debug('/location/', req.params.state_name, req.params.county_name, req.params.location_name, locationSightingList.rows.length);
+
+	resp.json(locationSightingList);
+});
+
+

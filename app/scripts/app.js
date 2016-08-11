@@ -389,12 +389,27 @@ function renderLocations() {
 	locationsRequest.send();
 }
 
+function renderPlace(inHashParts) {
+	if (inHashParts.length == 4) {
+		renderLocation(inHashParts);
+	} else if (inHashParts.length == 3) {
+		renderCounty(inHashParts);
+	} else if (inHashParts.length == 2) {
+		// TODO: not done yet
+		renderState(inHashParts);
+	} else {
+		throw new Error('missing arguments to render place', inHashParts);
+	}
+}
+
 function renderLocation(inHashParts) {
 	var locationRequest = new XMLHttpRequest();
-	var inLocationName = decodeURI(inHashParts[1]);
+	var inStateName = decodeURI(inHashParts[1]);
+	var inCountyName = decodeURI(inHashParts[2]);
+	var inLocationName = decodeURI(inHashParts[3]);
 
 	locationRequest.onload = function(e) {
-		console.log('location loaded');
+		console.log('location loaded', inStateName, inCountyName, inLocationName);
 
 		var tmp = JSON.parse(locationRequest.response);
 		var locationSightingList = new SightingList();
@@ -412,13 +427,14 @@ function renderLocation(inHashParts) {
 	}
 
 	locationRequest.onerror = renderNetworkError;
-	locationRequest.open("GET", '/location/' + inLocationName);
+	locationRequest.open("GET", '/place/' + inStateName + '/' + inCountyName + '/' + inLocationName);
 	locationRequest.send();
 }
 
 function renderCounty(inHashParts) {
 	var countyRequest = new XMLHttpRequest();
-	var inCountyName = decodeURI(inHashParts[1]);
+	var inStateName = decodeURI(inHashParts[1]);
+	var inCountyName = decodeURI(inHashParts[2]);
 
 	countyRequest.onload = function(e) {
 		console.log('county loaded');
@@ -432,6 +448,7 @@ function renderCounty(inHashParts) {
 			chartID: 'bymonth' + Date.now(),
 			sightingsByMonth: countySightingList.byMonth(),
 			photos: countySightingList.getLatestPhotos(20),
+			State: countySightingList.rows[0]['State/Province'],
 			Region: countySightingList.rows[0]['Region'],
 			Country: countySightingList.rows[0]['Country'],
 			sightingList: countySightingList,
@@ -440,7 +457,7 @@ function renderCounty(inHashParts) {
 	}
 
 	countyRequest.onerror = renderNetworkError;
-	countyRequest.open("GET", '/county/' + inCountyName);
+	countyRequest.open("GET", '/place/' + inStateName + '/' + inCountyName);
 	countyRequest.send();
 }
 
@@ -584,8 +601,7 @@ var routingMap = {
 	'#trip' : renderTrip,
 	'#year' : renderYear,
 	'#locations' : renderLocations,
-	'#location' : renderLocation,
-	'#county' : renderCounty,
+	'#place' : renderPlace,
 	'#taxons' : renderTaxons,
 	'#taxon' : renderTaxon,
 	'#family' : renderFamily,
@@ -658,6 +674,32 @@ function registerHelpers() {
 
 	Handlebars.registerHelper('values', function(inList, inPropertyName) {
 		return inList.getUniqueValues(inPropertyName);
+	});
+
+	Handlebars.registerHelper('locations', function(inList) {
+		var triples = [];
+		var tmp = [];
+
+		for (var index = 0; index < inList.rows.length; index++) {
+			var row = inList.rows[index];
+			var triple = [row['State/Province'], row['County'], row['Location']];
+			var code = triple.join('-');
+
+			if (tmp.indexOf(code) == -1) {
+				triples.push(triple);
+				tmp.push(code);
+			}
+		}
+
+		return triples;
+	});
+
+	Handlebars.registerHelper('addnone', function(inString) {
+		if (inString == '') {
+			return 'none';
+		} else {
+			return inString;
+		}
 	});
 
 	Handlebars.registerHelper('random', function(inDictionary, inKey) {
