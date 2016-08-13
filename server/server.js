@@ -441,13 +441,21 @@ app.get('/fixedphotos', function(req, resp, next) {
 		if (photo) {
 			var tmp = gSightingList.filter(function (s) { return s.Location == photo.Location; });
 			if (tmp[0] != null) {
-				console.log('setting', tmp[0]['State/Province'], tmp[0].County);
 				gPhotos[index].County = tmp[0].County;
 				gPhotos[index]['State/Province'] = tmp[0]['State/Province'];
 			} else {
-				console.log('no location match', photo.Location);
 				gPhotos[index].County = 'Unknown';
 				gPhotos[index]['State/Province'] = 'Unknown';
+
+				var candidateSightings = gSightingList.filter(function (s) {
+					return ((s['Common Name'] == photo['Common Name']) && (s['Date'] == photo['Date']));
+				})
+
+				if (candidateSightings && candidateSightings[0]) {
+					console.log('no location match', index, photo['Common Name'], photo.Location, 'try', candidateSightings[0].Location);
+				} else {
+					console.log('no location match', index, photo['Common Name'], photo.Location);
+				}
 			}
 		} else {
 			console.log('photo missing', index);
