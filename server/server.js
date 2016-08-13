@@ -433,3 +433,29 @@ app.get('/place/:state_name/:county_name/:location_name', function(req, resp, ne
 });
 
 
+app.get('/fixedphotos', function(req, resp, next) {
+	for (var index = 0; index < gPhotos.length; index++)
+	{
+		var photo = gPhotos[index];
+
+		if (photo) {
+			var tmp = gSightingList.filter(function (s) { return s.Location == photo.Location; });
+			if (tmp[0] != null) {
+				console.log('setting', tmp[0]['State/Province'], tmp[0].County);
+				gPhotos[index].County = tmp[0].County;
+				gPhotos[index]['State/Province'] = tmp[0]['State/Province'];
+			} else {
+				console.log('no location match', photo.Location);
+				gPhotos[index].County = 'Unknown';
+				gPhotos[index]['State/Province'] = 'Unknown';
+			}
+		} else {
+			console.log('photo missing', index);
+		}
+
+	}
+
+	resp.json(gPhotos);
+});
+
+
