@@ -437,6 +437,8 @@ app.get('/fixedphotos', function(req, resp, next) {
 	for (var index = 0; index < gPhotos.length; index++)
 	{
 		var photo = gPhotos[index];
+		delete photo.DateObject;
+		delete photo.id;
 
 		if (photo) {
 			var tmp = gSightingList.filter(function (s) { return s.Location == photo.Location; });
