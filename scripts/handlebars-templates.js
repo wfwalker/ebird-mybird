@@ -200,7 +200,11 @@ this["ebirdmybird"]["home"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"ma
     + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Common Name"] : stack1),{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Common Name"] : stack1), depth0))
-    + "</a>,\n	<a href=\"#location/"
+    + "</a>,\n	<a href=\"#place/"
+    + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["State/Province"] : stack1),{"name":"encode","hash":{},"data":data}))
+    + "/"
+    + alias2((helpers.addnone || (depth0 && depth0.addnone) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.County : stack1),{"name":"addnone","hash":{},"data":data}))
+    + "/"
     + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.Location : stack1),{"name":"encode","hash":{},"data":data}))
     + "\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1.Location : stack1), depth0))
