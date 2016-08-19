@@ -512,7 +512,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + "</a>\n				<a href=\"#place/"
     + alias2(alias1((depth0 != null ? depth0["State/Province"] : depth0), depth0))
     + "/"
-    + alias2(alias1((depth0 != null ? depth0.County : depth0), depth0))
+    + alias2((helpers.addnone || (depth0 && depth0.addnone) || alias4).call(alias3,(depth0 != null ? depth0.County : depth0),{"name":"addnone","hash":{},"data":data}))
     + "/"
     + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,(depth0 != null ? depth0.Location : depth0),{"name":"encode","hash":{},"data":data}))
     + "\">"
