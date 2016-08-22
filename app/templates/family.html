@@ -6,14 +6,6 @@
 
 {{monthgraph sightingsByMonth chartID}}
 
-<h4>{{valuecount sightingList "Location"}} Locations</h4>
-
-<div class="biglist">
-  {{#each (locations sightingList)}}
-    <div class='biglist-item'><a href="#place/{{this.[0]}}/{{this.[1]}}/{{this.[2]}}">{{this.[2]}}</a></div>
-  {{/each}}
-</div>
-
 <h4>{{valuecount sightingList "Common Name"}} Species on {{sightingList.dateObjects.length}} Dates</h4>
 
 <div class="biglist">
@@ -22,4 +14,12 @@
     <a href="#taxon/{{encode this}}">{{this}}</a>
   </div>
 {{/each}}
+</div>
+
+<h4>{{valuecount sightingList "Location"}} Locations</h4>
+
+<div class="biglist">
+  {{#each (locations sightingList)}}
+    <div class='biglist-item'><a href="#place/{{this.[0]}}/{{this.[1]}}/{{this.[2]}}">{{this.[2]}}</a></div>
+  {{/each}}
 </div>
