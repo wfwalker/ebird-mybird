@@ -11148,6 +11148,65 @@
         "Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-07-20-geospiza-fuliginosa-0L5A1027.jpg",
         "County": "",
         "State/Province": "EC-W"
+    },
+    {
+        "Date": "04-14-2016",
+        "Location": "Prairie/Shell Creek Preserve",
+        "Scientific Name": "Chordeiles minor",
+        "Common Name": "Common Nighthawk",
+        "Thumbnail URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/2016-04-14-chordeiles-minor-6P5A3254.jpg",
+        "Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-04-14-chordeiles-minor-6P5A3254.jpg",
+        "County": "Charlotte",
+        "State/Province": "US-FL"
+    },
+    {
+        "Date": "04-20-2016",
+        "Location": "Fort Zachary Taylor Historic SP",
+        "Scientific Name": "Setophaga discolor",
+        "Common Name": "Prairie Warbler",
+        "Thumbnail URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/2016-04-20-setophaga-discolor-IMG_0076.jpg",
+        "Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-04-20-setophaga-discolor-IMG_0076.jpg",
+        "County": "Monroe",
+        "State/Province": "US-FL"
+    },
+    {
+        "Date": "04-14-2016",
+        "Location": "J. N. Ding Darling NWR",
+        "Scientific Name": "Setophaga dominica",
+        "Common Name": "Yellow-throated Warbler",
+        "Thumbnail URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/2016-04-14-setophaga-dominica-6P5A2978.jpg",
+        "Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-04-14-setophaga-dominica-6P5A2978.jpg",
+        "County": "Lee",
+        "State/Province": "US-FL"
+    },
+    {
+        "Date": "07-16-2016",
+        "Location": "Reserva Amagusa",
+        "Scientific Name": "Anisognathus notabilis",
+        "Common Name": "Black-chinned Mountain-Tanager",
+        "Thumbnail URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/2016-07-16-anisognathus-notabilis-0L5A8630.jpg",
+        "Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-07-16-anisognathus-notabilis-0L5A8630.jpg",
+        "County": "",
+        "State/Province": "EC-P"
+    },
+    {
+        "Date": "07-16-2016",
+        "Location": "Reserva Amagusa",
+        "Scientific Name": "Pachyramphus albogriseus",
+        "Common Name": "Black-and-white Becard",
+        "Thumbnail URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/2016-07-16-pachyramphus-albogriseus-0L5A8604.jpg",
+        "Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-07-16-pachyramphus-albogriseus-0L5A8604.jpg",
+        "County": "",
+        "State/Province": "EC-P"
+    },
+    {
+        "Date": "07-16-2016",
+        "Location": "Reserva Amagusa",
+        "Scientific Name": "Entomodestes coracinus",
+        "Common Name": "Black Solitaire",
+        "Thumbnail URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/thumb/2016-07-16-entomodestes-coracinus-0L5A8362.jpg",
+        "Photo URL": "https://dl.dropboxusercontent.com/u/171684/birdwalker/photo/2016-07-16-entomodestes-coracinus-0L5A8362.jpg",
+        "County": "",
+        "State/Province": "EC-P"
     }
-
 ]
