@@ -461,7 +461,11 @@ this["ebirdmybird"]["sighting"] = Handlebars.template({"1":function(container,de
     + alias3((helpers.sortabledate || (depth0 && depth0.sortabledate) || alias4).call(alias1,(depth0 != null ? depth0.DateObject : depth0),{"name":"sortabledate","hash":{},"data":data}))
     + "-"
     + alias3((helpers.spacetodash || (depth0 && depth0.spacetodash) || alias4).call(alias1,(depth0 != null ? depth0["Scientific Name"] : depth0),{"name":"spacetodash","hash":{},"data":data}))
-    + "-NNNNNN.jpg\"\n  }\n</pre>\n";
+    + "-NNNNNN.jpg\",\n    \"County\": \""
+    + alias3(alias2((depth0 != null ? depth0.County : depth0), depth0))
+    + "\",\n    \"State/Province\": \""
+    + alias3(alias2((depth0 != null ? depth0["State/Province"] : depth0), depth0))
+    + "\"\n  }\n</pre>\n";
 },"useData":true});
 this["ebirdmybird"]["stats"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
