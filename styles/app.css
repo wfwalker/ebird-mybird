@@ -74,6 +74,18 @@ ul.topnav li a {
 
 ul.topnav li.icon {display: none;}
 
+input#searchtext {
+  border-radius: 10px;
+  border-style: none;
+  padding: 4px;
+  font-family: "Roboto Condensed";
+  font-size: 12pt;
+}
+button#gosearch {
+  font-family: "Roboto Condensed";
+  font-size: 12pt;
+}
+
 @media screen and (max-width:680px) {
   ul.topnav li:not(:first-child) {display: none;}
   ul.topnav li.icon {
