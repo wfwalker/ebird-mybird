@@ -695,6 +695,7 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerHelper('lookupState', function(inString) {
+		console.log('lookupState', inString);
 		if (inString == '') {
 			return 'None';
 		} else if (! iso3166.subdivision(inString).name) {

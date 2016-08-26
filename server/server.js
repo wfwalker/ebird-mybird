@@ -81,7 +81,6 @@ fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 		if (aValue['State/Province']) {
 			var tmp = iso3166.subdivision(aValue['State/Province']);
 			if (tmp) {
-				aValue['Region'] = tmp['name'];
 				aValue['Country'] = tmp['countryName'];
 			}
 		}
