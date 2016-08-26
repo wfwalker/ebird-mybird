@@ -54,6 +54,7 @@ gulp.task('testdata', function(){
 gulp.task('copy-js-libs', function() {
   return gulp.src([
         'node_modules/handlebars/dist/handlebars.js',
+        'node_modules/iso-3166-2/iso3166.min.js',
         'node_modules/d3/d3.js',
         'node_modules/c3/c3.js',
       ])
@@ -122,6 +123,7 @@ gulp.task('compress', ['copy-js-libs', 'templates'], function(){
   return gulp.src([
     'app/scripts/d3.js',
     'app/scripts/c3.js',
+    'app/scripts/iso3166.min.js',
     'app/scripts/handlebars.js',
     'app/scripts/handlebars-templates.js',
     'app/scripts/sightinglist.js',

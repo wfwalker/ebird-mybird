@@ -1,6 +1,7 @@
 node_modules/
 dist/
 app/scripts/handlebars-templates.js
+app/scripts/iso3166.min.js
 app/scripts/handlebars.js
 app/scripts/d3.js
 app/scripts/c3.js
