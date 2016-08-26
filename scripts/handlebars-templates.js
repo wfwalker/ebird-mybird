@@ -299,10 +299,10 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + "\n\n";
 },"usePartial":true,"useData":true,"useDepths":true});
 this["ebirdmybird"]["locations"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {};
+    var stack1, alias1=depth0 != null ? depth0 : {};
 
   return "		<h3>"
-    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
+    + container.escapeExpression((helpers.lookupState || (depth0 && depth0.lookupState) || helpers.helperMissing).call(alias1,(data && data.key),{"name":"lookupState","hash":{},"data":data}))
     + "</h3>\n"
     + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"2":function(container,depth0,helpers,partials,data,blockParams,depths) {

@@ -694,6 +694,16 @@ function registerHelpers() {
 		return triples;
 	});
 
+	Handlebars.registerHelper('lookupState', function(inString) {
+		if (inString == '') {
+			return 'None';
+		} else if (! iso3166.subdivision(inString).name) {
+			return inString;
+		} else {
+			return iso3166.subdivision(inString).name;
+		}
+	});
+
 	Handlebars.registerHelper('addnone', function(inString) {
 		if (inString == '') {
 			return 'none';

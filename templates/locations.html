@@ -2,7 +2,7 @@
 
 <div class="biglist">
 	{{#each hierarchy}}
-		<h3>{{@key}}</h3>
+		<h3>{{lookupState @key}}</h3>
 		{{#each this}}
 			{{#if @key}}
 				<h4><a href="#place/{{@../key}}/{{encode @key}}">{{@key}} County</a></h4>
