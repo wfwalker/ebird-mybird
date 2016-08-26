@@ -4,7 +4,7 @@
 		{{#if sightingList.rows.0.County}}
 			<a href="#place/{{sightingList.rows.0.[State/Province]}}/{{sightingList.rows.0.County}}">{{sightingList.rows.0.County}} County</a>,
 		{{/if}}
-		{{sightingList.rows.0.[Region]}},
+		{{lookupState sightingList.rows.0.[State/Province]}},
 		{{sightingList.rows.0.[Country]}}
 	</span>
 	<span style='float: right'>

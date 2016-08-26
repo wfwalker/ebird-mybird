@@ -63,7 +63,7 @@ this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,dept
   return "<h3>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + " County <span class='lighter'>"
-    + alias4(((helper = (helper = helpers.Region || (depth0 != null ? depth0.Region : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Region","hash":{},"data":data}) : helper)))
+    + alias4((helpers.lookupState || (depth0 && depth0.lookupState) || alias2).call(alias1,(depth0 != null ? depth0.State : depth0),{"name":"lookupState","hash":{},"data":data}))
     + ", "
     + alias4(((helper = (helper = helpers.Country || (depth0 != null ? depth0.Country : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Country","hash":{},"data":data}) : helper)))
     + "</span></h3>\n\n"
@@ -271,7 +271,7 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + "\n	<span class='lighter'>\n"
     + ((stack1 = helpers["if"].call(alias3,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.County : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "		"
-    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Region : stack1), depth0))
+    + alias2((helpers.lookupState || (depth0 && depth0.lookupState) || alias4).call(alias3,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1["State/Province"] : stack1),{"name":"lookupState","hash":{},"data":data}))
     + ",\n		"
     + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Country : stack1), depth0))
     + "\n	</span>\n	<span style='float: right'>\n	<a target=\"_blank\" href=\"https://www.openstreetmap.org/?mlat="

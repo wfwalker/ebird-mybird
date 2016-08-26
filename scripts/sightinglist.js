@@ -153,9 +153,9 @@ SightingList.prototype.sortByDate = function() {
 
 SightingList.prototype.sortByLocation = function() {
 	this.rows.sort(function(a, b) {
-		if (a['Region'] < b['Region']) {
+		if (a['State/Province'] < b['State/Province']) {
 			return -1;
-		} else if (a['Region'] > b['Region']) {
+		} else if (a['State/Province'] > b['State/Province']) {
 			return 1;
 		} else {
 			if (a['County'] < b['County']) {
