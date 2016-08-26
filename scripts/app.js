@@ -461,6 +461,35 @@ function renderCounty(inHashParts) {
 	countyRequest.send();
 }
 
+
+function renderState(inHashParts) {
+	var stateRequest = new XMLHttpRequest();
+	var inStateName = decodeURI(inHashParts[1]);
+
+	stateRequest.onload = function(e) {
+		console.log('county loaded');
+
+		var tmp = JSON.parse(stateRequest.response);
+		var stateSightingList = new SightingList();
+		stateSightingList.initialize(tmp);
+
+		renderTemplate('state', inStateName, {
+			name: inStateName,
+			chartID: 'bymonth' + Date.now(),
+			sightingsByMonth: stateSightingList.byMonth(),
+			photos: stateSightingList.getLatestPhotos(20),
+			State: stateSightingList.rows[0]['State/Province'],
+			Country: stateSightingList.rows[0]['Country'],
+			sightingList: stateSightingList,
+			taxons: stateSightingList.commonNames,
+		});
+	}
+
+	stateRequest.onerror = renderNetworkError;
+	stateRequest.open("GET", '/place/' + inStateName);
+	stateRequest.send();
+}
+
 function renderFamily(inHashParts) {
 	var familyRequest = new XMLHttpRequest();
 	var inFamilyName = decodeURI(inHashParts[1]);
