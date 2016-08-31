@@ -6,10 +6,16 @@
   <h4>{{valuecount sightingList "Location"}} locations</h4>
 
   <div class='biglist'>
-  {{#each locationToSubmissionID}}
+  {{#each (values sightingList "Submission ID")}}
     <div class='biglist-item'>
-      <a href='#location/{{encode @key}}'>{{@key}}</a>
-      <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'><img src='/images/ebird-favicon.png' /></a>
+      {{#with (lookup ../submissionIDToLocation this)}}
+        <a href='#place/{{0}}/{{1}}/{{2}}'>
+          {{[2]}}
+        </a>
+      {{/with}}
+      <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>
+        <img src='/images/ebird-favicon.png' />
+      </a>
     </div>
     <div style='font-size: 80%; margin-left: 1em'><i>{{lookup ../submissionIDToChecklistComments this}}</i></div>
   {{/each}}
