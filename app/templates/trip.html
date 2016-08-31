@@ -27,7 +27,7 @@
     {{valuecount sightingList "Common Name"}} species at {{values sightingList "Location"}}
     <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{values sightingList "Submission ID"}}'><img src='/images/ebird-favicon.png' /></a>
   </h4>
-  {{#each locationToSubmissionID}}
+  {{#each (values sightingList "Submission ID")}}
     <div style='font-size: 80%; margin-left: 1em'><i>{{lookup ../submissionIDToChecklistComments this}}</i></div>
   {{/each}}
 {{/if}}

@@ -288,7 +288,6 @@ function renderTrip(inHashParts) {
 			submissionIDToChecklistComments: tripSightingList.mapSubmissionIDToChecklistComments(),
 			submissionIDToLocation: tripSightingList.mapSubmissionIDToLocation(),
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
-			locationToSubmissionID: tripSightingList.mapLocationToSubmissionID(),
 			sightingList: tripSightingList,
 		});
 	};
