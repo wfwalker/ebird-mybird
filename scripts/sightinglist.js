@@ -301,21 +301,6 @@ SightingList.prototype.getTaxonomyHierarchy = function() {
 	return byFamily;
 };
 
-SightingList.prototype.mapLocationToSubmissionID = function() {
-	var tmpMap = {};
-
-	for (var index = 0; index < this.rows.length; index++) {
-		var sighting = this.rows[index];
-		var location = sighting['Location'];
-
-		if (! tmpMap[location]) {
-			tmpMap[location] = sighting['Submission ID'];
-		}
-	}
-
-	return tmpMap;
-}
-
 SightingList.prototype.mapSubmissionIDToChecklistComments = function() {
 	var tmpMap = {};
 
@@ -325,6 +310,20 @@ SightingList.prototype.mapSubmissionIDToChecklistComments = function() {
 
 		if (! tmpMap[submissionID]) {
 			tmpMap[submissionID] = sighting['Checklist Comments'];
+		}
+	}
+
+	return tmpMap;
+}
+SightingList.prototype.mapSubmissionIDToLocation = function() {
+	var tmpMap = {};
+
+	for (var index = 0; index < this.rows.length; index++) {
+		var sighting = this.rows[index];
+		var submissionID = sighting['Submission ID'];
+
+		if (! tmpMap[submissionID]) {
+			tmpMap[submissionID] = [sighting['State/Province'], sighting['County'], sighting['Location']];
 		}
 	}
 

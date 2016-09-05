@@ -286,8 +286,8 @@ function renderTrip(inHashParts) {
 			photos: tripSightingList.photos,
 			customName: tripSightingList.dayNames[0],
 			submissionIDToChecklistComments: tripSightingList.mapSubmissionIDToChecklistComments(),
+			submissionIDToLocation: tripSightingList.mapSubmissionIDToLocation(),
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
-			locationToSubmissionID: tripSightingList.mapLocationToSubmissionID(),
 			sightingList: tripSightingList,
 		});
 	};
