@@ -592,21 +592,12 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.showChart : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "");
 },"usePartial":true,"useData":true});
 this["ebirdmybird"]["taxons"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
-  return "		<h3><a href='#family/"
+  return "		<div><a href='#family/"
     + alias3(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
     + "'>"
     + alias3((helpers.stripLatinFromEbirdFamily || (depth0 && depth0.stripLatinFromEbirdFamily) || alias2).call(alias1,(data && data.key),{"name":"stripLatinFromEbirdFamily","hash":{},"data":data}))
-    + "</a></h3>\n\n"
-    + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"2":function(container,depth0,helpers,partials,data) {
-    var alias1=container.escapeExpression;
-
-  return "			<div class='biglist-item'><a href=\"#taxon/"
-    + alias1((helpers.encode || (depth0 && depth0.encode) || helpers.helperMissing).call(depth0 != null ? depth0 : {},depth0,{"name":"encode","hash":{},"data":data}))
-    + "\">"
-    + alias1(container.lambda(depth0, depth0))
     + "</a></div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
