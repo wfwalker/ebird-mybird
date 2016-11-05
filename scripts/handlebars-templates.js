@@ -164,7 +164,7 @@ this["ebirdmybird"]["family"] = Handlebars.template({"1":function(container,dept
   return "    <div class='biglist-item'><a href=\"#place/"
     + alias2(alias1((depth0 != null ? depth0["0"] : depth0), depth0))
     + "/"
-    + alias2(alias1((depth0 != null ? depth0["1"] : depth0), depth0))
+    + alias2((helpers.addnone || (depth0 && depth0.addnone) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0["1"] : depth0),{"name":"addnone","hash":{},"data":data}))
     + "/"
     + alias2(alias1((depth0 != null ? depth0["2"] : depth0), depth0))
     + "\">"
