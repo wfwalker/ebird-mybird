@@ -196,7 +196,7 @@ this["ebirdmybird"]["family"] = Handlebars.template({"1":function(container,dept
 this["ebirdmybird"]["home"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing;
 
-  return "<h3>Welcome to BirdWalker</h3>\n\n<h4>Seasonal Sights</h4>\n\n<img src=\""
+  return "<p>Welcome to birdWalker, a website of birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996, we have now recorded 857 trips and 784 species.</p>\n\n<p>Some of our favorite places to go birding include Charleston Slough and the Duck Pond in Palo Alto, Sacramento National Wildlife Refuge, and the Rio Grande Valley in Texas.</p>\n\n<h4>Seasonal Sights</h4>\n\n<img src=\""
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Photo URL"] : stack1), depth0))
     + "\">\n\n<div>\n	<a href=\"#taxon/"
     + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Common Name"] : stack1),{"name":"encode","hash":{},"data":data}))
