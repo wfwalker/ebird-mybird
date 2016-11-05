@@ -3,7 +3,6 @@
 var assert = require('assert');
 
 var SightingList = require ('../scripts/sightinglist.js');
-var Papa = require ('../scripts/papaparse.js');
 var huge = require('./ebird.json');
 
 var sampleRow = {
@@ -40,12 +39,12 @@ describe('Array', function() {
 describe('huge', function() {
 	describe('big', function() {
 		it('has lots of entries', function() {
-			assert.equal(28515, huge.length);
+			assert.equal(29987, huge.length);
 		});
 
 		it('should have quite a few common names', function () {
 			hugeList = new SightingList(huge);
-			assert.equal(1200, hugeList.getUniqueValues('Common Name').length);
+			assert.equal(1278, hugeList.getUniqueValues('Common Name').length);
 		});
 	});
 });
