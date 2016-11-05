@@ -3,11 +3,15 @@ dist/
 app/scripts/handlebars-templates.js
 app/scripts/iso3166.min.js
 app/scripts/handlebars.js
+app/scripts/jquery.js
+app/scripts/bootstrap.js
 app/scripts/d3.js
 app/scripts/c3.js
 app/scripts/compressed.js
 app/scripts/compressed.js.map
 app/styles/c3.css
 app/styles/bundle.css
+app/styles/bootstrap.css
+app/styles/bootstrap-theme.css
 app/test/ebird.json
 .DS_Store

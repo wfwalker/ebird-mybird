@@ -39,21 +39,21 @@ app.use("/", express.static('dist'));
 
 // parse the ebird data so we can make a REST API for it
 
-fs.readFile('app/data/day-names.json', 'utf8', function(err, data) {
+fs.readFile('server/data/day-names.json', 'utf8', function(err, data) {
 	if (err) throw err;
 
 	SightingList.setCustomDayNames(JSON.parse(data));
 	logger.info('loaded custom day names', Object.keys(SightingList.customDayNames).length);
 });
 
-fs.readFile('app/data/omitted-common-names.json', 'utf8', function(err, data) {
+fs.readFile('server/data/omitted-common-names.json', 'utf8', function(err, data) {
 	if (err) throw err;
 
 	SightingList.setOmittedCommonNames(JSON.parse(data));
 	logger.info('loaded omitted common names', Object.keys(SightingList.omittedCommonNames).length);
 });
 
-fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
+fs.readFile('server/data/ebird.csv', 'utf8', function(err, data) {
 	if (err) throw err;
 
 	var ebird = babyParse.parse(data, {
@@ -98,7 +98,7 @@ fs.readFile('app/data/ebird.csv', 'utf8', function(err, data) {
 
 // read and parse the full taxonomy list for eBird
 
-fs.readFile('app/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
+fs.readFile('server/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
 	if (err) throw err;
 
 	var familyRanges = {};
@@ -145,7 +145,7 @@ function privateGetTaxoFromCommonName(inCommonName) {
 	return 'Unknown';
 }
 
-fs.readFile('app/data/photos.json', 'utf8', function(err, data) {
+fs.readFile('server/data/photos.json', 'utf8', function(err, data) {
 	if (err) throw err;
 	gPhotos = JSON.parse(data);
 

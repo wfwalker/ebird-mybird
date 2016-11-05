@@ -57,6 +57,8 @@ gulp.task('copy-js-libs', function() {
         'node_modules/iso-3166-2/iso3166.min.js',
         'node_modules/d3/d3.js',
         'node_modules/c3/c3.js',
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/bootstrap/dist/js/bootstrap.js',
       ])
       .pipe(gulp.dest(function(file) {
           file.path = file.base + path.basename(file.path);
@@ -67,6 +69,8 @@ gulp.task('copy-js-libs', function() {
 gulp.task('copy-css', function() {
   return gulp.src([
         'node_modules/c3/c3.css',
+        'node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/bootstrap/dist/css/bootstrap-theme.css',
       ])
       .pipe(gulp.dest(function(file) {
           file.path = file.base + path.basename(file.path);
@@ -126,6 +130,8 @@ gulp.task('compress', ['copy-js-libs', 'templates'], function(){
     'app/scripts/iso3166.min.js',
     'app/scripts/handlebars.js',
     'app/scripts/handlebars-templates.js',
+    'app/scripts/jquery.js',
+    'app/scripts/bootstrap.js',
     'app/scripts/sightinglist.js',
     'app/scripts/app.js',
   ])
