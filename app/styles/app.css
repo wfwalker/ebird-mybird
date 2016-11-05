@@ -13,10 +13,10 @@
 }
 
 .biglist {
-	-moz-column-width: 15em;
-	-moz-columns: 15em;
-	-webkit-columns: 15em;
-	columns: 15em;
+	-moz-column-width: 20em;
+	-moz-columns: 20em;
+	-webkit-columns: 20em;
+	columns: 20em;
 }
 
 .biglist h3 {
