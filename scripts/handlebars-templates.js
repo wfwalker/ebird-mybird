@@ -164,7 +164,7 @@ this["ebirdmybird"]["family"] = Handlebars.template({"1":function(container,dept
   return "    <div class='biglist-item'><a href=\"#place/"
     + alias2(alias1((depth0 != null ? depth0["0"] : depth0), depth0))
     + "/"
-    + alias2(alias1((depth0 != null ? depth0["1"] : depth0), depth0))
+    + alias2((helpers.addnone || (depth0 && depth0.addnone) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0["1"] : depth0),{"name":"addnone","hash":{},"data":data}))
     + "/"
     + alias2(alias1((depth0 != null ? depth0["2"] : depth0), depth0))
     + "\">"
@@ -634,7 +634,7 @@ this["ebirdmybird"]["trip"] = Handlebars.template({"1":function(container,depth0
   return "        <a href='#place/"
     + alias4(((helper = (helper = helpers["0"] || (depth0 != null ? depth0["0"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"0","hash":{},"data":data}) : helper)))
     + "/"
-    + alias4(((helper = (helper = helpers["1"] || (depth0 != null ? depth0["1"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"1","hash":{},"data":data}) : helper)))
+    + alias4((helpers.addnone || (depth0 && depth0.addnone) || alias2).call(alias1,(depth0 != null ? depth0["1"] : depth0),{"name":"addnone","hash":{},"data":data}))
     + "/"
     + alias4(((helper = (helper = helpers["2"] || (depth0 != null ? depth0["2"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"2","hash":{},"data":data}) : helper)))
     + "'>\n          "

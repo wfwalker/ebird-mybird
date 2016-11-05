@@ -9,7 +9,7 @@
   {{#each (values sightingList "Submission ID")}}
     <div class='biglist-item'>
       {{#with (lookup ../submissionIDToLocation this)}}
-        <a href='#place/{{0}}/{{1}}/{{2}}'>
+        <a href='#place/{{0}}/{{addnone [1]}}/{{2}}'>
           {{[2]}}
         </a>
       {{/with}}
