@@ -361,23 +361,23 @@ this["ebirdmybird"]["photo"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"m
     + "\">";
 },"useData":true});
 this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
+    var stack1, alias1=depth0 != null ? depth0 : {};
 
   return "		<div class='biglist-item'>\n"
-    + ((stack1 = helpers["with"].call(alias1,(helpers.random || (depth0 && depth0.random) || alias2).call(alias1,(depths[1] != null ? depths[1].photosByFamily : depths[1]),(data && data.key),{"name":"random","hash":{},"data":data}),{"name":"with","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n			<div>\n				<a href='#family/"
-    + alias3(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
-    + "'>"
-    + alias3((helpers.stripLatinFromEbirdFamily || (depth0 && depth0.stripLatinFromEbirdFamily) || alias2).call(alias1,(data && data.key),{"name":"stripLatinFromEbirdFamily","hash":{},"data":data}))
-    + "</a>\n			</div>\n		</div>\n";
+    + ((stack1 = helpers["with"].call(alias1,(helpers.random || (depth0 && depth0.random) || helpers.helperMissing).call(alias1,(depths[1] != null ? depths[1].photosByFamily : depths[1]),(data && data.key),{"name":"random","hash":{},"data":data}),{"name":"with","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "		</div>\n";
 },"2":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "				<div style='float: left; padding-right: 10px; padding-bottom: 5px'>\n					<a href='#family/"
+  return "			<div class=\"media\">\n				<div class=\"media-left\">\n					<a href='#family/"
     + alias4(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
     + "'><img width='85px' height='85px' src='"
     + alias4(((helper = (helper = helpers["Thumbnail URL"] || (depth0 != null ? depth0["Thumbnail URL"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Thumbnail URL","hash":{},"data":data}) : helper)))
-    + "' /></a>\n				</div>\n";
+    + "' /></a>\n				</div>\n				<div class=\"media-body\">\n					<h4 class=\"media-heading\"><a href='#family/"
+    + alias4(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
+    + "'>"
+    + alias4((helpers.stripLatinFromEbirdFamily || (depth0 && depth0.stripLatinFromEbirdFamily) || alias2).call(alias1,(data && data.key),{"name":"stripLatinFromEbirdFamily","hash":{},"data":data}))
+    + "</a></h4>\n				</div>\n			</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
