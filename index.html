@@ -36,32 +36,40 @@
       </div>
     </div>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-
-          <ul class='topnav' id='myTopnav'>
-            <li><a data-hash="home" href="#home">BirdWalker</a></li>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">BirdWalker</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
             <li><a data-hash="photos" href="#photos">Photos</a></li>
             <li><a data-hash="trips" href="#trips">Trips</a></li>
             <li><a data-hash="bigdays" href="#bigdays">Big Days</a></li>
             <li><a data-hash="locations" href="#locations">Locations</a></li>
             <li><a data-hash="taxons" href="#taxons">Species</a></li>
             <li><a data-hash="chrono" href="#chrono">Chrono</a></li>
-            <li>
-              <input id="searchtext" type="text" size="15" />
-              <button id="gosearch">Search</button>
-            </li>
-            <li class="icon">
-              <a href="javascript:void(0);" style="font-size: 15px;" id='menutoggler'>☰</a>
-            </li>
           </ul>
 
-        </header>
-    </div>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input id='searchtext' type="text" class="form-control" placeholder="Search">
+            </div>
+            <button id='gosearch' type="submit" class="btn btn-default">Submit</button>
+          </form>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
     <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
+    <div class="container" style='padding-top: 60px'>
       <section id="loading" class="hidden card inner">
         <div id="loading-results" class="inner">
         </div>

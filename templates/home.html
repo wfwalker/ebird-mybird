@@ -1,14 +1,19 @@
-<p>Welcome to birdWalker, a website of birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996, we have now recorded 857 trips and 784 species.</p>
+<div class='row'>
+	<div class='col-md-6'>
+		<p>Welcome to birdWalker, a website of birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996, we have now recorded 857 trips and 784 species.</p>
 
-<p>Some of our favorite places to go birding include Charleston Slough and the Duck Pond in Palo Alto, Sacramento National Wildlife Refuge, and the Rio Grande Valley in Texas.</p>
+		<p>Some of our favorite places to go birding include Charleston Slough and the Duck Pond in Palo Alto, Sacramento National Wildlife Refuge, and the Rio Grande Valley in Texas.</p>
+	</div>
 
-<h4>Seasonal Sights</h4>
+	<div class='col-md-6'>
+		<h4>Seasonal Sights</h4>
 
-<img src="{{photoOfTheWeek.[Photo URL]}}">
+		<img class='img-responsive' src="{{photoOfTheWeek.[Photo URL]}}">
 
-<div>
-	<a href="#taxon/{{encode photoOfTheWeek.[Common Name]}}">{{photoOfTheWeek.[Common Name]}}</a>,
-	<a href="#place/{{encode photoOfTheWeek.[State/Province]}}/{{addnone photoOfTheWeek.[County]}}/{{encode photoOfTheWeek.[Location]}}">{{photoOfTheWeek.[Location]}}</a>,
-	<a href="#trip/{{ebirddate photoOfTheWeek.[DateObject]}}">{{nicedate photoOfTheWeek.DateObject}}</a>
+		<div>
+			<a href="#taxon/{{encode photoOfTheWeek.[Common Name]}}">{{photoOfTheWeek.[Common Name]}}</a>,
+			<a href="#place/{{encode photoOfTheWeek.[State/Province]}}/{{addnone photoOfTheWeek.[County]}}/{{encode photoOfTheWeek.[Location]}}">{{photoOfTheWeek.[Location]}}</a>,
+			<a href="#trip/{{ebirddate photoOfTheWeek.[DateObject]}}">{{nicedate photoOfTheWeek.DateObject}}</a>
+		</div>
+	</div>
 </div>
-
