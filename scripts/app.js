@@ -192,10 +192,10 @@ function renderHome() {
 			photoOfTheWeek: photosThisWeekData.rows.pop(),
 			owner: 'Bill Walker',
 		});
-	}
+	};
 
 	photosThisWeekRequest.onerror = renderNetworkError;
-	photosThisWeekRequest.open("GET", '/photosThisWeek');
+	photosThisWeekRequest.open('GET', '/photosThisWeek');
 	photosThisWeekRequest.send();
 }
 
@@ -219,10 +219,10 @@ function renderChrono() {
 		}
 		chronoData.firstSightings.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
 		renderTemplate('chrono', 'chrono', chronoData);
-	}
+	};
 
 	chronoRequest.onerror = renderNetworkError;
-	chronoRequest.open("GET", '/chrono');
+	chronoRequest.open('GET', '/chrono');
 	chronoRequest.send();
 }
 
@@ -241,10 +241,10 @@ function renderTrips() {
 			tripsData.trips[index] = tmp;
 		}
 		renderTemplate('trips', 'Trips', tripsData);
-	}
+	};
 
 	tripsRequest.onerror = renderNetworkError;
-	tripsRequest.open("GET", '/trips');
+	tripsRequest.open('GET', '/trips');
 	tripsRequest.send();
 }
 
@@ -263,10 +263,10 @@ function renderBigDays() {
 		}
 
 		renderTemplate('bigdays', 'Big Days', bigDaysData);
-	}
+	};
 
 	bigDaysRequest.onerror = renderNetworkError;
-	bigDaysRequest.open("GET", '/bigDays');
+	bigDaysRequest.open('GET', '/bigDays');
 	bigDaysRequest.send();
 }
 
@@ -293,7 +293,7 @@ function renderTrip(inHashParts) {
 	};
 
 	tripRequest.onerror = renderNetworkError;
-	tripRequest.open("GET", '/trip/' + inDate);
+	tripRequest.open('GET', '/trip/' + inDate);
 	tripRequest.send();
 }
 
@@ -317,7 +317,7 @@ function renderYear(inHashParts) {
 	};
 
 	yearRequest.onerror = renderNetworkError;
-	yearRequest.open("GET", '/year/' + inYear);
+	yearRequest.open('GET', '/year/' + inYear);
 	yearRequest.send();
 }
 
@@ -382,10 +382,10 @@ function renderLocations() {
 
 		var locationsData = JSON.parse(locationsRequest.response);
 		renderTemplate('locations', 'locations', locationsData);
-	}
+	};
 
 	locationsRequest.onerror = renderNetworkError;
-	locationsRequest.open("GET", '/locations');
+	locationsRequest.open('GET', '/locations');
 	locationsRequest.send();
 }
 
@@ -424,10 +424,10 @@ function renderLocation(inHashParts) {
 			sightingList: locationSightingList,
 		});
 
-	}
+	};
 
 	locationRequest.onerror = renderNetworkError;
-	locationRequest.open("GET", '/place/' + inStateName + '/' + inCountyName + '/' + inLocationName);
+	locationRequest.open('GET', '/place/' + inStateName + '/' + inCountyName + '/' + inLocationName);
 	locationRequest.send();
 }
 
@@ -454,10 +454,10 @@ function renderCounty(inHashParts) {
 			sightingList: countySightingList,
 			taxons: countySightingList.commonNames,
 		});
-	}
+	};
 
 	countyRequest.onerror = renderNetworkError;
-	countyRequest.open("GET", '/place/' + inStateName + '/' + inCountyName);
+	countyRequest.open('GET', '/place/' + inStateName + '/' + inCountyName);
 	countyRequest.send();
 }
 
@@ -483,10 +483,10 @@ function renderState(inHashParts) {
 			sightingList: stateSightingList,
 			taxons: stateSightingList.commonNames,
 		});
-	}
+	};
 
 	stateRequest.onerror = renderNetworkError;
-	stateRequest.open("GET", '/place/' + inStateName);
+	stateRequest.open('GET', '/place/' + inStateName);
 	stateRequest.send();
 }
 
@@ -509,10 +509,10 @@ function renderFamily(inHashParts) {
 			sightingList: familySightingList,
 			taxons: familySightingList.commonNames,
 		});
-	}
+	};
 
 	familyRequest.onerror = renderNetworkError;
-	familyRequest.open("GET", '/family/' + inFamilyName);
+	familyRequest.open('GET', '/family/' + inFamilyName);
 	familyRequest.send();
 }
 
@@ -524,10 +524,10 @@ function renderTaxons() {
 
 		var taxonsData = JSON.parse(taxonsRequest.response);
 		renderTemplate('taxons', 'Species', taxonsData);
-	}
+	};
 
 	taxonsRequest.onerror = renderNetworkError;
-	taxonsRequest.open("GET", '/taxons');
+	taxonsRequest.open('GET', '/taxons');
 	taxonsRequest.send();
 }
 
@@ -553,10 +553,10 @@ function renderTaxon(inHashParts) {
 			chartID: 'bymonth' + Date.now(),
 		});
 
-	}
+	};
 
 	taxonRequest.onerror = renderNetworkError;
-	taxonRequest.open("GET", '/taxon/' + inCommonName);
+	taxonRequest.open('GET', '/taxon/' + inCommonName);
 	taxonRequest.send();
 }
 
@@ -615,7 +615,7 @@ function renderSearchResults(inHashParts) {
 	};
 
 	searchRequest.onerror = renderNetworkError;
-	searchRequest.open("GET", '/search/' + inTerm);
+	searchRequest.open('GET', '/search/' + inTerm);
 	searchRequest.send();
 }
 
@@ -797,15 +797,6 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 			var searchText = document.getElementById('searchtext').value;
 			history.pushState({ searchText: searchText }, 'BirdWalker | Search', '#search/' + searchText);
 			routeBasedOnHash();
-		});
-
-		document.getElementById('menutoggler').addEventListener('click', function() {
-		    var x = document.getElementById("myTopnav");
-		    if (x.className === "topnav") {
-		        x.className += " responsive";
-		    } else {
-		        x.className = "topnav";
-		    }
 		});
 	});
 
