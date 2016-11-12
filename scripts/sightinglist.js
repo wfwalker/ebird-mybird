@@ -149,7 +149,7 @@ SightingList.prototype.addRows = function(inRows) {
 SightingList.prototype.sortByDate = function() {
 	// TODO: this is probably unnecessary sort!
 	this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });           
-}
+};
 
 SightingList.prototype.sortByLocation = function() {
 	this.rows.sort(function(a, b) {
@@ -173,7 +173,7 @@ SightingList.prototype.sortByLocation = function() {
 			}
 		}
 	});
-}
+};
 
 SightingList.prototype.earliestDateObject = function() {
 	return this.earliestDateObject;
@@ -267,7 +267,7 @@ SightingList.getFamily = function(inTaxonomicOrderID) {
 	}
 
 	return null;
-}
+};
 
 SightingList.prototype.getTaxonomyHierarchy = function() {
 	var byFamily = {};
@@ -314,7 +314,8 @@ SightingList.prototype.mapSubmissionIDToChecklistComments = function() {
 	}
 
 	return tmpMap;
-}
+};
+
 SightingList.prototype.mapSubmissionIDToLocation = function() {
 	var tmpMap = {};
 
@@ -328,7 +329,7 @@ SightingList.prototype.mapSubmissionIDToLocation = function() {
 	}
 
 	return tmpMap;
-}
+};
 
 SightingList.prototype.getSpeciesByDate = function() {
 	console.log('computing speciesByDate');
@@ -387,7 +388,7 @@ SightingList.prototype.getLatestPhotos = function(inPhotoCount) {
 
 		return this.photos.slice(0, inPhotoCount);
 	}
-}
+};
 
 
 if (typeof module != 'undefined') {
