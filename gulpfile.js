@@ -78,6 +78,17 @@ gulp.task('copy-css', function() {
       }));
 });
 
+gulp.task('copy-fonts', function() {
+  return gulp.src([
+        'node_modules/bootstrap/dist/fonts/glyphicons-*',
+      ])
+      .pipe(gulp.dest(function(file) {
+          file.path = file.base + path.basename(file.path);
+          return 'app/fonts';
+      }));
+});
+
+
 gulp.task('test', function () {
   return gulp.src('app/test/test.js', { read: false })
     // gulp-mocha needs filepaths so you can't have any plugins before it 
@@ -86,7 +97,7 @@ gulp.task('test', function () {
 
 gulp.task('default', ['build', 'offline']);
 
-gulp.task('build', ['templates', 'compress', 'css'], function(callback) {
+gulp.task('build', ['templates', 'compress', 'css', 'copy-fonts'], function(callback) {
   return gulp.src('app/**').pipe(gulp.dest('dist'));
 });
 
@@ -162,6 +173,7 @@ gulp.task('offline', ['build'], function() {
       'index.html',
       'scripts/compressed.js',
       'styles/**',
+      'fonts/**',
     ],
   });
 });
