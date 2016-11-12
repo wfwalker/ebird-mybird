@@ -17,7 +17,14 @@
 	</span>
 </h3>
 
-{{> thumbnails}}
+<ul class="first row">
+	{{#each photos}}
+	   <li>
+	       <img alt="{{[Location]}}, {{[Date]}}" src="{{[Photo URL]}}">
+	       <p class="text">{{[Common Name]}}</p>
+	   </li>
+	{{/each}}
+</ul>
 
 <h4>{{valuecount sightingList "Common Name"}} Species</h4>
 

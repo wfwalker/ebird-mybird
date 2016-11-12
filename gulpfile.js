@@ -142,6 +142,7 @@ gulp.task('compress', ['copy-js-libs', 'templates'], function(){
     'app/scripts/handlebars.js',
     'app/scripts/handlebars-templates.js',
     'app/scripts/jquery.js',
+    'app/scripts/jquery.bsPhotoGallery.js',
     'app/scripts/bootstrap.js',
     'app/scripts/sightinglist.js',
     'app/scripts/app.js',

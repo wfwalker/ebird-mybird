@@ -10,6 +10,7 @@ app/scripts/c3.js
 app/scripts/compressed.js
 app/scripts/compressed.js.map
 app/styles/c3.css
+app/fonts
 app/styles/bundle.css
 app/styles/bootstrap.css
 app/styles/bootstrap-theme.css
