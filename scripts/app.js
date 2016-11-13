@@ -774,6 +774,16 @@ function registerHelpers() {
 		</div>'
 	);
 
+	Handlebars.registerPartial('specieslist',
+		'<div class="biglist"> \
+		{{#each (values sightingList "Common Name")}} \
+		  <div class="biglist-item"> \
+		    <a href="#taxon/{{encode this}}">{{this}}</a> \
+		  </div> \
+		{{/each}} \
+		</div>'
+	);
+
 	Handlebars.registerHelper('nicenumber', function(inNumber) {
 		return new Handlebars.SafeString (
 			d3.format(',d')(inNumber)
