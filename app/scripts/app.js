@@ -58,7 +58,7 @@ function renderTemplate(inPrefix, inPageTitle, inData) {
 	showSection('section#' + inPrefix);
 	document.title = 'BirdWalker | ' + inPageTitle;
 
-	$("#mygallery").justifiedGallery({
+	$(".mygallery").justifiedGallery({
 		rowHeight: 200,
 	});
 }
@@ -767,7 +767,7 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerPartial('thumbnails',
-		'<div id="mygallery"> \
+		'<div class="mygallery"> \
 		{{#each photos}} \
 		  <a href="#photo/{{id}}"><img alt="{{[Common Name]}}" src="{{[Photo URL]}}"></a> \
 		{{/each}} \
