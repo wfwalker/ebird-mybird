@@ -1,5 +1,6 @@
 node_modules/
 dist/
+app/fonts
 app/scripts/handlebars-templates.js
 app/scripts/iso3166.min.js
 app/scripts/handlebars.js

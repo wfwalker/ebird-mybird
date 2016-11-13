@@ -57,6 +57,10 @@ function renderTemplate(inPrefix, inPageTitle, inData) {
     results.appendChild(newDiv);
 	showSection('section#' + inPrefix);
 	document.title = 'BirdWalker | ' + inPageTitle;
+
+	$("#mygallery").justifiedGallery({
+		rowHeight: 200,
+	});
 }
 
 
@@ -471,7 +475,8 @@ function renderState(inHashParts) {
 
 		var tmp = JSON.parse(stateRequest.response);
 		var stateSightingList = new SightingList();
-		stateSightingList.initialize(tmp);
+		stateSightingList.initialize(tmp.sightings);
+		stateLocationHierarchy = tmp.hierarchy;
 
 		renderTemplate('state', inStateName, {
 			name: inStateName,
@@ -482,6 +487,7 @@ function renderState(inHashParts) {
 			Country: stateSightingList.rows[0]['Country'],
 			sightingList: stateSightingList,
 			taxons: stateSightingList.commonNames,
+			hierarchy: stateLocationHierarchy,
 		});
 	};
 
@@ -761,9 +767,9 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerPartial('thumbnails',
-		'<div> \
+		'<div id="mygallery"> \
 		{{#each photos}} \
-		  <span><a href="#photo/{{id}}"><img width="85px" height="85px" src="{{[Thumbnail URL]}}"></a></span> \
+		  <a href="#photo/{{id}}"><img alt="{{[Common Name]}}" src="{{[Photo URL]}}"></a> \
 		{{/each}} \
 		</div>'
 	);

@@ -374,6 +374,8 @@ app.get('/trip/:trip_date', function(req, resp, next) {
 	resp.json(tripSightingList);
 });
 
+// TODO: need location hierarchy
+
 app.get('/place/:state_name', function(req, resp, next) {
 	var tmp = gSightingList.filter(function(s) {
 		return s['State/Province'] == req.params.state_name;
@@ -385,10 +387,12 @@ app.get('/place/:state_name', function(req, resp, next) {
 	var stateLocations = stateSightingList.getUniqueValues('Location');
 	stateSightingList.photos = gPhotos.filter(function(p) { return stateLocations.indexOf(p.Location) >= 0; });
 
-
 	logger.debug('/state/', req.params.state_name, stateSightingList.length());
 
-	resp.json(stateSightingList);
+	resp.json({
+		sightings: stateSightingList,
+		hierarchy: stateSightingList.getLocationHierarchy(),
+	});
 });
 
 app.get('/place/:state_name/:county_name', function(req, resp, next) {
