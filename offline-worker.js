@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + 'fb5b8638af7938914d6a9f6cd74484f0b7d5937b';
+      return this.CACHE_PREFIX + '14688625acce9669a50ea2a59936e7871cdf2dc4';
     },
 
     // This is a list of resources that will be cached.
@@ -50,12 +50,13 @@
       './images/openmap.png', // 4dafe3882887be3afcf51d54948c5ceb830616d3
       './images/weather.png', // ac9c676c285f1ca8418e6bda8bccd0afdd922571
       './index.html', // e2a731d473e42dd6c263ae7158b4c3c875ee9b39
-      './scripts/compressed.js', // 592ea83b754107c5ee7cd29407edb4179a906f12
+      './scripts/compressed.js', // 3d867b065a1e8c77cca4c97079a9fb5ec57a5cdb
       './styles/app.css', // 7118e90773c40ea6485efdbeeb0b15d9453cc149
       './styles/bootstrap-theme.css', // 1468254bdfd4712c9f496b8f521225362a17ed95
       './styles/bootstrap.css', // f597f59f955cda06e5d7a79342d9e0c22b5ec6d2
-      './styles/bundle.css', // 11d4adf406ae592a5b1d260d8889ab68b4417aab
+      './styles/bundle.css', // 329236c7fe7420a411141ea741473ac05464fdf4
       './styles/c3.css', // 317ac8c41b6db673f5c7143526a6157d49cb64b6
+      './styles/justifiedGallery.min.css', // 5a0b11287defc4b18fef056675304ee80c686989
       './styles/spinner.css', // cadac5f4fce4b28bfb8ab8de2ed9fc879d321252
       './fonts/glyphicons-halflings-regular.eot', // 86b6f62b7853e67d3e635f6512a5a5efc58ea3c3
       './fonts/glyphicons-halflings-regular.svg', // de51a8494180a6db074af2dee2383f0a363c5b08
