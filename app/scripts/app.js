@@ -436,15 +436,20 @@ function renderLocation(inHashParts) {
 
 function googleMapForLocation(inData, inElement) {
 	console.log('googleMapForLocation', inData, inElement);
-	var uluru = {lat: Number.parseFloat(inData.rows[0].Latitude), lng: Number.parseFloat(inData.rows[0].Longitude)};
+	var center = {lat: Number.parseFloat(inData.rows[0].Latitude), lng: Number.parseFloat(inData.rows[0].Longitude)};
 	var map = new google.maps.Map(document.getElementById(inElement), {
 		zoom: 4,
-		center: uluru
+		center: center
 	});
-	var marker = new google.maps.Marker({
-		position: uluru,
-		map: map
-	});
+
+	for (var index = 1; index < inData.rows.length; index++) {
+		var uluru = {lat: Number.parseFloat(inData.rows[index].Latitude), lng: Number.parseFloat(inData.rows[index].Longitude)};
+		console.log('uluru', uluru);
+		var marker = new google.maps.Marker({
+			position: uluru,
+			map: map
+		});		
+	}
 }
 
 function renderCounty(inHashParts) {
@@ -569,6 +574,7 @@ function renderTaxon(inHashParts) {
 			photos: taxonSightingList.photos,
 			sightingList: taxonSightingList,
 			chartID: 'bymonth' + Date.now(),
+			mapID: 'map' + Date.now(),
 		});
 
 	};

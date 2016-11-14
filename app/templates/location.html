@@ -19,9 +19,6 @@
 
 {{> thumbnails}}
 
-<div id="{{mapID}}" style='height: 300px; width: 400px'></div>
-{{googlemap sightingList mapID}}
-
 <h4>{{valuecount sightingList "Common Name"}} Species</h4>
 
 {{> specieslist}}
@@ -40,3 +37,6 @@
 	{{/each}}
 	</div>
 {{/if}}
+
+<div id="{{mapID}}" class="embed-responsive embed-responsive-16by9"></div>
+{{googlemap sightingList mapID}}
