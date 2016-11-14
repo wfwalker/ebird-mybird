@@ -1,11 +1,7 @@
 <h3>{{year}} Year List</h3>
 
-<div>{{nicenumber yearSightings.length}} sightings, {{nicenumber yearSpecies.length}} species, {{nicenumber photos.length}} photos</div>
-
 {{> thumbnails}}
 
-<div class="biglist">
-{{#each yearSpecies}}
-  <div class='biglist-item'><a href="#taxon/{{encode this}}">{{this}}</a></div>
-{{/each}}
-</div>
+<h4>{{valuecount sightingList "Common Name"}} Species</h4>
+
+{{> specieslist}}

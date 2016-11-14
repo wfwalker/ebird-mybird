@@ -19,6 +19,9 @@
 
 {{> thumbnails}}
 
+<div id="{{mapID}}" style='height: 300px; width: 400px' data-lat='{{sightingList.rows.0.Latitude}}' data-long='{{sightingList.rows.0.Longitude}}'></div>
+{{googlemap "moo" mapID}}
+
 <h4>{{valuecount sightingList "Common Name"}} Species</h4>
 
 {{> specieslist}}
@@ -37,5 +40,3 @@
 	{{/each}}
 	</div>
 {{/if}}
-
-

@@ -315,8 +315,7 @@ function renderYear(inHashParts) {
 		renderTemplate('year', inYear, {
 			year: inYear,
 			photos: yearSightingList.getLatestPhotos(20),
-			yearSightings: yearSightingList.rows,
-			yearSpecies: yearSightingList.getUniqueValues('Common Name'),
+			sightingList: yearSightingList,
 		});
 	};
 
@@ -422,17 +421,30 @@ function renderLocation(inHashParts) {
 		renderTemplate('location', inLocationName, {
 			name: inLocationName,
 			chartID: 'bymonth' + Date.now(),
+			mapID: 'map' + Date.now(),
 			showChart: locationSightingList.length() > 100,
 			sightingsByMonth: locationSightingList.byMonth(),
 			photos: locationSightingList.getLatestPhotos(20),
 			sightingList: locationSightingList,
 		});
-
 	};
 
 	locationRequest.onerror = renderNetworkError;
 	locationRequest.open('GET', '/place/' + inStateName + '/' + inCountyName + '/' + inLocationName);
 	locationRequest.send();
+}
+
+function googleMapForLocation(inData, inElement) {
+	console.log('googleMapForLocation', inData, inElement);
+	var uluru = {lat: Number.parseFloat(document.getElementById(inElement).getAttribute('data-lat')), lng: Number.parseFloat(document.getElementById(inElement).getAttribute('data-long'))};
+	var map = new google.maps.Map(document.getElementById(inElement), {
+		zoom: 4,
+		center: uluru
+	});
+	var marker = new google.maps.Marker({
+		position: uluru,
+		map: map
+	});
 }
 
 function renderCounty(inHashParts) {
@@ -790,6 +802,11 @@ function registerHelpers() {
 		);
 	});
 
+	Handlebars.registerHelper('googlemap', function(inData, inElement) {
+		// per @digitarald use timeout to reorder helper after Handlebars templating
+		window.setTimeout(function () { googleMapForLocation(inData, inElement); }, 1);
+	});
+
 	Handlebars.registerHelper('bargraph', function(inData, inElement) {
 		// per @digitarald use timeout to reorder helper after Handlebars templating
 		window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement); }, 1);
@@ -822,5 +839,3 @@ if ((host == window.location.host) && (window.location.protocol != 'https:')) {
 
 	window.onhashchange = routeBasedOnHash;
 }
-
-
