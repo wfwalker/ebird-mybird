@@ -436,7 +436,7 @@ function renderLocation(inHashParts) {
 
 function googleMapForLocation(inData, inElement) {
 	console.log('googleMapForLocation', inData, inElement);
-	var uluru = {lat: Number.parseFloat(document.getElementById(inElement).getAttribute('data-lat')), lng: Number.parseFloat(document.getElementById(inElement).getAttribute('data-long'))};
+	var uluru = {lat: Number.parseFloat(inData.rows[0].Latitude), lng: Number.parseFloat(inData.rows[0].Longitude)};
 	var map = new google.maps.Map(document.getElementById(inElement), {
 		zoom: 4,
 		center: uluru

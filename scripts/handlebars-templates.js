@@ -267,12 +267,8 @@ this["ebirdmybird"]["location"] = Handlebars.template({"1":function(container,de
     + ((stack1 = container.invokePartial(partials.thumbnails,depth0,{"name":"thumbnails","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<div id=\""
     + alias2(((helper = (helper = helpers.mapID || (depth0 != null ? depth0.mapID : depth0)) != null ? helper : alias4),(typeof helper === "function" ? helper.call(alias3,{"name":"mapID","hash":{},"data":data}) : helper)))
-    + "\" style='height: 300px; width: 400px' data-lat='"
-    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Latitude : stack1), depth0))
-    + "' data-long='"
-    + alias2(alias1(((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1)) != null ? stack1["0"] : stack1)) != null ? stack1.Longitude : stack1), depth0))
-    + "'></div>\n"
-    + alias2((helpers.googlemap || (depth0 && depth0.googlemap) || alias4).call(alias3,"moo",(depth0 != null ? depth0.mapID : depth0),{"name":"googlemap","hash":{},"data":data}))
+    + "\" style='height: 300px; width: 400px'></div>\n"
+    + alias2((helpers.googlemap || (depth0 && depth0.googlemap) || alias4).call(alias3,(depth0 != null ? depth0.sightingList : depth0),(depth0 != null ? depth0.mapID : depth0),{"name":"googlemap","hash":{},"data":data}))
     + "\n\n<h4>"
     + alias2((helpers.valuecount || (depth0 && depth0.valuecount) || alias4).call(alias3,(depth0 != null ? depth0.sightingList : depth0),"Common Name",{"name":"valuecount","hash":{},"data":data}))
     + " Species</h4>\n\n"
