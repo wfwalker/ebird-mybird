@@ -448,7 +448,8 @@ function googleMapForLocation(inData, inElement) {
 
 	map.setOptions({
 		draggable: false,
-		scrollwheel: false
+		scrollwheel: false,
+		maxZoom: 10,
 	});
 
 	for (var index = 1; index < inData.rows.length; index++) {
@@ -480,7 +481,7 @@ function renderCounty(inHashParts) {
 			name: inCountyName,
 			chartID: 'bymonth' + Date.now(),
 			mapID: 'map' + Date.now(),
-			showMap: countySightingList.getUniqueValues('Location').length > 10,
+			showMap: true,
 			sightingsByMonth: countySightingList.byMonth(),
 			photos: countySightingList.getLatestPhotos(20),
 			State: countySightingList.rows[0]['State/Province'],
