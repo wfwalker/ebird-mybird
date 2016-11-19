@@ -58,8 +58,19 @@ function renderTemplate(inPrefix, inPageTitle, inData) {
 	showSection('section#' + inPrefix);
 	document.title = 'BirdWalker | ' + inPageTitle;
 
+	// TODO: bigger row height if fewer photos
+	var galleryCount = $('.mygallery a').length;
+	var rowHeight = 200;
+
+	if (galleryCount < 5) {
+		rowHeight = 480;
+	} else if (galleryCount < 10) {
+		rowHeight = 300;
+	}
+
 	$(".mygallery").justifiedGallery({
-		rowHeight: 200,
+		rowHeight: rowHeight,
+		maxRowHeight: rowHeight,
 	});
 }
 
@@ -438,12 +449,10 @@ function renderLocation(inHashParts) {
 function googleMapForLocation(inData, inElement) {
 	console.log('googleMapForLocation', inData, inElement);
 
-	var center = {lat: Number.parseFloat(inData.rows[0].Latitude), lng: Number.parseFloat(inData.rows[0].Longitude)};
 	var bounds = new google.maps.LatLngBounds();	
 
 	var map = new google.maps.Map(document.getElementById(inElement), {
 		zoom: 4,
-		center: center
 	});
 
 	map.setOptions({
@@ -452,11 +461,10 @@ function googleMapForLocation(inData, inElement) {
 		maxZoom: 10,
 	});
 
-	for (var index = 1; index < inData.rows.length; index++) {
-		var uluru = {lat: Number.parseFloat(inData.rows[index].Latitude), lng: Number.parseFloat(inData.rows[index].Longitude)};
-		console.log('uluru', uluru);
+	for (var index = 0; index < inData.rows.length; index++) {
+		var coords = {lat: Number.parseFloat(inData.rows[index].Latitude), lng: Number.parseFloat(inData.rows[index].Longitude)};
 		var marker = new google.maps.Marker({
-			position: uluru,
+			position: coords,
 			map: map
 		});		
 		bounds.extend(marker.position);
@@ -513,6 +521,7 @@ function renderState(inHashParts) {
 		renderTemplate('state', inStateName, {
 			name: inStateName,
 			chartID: 'bymonth' + Date.now(),
+			mapID: 'map' + Date.now(),
 			sightingsByMonth: stateSightingList.byMonth(),
 			photos: stateSightingList.getLatestPhotos(20),
 			State: stateSightingList.rows[0]['State/Province'],
@@ -542,7 +551,8 @@ function renderFamily(inHashParts) {
 		renderTemplate('family', inFamilyName, {
 			name: inFamilyName,
 			chartID: 'bymonth' + Date.now(),
-			showMap: familySightingList.getUniqueValues('Location').length > 10,
+			showDates: familySightingList.getUniqueValues('Date').length < 30,
+			showLocations: familySightingList.getUniqueValues('Location').length < 30,
 			mapID: 'map' + Date.now(),
 			sightingsByMonth: familySightingList.byMonth(),
 			photos: familySightingList.getLatestPhotos(20),
