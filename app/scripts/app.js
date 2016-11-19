@@ -58,8 +58,19 @@ function renderTemplate(inPrefix, inPageTitle, inData) {
 	showSection('section#' + inPrefix);
 	document.title = 'BirdWalker | ' + inPageTitle;
 
+	// TODO: bigger row height if fewer photos
+	var galleryCount = $('.mygallery a').length;
+	var rowHeight = 200;
+
+	if (galleryCount < 5) {
+		rowHeight = 480;
+	} else if (galleryCount < 10) {
+		rowHeight = 300;
+	}
+
 	$(".mygallery").justifiedGallery({
-		rowHeight: 200,
+		rowHeight: rowHeight,
+		maxRowHeight: rowHeight,
 	});
 }
 
@@ -453,10 +464,9 @@ function googleMapForLocation(inData, inElement) {
 	});
 
 	for (var index = 1; index < inData.rows.length; index++) {
-		var uluru = {lat: Number.parseFloat(inData.rows[index].Latitude), lng: Number.parseFloat(inData.rows[index].Longitude)};
-		console.log('uluru', uluru);
+		var coords = {lat: Number.parseFloat(inData.rows[index].Latitude), lng: Number.parseFloat(inData.rows[index].Longitude)};
 		var marker = new google.maps.Marker({
-			position: uluru,
+			position: coords,
 			map: map
 		});		
 		bounds.extend(marker.position);
@@ -513,6 +523,7 @@ function renderState(inHashParts) {
 		renderTemplate('state', inStateName, {
 			name: inStateName,
 			chartID: 'bymonth' + Date.now(),
+			mapID: 'map' + Date.now(),
 			sightingsByMonth: stateSightingList.byMonth(),
 			photos: stateSightingList.getLatestPhotos(20),
 			State: stateSightingList.rows[0]['State/Province'],
