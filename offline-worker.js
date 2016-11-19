@@ -39,7 +39,7 @@
 
     // This is the unique name for the cache controlled by this version of the worker.
     get CACHE_NAME() {
-      return this.CACHE_PREFIX + '73a5e1fa1987589069b11c722fc00ae39f43e506';
+      return this.CACHE_PREFIX + '160f859913c2ee993606c4f93b7dce4f492b90f8';
     },
 
     // This is a list of resources that will be cached.
@@ -49,12 +49,12 @@
       './images/ebird-favicon.png', // 3f841e97f2ecb0dc0f16478fa57c9dd00b65300f
       './images/openmap.png', // 4dafe3882887be3afcf51d54948c5ceb830616d3
       './images/weather.png', // ac9c676c285f1ca8418e6bda8bccd0afdd922571
-      './index.html', // 5aece02b5b7ab341b0bc1f8acc069f303ed23aa8
-      './scripts/compressed.js', // 1e88bdd35e5fc5a5b5096afe8897028581ecc747
-      './styles/app.css', // 7118e90773c40ea6485efdbeeb0b15d9453cc149
+      './index.html', // d03b54fcef751a54b30acaad51db90baeb3de2d7
+      './scripts/compressed.js', // 9c6e6d7423348c09b22d9de0ada70f7a660e1617
+      './styles/app.css', // c286ce14134c87f6540fe96889ee28ec41ca4f00
       './styles/bootstrap-theme.css', // 1468254bdfd4712c9f496b8f521225362a17ed95
       './styles/bootstrap.css', // f597f59f955cda06e5d7a79342d9e0c22b5ec6d2
-      './styles/bundle.css', // 329236c7fe7420a411141ea741473ac05464fdf4
+      './styles/bundle.css', // 900114a59676bebfb674fb7b687d7d3e0bc17ead
       './styles/c3.css', // 317ac8c41b6db673f5c7143526a6157d49cb64b6
       './styles/justifiedGallery.min.css', // 5a0b11287defc4b18fef056675304ee80c686989
       './styles/spinner.css', // cadac5f4fce4b28bfb8ab8de2ed9fc879d321252
