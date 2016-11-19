@@ -6,6 +6,10 @@
 
 {{monthgraph sightingsByMonth chartID}}
 
+<h4>{{valuecount sightingList "Common Name"}} Species on {{sightingList.dateObjects.length}} Dates</h4>
+
+{{> specieslist}}
+
 <h4>{{valuecount sightingList "Location"}} Locations</h4>
 
 <div class="biglist">
@@ -21,6 +25,5 @@
 	{{/each}}
 </div>
 
-<h4>{{valuecount sightingList "Common Name"}} Species on {{sightingList.dateObjects.length}} Dates</h4>
-
-{{> specieslist}}
+<div id="{{mapID}}" class="embed-responsive embed-responsive-16by9"></div>
+{{googlemap sightingList mapID}}
