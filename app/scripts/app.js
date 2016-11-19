@@ -288,6 +288,7 @@ function renderTrip(inHashParts) {
 		renderTemplate('trip', inDate, {
 			tripDate: tripSightingList.rows[0].DateObject,
 			photos: tripSightingList.photos,
+			mapID: 'map' + Date.now(),
 			customName: tripSightingList.dayNames[0],
 			submissionIDToChecklistComments: tripSightingList.mapSubmissionIDToChecklistComments(),
 			submissionIDToLocation: tripSightingList.mapSubmissionIDToLocation(),
@@ -436,10 +437,18 @@ function renderLocation(inHashParts) {
 
 function googleMapForLocation(inData, inElement) {
 	console.log('googleMapForLocation', inData, inElement);
+
 	var center = {lat: Number.parseFloat(inData.rows[0].Latitude), lng: Number.parseFloat(inData.rows[0].Longitude)};
+	var bounds = new google.maps.LatLngBounds();	
+
 	var map = new google.maps.Map(document.getElementById(inElement), {
 		zoom: 4,
 		center: center
+	});
+
+	map.setOptions({
+		draggable: false,
+		scrollwheel: false
 	});
 
 	for (var index = 1; index < inData.rows.length; index++) {
@@ -449,7 +458,10 @@ function googleMapForLocation(inData, inElement) {
 			position: uluru,
 			map: map
 		});		
+		bounds.extend(marker.position);
 	}
+
+	map.fitBounds(bounds);
 }
 
 function renderCounty(inHashParts) {
@@ -467,6 +479,8 @@ function renderCounty(inHashParts) {
 		renderTemplate('county', inCountyName + ' County', {
 			name: inCountyName,
 			chartID: 'bymonth' + Date.now(),
+			mapID: 'map' + Date.now(),
+			showMap: countySightingList.getUniqueValues('Location').length > 10,
 			sightingsByMonth: countySightingList.byMonth(),
 			photos: countySightingList.getLatestPhotos(20),
 			State: countySightingList.rows[0]['State/Province'],
@@ -527,6 +541,8 @@ function renderFamily(inHashParts) {
 		renderTemplate('family', inFamilyName, {
 			name: inFamilyName,
 			chartID: 'bymonth' + Date.now(),
+			showMap: familySightingList.getUniqueValues('Location').length > 10,
+			mapID: 'map' + Date.now(),
 			sightingsByMonth: familySightingList.byMonth(),
 			photos: familySightingList.getLatestPhotos(20),
 			sightingList: familySightingList,

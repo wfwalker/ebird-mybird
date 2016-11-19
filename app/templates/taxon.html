@@ -1,13 +1,24 @@
-<h3>{{name}} <span class='lighter'>{{scientificName}}</span></h3>
+<h3>
+	{{name}} <span class='lighter'>{{scientificName}}</span>
 
-<div>
-	<a target="_blank" href="http://www.xeno-canto.org/species/{{spacetodash scientificName}}">xeno-canto</a> |
-	<a target="_blank" href="http://en.wikipedia.org/wiki/{{spacetounder name}}">wikipedia</a>
-</div>
+	<span style='float: right'>
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				See also
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a target="_blank" href="http://www.xeno-canto.org/species/{{spacetodash scientificName}}">xeno-canto</a></li>
+				<li><a target="_blank" href="http://en.wikipedia.org/wiki/{{spacetounder name}}">wikipedia</a></li>
+			</ul>
+		</div>
+	</span>
+
+</h3>
 
 {{> thumbnails}}
 
-<h4>{{nicenumber sightingList.rows.length}} sightings at {{valuecount sightingList "Location"}} locations</h4>
+<h4>{{valuecount sightingList "Date"}} Dates</h4>
 
 {{#if this.showChart}}
 	<div id={{chartID}} class='bargraph'></div>
@@ -23,6 +34,8 @@
 		{{/each}}
 	</div>
 {{/if}}
+
+<h4>{{valuecount sightingList "Location"}} Locations</h4>
 
 <div id="{{mapID}}" class="embed-responsive embed-responsive-16by9"></div>
 {{googlemap sightingList mapID}}
