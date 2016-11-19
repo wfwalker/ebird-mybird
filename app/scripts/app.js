@@ -449,12 +449,10 @@ function renderLocation(inHashParts) {
 function googleMapForLocation(inData, inElement) {
 	console.log('googleMapForLocation', inData, inElement);
 
-	var center = {lat: Number.parseFloat(inData.rows[0].Latitude), lng: Number.parseFloat(inData.rows[0].Longitude)};
 	var bounds = new google.maps.LatLngBounds();	
 
 	var map = new google.maps.Map(document.getElementById(inElement), {
 		zoom: 4,
-		center: center
 	});
 
 	map.setOptions({
@@ -463,7 +461,7 @@ function googleMapForLocation(inData, inElement) {
 		maxZoom: 10,
 	});
 
-	for (var index = 1; index < inData.rows.length; index++) {
+	for (var index = 0; index < inData.rows.length; index++) {
 		var coords = {lat: Number.parseFloat(inData.rows[index].Latitude), lng: Number.parseFloat(inData.rows[index].Longitude)};
 		var marker = new google.maps.Marker({
 			position: coords,
@@ -553,7 +551,8 @@ function renderFamily(inHashParts) {
 		renderTemplate('family', inFamilyName, {
 			name: inFamilyName,
 			chartID: 'bymonth' + Date.now(),
-			showMap: familySightingList.getUniqueValues('Location').length > 10,
+			showDates: familySightingList.getUniqueValues('Date').length < 30,
+			showLocations: familySightingList.getUniqueValues('Location').length < 30,
 			mapID: 'map' + Date.now(),
 			sightingsByMonth: familySightingList.byMonth(),
 			photos: familySightingList.getLatestPhotos(20),
