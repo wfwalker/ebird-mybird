@@ -91,70 +91,6 @@ this["ebirdmybird"]["county"] = Handlebars.template({"1":function(container,dept
     + " Locations</h4>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.showMap : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "");
 },"usePartial":true,"useData":true});
-this["ebirdmybird"]["debug"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
-
-  return "  <div> <img height='32px' src=\""
-    + alias4(((helper = (helper = helpers["Thumbnail URL"] || (depth0 != null ? depth0["Thumbnail URL"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Thumbnail URL","hash":{},"data":data}) : helper)))
-    + "\"> "
-    + alias4(alias5((depth0 != null ? depth0.Location : depth0), depth0))
-    + " "
-    + alias4(alias5((depth0 != null ? depth0.Date : depth0), depth0))
-    + " "
-    + alias4(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
-    + " / "
-    + alias4(((helper = (helper = helpers["Scientific Name"] || (depth0 != null ? depth0["Scientific Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Scientific Name","hash":{},"data":data}) : helper)))
-    + "</div>\n";
-},"3":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
-
-  return "  <div> <img height='32px' src=\""
-    + alias4(((helper = (helper = helpers["Thumbnail URL"] || (depth0 != null ? depth0["Thumbnail URL"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Thumbnail URL","hash":{},"data":data}) : helper)))
-    + "\"> "
-    + alias4(alias5((depth0 != null ? depth0.Location : depth0), depth0))
-    + " <a href=\"#trip/"
-    + alias4(((helper = (helper = helpers.Date || (depth0 != null ? depth0.Date : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Date","hash":{},"data":data}) : helper)))
-    + "\">"
-    + alias4(alias5((depth0 != null ? depth0.Date : depth0), depth0))
-    + "</a> "
-    + alias4(((helper = (helper = helpers["Common Name"] || (depth0 != null ? depth0["Common Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Common Name","hash":{},"data":data}) : helper)))
-    + " / "
-    + alias4(((helper = (helper = helpers["Scientific Name"] || (depth0 != null ? depth0["Scientific Name"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Scientific Name","hash":{},"data":data}) : helper)))
-    + "</div>\n";
-},"5":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=container.escapeExpression;
-
-  return "    <div>"
-    + alias1(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"key","hash":{},"data":data}) : helper)))
-    + ", "
-    + alias1(container.lambda(depth0, depth0))
-    + "</div>\n";
-},"7":function(container,depth0,helpers,partials,data) {
-    return "  <div>"
-    + container.escapeExpression(container.lambda(depth0, depth0))
-    + "</div>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {};
-
-  return "<h3>debugging info</h3>\n<div>"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.photos : depth0)) != null ? stack1.length : stack1), depth0))
-    + " photos</div>\n\n<h4>Please add an eBird checklist for these "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.photosMissingTrip : depth0)) != null ? stack1.length : stack1), depth0))
-    + " photos:</h4>\n\n"
-    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photosMissingTrip : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n<h4>These "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.photosMissingLocation : depth0)) != null ? stack1.length : stack1), depth0))
-    + " photos have locations missing from your eBird data:</h4>\n\n"
-    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photosMissingLocation : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n<h4>These "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.photosBadScientificName : depth0)) != null ? stack1.length : stack1), depth0))
-    + " photos have scientific names missing from your eBird sightings:</h4>\n\n"
-    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.photosBadScientificName : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n<h4>There are no sightings for these custom day names:</h4>\n\n"
-    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.missingSightingsForCustomDayNames : depth0),{"name":"each","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n<h4>Sighting has slashes:</h4>\n\n"
-    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.brokenLocations : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"useData":true});
 this["ebirdmybird"]["family"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1;
 
@@ -225,7 +161,7 @@ this["ebirdmybird"]["family"] = Handlebars.template({"1":function(container,dept
 this["ebirdmybird"]["home"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing;
 
-  return "<div class='row'>\n	<div class='col-md-6'>\n		<p>Welcome to birdWalker, a website of birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996, we have now recorded 857 trips and 784 species.</p>\n\n		<p>Some of our favorite places to go birding include Charleston Slough and the Duck Pond in Palo Alto, Sacramento National Wildlife Refuge, and the Rio Grande Valley in Texas.</p>\n	</div>\n\n	<div class='col-md-6'>\n		<h4>Seasonal Sights</h4>\n\n		<img class='img-responsive' src=\""
+  return "<div class='row'>\n	<div class='col-md-6'>\n		<p>Welcome to birdWalker, a website of birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996, we have now recorded 857 trips and 784 species.</p>\n\n		<p>Some of our favorite places to go birding include\n			<a href='#place/US-CA/Santa Clara/Charleston Slough'>Charleston Slough</a> and\n			<a href='#place/US-CA/Santa Clara/Palo Alto Duck Pond'>the Duck Pond</a> in Palo Alto,\n			<a href='http://localhost:8090/#place/US-CA/Glenn'>Sacramento National Wildlife Refuge</a>, and\n			<a href='#place/US-TX/Hidalgo'>the Rio Grande Valley</a> in Texas.\n		</p>\n	</div>\n\n	<div class='col-md-6'>\n		<h4>Seasonal Sights</h4>\n\n		<img class='img-responsive' src=\""
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Photo URL"] : stack1), depth0))
     + "\">\n\n		<div>\n			<a href=\"#taxon/"
     + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,((stack1 = (depth0 != null ? depth0.photoOfTheWeek : depth0)) != null ? stack1["Common Name"] : stack1),{"name":"encode","hash":{},"data":data}))
@@ -556,29 +492,6 @@ this["ebirdmybird"]["state"] = Handlebars.template({"1":function(container,depth
     + alias3((helpers.googlemap || (depth0 && depth0.googlemap) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),(depth0 != null ? depth0.mapID : depth0),{"name":"googlemap","hash":{},"data":data}))
     + "\n";
 },"usePartial":true,"useData":true,"useDepths":true});
-this["ebirdmybird"]["stats"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
-  return "<h3>"
-    + alias4(((helper = (helper = helpers.owner || (depth0 != null ? depth0.owner : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"owner","hash":{},"data":data}) : helper)))
-    + "&apos;s eBird</h3>\n\n<div>\n"
-    + alias4((helpers.nicenumber || (depth0 && depth0.nicenumber) || alias2).call(alias1,(depth0 != null ? depth0.numSightings : depth0),{"name":"nicenumber","hash":{},"data":data}))
-    + " sightings in "
-    + alias4((helpers.nicenumber || (depth0 && depth0.nicenumber) || alias2).call(alias1,(depth0 != null ? depth0.numChecklists : depth0),{"name":"nicenumber","hash":{},"data":data}))
-    + " checklists\nfrom "
-    + alias4((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,(depth0 != null ? depth0.earliest : depth0),{"name":"nicedate","hash":{},"data":data}))
-    + " - "
-    + alias4((helpers.nicedate || (depth0 && depth0.nicedate) || alias2).call(alias1,(depth0 != null ? depth0.latest : depth0),{"name":"nicedate","hash":{},"data":data}))
-    + "\n</div>\n\n<h4>Sightings by Year</h4>\n\n<div id="
-    + alias4(((helper = (helper = helpers.yearChartID || (depth0 != null ? depth0.yearChartID : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"yearChartID","hash":{},"data":data}) : helper)))
-    + " class='bargraph'></div>\n\n"
-    + alias4((helpers.bargraph || (depth0 && depth0.bargraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByYear : depth0),(depth0 != null ? depth0.yearChartID : depth0),{"name":"bargraph","hash":{},"data":data}))
-    + "\n\n<h4>Sightings by Month</h4>\n\n<div id="
-    + alias4(((helper = (helper = helpers.monthChartID || (depth0 != null ? depth0.monthChartID : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"monthChartID","hash":{},"data":data}) : helper)))
-    + " class='bargraph'></div>\n\n"
-    + alias4((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.monthChartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
-    + "\n";
-},"useData":true});
 this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
