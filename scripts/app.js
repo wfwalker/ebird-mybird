@@ -99,55 +99,6 @@ function hideAllSections() {
 	}
 }
 
-function barGraphCountsForSightings(inData, inElement) {
-	var labels = Object.keys(inData).map(function(k){return k;});
-	var values = Object.keys(inData).map(function(k){return inData[k].length;});
-
-	var tempSightingLists = Object.keys(inData).map(function(k) { return new SightingList(inData[k]); });
-
-	var values2 = tempSightingLists.map(function(l) { return l.getUniqueValues('Common Name').length; });
-	var values3 = tempSightingLists.map(function(l) { return l.getUniqueValues('Location').length; });
-
-	labels.unshift('x');
-	values.unshift('sightings');
-	values2.unshift('species');
-	values3.unshift('locations');
-
-	var chart = c3.generate({
-		bindto: d3.select(inElement),
-		size: {
-			height: gBarGraphHeight,
-		},
-		axis: {
-			y: {
-				show: false,
-			},
-		},
-		data: {
-			x: 'x',
-			columns: [
-				values,
-				values2,
-				values3,
-				labels,
-			],
-			types: {
-				sightings: 'line',
-				species: 'line',
-				locations: 'line',
-			},
-			onclick: function(d, element) {
-				window.location.hash = '#year/' + d.x;
-			},
-		},
-		tooltip: {
-			format: {
-				value: d3.format(','), // apply to all
-			},
-		},
-	});
-}
-
 function byMonthForSightings(inData, inElement) {
 	var labels = ['x', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	var values = inData.map(function(a){return a.length;});
@@ -611,41 +562,6 @@ function renderTaxon(inHashParts) {
 	taxonRequest.send();
 }
 
-function renderDebug() {
-	var tmp = gSightings.filter(function(s) { return s['Location'] && s['Location'].indexOf('/') >= 0; });
-	var brokenLocationSightingList = new SightingList(tmp);
-	var photosBadScientificName = [];
-	var missingSightingsForCustomDayNames = {};
-	var allLocations = gSightings.getUniqueValues('Location');
-
-	for (var index = 0; index < gPhotos.length; index++) {
-		var photo = gPhotos[index];
-		var sightings = gSightings.filter(function (s) { return s['Scientific Name'] == photo['Scientific Name']; });
-		if (sightings.length == 0) {
-			console.log('no sightings for scientific name ' + photo['Scientific Name']);
-			photosBadScientificName.push(photo);
-		}
-	}
-
-	for (index in gCustomDayNames) {
-		var aCustomDate = gCustomDayNames[index];
-		var sightings = gSightings.filter(function (s) { return s['Date'] == index; });
-		if (sightings.length == 0) {
-			console.log('no sightings for', index, aCustomDate);
-			missingSightingsForCustomDayNames[index] = aCustomDate;
-		}
-	}
-
-	renderTemplate('debug', 'Debug', {
-		photosMissingTrip: gPhotos.filter(function(p) { return gSightings.dates.indexOf(p.Date) < 0; }),
-		photosMissingLocation: gPhotos.filter(function(p) { return allLocations.indexOf(p.Location) < 0; }),
-		photosBadScientificName: photosBadScientificName,
-		photos: gPhotos,
-		brokenLocations: brokenLocationSightingList.locations,
-		missingSightingsForCustomDayNames: missingSightingsForCustomDayNames,
-	});
-}
-
 function renderSearchResults(inHashParts) {
 	var searchRequest = new XMLHttpRequest();
 	var inTerm = decodeURI(inHashParts[1]);
@@ -838,11 +754,6 @@ function registerHelpers() {
 	Handlebars.registerHelper('googlemap', function(inData, inElement) {
 		// per @digitarald use timeout to reorder helper after Handlebars templating
 		window.setTimeout(function () { googleMapForLocation(inData, inElement); }, 1);
-	});
-
-	Handlebars.registerHelper('bargraph', function(inData, inElement) {
-		// per @digitarald use timeout to reorder helper after Handlebars templating
-		window.setTimeout(function () { barGraphCountsForSightings(inData, '#' + inElement); }, 1);
 	});
 
 	Handlebars.registerHelper('monthgraph', function(inData, inElement) {
