@@ -310,7 +310,10 @@ app.get('/taxon/:common_name', function(req, resp, next) {
 
 	logger.debug('/taxon/', req.params.common_name, taxonSightingList.rows.length);
 
-	resp.json(taxonSightingList);
+	resp.json({
+		sightingList: taxonSightingList,
+		customDayNames: SightingList.customDayNames,
+	});
 });
 
 app.get('/trips', function(req, resp, next) {
@@ -432,7 +435,10 @@ app.get('/place/:state_name/:county_name/:location_name', function(req, resp, ne
 
 	logger.debug('/location/', req.params.state_name, req.params.county_name, req.params.location_name, locationSightingList.rows.length);
 
-	resp.json(locationSightingList);
+	resp.json({
+		sightingList: locationSightingList,
+		customDayNames: SightingList.customDayNames,
+	});
 });
 
 

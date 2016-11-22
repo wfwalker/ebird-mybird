@@ -379,7 +379,7 @@ function renderLocation(inHashParts) {
 
 		var tmp = JSON.parse(locationRequest.response);
 		var locationSightingList = new SightingList();
-		locationSightingList.initialize(tmp);
+		locationSightingList.initialize(tmp.sightingList);
 
 		renderTemplate('location', inLocationName, {
 			name: inLocationName,
@@ -389,6 +389,7 @@ function renderLocation(inHashParts) {
 			sightingsByMonth: locationSightingList.byMonth(),
 			photos: locationSightingList.getLatestPhotos(20),
 			sightingList: locationSightingList,
+			customDayNames: tmp.customDayNames,
 		});
 	};
 
@@ -541,7 +542,7 @@ function renderTaxon(inHashParts) {
 
 		var tmp = JSON.parse(taxonRequest.response);
 		var taxonSightingList = new SightingList();
-		taxonSightingList.initialize(tmp);
+		taxonSightingList.initialize(tmp.sightingList);
 		var scientificName = taxonSightingList.rows[0]['Scientific Name'];
 
 		renderTemplate('taxon', inCommonName, {
@@ -551,6 +552,7 @@ function renderTaxon(inHashParts) {
 			sightingsByMonth: taxonSightingList.byMonth(),
 			photos: taxonSightingList.photos,
 			sightingList: taxonSightingList,
+			customDayNames: tmp.customDayNames,
 			chartID: 'bymonth' + Date.now(),
 			mapID: 'map' + Date.now(),
 		});
