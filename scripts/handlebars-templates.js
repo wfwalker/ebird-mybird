@@ -500,31 +500,25 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + " class='bargraph'></div>\n	"
     + alias3((helpers.monthgraph || (depth0 && depth0.monthgraph) || alias2).call(alias1,(depth0 != null ? depth0.sightingsByMonth : depth0),(depth0 != null ? depth0.chartID : depth0),{"name":"monthgraph","hash":{},"data":data}))
     + "\n";
-},"3":function(container,depth0,helpers,partials,data) {
+},"3":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1;
 
   return "	<div class=\"biglist\">\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.sightingList : depth0)) != null ? stack1.rows : stack1),{"name":"each","hash":{},"fn":container.program(4, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "	</div>\n";
-},"4":function(container,depth0,helpers,partials,data) {
+},"4":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing;
 
   return "			<div class='biglist-item'>\n				<a href=\"#trip/"
     + alias2(alias1((depth0 != null ? depth0.Date : depth0), depth0))
-    + "\">"
+    + "\">\n					"
     + alias2((helpers.nicedate || (depth0 && depth0.nicedate) || alias4).call(alias3,(depth0 != null ? depth0.DateObject : depth0),{"name":"nicedate","hash":{},"data":data}))
-    + "</a>\n				<a href=\"#place/"
-    + alias2(alias1((depth0 != null ? depth0["State/Province"] : depth0), depth0))
-    + "/"
-    + alias2((helpers.addnone || (depth0 && depth0.addnone) || alias4).call(alias3,(depth0 != null ? depth0.County : depth0),{"name":"addnone","hash":{},"data":data}))
-    + "/"
-    + alias2((helpers.encode || (depth0 && depth0.encode) || alias4).call(alias3,(depth0 != null ? depth0.Location : depth0),{"name":"encode","hash":{},"data":data}))
-    + "\">"
-    + alias2(alias1((depth0 != null ? depth0.Location : depth0), depth0))
-    + "</a>\n				<a href=\"#sighting/"
+    + "\n					"
+    + alias2(helpers.lookup.call(alias3,(depths[1] != null ? depths[1].customDayNames : depths[1]),(helpers.ebirddate || (depth0 && depth0.ebirddate) || alias4).call(alias3,(depth0 != null ? depth0.DateObject : depth0),{"name":"ebirddate","hash":{},"data":data}),{"name":"lookup","hash":{},"data":data}))
+    + "\n				</a>\n				<a href=\"#sighting/"
     + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
     + "\">+</a>\n			</div>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<h3>\n	"
@@ -540,7 +534,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + "\n<h4>"
     + alias4((helpers.valuecount || (depth0 && depth0.valuecount) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Date",{"name":"valuecount","hash":{},"data":data}))
     + " Dates</h4>\n\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.showChart : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.showChart : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.program(3, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + "\n<h4>"
     + alias4((helpers.valuecount || (depth0 && depth0.valuecount) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),"Location",{"name":"valuecount","hash":{},"data":data}))
     + " Locations</h4>\n\n<div id=\""
@@ -548,7 +542,7 @@ this["ebirdmybird"]["taxon"] = Handlebars.template({"1":function(container,depth
     + "\" class=\"embed-responsive embed-responsive-16by9\"></div>\n"
     + alias4((helpers.googlemap || (depth0 && depth0.googlemap) || alias2).call(alias1,(depth0 != null ? depth0.sightingList : depth0),(depth0 != null ? depth0.mapID : depth0),{"name":"googlemap","hash":{},"data":data}))
     + "\n";
-},"usePartial":true,"useData":true});
+},"usePartial":true,"useData":true,"useDepths":true});
 this["ebirdmybird"]["taxons"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
 

@@ -27,8 +27,10 @@
 	<div class="biglist">
 		{{#each sightingList.rows}}
 			<div class='biglist-item'>
-				<a href="#trip/{{this.Date}}">{{nicedate this.DateObject}}</a>
-				<a href="#place/{{this.[State/Province]}}/{{addnone this.County}}/{{encode this.Location}}">{{this.Location}}</a>
+				<a href="#trip/{{this.Date}}">
+					{{nicedate this.DateObject}}
+					{{lookup ../customDayNames (ebirddate this.DateObject)}}
+				</a>
 				<a href="#sighting/{{this.id}}">+</a>
 			</div>
 		{{/each}}
