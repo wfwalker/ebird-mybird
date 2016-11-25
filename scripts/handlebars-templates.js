@@ -330,9 +330,9 @@ this["ebirdmybird"]["photos"] = Handlebars.template({"1":function(container,dept
 },"2":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "			<div class=\"media\">\n				<div class=\"media-left\">\n					<a href='#family/"
+  return "			<div class=\"media\" style='padding-bottom: 10px'>\n				<div class=\"media-left\">\n					<a href='#family/"
     + alias4(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
-    + "'><img width='85px' height='85px' src='"
+    + "'><img class='media-object' width='85px' height='85px' src='"
     + alias4(((helper = (helper = helpers["Thumbnail URL"] || (depth0 != null ? depth0["Thumbnail URL"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Thumbnail URL","hash":{},"data":data}) : helper)))
     + "' /></a>\n				</div>\n				<div class=\"media-body\">\n					<h4 class=\"media-heading\"><a href='#family/"
     + alias4(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
