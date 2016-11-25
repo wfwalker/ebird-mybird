@@ -98,7 +98,9 @@ fs.readFile('server/data/ebird.csv', 'utf8', function(err, data) {
 
 // read and parse the full taxonomy list for eBird
 
-fs.readFile('server/data/eBird_all_v2015.csv', 'utf8', function(err, data) {
+var eBirdAllFilename = 'server/data/eBird_Taxonomy_v2016.csv';
+
+fs.readFile(eBirdAllFilename, 'utf8', function(err, data) {
 	if (err) throw err;
 
 	var familyRanges = {};
