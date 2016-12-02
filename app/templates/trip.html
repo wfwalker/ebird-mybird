@@ -8,16 +8,21 @@
   <div class='biglist'>
   {{#each (values sightingList "Submission ID")}}
     <div class='biglist-item'>
-      {{#with (lookup ../submissionIDToLocation this)}}
-        <a href='#place/{{0}}/{{addnone [1]}}/{{2}}'>
-          {{[2]}}
+      {{#with (lookup ../submissionIDToSighting this)}}
+        <a href='#place/{{[State/Province]}}/{{addnone [County]}}/{{Location}}'>
+          {{[Location]}}
         </a>
       {{/with}}
       <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{this}}'>
         <img src='/images/ebird-favicon.png' />
       </a>
     </div>
-    <div style='font-size: 80%; margin-left: 1em'><i>{{lookup ../submissionIDToChecklistComments this}}</i></div>
+    <div style='font-size: 80%; margin-left: 1em'>
+      {{#with (lookup ../submissionIDToSighting this)}}
+        <div>{{Protocol}}, {{[Duration (Min)]}}mins, {{[Time]}}</div>
+        <i>{{[Checklist Comments]}}</i>
+      {{/with}}
+    </div>
   {{/each}}
   </div>
 
@@ -28,7 +33,7 @@
     <a target='_blank' href='http://ebird.org/ebird/view/checklist?subID={{values sightingList "Submission ID"}}'><img src='/images/ebird-favicon.png' /></a>
   </h4>
   {{#each (values sightingList "Submission ID")}}
-    <div style='font-size: 80%; margin-left: 1em'><i>{{lookup ../submissionIDToChecklistComments this}}</i></div>
+    <div style='font-size: 80%; margin-left: 1em'><i>{{#with (lookup ../submissionIDToSighting this)}}{{[Checklist Comments]}}{{/with}}</i></div>
   {{/each}}
 {{/if}}
 

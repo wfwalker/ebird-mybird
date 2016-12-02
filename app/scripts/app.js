@@ -252,8 +252,7 @@ function renderTrip(inHashParts) {
 			photos: tripSightingList.photos,
 			mapID: 'map' + Date.now(),
 			customName: tripSightingList.dayNames[0],
-			submissionIDToChecklistComments: tripSightingList.mapSubmissionIDToChecklistComments(),
-			submissionIDToLocation: tripSightingList.mapSubmissionIDToLocation(),
+			submissionIDToSighting: tripSightingList.mapSubmissionIDToSighting(),
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
 			sightingList: tripSightingList,
 		});
