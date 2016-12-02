@@ -316,7 +316,9 @@ SightingList.prototype.mapSubmissionIDToChecklistComments = function() {
 	return tmpMap;
 };
 
-SightingList.prototype.mapSubmissionIDToLocation = function() {
+// TODO: map also Protocol, Duration (Min), Time for Location
+
+SightingList.prototype.mapSubmissionIDToSighting = function() {
 	var tmpMap = {};
 
 	for (var index = 0; index < this.rows.length; index++) {
@@ -324,7 +326,7 @@ SightingList.prototype.mapSubmissionIDToLocation = function() {
 		var submissionID = sighting['Submission ID'];
 
 		if (! tmpMap[submissionID]) {
-			tmpMap[submissionID] = [sighting['State/Province'], sighting['County'], sighting['Location']];
+			tmpMap[submissionID] = sighting;
 		}
 	}
 
