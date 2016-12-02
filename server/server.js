@@ -137,6 +137,7 @@ fs.readFile(eBirdAllFilename, 'utf8', function(err, data) {
 	}
 });
 
+// TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
 function privateGetTaxoFromCommonName(inCommonName) {
 	for (var index = 0; index < gEBirdAll.data.length; index++) {
 		if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] == inCommonName) {
