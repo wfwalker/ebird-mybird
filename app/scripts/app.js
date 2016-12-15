@@ -614,7 +614,7 @@ function routeBasedOnHash() {
 
 	if (! theHashParts[0]) {
 		// TODO: should use push state
-		theHashParts[0] = '#home';
+		theHashParts[0] = '#photos';
 	}
 
 	if(routingMap[theHashParts[0]]) {

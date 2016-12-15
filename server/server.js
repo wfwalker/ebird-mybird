@@ -193,6 +193,9 @@ app.get('/photosThisWeek', function(req, resp, next) {
 });
 
 app.get('/photos', function(req, resp, next) {
+	var currentWeekOfYear = new Date().getWeek();
+	var photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
+
 	var commonNamesByFamily = {};
 	var photosByFamily = {};
 	var photoCommonNamesByFamily = [];
@@ -239,7 +242,13 @@ app.get('/photos', function(req, resp, next) {
 	logger.debug('/photos');
 
 	// pass down to the page template all the photo data plus the list of common names in taxo order
-	resp.json({numPhotos: gPhotos.length, numSpecies: speciesPhotographed, photosByFamily: photosByFamily, hierarchy: commonNamesByFamily});
+	resp.json({
+		numPhotos: gPhotos.length,
+		numSpecies: speciesPhotographed,
+		photosByFamily: photosByFamily,
+		hierarchy: commonNamesByFamily,
+		photosThisWeek: photosThisWeek
+	});
 });
 
 app.get('/locations', function(req, resp, next) {
