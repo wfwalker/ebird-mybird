@@ -287,7 +287,10 @@ app.get('/family/:family_name', function(req, resp, next) {
 
 	logger.debug('/family/', req.params.family_name, familySightingList.rows.length);
 
-	resp.json(familySightingList);
+	resp.json({
+		sightingList: familySightingList,
+		customDayNames: SightingList.customDayNames,
+	});
 });
 
 app.get('/taxons', function(req, resp, next) {

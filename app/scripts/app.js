@@ -497,7 +497,7 @@ function renderFamily(inHashParts) {
 
 		var tmp = JSON.parse(familyRequest.response);
 		var familySightingList = new SightingList();
-		familySightingList.initialize(tmp);
+		familySightingList.initialize(tmp.sightingList);
 
 		renderTemplate('family', inFamilyName, {
 			name: inFamilyName,
@@ -509,6 +509,7 @@ function renderFamily(inHashParts) {
 			photos: familySightingList.getLatestPhotos(20),
 			sightingList: familySightingList,
 			taxons: familySightingList.commonNames,
+			customDayNames: tmp.customDayNames,
 		});
 	};
 
