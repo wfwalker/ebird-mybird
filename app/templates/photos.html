@@ -29,7 +29,7 @@
 	{{#each hierarchy}}
 		{{#with (random ../photosByFamily @key)}}
 
-			<div class="col-xs-4 col-md-2" style='height: 300px'>
+			<div class="col-xs-6 col-sm-3 col-md-2" style='height: 300px'>
 				<div class="thumbnail">
 					<a href='#family/{{@key}}'><img src="{{[Thumbnail URL]}}" width='100%' alt="{{stripLatinFromEbirdFamily @key}}"></a>
 					<div class="caption">
