@@ -14,6 +14,7 @@ var babyParse = require('babyparse');
 var SightingList = require('../app/scripts/sightinglist.js');
 var fs = require('fs');
 var winston = require('winston');
+var request = require('request');
 
 var logger = new (winston.Logger)({
     transports: [
@@ -156,6 +157,17 @@ fs.readFile('server/data/photos.json', 'utf8', function(err, data) {
 	{
 		var photo = gPhotos[index];
 
+		// // TODO: try to get the images
+		// request(photo['Photo URL'], function(error, response, body) {
+		// 	if (response == null) {
+		// 		console.log('no response', error);
+		// 	} else if (response.statusCode == 403) {
+		// 		console.log('photo error', response.request.uri.href);
+		// 	} else {
+		// 		// console.log('thumbnail win');
+		// 	}
+		// });
+
 		// set the photos's ID as its index in this array.
 		// TODO: not permanently stable
 		photo.id = index;
@@ -187,7 +199,7 @@ app.get('/photosThisWeek', function(req, resp, next) {
 	var currentWeekOfYear = new Date().getWeek();
 	var photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
 
-	logger.debug('photos of the week', photosThisWeek.length);
+	logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length);
 
 	resp.json(photosThisWeek);
 });
@@ -195,6 +207,8 @@ app.get('/photosThisWeek', function(req, resp, next) {
 app.get('/photos', function(req, resp, next) {
 	var currentWeekOfYear = new Date().getWeek();
 	var photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
+
+	logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length);
 
 	var commonNamesByFamily = {};
 	var photosByFamily = {};
@@ -205,6 +219,7 @@ app.get('/photos', function(req, resp, next) {
 
 	for (var index = 0; index < gPhotos.length; index++) {
 		var aPhoto = gPhotos[index];
+
 		aPhoto.taxonomicSort = privateGetTaxoFromCommonName(aPhoto['Common Name']);
 		aPhoto.family = SightingList.getFamily(aPhoto.taxonomicSort);
 		photoCommonNamesByFamily.push({'Common Name': aPhoto['Common Name'], taxonomicSort: aPhoto.taxonomicSort, family: aPhoto.family});
