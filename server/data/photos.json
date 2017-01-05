@@ -314,7 +314,7 @@
         "Date": "03-24-2003",
         "Scientific Name": "Bubulcus ibis",
         "Common Name": "Cattle Egret",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2003-03-24-categr.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2003-03-24-categr.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2003-03-24-categr.jpg",
         "County": "Imperial",
         "State/Province": "US-CA"
@@ -454,7 +454,7 @@
         "Date": "10-31-2003",
         "Scientific Name": "Egretta thula",
         "Common Name": "Snowy Egret",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2003-10-31-snoegr.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2003-10-31-snoegr.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2003-10-31-snoegr.jpg",
         "County": "San Mateo",
         "State/Province": "US-CA"
@@ -844,7 +844,7 @@
         "Date": "02-08-2004",
         "Scientific Name": "Aythya valisineria",
         "Common Name": "Canvasback",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-02-08-canvas.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-02-08-canvas.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-02-08-canvas.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
@@ -984,7 +984,7 @@
         "Date": "03-31-2004",
         "Scientific Name": "Corvus brachyrhynchos",
         "Common Name": "American Crow",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-03-31-amecro.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-03-31-amecro.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-03-31-amecro.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
@@ -1134,7 +1134,7 @@
         "Date": "04-14-2004",
         "Scientific Name": "Falco peregrinus",
         "Common Name": "Peregrine Falcon",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-14-perfal.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-14-perfal.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-04-14-perfal.jpg",
         "County": "Nueces",
         "State/Province": "US-TX"
@@ -1374,7 +1374,7 @@
         "Date": "04-17-2004",
         "Scientific Name": "Egretta tricolor",
         "Common Name": "Tricolored Heron",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-17-triher.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-17-triher.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-04-17-triher.jpg",
         "County": "Cameron",
         "State/Province": "US-TX"
@@ -1454,7 +1454,7 @@
         "Date": "04-17-2004",
         "Scientific Name": "Melanerpes aurifrons",
         "Common Name": "Golden-fronted Woodpecker",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-17-gofwoo.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-17-gofwoo.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-04-17-gofwoo.jpg",
         "County": "Cameron",
         "State/Province": "US-TX"
@@ -1674,7 +1674,7 @@
         "Date": "04-21-2004",
         "Scientific Name": "Cathartes aura",
         "Common Name": "Turkey Vulture",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-21-turvul.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-21-turvul.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-04-21-turvul.jpg",
         "County": "Real",
         "State/Province": "US-TX"
@@ -1754,7 +1754,7 @@
         "Date": "10-10-2003",
         "Scientific Name": "Columba livia (Feral Pigeon)",
         "Common Name": "Rock Pigeon (Feral Pigeon)",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2003-10-10-rocdov.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2003-10-10-rocdov.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2003-10-10-rocdov.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
@@ -1874,7 +1874,7 @@
         "Date": "05-23-2004",
         "Scientific Name": "Himantopus mexicanus",
         "Common Name": "Black-necked Stilt",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-05-23-bknsti.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-05-23-bknsti.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-05-23-bknsti.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
@@ -1885,7 +1885,7 @@
         "Scientific Name": "Nycticorax nycticorax",
         "Common Name": "Black-crowned Night-Heron",
         "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-05-23-bcnher-CRW_8756.jpg",
-        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-05-23-bcnher-CRW_8756.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-05-23-bcnher-crw_8756.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
     },
@@ -1894,7 +1894,7 @@
         "Date": "05-23-2004",
         "Scientific Name": "Recurvirostra americana",
         "Common Name": "American Avocet",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-05-23-ameavo.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-05-23-ameavo.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-05-23-ameavo.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
@@ -2044,7 +2044,7 @@
         "Date": "05-22-2004",
         "Scientific Name": "Fulica americana",
         "Common Name": "American Coot",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-05-22-amecoo.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-05-22-amecoo.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-05-22-amecoo.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
@@ -2094,7 +2094,7 @@
         "Date": "04-30-2004",
         "Scientific Name": "Egretta thula",
         "Common Name": "Snowy Egret",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-30-snoegr.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2004-04-30-snoegr.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2004-04-30-snoegr.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
@@ -2804,7 +2804,7 @@
         "Date": "01-11-2005",
         "Scientific Name": "Larus glaucescens",
         "Common Name": "Glaucous-winged Gull",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2005-01-11-glwgul.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2005-01-11-glwgul.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2005-01-11-glwgul.jpg",
         "County": "Alameda",
         "State/Province": "US-CA"
@@ -3004,7 +3004,7 @@
         "Date": "03-21-2005",
         "Scientific Name": "Bombycilla cedrorum",
         "Common Name": "Cedar Waxwing",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2005-03-21-cedwax.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2005-03-21-cedwax.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2005-03-21-cedwax.jpg",
         "County": "Santa Clara",
         "State/Province": "US-CA"
@@ -3144,7 +3144,7 @@
         "Date": "04-21-2005",
         "Scientific Name": "Parkesia motacilla",
         "Common Name": "Louisiana Waterthrush",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2005-04-21-louwat.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2005-04-21-louwat.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2005-04-21-louwat.jpg",
         "County": "Cameron",
         "State/Province": "US-TX"
@@ -3944,7 +3944,7 @@
         "Date": "09-25-2005",
         "Scientific Name": "Cerorhinca monocerata",
         "Common Name": "Rhinoceros Auklet",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2005-09-25-rhiauk.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2005-09-25-rhiauk.JPG",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2005-09-25-rhiauk.jpg",
         "County": "Marin",
         "State/Province": "US-CA"
@@ -10754,7 +10754,7 @@
         "Location": "Guinea Grass Rd - 18.026x-88.563 - Dec 20, 2015 4:01 PM",
         "Scientific Name": "Crotophaga sulcirostris",
         "Common Name": "Groove-billed Ani",
-        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-20-Crotophaga-sulcirostris-6P5A3216.jpg",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-20-crotophaga-sulcirostris-6P5A3216.jpg",
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-20-Crotophaga-sulcirostris-6P5A3216.jpg",
         "County": "",
         "State/Province": "BZ-OW"
