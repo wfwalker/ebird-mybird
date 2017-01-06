@@ -144,33 +144,6 @@ function byMonthForSightings(inData, inElement) {
     });
 }
 
-function renderHome() {
-	var photosThisWeekRequest = new XMLHttpRequest();
-
-	photosThisWeekRequest.onload = function(e) {
-		console.log('home loaded');
-
-		var tmp = JSON.parse(photosThisWeekRequest.response);
-		var photosThisWeekData = new SightingList(tmp);
-
-		console.log(photosThisWeekData);
-		renderTemplate('home', 'Home', {
-			photoOfTheWeek: photosThisWeekData.rows.pop(),
-			owner: 'Bill Walker',
-		});
-	};
-
-	photosThisWeekRequest.onerror = renderNetworkError;
-	photosThisWeekRequest.open('GET', '/photosThisWeek');
-	photosThisWeekRequest.send();
-}
-
-function renderLoading() {
-	renderTemplate('loading', 'Loading', {
-		owner: 'Bill Walker',
-	});
-}
-
 function renderChrono() {
 	var chronoRequest = new XMLHttpRequest();
 
@@ -589,7 +562,7 @@ function renderSearchResults(inHashParts) {
 }
 
 var routingMap = {
-	'#home' : renderHome,
+	'#home' : renderPhotos,
 	'#chrono' : renderChrono,
 	'#photos' : renderPhotos,
 	'#photo' : renderPhoto,
