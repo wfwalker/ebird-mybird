@@ -23,14 +23,12 @@ var gBarGraphHeight = 100;
 
 function renderNetworkError(e) {
 	console.log('network error', e);
-	hideSection('#loading');
 	alert('network error, please try again');
 	// TODO: show error something?
 }
 
 function renderTemplate(inPrefix, inPageTitle, inData) {
 	console.log('DONE LOADING', inPrefix);
-	hideSection('#loading');
 
 	var compiledTemplate = ebirdmybird[inPrefix];
 
@@ -72,6 +70,8 @@ function renderTemplate(inPrefix, inPageTitle, inData) {
 		rowHeight: rowHeight,
 		maxRowHeight: rowHeight,
 	});
+
+	window.scrollTo(0, 0);
 }
 
 
@@ -251,6 +251,7 @@ function renderYear(inHashParts) {
 			year: inYear,
 			photos: yearSightingList.getLatestPhotos(20),
 			sightingList: yearSightingList,
+			mapID: 'map' + Date.now(),
 		});
 	};
 
@@ -579,12 +580,16 @@ var routingMap = {
 	'#search' : renderSearchResults,
 };
 
-function routeBasedOnHash() {
+function routeBasedOnHash(event) {
+	if (event) {
+		console.log('prevented');
+		event.preventDefault();
+	}
+
 	// On every hash change the render function is called with the new hash.
 	// This is how the navigation of our app happens.
 	var theHashParts = window.location.hash.split('/');
 	console.log('LOADING', theHashParts[0], theHashParts[1]);
-	showSection('#loading');
 
 	if (! theHashParts[0]) {
 		// TODO: should use push state
