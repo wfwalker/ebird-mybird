@@ -11208,5 +11208,15 @@
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-entomodestes-coracinus-0L5A8362.jpg",
         "County": "",
         "State/Province": "EC-P"
-    }
+    },
+    {
+        "Date": "07-05-2016",
+        "Location": "New Chicago Marsh",
+        "Scientific Name": "Hirundo rustica",
+        "Common Name": "Barn Swallow",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-05-hirundo-rustica-0L5A0732.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-05-hirundo-rustica-0L5A0732.jpg",
+        "County": "Santa Clara",
+        "State/Province": "US-CA"
+    }    
 ]
