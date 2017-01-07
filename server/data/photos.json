@@ -11238,5 +11238,25 @@
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-18-butorides-virescens-6P5A0698.jpg",
         "County": "",
         "State/Province": "BZ-OW"
-    }
+    },
+    {
+        "Date": "07-17-2016",
+        "Location": "Milpe--Milpe Gardens",
+        "Scientific Name": "Ramphastos brevis",
+        "Common Name": "Choco Toucan",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-17-ramphastos-brevis-0L5A9139.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-17-ramphastos-brevis-0L5A9139.jpg",
+        "County": "",
+        "State/Province": "EC-P"
+    },
+    {
+        "Date": "12-21-2015",
+        "Location": "Crooked Tree Village",
+        "Scientific Name": "Cyclarhis gujanensis",
+        "Common Name": "Rufous-browed Peppershrike",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-21-cyclarhis-gujanensis-6P5A3876.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-21-cyclarhis-gujanensis-6P5A3876.jpg",
+        "County": "",
+        "State/Province": "BZ-OW"
+    }    
 ]
