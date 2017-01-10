@@ -11258,5 +11258,45 @@
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-21-cyclarhis-gujanensis-6P5A3876.jpg",
         "County": "",
         "State/Province": "BZ-OW"
-    }    
+    },
+    {
+        "Date": "04-21-2016",
+        "Location": "US-Florida-Key West-900 Flagler Ave - 24.549x-81.79",
+        "Scientific Name": "Patagioenas leucocephala",
+        "Common Name": "White-crowned Pigeon",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-21-patagioenas-leucocephala-IMG_0470.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-21-patagioenas-leucocephala-IMG_0470.jpg",
+        "County": "Monroe",
+        "State/Province": "US-FL"
+    },
+    {
+        "Date": "04-20-2016",
+        "Location": "Dry Tortugas NP",
+        "Scientific Name": "Setophaga striata",
+        "Common Name": "Blackpoll Warbler",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-20-setophaga-striata-IMG_0196.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-20-setophaga-striata-IMG_0196.jpg",
+        "County": "Monroe",
+        "State/Province": "US-FL"
+    }, 
+    {
+        "Date": "12-20-2015",
+        "Location": "Guinea Grass Rd - 18.026x-88.563 - Dec 20, 2015 4:01 PM",
+        "Scientific Name": "Psilorhinus morio",
+        "Common Name": "Brown Jay",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-20-psilorhinus-morio-6P5A3102.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-20-psilorhinus-morio-6P5A3102.jpg",
+        "County": "",
+        "State/Province": "BZ-OW"
+    },
+    {
+        "Date": "07-16-2016",
+        "Location": "Reserva Amagusa",
+        "Scientific Name": "Tangara ruficervix",
+        "Common Name": "Golden-naped Tanager",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-tangara-ruficervix-0L5A8554.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-tangara-ruficervix-0L5A8554.jpg",
+        "County": "",
+        "State/Province": "EC-P"
+    }
 ]
