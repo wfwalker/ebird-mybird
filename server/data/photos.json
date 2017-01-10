@@ -11298,5 +11298,25 @@
         "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-tangara-ruficervix-0L5A8554.jpg",
         "County": "",
         "State/Province": "EC-P"
+    },
+    {
+        "Date": "12-19-2015",
+        "Location": "Crooked Tree Lagoon",
+        "Scientific Name": "Sporophila torqueola",
+        "Common Name": "White-collared Seedeater",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-19-sporophila-torqueola-6P5A1574.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-19-sporophila-torqueola-6P5A1574.jpg",
+        "County": "",
+        "State/Province": "BZ-OW"
+    },
+    {
+        "Date": "07-16-2016",
+        "Location": "Reserva Amagusa",
+        "Scientific Name": "Aulacorhynchus haematopygus",
+        "Common Name": "Crimson-rumped Toucanet",
+        "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-aulacorhynchus-haematopygus-0L5A8401.jpg",
+        "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-aulacorhynchus-haematopygus-0L5A8401.jpg",
+        "County": "",
+        "State/Province": "EC-P"
     }
 ]
