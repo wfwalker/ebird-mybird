@@ -106,7 +106,7 @@ function byMonthForSightings(inData, inElement) {
 	var chart = c3.generate({
 		bindto: d3.select(inElement),
 		size: {
-			height: 100,
+			height: 200,
 		},
 		bar: {
 			width: {
@@ -519,7 +519,7 @@ function renderTaxon(inHashParts) {
 
 		renderTemplate('taxon', inCommonName, {
 			name: inCommonName,
-			showChart: taxonSightingList.length() > 30,
+			showDates: taxonSightingList.length() < 30,
 			scientificName: scientificName,
 			sightingsByMonth: taxonSightingList.byMonth(),
 			photos: taxonSightingList.photos,

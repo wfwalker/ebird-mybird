@@ -2,25 +2,35 @@
 
 {{> thumbnails}}
 
-<h4>{{sightingList.dateObjects.length}} Dates</h4>
-
-<div id={{chartID}} class='bargraph'></div>
-{{monthgraph sightingsByMonth chartID}}
-
 <h4>{{valuecount sightingList "Common Name"}} Species</h4>
 
 {{> specieslist}}
 
-<h4>{{valuecount sightingList "Location"}} Locations</h4>
+<div class='row'>
+	<div class='col-md-4'>
 
-{{#if showMap}}
-	<div id="{{mapID}}" class="embed-responsive embed-responsive-16by9"></div>
-	{{googlemap sightingList mapID}}
-{{else}}
+		<h4>{{sightingList.dateObjects.length}} Dates</h4>
 
-	<div class="biglist">
-	  {{#each (locations sightingList)}}
-	    <div class='biglist-item'><a href="#place/{{this.[0]}}/{{addnone this.[1]}}/{{this.[2]}}">{{this.[2]}}</a></div>
-	  {{/each}}
+		{{#if showDates}}
+			<div class="biglist">
+			{{#each sightingList.dateObjects}}
+			  <div class='biglist-item'>
+			    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+			  </div>
+			{{/each}}
+			</div>
+		{{else}}
+			<div id={{chartID}} class='bargraph'></div>
+			{{monthgraph sightingsByMonth chartID}}
+		{{/if}}
+
 	</div>
-{{/if}}
+	<div class='col-md-8'>
+
+		<h4>{{valuecount sightingList "Location"}} Locations</h4>
+
+		<div id="{{mapID}}" class="embed-responsive embed-responsive-16by9"></div>
+		{{googlemap sightingList mapID}}
+
+	</div>
+</div>
