@@ -28,11 +28,15 @@ gSightingList.setGlobalIDs();
 var allTheFiles = fs.readdirSync('/Users/walker/Photography/flickrUP');
 var theNow = new Date();
 
+console.log('total flickrUP jpegs', allTheFiles.length);
+
 var jpegs = allTheFiles.filter((n) => {
     var stats = fs.statSync('/Users/walker/Photography/flickrUP/' + n);
     var daysOld = (theNow - stats.birthtime)/(24*60*60*1000);
-    return (daysOld < 60);
+    return (daysOld < 90);
 });
+
+console.log('recent jpegs', jpegs.length);
 
 var creationDates = jpegs.map((n) => {
     let tmpFile = fs.readFileSync('/Users/walker/Photography/flickrUP/' + n);
@@ -64,7 +68,7 @@ var creationDates = jpegs.map((n) => {
                 gFiles[n].locations = daySightingList.getUniqueValues('Location');
 
                 if (photosOriginalNameMatch.length > 0) {
-                    console.log('already found in photos.json', tmpEbirdDate, location, photosOriginalNameMatch[0]);
+                    console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location, photosOriginalNameMatch[0]);
                 } else if (speciesSightings.length > 0) {
                     let newFilename = tmpDate + '-' + speciesSightings[0]['Scientific Name'].toLowerCase().replace(' ', '-') + '-' + n;
                     console.log(n, label, 'sighting', speciesSightings[0].id, location);
@@ -88,10 +92,12 @@ var creationDates = jpegs.map((n) => {
                 } else if (daySightingList.length() > 0) {
                     console.log(n, 'trip yes but', label, 'no', tmpEbirdDate);
                 } else {
-                    console.log(n, 'no trip this date', tmpEbirdDate);
+                    console.log(n, label, 'no trip this date', tmpEbirdDate);
                 }
             });
         });
+    } else {
+        console.log('no XMP', tmpPath);
     }
 
     return { name: n, path: tmpPath };
