@@ -38,20 +38,11 @@ var jpegs = allTheFiles.filter((n) => {
 
 console.log('recent jpegs', jpegs.length);
 
-var creationDates = jpegs.map((n) => {
-    let tmpFile = fs.readFileSync('/Users/walker/Photography/flickrUP/' + n);
-    let tmpIPTCdate = iptc(tmpFile).date_created;
-    let tmpDate = tmpIPTCdate.substring(0,4) + '-' + tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8);
-    let tmpEbirdDate = tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8) + '-' + tmpIPTCdate.substring(0,4);
-    let tmpPath = tmpIPTCdate.substring(0,4) + '/' + tmpDate + '/' + n.replace('jpg', 'xmp');
 
-    gFiles[n] = { date: tmpIPTCdate };
-
-    if (fs.existsSync('/Volumes/Big\ Ethel/Photos/' + tmpPath)) {
-        // PARSE XML
-
+function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
         var parser = new xml2js.Parser();
-        fs.readFile('/Volumes/Big\ Ethel/Photos/' + tmpPath, function(err, data) {
+
+        fs.readFile(inXMPPath, function(err, data) {
             parser.parseString(data, function (err, result) {
                 let label = result['x:xmpmeta']['rdf:RDF'][0]['rdf:Description'][0]['$']['xmp:Label'];
                 let location = result['x:xmpmeta']['rdf:RDF'][0]['rdf:Description'][0]['$']['Iptc4xmpCore:Location'];
@@ -95,7 +86,26 @@ var creationDates = jpegs.map((n) => {
                     console.log(n, label, 'no trip this date', tmpEbirdDate);
                 }
             });
-        });
+        });    
+}
+
+var creationDates = jpegs.map((n) => {
+    let tmpFile = fs.readFileSync('/Users/walker/Photography/flickrUP/' + n);
+    let tmpIPTCdate = iptc(tmpFile).date_created;
+    let tmpDate = tmpIPTCdate.substring(0,4) + '-' + tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8);
+    let tmpEbirdDate = tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8) + '-' + tmpIPTCdate.substring(0,4);
+    let tmpPath = tmpIPTCdate.substring(0,4) + '/' + tmpDate + '/' + n.replace('jpg', 'xmp');
+
+    gFiles[n] = { date: tmpIPTCdate };
+
+    if (fs.existsSync('/Volumes/Big\ Ethel/Photos/' + tmpPath)) {
+        // PARSE XML
+        handleXMP('/Volumes/Big\ Ethel/Photos/' + tmpPath, tmpEbirdDate, n, tmpDate);
+
+    } else if (fs.existsSync('/Users/walker/Pictures/' + tmpPath)) {
+        // PARSE XML
+        handleXMP('/Users/walker/Pictures/' + tmpPath, tmpEbirdDate, n, tmpDate);
+
     } else {
         console.log('no XMP', tmpPath);
     }
