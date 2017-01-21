@@ -4,6 +4,7 @@ var iptc = require('node-iptc');
 var fs = require('fs');
 var xml2js = require('xml2js');
 var babyParse = require('babyparse');
+var glob = require('glob');
 var SightingList = require('./app/scripts/sightinglist.js');
 
 var gFiles = {};
@@ -106,9 +107,14 @@ var creationDates = jpegs.map((n) => {
     } else if (fs.existsSync('/Users/walker/Pictures/' + tmpPath)) {
         // PARSE XML
         handleXMP('/Users/walker/Pictures/' + tmpPath, tmpEbirdDate, n, tmpDate);
-
+    } else if (fs.existsSync('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + n.replace('jpg','xmp'))) {
+        // PARSE XML
+        console.log('FOUND 3');
+        handleXMP('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + n.replace('jpg','xmp'), tmpEbirdDate, n, tmpDate);
     } else {
-        console.log('no XMP', tmpPath);
+        console.log('no XMP', tmpPath, tmpDate);
+        console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpIPTCdate.substring(0,4)+'/**/' + n.replace('jpg','xmp')));
+        console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpDate+'/**/' + n.replace('jpg','xmp')));
     }
 
     return { name: n, path: tmpPath };
