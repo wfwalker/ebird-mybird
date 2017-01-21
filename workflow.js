@@ -59,12 +59,13 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
                 gFiles[n].locations = daySightingList.getUniqueValues('Location');
 
                 if (photosOriginalNameMatch.length > 0) {
-                    console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location, photosOriginalNameMatch[0]);
+                    console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location);
+                    // console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location, photosOriginalNameMatch[0]);
                 } else if (speciesSightings.length > 0) {
                     let newFilename = tmpDate + '-' + speciesSightings[0]['Scientific Name'].toLowerCase().replace(' ', '-') + '-' + n;
                     console.log(n, label, 'sighting', speciesSightings[0].id, location);
 
-                    console.log('mv /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
+                    console.log('cp /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
 
                     let samplePhoto = {
                         Date: speciesSightings[0].Date,
