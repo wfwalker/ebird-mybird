@@ -214,9 +214,9 @@ SightingList.prototype.byMonth = function() {
 
 SightingList.prototype.getUniqueValues = function(fieldName) {
 	if (this._uniqueValuesCache[fieldName]) {
-		console.log('returning cached unique values for', fieldName);
+		// console.log('returning cached unique values for', fieldName);
 	} else {
-		console.log('computing unique values for', fieldName);
+		// console.log('computing unique values for', fieldName);
 		var tmpValues = [];
 		for (var index = 0; index < this.rows.length; index++) {
 			var aValue = this.rows[index][fieldName];
