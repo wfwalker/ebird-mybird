@@ -11468,5 +11468,65 @@
       "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-17-electron-platyrhynchum-0L5A9930.jpg",
       "County": "",
       "State/Province": "EC-P"
+  },
+  {
+      "Date": "07-16-2016",
+      "Location": "Reserva Amagusa",
+      "Scientific Name": "Chlorochrysa phoenicotis",
+      "Common Name": "Glistening-green Tanager",
+      "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-chlorochrysa-phoenicotis-0L5A8375.jpg",
+      "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-chlorochrysa-phoenicotis-0L5A8375.jpg",
+      "County": "",
+      "State/Province": "EC-P"
+  },
+  {
+      "Date": "07-17-2016",
+      "Location": "Milpe--Milpe Gardens",
+      "Scientific Name": "Discosura conversii",
+      "Common Name": "Green Thorntail",
+      "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-17-discosura-conversii-0L5A9796.jpg",
+      "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-17-discosura-conversii-0L5A9796.jpg",
+      "County": "",
+      "State/Province": "EC-P"
+  },
+  {
+      "Date": "07-17-2016",
+      "Location": "Milpe--Milpe Gardens",
+      "Scientific Name": "Discosura conversii",
+      "Common Name": "Green Thorntail",
+      "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-17-discosura-conversii-0L5A9738.jpg",
+      "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-17-discosura-conversii-0L5A9738.jpg",
+      "County": "",
+      "State/Province": "EC-P"
+  },
+  {
+      "Date": "07-16-2016",
+      "Location": "Reserva Amagusa",
+      "Scientific Name": "Tangara arthus",
+      "Common Name": "Golden Tanager",
+      "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-tangara-arthus-0L5A8279.jpg",
+      "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-tangara-arthus-0L5A8279.jpg",
+      "County": "",
+      "State/Province": "EC-P"
+  },
+  {
+      "Date": "07-16-2016",
+      "Location": "Reserva Amagusa",
+      "Scientific Name": "Tangara rufigula",
+      "Common Name": "Rufous-throated Tanager",
+      "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-tangara-rufigula-0L5A8249.jpg",
+      "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-tangara-rufigula-0L5A8249.jpg",
+      "County": "",
+      "State/Province": "EC-P"
+  },
+  {
+      "Date": "07-17-2016",
+      "Location": "Septimo Paraiso",
+      "Scientific Name": "Eubucco bourcierii",
+      "Common Name": "Red-headed Barbet",
+      "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-17-eubucco-bourcierii-179A7428.jpg",
+      "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-17-eubucco-bourcierii-179A7428.jpg",
+      "County": "",
+      "State/Province": "EC-P"
   }
 ]
