@@ -34,7 +34,7 @@ console.log('total flickrUP jpegs', allTheFiles.length);
 var jpegs = allTheFiles.filter((n) => {
     var stats = fs.statSync('/Users/walker/Photography/flickrUP/' + n);
     var daysOld = (theNow - stats.birthtime)/(24*60*60*1000);
-    return (daysOld < 90);
+    return (daysOld < 2);
 });
 
 console.log('recent jpegs', jpegs.length);
@@ -63,6 +63,7 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
                     console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location);
                     // console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location, photosOriginalNameMatch[0]);
                 } else if (speciesSightings.length > 0) {
+                    console.log('\n\n\n');
                     let newFilename = tmpDate + '-' + speciesSightings[0]['Scientific Name'].toLowerCase().replace(' ', '-') + '-' + n;
                     console.log(n, label, 'sighting', speciesSightings[0].id, location);
 
