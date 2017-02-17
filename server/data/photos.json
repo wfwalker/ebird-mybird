@@ -11608,5 +11608,25 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-21-haematopus-palliatus-0L5A2302.jpg",
     "County": "",
     "State/Province": "EC-W"
+  },
+  {
+    "Date": "07-05-2014",
+    "Location": "Sotcher Lake",
+    "Scientific Name": "Sphyrapicus thyroideus",
+    "Common Name": "Williamson's Sapsucker",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-07-05-sphyrapicus-thyroideus-DM6C3112.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-07-05-sphyrapicus-thyroideus-DM6C3112.jpg",
+    "County": "Madera",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "12-26-2013",
+    "Location": "La Mina en route to refugio paz de las aves",
+    "Scientific Name": "Rupicola peruvianus",
+    "Common Name": "Andean Cock-of-the-rock",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-26-rupicola-peruvianus-_M6C8756.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-26-rupicola-peruvianus-_M6C8756.jpg",
+    "County": "",
+    "State/Province": "EC-P"
   }
 ]
