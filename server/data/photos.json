@@ -11628,5 +11628,75 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-26-rupicola-peruvianus-_M6C8756.jpg",
     "County": "",
     "State/Province": "EC-P"
+  },
+  {
+    "Date": "12-18-2013",
+    "Location": "Genovesa--Darwin Bay",
+    "Scientific Name": "Sula granti",
+    "Common Name": "Nazca Booby",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-18-sula-granti-7V5Z3036.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-18-sula-granti-7V5Z3036.jpg",
+    "County": "",
+    "State/Province": "EC-W"
+  },
+  {
+    "Date": "12-27-2013",
+    "Location": "Cabañas San Isidro",
+    "Scientific Name": "Boissonneaua matthewsii",
+    "Common Name": "Chestnut-breasted Coronet",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-27-boissonneaua-matthewsii-_M6C9706.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-27-boissonneaua-matthewsii-_M6C9706.jpg",
+    "County": "",
+    "State/Province": "EC-N"
+  },
+  {
+    "Date": "07-21-2016",
+    "Location": "Española--Punta Suarez",
+    "Scientific Name": "Sula granti",
+    "Common Name": "Nazca Booby",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-21-sula-granti-0L5A1438.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-21-sula-granti-0L5A1438.jpg",
+    "County": "",
+    "State/Province": "EC-W"
+  },
+  {
+    "Date": "12-25-2013",
+    "Location": "Tandayapa Bird Lodge",
+    "Scientific Name": "Coeligena wilsoni",
+    "Common Name": "Brown Inca",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-25-coeligena-wilsoni-_M6C8566.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-25-coeligena-wilsoni-_M6C8566.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  },
+  {
+    "Date": "01-20-2014",
+    "Location": "Las Lapas Trace",
+    "Scientific Name": "Celeus elegans",
+    "Common Name": "Chestnut Woodpecker",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-20-celeus-elegans-DM6C3355.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-20-celeus-elegans-DM6C3355.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  },
+  {
+    "Date": "01-20-2014",
+    "Location": "10.7456x-61.3224 - Jan 20, 2014, 3:30 PM",
+    "Scientific Name": "Pionus menstruus",
+    "Common Name": "Blue-headed Parrot",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-20-pionus-menstruus-DM6C3537.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-20-pionus-menstruus-DM6C3537.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  },
+  {
+    "Date": "01-21-2014",
+    "Location": "Cacandee",
+    "Scientific Name": "Coragyps atratus",
+    "Common Name": "Black Vulture",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-21-coragyps-atratus-DM6C3875.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-21-coragyps-atratus-DM6C3875.jpg",
+    "County": "",
+    "State/Province": "TT-SJL"
   }
 ]
