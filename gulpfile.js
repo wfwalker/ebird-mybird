@@ -14,7 +14,6 @@ var postcss = require('gulp-postcss');
 var mqpacker = require('css-mqpacker');
 var csswring = require('csswring');
 var path = require('path');
-var debounce = require('lodash.debounce');
 var mocha = require('gulp-mocha');
 var convert = require('gulp-convert');
 var nodemon = require('gulp-nodemon');
@@ -62,17 +61,6 @@ gulp.task('copy-css', function() {
       }));
 });
 
-gulp.task('copy-fonts', function() {
-  return gulp.src([
-        'node_modules/bootstrap/dist/fonts/glyphicons-*',
-      ])
-      .pipe(gulp.dest(function(file) {
-          file.path = file.base + path.basename(file.path);
-          return 'app/fonts';
-      }));
-});
-
-
 gulp.task('test', function () {
   return gulp.src('app/test/test.js', { read: false })
     // gulp-mocha needs filepaths so you can't have any plugins before it 
@@ -81,17 +69,11 @@ gulp.task('test', function () {
 
 gulp.task('default', ['build', 'offline']);
 
-gulp.task('build', ['templates', 'compress', 'css', 'copy-fonts'], function(callback) {
+gulp.task('build', ['templates', 'compress', 'css'], function(callback) {
   return gulp.src('app/**').pipe(gulp.dest('dist'));
 });
 
 gulp.task('configure', oghliner.configure);
-
-gulp.task('deploy', function() {
-  return oghliner.deploy({
-    rootDir: rootDir,
-  });
-});
 
 gulp.task('lint', function() {
   return gulp.src(['app/scripts/sightinglist.js', 'app/scripts/app.js', 'app/test/test.js']).pipe(eslint({
@@ -150,6 +132,7 @@ gulp.task('css', ['copy-css'], function() {
     .pipe(gulp.dest('app/styles'));
 });
 
+// creates dist/offline-worker.js which is invoked by scripts/offline-manager.js
 gulp.task('offline', ['build'], function() {
   return oghliner.offline({
     rootDir: rootDir,
