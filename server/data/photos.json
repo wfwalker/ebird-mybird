@@ -11698,5 +11698,35 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-21-coragyps-atratus-DM6C3875.jpg",
     "County": "",
     "State/Province": "TT-SJL"
+  },
+  {
+    "Date": "03-11-2017",
+    "Location": "Panoche Rd.",
+    "Scientific Name": "Aeronautes saxatalis",
+    "Common Name": "White-throated Swift",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-03-11-aeronautes-saxatalis-0L5A0362.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-03-11-aeronautes-saxatalis-0L5A0362.jpg",
+    "County": "San Benito",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "12-02-2016",
+    "Location": "Randall Davey Audubon Center",
+    "Scientific Name": "Poecile atricapillus",
+    "Common Name": "Black-capped Chickadee",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-12-02-poecile-atricapillus-179A8845.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-12-02-poecile-atricapillus-179A8845.jpg",
+    "County": "Santa Fe",
+    "State/Province": "US-NM"
+  },
+  {
+    "Date": "04-14-2016",
+    "Location": "Babcock-Webb WMA",
+    "Scientific Name": "Melanerpes carolinus",
+    "Common Name": "Red-bellied Woodpecker",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-14-melanerpes-carolinus-6P5A2870.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-14-melanerpes-carolinus-6P5A2870.jpg",
+    "County": "Charlotte",
+    "State/Province": "US-FL"
   }
 ]
