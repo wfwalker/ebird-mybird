@@ -1,3 +1,5 @@
+{{> head title='BirdWalker' }}
+
 <div class='row'>
 	<div class='col-md-8'>
 		<h3>Welcome to BirdWalker</h3>
@@ -5,10 +7,10 @@
 		<p class='lead'>Birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996.</p>
 
 		<p class='lead'>Some of our favorite places to go birding include
-			<a href='#place/US-CA/Santa Clara/Charleston Slough'>Charleston Slough</a> and
-			<a href='#place/US-CA/Santa Clara/Palo Alto Duck Pond'>the Duck Pond</a> in Palo Alto,
-			<a href='http://localhost:8090/#place/US-CA/Glenn'>Sacramento National Wildlife Refuge</a>, and
-			<a href='#place/US-TX/Hidalgo'>the Rio Grande Valley</a> in Texas.
+			<a href='/place/US-CA/Santa Clara/Charleston Slough'>Charleston Slough</a> and
+			<a href='/place/US-CA/Santa Clara/Palo Alto Duck Pond'>the Duck Pond</a> in Palo Alto,
+			<a href='/place/US-CA/Glenn'>Sacramento National Wildlife Refuge</a>, and
+			<a href='/place/US-TX/Hidalgo'>the Rio Grande Valley</a> in Texas.
 		</p>
 	</div>
 
@@ -17,8 +19,8 @@
 			<img class='img-responsive' src="{{photosThisWeek.[0].[Photo URL]}}">
 
 			<div class='caption'>
-				<a href="#taxon/{{encode photosThisWeek.[0].[Common Name]}}">{{photosThisWeek.[0].[Common Name]}}</a>,
-				<a href="#place/{{encode photosThisWeek.[0].[State/Province]}}/{{addnone photosThisWeek.[0].[County]}}/{{encode photosThisWeek.[0].[Location]}}">{{photosThisWeek.[0].[Location]}}</a>,
+				<a href="/taxon/{{encode photosThisWeek.[0].[Common Name]}}">{{photosThisWeek.[0].[Common Name]}}</a>,
+				<a href="/place/{{encode photosThisWeek.[0].[State/Province]}}/{{addnone photosThisWeek.[0].[County]}}/{{encode photosThisWeek.[0].[Location]}}">{{photosThisWeek.[0].[Location]}}</a>,
 				{{photosThisWeek.[0].Date}}
 			</div>
 		</div>
@@ -33,9 +35,9 @@
 
 			<div class="col-xs-6 col-sm-3 col-md-2" style='height: 300px'>
 				<div class="thumbnail">
-					<a href='#family/{{@key}}'><img src="{{[Thumbnail URL]}}" width='100%' alt="{{stripLatinFromEbirdFamily @key}}"></a>
+					<a href='/family/{{@key}}'><img src="{{[Thumbnail URL]}}" width='100%' alt="{{stripLatinFromEbirdFamily @key}}"></a>
 					<div class="caption">
-						<a href='#family/{{@key}}'>{{stripLatinFromEbirdFamily @key}}</a>
+						<a href='/family/{{@key}}'>{{stripLatinFromEbirdFamily @key}}</a>
 					</div>
 				</div>
 			</div>
@@ -43,3 +45,5 @@
 		{{/with}}
 	{{/each}}
 </div>
+
+{{> foot}}

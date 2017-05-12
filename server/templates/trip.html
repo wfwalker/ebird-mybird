@@ -1,3 +1,5 @@
+{{> head title=(nicedate tripDate) }}
+
 <h3>{{nicedate tripDate}} <span class='lighter'>{{customName}}</span></h3>
 
 {{> thumbnails}}
@@ -12,7 +14,7 @@
   {{#each (values sightingList "Submission ID")}}
     <div class='biglist-item'>
       {{#with (lookup ../submissionIDToSighting this)}}
-        <a href='#place/{{[State/Province]}}/{{addnone [County]}}/{{Location}}'>
+        <a href='/place/{{[State/Province]}}/{{addnone [County]}}/{{Location}}'>
           {{[Location]}}
         </a>
       {{/with}}
@@ -40,14 +42,14 @@
   {{#if (multiplevalues sightingList "Location")}}
     {{#each (values sightingList "Common Name")}}
       <div class='biglist-item'>
-        <a href='#taxon/{{encode this}}'>{{this}}</a>
+        <a href='/taxon/{{encode this}}'>{{this}}</a>
       </div>
     {{/each}}
   {{else}}
     {{#each sightingList.rows}}
       <div class='biglist-item'>
-        <a href="#sighting/{{this.id}}">+</a>
-        <a href='#taxon/{{encode [Common Name]}}'>{{[Common Name]}}</a>
+        <a href="/sighting/{{this.id}}">+</a>
+        <a href='/taxon/{{encode [Common Name]}}'>{{[Common Name]}}</a>
         {{#if (isnumber Count)}}
           {{Count}}
         {{/if}}
@@ -70,3 +72,4 @@
 <div id="{{mapID}}" class="embed-responsive embed-responsive-16by9"></div>
 {{googlemap sightingList mapID}}
 
+{{> foot}}

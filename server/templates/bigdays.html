@@ -1,12 +1,16 @@
+{{> head title='Big Days'}}
+
 <h3>Big days</h3>
 
 <div>
 	{{#each bigDays}}
 		<div class='biglist-item'>
 			{{this.count}} species,
-			<a href="#trip/{{this.date}}">
+			<a href="/trip/{{this.date}}">
 				{{nicedate this.dateObject}}: {{lookup ../customDayNames this.date}}
 			</a>
 		</div>
 	{{/each}}
 </div>
+
+{{> foot}}

@@ -1,8 +1,10 @@
+{{> head title=name }}
+
 <h3>
 	{{sightingList.rows.0.Location}}
 	<span class='lighter'>
 		{{#if sightingList.rows.0.County}}
-			<a href="#place/{{sightingList.rows.0.[State/Province]}}/{{sightingList.rows.0.County}}">{{sightingList.rows.0.County}} County</a>,
+			<a href="/place/{{sightingList.rows.0.[State/Province]}}/{{sightingList.rows.0.County}}">{{sightingList.rows.0.County}} County</a>,
 		{{/if}}
 		{{lookupState sightingList.rows.0.[State/Province]}},
 		{{sightingList.rows.0.[Country]}}
@@ -28,11 +30,6 @@
 
 {{> specieslist}}
 
-
-
-
-
-
 <div class='row'>
 	<div class='col-md-4'>
 
@@ -45,7 +42,7 @@
 			<div class="biglist">
 			{{#each sightingList.dateObjects}}
 			  <div class='biglist-item'>
-			    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+			  	<a href="/trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}
 			  </div>
 			{{/each}}
 			</div>
@@ -62,4 +59,4 @@
 	</div>
 </div>
 
-
+{{> foot}}

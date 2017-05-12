@@ -1,4 +1,6 @@
-<h3>{{name}} County <span class='lighter'><a href='#place/{{State}}'>{{lookupState State}}</a>, {{Country}}</span></h3>
+{{> head title=name}}
+
+<h3>{{name}} County <span class='lighter'><a href='/place/{{State}}'>{{lookupState State}}</a>, {{Country}}</span></h3>
 
 {{> thumbnails}}
 
@@ -15,7 +17,7 @@
 			<div class="biglist">
 			{{#each sightingList.dateObjects}}
 			  <div class='biglist-item'>
-			    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+			  	<a href='/trip/{{ebirddate this}}'>{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}
 			  </div>
 			{{/each}}
 			</div>
@@ -34,3 +36,5 @@
 
 	</div>
 </div>
+
+{{> foot}}

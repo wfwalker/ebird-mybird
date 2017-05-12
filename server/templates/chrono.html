@@ -1,9 +1,13 @@
+{{> head title='Life List'}}
+
 <h3>Our Life List <span class='lighter'>{{nicenumber firstSightings.length}} species</span></h3>
 
 <div class="biglist">
 {{#each firstSightings}}
 	<div class='biglist-item'>
-		{{nicedate this.DateObject}} <a href="#taxon/{{[Common Name]}}">{{[Common Name]}}</a>
+		{{nicedate this.DateObject}} <a href="/taxon/{{[Common Name]}}">{{[Common Name]}}</a>
 	</div>
 {{/each}}
 </div>
+
+{{> foot}}
