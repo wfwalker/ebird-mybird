@@ -44,6 +44,7 @@ var gTemplates = {
 	bigdays: Handlebars.compile(fs.readFileSync('server/templates/bigdays.html', 'UTF-8')),
 	chrono: Handlebars.compile(fs.readFileSync('server/templates/chrono.html', 'UTF-8')),
 	year: Handlebars.compile(fs.readFileSync('server/templates/year.html', 'UTF-8')),
+	searchresults: Handlebars.compile(fs.readFileSync('server/templates/searchresults.html', 'UTF-8')),
 }
 
 Handlebars.registerPartial('head', fs.readFileSync('server/templates/head.html', 'UTF-8'));
@@ -178,8 +179,11 @@ function registerHelpers() {
 		let mapsURL = new URL('https://maps.googleapis.com/maps/api/staticmap');
 		mapsURL.searchParams.append('key', process.env.GOOGLE_MAPS_API_KEY);
 		mapsURL.searchParams.append('size', '640x360');
-		let markers = inData.rows.map(row => row.Latitude + ',' + row.Longitude)
-		mapsURL.searchParams.append('markers', markers.join('|'));
+		let markers = inData.rows.map(row => row.Latitude + ',' + row.Longitude);
+		let markerSet = new Set(markers);
+		let markersNoDups = Array.from(markerSet);
+		console.log('markers', markers.length, 'markersNoDups', markersNoDups.length);
+		mapsURL.searchParams.append('markers', markersNoDups.join('|'));
 
 		return new Handlebars.SafeString('<img src="' + mapsURL.toString() + '">');
 	});
@@ -556,8 +560,9 @@ app.get('/trips', function(req, resp, next) {
 	}));
 });
 
-app.get('/search/:terms', function(req, resp, next) {
-	var rawResults = gIndex.search(req.params.terms);
+app.get('/search', function(req, resp, next) {
+	console.log('req.query', req.query);
+	var rawResults = gIndex.search(req.query.searchtext);
 
     var resultsAsSightings = rawResults.map(function (result) {
 		return gSightingList.rows[result.ref];
@@ -567,11 +572,11 @@ app.get('/search/:terms', function(req, resp, next) {
 
     logger.debug('/search/', resultsAsSightings.length, searchResultsSightingList.rows.length);
 
-	resp.json({
+	resp.send(gTemplates.searchresults({
 		dates: searchResultsSightingList.dateObjects,
 		customDayNames: SightingList.customDayNames,
 		sightingList: searchResultsSightingList,
-	});
+	}));
 });
 
 app.get('/year/:year', function(req, resp, next) {
