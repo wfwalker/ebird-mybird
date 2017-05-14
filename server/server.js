@@ -17,6 +17,7 @@ var fs = require('fs');
 var winston = require('winston');
 var request = require('request');
 var d3 = require('../app/scripts/d3.js');
+var { URL, URLSearchParams } = require('url');
 
 var logger = new (winston.Logger)({
     transports: [
@@ -26,7 +27,6 @@ var logger = new (winston.Logger)({
       })
     ]
 });
-
 
 var gTemplates = {
 	photo: Handlebars.compile(fs.readFileSync('server/templates/photo.html', 'UTF-8')),
@@ -84,7 +84,7 @@ function registerHelpers() {
 
 	Handlebars.registerHelper('lookupState', function(inString) {
 		console.log('lookupState', inString);
-		if (inString == '') {
+		if (inString == null || inString == '') {
 			return 'None';
 		} else if (! iso3166.subdivision(inString).name) {
 			return inString;
@@ -175,20 +175,40 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerHelper('googlemap', function(inData, inElement) {
-		// per @digitarald use timeout to reorder helper after Handlebars templating
-		// googleMapForLocation(inData, inElement);
+		let mapsURL = new URL('https://maps.googleapis.com/maps/api/staticmap');
+		mapsURL.searchParams.append('key', process.env.GOOGLE_MAPS_API_KEY);
+		mapsURL.searchParams.append('size', '640x360');
+		let markers = inData.rows.map(row => row.Latitude + ',' + row.Longitude)
+		mapsURL.searchParams.append('markers', markers.join('|'));
+
+		return new Handlebars.SafeString('<img src="' + mapsURL.toString() + '">');
 	});
 
 	Handlebars.registerHelper('monthgraph', function(inData, inElement) {
 		// per @digitarald use timeout to reorder helper after Handlebars templating
 		// byMonthForSightings(inData, '#' + inElement);
+
+		let chartURL = new URL('https://chart.googleapis.com/chart');
+		chartURL.searchParams.append('chxt', 'x,y');
+		chartURL.searchParams.append('cht', 'bvs');
+		let counts = inData.map(d => d.length);
+		let axisRange = [0, 0, 12, 12];
+		chartURL.searchParams.append('chd', 't:' + counts.join(','));
+		chartURL.searchParams.append('chxr', axisRange.join(','));
+		chartURL.searchParams.append('chco', '76A4FB');
+		chartURL.searchParams.append('chls', '2.0');
+		chartURL.searchParams.append('chs', '360x200');
+
+		console.log(chartURL);	
+
+		return new Handlebars.SafeString('<img src="' + chartURL.toString() + '">');
 	});
 }
 
 registerHelpers();
 
 
-var myPort = process.env.PORT || 8090;
+var myPort = process.env.PORT || 8091;
 var mHost = process.env.VCAP_APP_HOST || "127.0.0.1";
 
 var app = express();
@@ -473,7 +493,6 @@ app.get('/family/:family_name', function(req, resp, next) {
 			chartID: 'bymonth' + Date.now(),
 			showDates: familySightingList.dateObjects.length < 30,
 			showLocations: familySightingList.getUniqueValues('Location').length < 30,
-			mapID: 'map' + Date.now(),
 			sightingsByMonth: familySightingList.byMonth(),
 			photos: familySightingList.getLatestPhotos(20),
 			sightingList: familySightingList,
@@ -523,7 +542,6 @@ app.get('/taxon/:common_name', function(req, resp, next) {
 			sightingList: taxonSightingList,
 			customDayNames: SightingList.customDayNames,
 			chartID: 'bymonth' + Date.now(),
-			mapID: 'map' + Date.now(),
 
 	}));
 });
@@ -568,7 +586,6 @@ app.get('/year/:year', function(req, resp, next) {
 			year: req.params.year,
 			photos: yearSightingList.getLatestPhotos(20),
 			sightingList: yearSightingList,
-			mapID: 'map' + Date.now(),
 		}));
 });
 
@@ -595,7 +612,6 @@ app.get('/trip/:trip_date', function(req, resp, next) {
 
 			tripDate: tripSightingList.rows[0].DateObject,
 			photos: tripSightingList.photos,
-			mapID: 'map' + Date.now(),
 			customName: tripSightingList.dayNames[0],
 			submissionIDToSighting: tripSightingList.mapSubmissionIDToSighting(),
 			comments: tripSightingList.getUniqueValues('Checklist Comments'),
@@ -623,7 +639,6 @@ app.get('/place/:state_name', function(req, resp, next) {
 
 			name: req.params.state_name,
 			chartID: 'bymonth' + Date.now(),
-			mapID: 'map' + Date.now(),
 			showDates: stateSightingList.getUniqueValues('Date').length < 30,
 			sightingsByMonth: stateSightingList.byMonth(),
 			photos: stateSightingList.getLatestPhotos(20),
@@ -657,7 +672,6 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 
 			name: req.params.county_name,
 			chartID: 'bymonth' + Date.now(),
-			mapID: 'map' + Date.now(),
 			showMap: true,
 			showDates: countySightingList.getUniqueValues('Date').length < 30,
 			sightingsByMonth: countySightingList.byMonth(),
@@ -693,7 +707,6 @@ app.get('/place/:state_name/:county_name/:location_name', function(req, resp, ne
 
 			name: req.params.location_name,
 			chartID: 'bymonth' + Date.now(),
-			mapID: 'map' + Date.now(),
 			showChart: locationSightingList.dateObjects.length > 20,
 			sightingsByMonth: locationSightingList.byMonth(),
 			photos: locationSightingList.getLatestPhotos(20),
