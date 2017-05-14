@@ -1,5 +1,7 @@
 // test.js
 const assert = require('assert');
+const fs = require('fs');
+var babyParse = require('babyparse');
 const SightingList = require('../server/scripts/sightinglist.js');
 
 describe('ebird-mybird', function() {
@@ -73,4 +75,23 @@ describe('SightingList', function() {
 			assert.ok(lifeSightingsChronological[1].DateObject > lifeSightingsChronological[2].DateObject, 'second two in order');
 		});	
 	});
+
+	describe('with full data', function() {
+		let data = fs.readFileSync('server/data/ebird.csv', 'utf8');
+		let ebird = babyParse.parse(data, {
+			header: true,
+		});
+
+		let gSightingList = new SightingList();
+		gSightingList.addRows(ebird.data);
+		gSightingList.setGlobalIDs();
+
+		it('something', function() {
+			let earliestByCommonName = gSightingList.getEarliestByCommonName();
+			let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
+			lifeSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
+			assert.ok(lifeSightingsChronological[0].DateObject > lifeSightingsChronological[1].DateObject, 'first two in order');
+			assert.ok(lifeSightingsChronological[1].DateObject > lifeSightingsChronological[2].DateObject, 'second two in order');
+		});
+	})
 });
