@@ -4,13 +4,14 @@ creates a website for showing off your personal ebird sightings
 eBird is already an awesome resource, so why did I want to create this project? I want to add a few features I can't live without:
 
 * Public URL's for my sightings grouped by location, day, family, and year
-* The notion of a Day Trip containing sightings at multiple location
+* The notion of a named Day Trip containing sightings at multiple location
 * List of my own biggest big days, sorted by species count
+* nice-looking responsive photo gallery
 
 Prequisites:
 
-* node 0.12 or similar
-* npm 2.14 or similar
+* node 7
+* npm 3
 
 Steps:
 

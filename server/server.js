@@ -16,7 +16,7 @@ var SightingList = require('../server/scripts/sightinglist.js');
 var fs = require('fs');
 var winston = require('winston');
 var request = require('request');
-var d3 = require('../node_modules/d3/d3.js');
+var moment = require('moment');
 var { URL, URLSearchParams } = require('url');
 
 var logger = new (winston.Logger)({
@@ -54,7 +54,7 @@ function registerHelpers() {
 	Handlebars.registerHelper('nicedate', function(inDate) {
 		if (inDate) {
 			return new Handlebars.SafeString (
-				d3.time.format('%b %d, %Y')(inDate)
+				moment(inDate).format('MMM D, Y')
 			);
 		} else {
 			return new Handlebars.SafeString ('NaN');
@@ -66,13 +66,13 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerHelper('locations', function(inList) {
-		var triples = [];
-		var tmp = [];
+		let triples = [];
+		let tmp = [];
 
-		for (var index = 0; index < inList.rows.length; index++) {
-			var row = inList.rows[index];
-			var triple = [row['State/Province'], row['County'], row['Location']];
-			var code = triple.join('-');
+		for (let index = 0; index < inList.rows.length; index++) {
+			let row = inList.rows[index];
+			let triple = [row['State/Province'], row['County'], row['Location']];
+			let code = triple.join('-');
 
 			if (tmp.indexOf(code) == -1) {
 				triples.push(triple);
@@ -84,7 +84,7 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerHelper('lookupState', function(inString) {
-		console.log('lookupState', inString);
+		logger.debug('lookupState', inString);
 		if (inString == null || inString == '') {
 			return 'None';
 		} else if (! iso3166.subdivision(inString).name) {
@@ -103,7 +103,7 @@ function registerHelpers() {
 	});
 
 	Handlebars.registerHelper('random', function(inDictionary, inKey) {
-		var tmp = inDictionary[inKey].length;
+		let tmp = inDictionary[inKey].length;
 		return inDictionary[inKey][Math.trunc(Math.random() * tmp)];
 	});
 
@@ -125,13 +125,13 @@ function registerHelpers() {
 
 	Handlebars.registerHelper('ebirddate', function(inDate) {
 		return new Handlebars.SafeString (
-			d3.time.format('%m-%d-%Y')(inDate)
+			moment(inDate).format('MM-DD-Y')
 		);
 	});
 
 	Handlebars.registerHelper('sortabledate', function(inDate) {
 		return new Handlebars.SafeString (
-			d3.time.format('%Y-%m-%d')(inDate)
+			moment(inDate).format('Y-MM-DD')
 		);
 	});
 
@@ -171,7 +171,7 @@ function registerHelpers() {
 
 	Handlebars.registerHelper('nicenumber', function(inNumber) {
 		return new Handlebars.SafeString (
-			d3.format(',d')(inNumber)
+			inNumber
 		);
 	});
 
@@ -182,7 +182,7 @@ function registerHelpers() {
 		let markers = inData.rows.map(row => row.Latitude + ',' + row.Longitude);
 		let markerSet = new Set(markers);
 		let markersNoDups = Array.from(markerSet);
-		console.log('markers', markers.length, 'markersNoDups', markersNoDups.length);
+		logger.debug('markers', markers.length, 'markersNoDups', markersNoDups.length);
 		mapsURL.searchParams.append('markers', markersNoDups.join('|'));
 
 		return new Handlebars.SafeString('<img src="' + mapsURL.toString() + '">');
@@ -203,7 +203,7 @@ function registerHelpers() {
 		chartURL.searchParams.append('chls', '2.0');
 		chartURL.searchParams.append('chs', '360x200');
 
-		console.log(chartURL);	
+		logger.debug(chartURL);	
 
 		return new Handlebars.SafeString('<img src="' + chartURL.toString() + '">');
 	});
@@ -246,7 +246,7 @@ fs.readFile('server/data/omitted-common-names.json', 'utf8', function(err, data)
 fs.readFile('server/data/ebird.csv', 'utf8', function(err, data) {
 	if (err) throw err;
 
-	var ebird = babyParse.parse(data, {
+	let ebird = babyParse.parse(data, {
 			header: true,
 		});
 
@@ -265,11 +265,11 @@ fs.readFile('server/data/ebird.csv', 'utf8', function(err, data) {
 	    this.ref('id');
 	});
 
-	for (var index = 0; index < gSightingList.rows.length; index++) {
-		var aValue = gSightingList.rows[index];
+	for (let index = 0; index < gSightingList.rows.length; index++) {
+		let aValue = gSightingList.rows[index];
 
 		if (aValue['State/Province']) {
-			var tmp = iso3166.subdivision(aValue['State/Province']);
+			let tmp = iso3166.subdivision(aValue['State/Province']);
 			if (tmp) {
 				aValue['Country'] = tmp['countryName'];
 			}
@@ -293,7 +293,7 @@ var eBirdAllFilename = 'server/data/eBird_Taxonomy_v2016.csv';
 fs.readFile(eBirdAllFilename, 'utf8', function(err, data) {
 	if (err) throw err;
 
-	var familyRanges = {};
+	let familyRanges = {};
 
 	gEBirdAll = babyParse.parse(data, {
 		header: true,
@@ -301,10 +301,10 @@ fs.readFile(eBirdAllFilename, 'utf8', function(err, data) {
 
 	logger.info('parsed ebird all', gEBirdAll.data.length);
 
-	for (var index = 0; index < gEBirdAll.data.length; index++) {
-		var aValue = gEBirdAll.data[index];
-		var aFamily = familyRanges[aValue['FAMILY']];
-		var taxoValue = parseFloat(aValue['TAXON_ORDER']);
+	for (let index = 0; index < gEBirdAll.data.length; index++) {
+		let aValue = gEBirdAll.data[index];
+		let aFamily = familyRanges[aValue['FAMILY']];
+		let taxoValue = parseFloat(aValue['TAXON_ORDER']);
 
 		if (aValue['FAMILY'] == '') {
 			continue;
@@ -318,18 +318,18 @@ fs.readFile(eBirdAllFilename, 'utf8', function(err, data) {
 		}
 	}
 
-	var familyKeys = Object.keys(familyRanges);
+	let familyKeys = Object.keys(familyRanges);
 
 	for (index = 0; index < familyKeys.length; index++) {
-		var aKey = familyKeys[index];
-		var triple = [aKey, familyRanges[aKey][0], familyRanges[aKey][1]];
+		let aKey = familyKeys[index];
+		let triple = [aKey, familyRanges[aKey][0], familyRanges[aKey][1]];
 		SightingList.families.push(triple);
 	}
 });
 
 // TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
 function privateGetTaxoFromCommonName(inCommonName) {
-	for (var index = 0; index < gEBirdAll.data.length; index++) {
+	for (let index = 0; index < gEBirdAll.data.length; index++) {
 		if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] == inCommonName) {
 			return parseFloat(gEBirdAll.data[index]['TAXON_ORDER']);
 		}
@@ -342,9 +342,9 @@ fs.readFile('server/data/photos.json', 'utf8', function(err, data) {
 	if (err) throw err;
 	gPhotos = JSON.parse(data);
 
-	for (var index = 0; index < gPhotos.length; index++)
+	for (let index = 0; index < gPhotos.length; index++)
 	{
-		var photo = gPhotos[index];
+		let photo = gPhotos[index];
 
 		// // TODO: try to get the images
 		// request(photo['Photo URL'], function(error, response, body) {
@@ -362,13 +362,13 @@ fs.readFile('server/data/photos.json', 'utf8', function(err, data) {
 		photo.id = index;
 
 		// Parse the date
-		var pieces = photo['Date'].split('-');
+		let pieces = photo['Date'].split('-');
 
 		// order the pieces in a sensible way
-		var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
+		let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
 
 		// create and save the new dat
-		var newDate = new Date(fixedDateString);
+		let newDate = new Date(fixedDateString);
 		photo['DateObject'] = newDate;
 	}
 
@@ -378,15 +378,15 @@ fs.readFile('server/data/photos.json', 'utf8', function(err, data) {
 // ADD getWeek to Date class
 
 Date.prototype.getWeek = function() {
-    var dt = new Date(this.getFullYear(),0,1);
+    let dt = new Date(this.getFullYear(),0,1);
     return Math.ceil((((this - dt) / 86400000) + dt.getDay()+1)/7);
 };
 
 // REST API for ebird data
 
 app.get('/photosThisWeek', function(req, resp, next) {
-	var currentWeekOfYear = new Date().getWeek();
-	var photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
+	let currentWeekOfYear = new Date().getWeek();
+	let photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
 
 	logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length);
 
@@ -394,20 +394,20 @@ app.get('/photosThisWeek', function(req, resp, next) {
 });
 
 app.get('/photos', function(req, resp, next) {
-	var currentWeekOfYear = new Date().getWeek();
-	var photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
+	let currentWeekOfYear = new Date().getWeek();
+	let photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
 
 	logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length);
 
-	var commonNamesByFamily = {};
-	var photosByFamily = {};
-	var photoCommonNamesByFamily = [];
-	var speciesPhotographed = 0;
+	let commonNamesByFamily = {};
+	let photosByFamily = {};
+	let photoCommonNamesByFamily = [];
+	let speciesPhotographed = 0;
 
 	// make an array of common name, taxonomic id, and family name
 
-	for (var index = 0; index < gPhotos.length; index++) {
-		var aPhoto = gPhotos[index];
+	for (let index = 0; index < gPhotos.length; index++) {
+		let aPhoto = gPhotos[index];
 
 		aPhoto.taxonomicSort = privateGetTaxoFromCommonName(aPhoto['Common Name']);
 		aPhoto.family = SightingList.getFamily(aPhoto.taxonomicSort);
@@ -429,7 +429,7 @@ app.get('/photos', function(req, resp, next) {
 	for (index = 0; index < photoCommonNamesByFamily.length; index++) {
 		aPhoto = photoCommonNamesByFamily[index];
 		if (aPhoto.family == null) {
-			console.log(aPhoto);
+			logger.error('photo.family == null', aPhoto);
 			continue;
 		}
 
@@ -468,9 +468,9 @@ app.get('/locations', function(req, resp, next) {
 app.get('/bigdays', function(req, resp, next) {
 	logger.debug('/bigdays');
 
-	var speciesByDate = gSightingList.getSpeciesByDate();
-	var bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]]; });
-	var bigDays = bigDays.filter(function (x) { return x[1].commonNames.length > 100; });
+	let speciesByDate = gSightingList.getSpeciesByDate();
+	let bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]]; });
+	bigDays = bigDays.filter(function (x) { return x[1].commonNames.length > 100; });
 	bigDays = bigDays.map(function (x) { return { date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length }; });
 	bigDays.sort(function (x,y) { return y.count - x.count; } );
 
@@ -483,11 +483,11 @@ app.get('/bigdays', function(req, resp, next) {
 });
 
 app.get('/family/:family_name', function(req, resp, next) {
-	var tmp = gSightingList.filter(function(s) { return SightingList.getFamily(s['Taxonomic Order']) == req.params.family_name; });
+	let tmp = gSightingList.filter(function(s) { return SightingList.getFamily(s['Taxonomic Order']) == req.params.family_name; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-	var photos = gPhotos.filter(function(p) { return SightingList.getFamily(privateGetTaxoFromCommonName(p['Common Name'])) == req.params.family_name; });
+	let photos = gPhotos.filter(function(p) { return SightingList.getFamily(privateGetTaxoFromCommonName(p['Common Name'])) == req.params.family_name; });
 
-	var familySightingList = new SightingList(tmp, photos);
+	let familySightingList = new SightingList(tmp, photos);
 
 	logger.debug('/family/', req.params.family_name, familySightingList.rows.length);
 
@@ -520,18 +520,18 @@ app.get('/taxons', function(req, resp, next) {
 });
 
 app.get('/chrono', function(req, resp, next) {
-	var earliestByCommonName = gSightingList.getEarliestByCommonName();
-	var lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
+	let earliestByCommonName = gSightingList.getEarliestByCommonName();
+	let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
 	lifeSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
 
 	resp.send(gTemplates.chrono({firstSightings: lifeSightingsChronological}));
 });
 
 app.get('/taxon/:common_name', function(req, resp, next) {
-	var tmp = gSightingList.filter(function(s) { return s['Common Name'] == req.params.common_name; });
-	var photos = gPhotos.filter(function(p) { return p['Common Name'] == req.params.common_name; });
+	let tmp = gSightingList.filter(function(s) { return s['Common Name'] == req.params.common_name; });
+	let photos = gPhotos.filter(function(p) { return p['Common Name'] == req.params.common_name; });
 
-	var taxonSightingList = new SightingList(tmp, photos);
+	let taxonSightingList = new SightingList(tmp, photos);
 	taxonSightingList.sortByDate();
 
 	logger.debug('/taxon/', req.params.common_name, taxonSightingList.rows.length);
@@ -561,14 +561,14 @@ app.get('/trips', function(req, resp, next) {
 });
 
 app.get('/search', function(req, resp, next) {
-	console.log('req.query', req.query);
-	var rawResults = gIndex.search(req.query.searchtext);
+	logger.debug('/search', req.query);
+	let rawResults = gIndex.search(req.query.searchtext);
 
-    var resultsAsSightings = rawResults.map(function (result) {
+    let resultsAsSightings = rawResults.map(function (result) {
 		return gSightingList.rows[result.ref];
     });
 
-    var searchResultsSightingList = new SightingList(resultsAsSightings);
+    let searchResultsSightingList = new SightingList(resultsAsSightings);
 
     logger.debug('/search/', resultsAsSightings.length, searchResultsSightingList.rows.length);
 
@@ -580,10 +580,10 @@ app.get('/search', function(req, resp, next) {
 });
 
 app.get('/year/:year', function(req, resp, next) {
-	var tmp = gSightingList.byYear()[req.params.year];
+	let tmp = gSightingList.byYear()[req.params.year];
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-	var photos =  gPhotos.filter(function(p){ return p.Date.substring(6,10) == req.params.year; });
-	var yearSightingList = new SightingList(tmp, photos);
+	let photos =  gPhotos.filter(function(p){ return p.Date.substring(6,10) == req.params.year; });
+	let yearSightingList = new SightingList(tmp, photos);
 
 	logger.debug('/year/', req.params.year, yearSightingList.rows.length);
 
@@ -628,14 +628,14 @@ app.get('/trip/:trip_date', function(req, resp, next) {
 // TODO: need location hierarchy
 
 app.get('/place/:state_name', function(req, resp, next) {
-	var tmp = gSightingList.filter(function(s) {
+	let tmp = gSightingList.filter(function(s) {
 		return s['State/Province'] == req.params.state_name;
 	});
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
-	var stateSightingList = new SightingList(tmp);
+	let stateSightingList = new SightingList(tmp);
 	// TODO: can't compute photos before creating list
-	var stateLocations = stateSightingList.getUniqueValues('Location');
+	let stateLocations = stateSightingList.getUniqueValues('Location');
 	stateSightingList.photos = gPhotos.filter(function(p) { return stateLocations.indexOf(p.Location) >= 0; });
 
 	logger.debug('/state/', req.params.state_name, stateSightingList.length());
@@ -661,14 +661,14 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 		req.params.county_name = '';
 	}
 
-	var tmp = gSightingList.filter(function(s) {
+	let tmp = gSightingList.filter(function(s) {
 		return (s['State/Province'] == req.params.state_name) && (s['County'] == req.params.county_name);
 	});
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
-	var countySightingList = new SightingList(tmp);
+	let countySightingList = new SightingList(tmp);
 	// TODO: can't compute photos before creating list
-	var countyLocations = countySightingList.getUniqueValues('Location');
+	let countyLocations = countySightingList.getUniqueValues('Location');
 	countySightingList.photos = gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; });
 
 	logger.debug('/county/', req.params.county_name, countySightingList.length());
@@ -696,15 +696,15 @@ app.get('/place/:state_name/:county_name/:location_name', function(req, resp, ne
 		req.params.county_name = '';
 	}
 
-	var tmp = gSightingList.filter(function(s) {
+	let tmp = gSightingList.filter(function(s) {
 		return (s['State/Province'] == req.params.state_name) && (s['County'] == req.params.county_name) && (s['Location'] == req.params.location_name);
 	});
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
 
 	// TODO: wrong, doesn't handle duplication location names
-	var photos = gPhotos.filter(function(p) { return p.Location == req.params.location_name; });
+	let photos = gPhotos.filter(function(p) { return p.Location == req.params.location_name; });
 
-	var locationSightingList = new SightingList(tmp, photos);
+	let locationSightingList = new SightingList(tmp, photos);
 
 	logger.debug('/location/', req.params.state_name, req.params.county_name, req.params.location_name, locationSightingList.rows.length);
 
@@ -721,41 +721,3 @@ app.get('/place/:state_name/:county_name/:location_name', function(req, resp, ne
 
 	}));
 });
-
-
-app.get('/fixedphotos', function(req, resp, next) {
-	for (var index = 0; index < gPhotos.length; index++)
-	{
-		var photo = gPhotos[index];
-		delete photo.DateObject;
-		delete photo.id;
-
-		if (photo) {
-			var tmp = gSightingList.filter(function (s) { return s.Location == photo.Location; });
-			if (tmp[0] != null) {
-				gPhotos[index].County = tmp[0].County;
-				gPhotos[index]['State/Province'] = tmp[0]['State/Province'];
-			} else {
-				gPhotos[index].County = 'Unknown';
-				gPhotos[index]['State/Province'] = 'Unknown';
-
-				var candidateSightings = gSightingList.filter(function (s) {
-					return ((s['Common Name'] == photo['Common Name']) && (s['Date'] == photo['Date']));
-				})
-
-				if (candidateSightings && candidateSightings[0]) {
-					console.log('no location match', index, photo['Common Name'], photo.Location, 'try', candidateSightings[0].Location);
-				} else {
-					console.log('no location match', index, photo['Common Name'], photo.Location);
-				}
-			}
-		} else {
-			console.log('photo missing', index);
-		}
-
-	}
-
-	resp.json(gPhotos);
-});
-
-
