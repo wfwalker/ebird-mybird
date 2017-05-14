@@ -12,11 +12,11 @@ var Handlebars = require('handlebars');
 var lunr = require('lunr');
 var iso3166 = require('iso-3166-2');
 var babyParse = require('babyparse');
-var SightingList = require('../app/scripts/sightinglist.js');
+var SightingList = require('../server/scripts/sightinglist.js');
 var fs = require('fs');
 var winston = require('winston');
 var request = require('request');
-var d3 = require('../app/scripts/d3.js');
+var d3 = require('../node_modules/d3/d3.js');
 var { URL, URLSearchParams } = require('url');
 
 var logger = new (winston.Logger)({
