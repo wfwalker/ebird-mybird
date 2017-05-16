@@ -1,16 +1,12 @@
 // server.js
 
-var gSightingList = null;
 var gPhotos = [];
 var gEBirdAll = [];
-var gIndex = null;
 
 var express = require('express');
 var compression = require('compression');
 var expires = require('expires-middleware');
 var Handlebars = require('handlebars');
-var lunr = require('lunr');
-var iso3166 = require('iso-3166-2');
 var babyParse = require('babyparse');
 var SightingList = require('../server/scripts/sightinglist.js');
 var fs = require('fs');
@@ -26,6 +22,10 @@ var logger = new (winston.Logger)({
       })
     ]
 });
+
+var gSightingList = SightingList.newFromCSV('server/data/ebird.csv');
+var gIndex = gSightingList.createIndex();
+SightingList.loadDayNamesAndOmittedNames();
 
 var gTemplates = {
 	photo: Handlebars.compile(fs.readFileSync('server/templates/photo.html', 'UTF-8')),
@@ -51,7 +51,6 @@ Handlebars.registerPartial('foot', fs.readFileSync('server/templates/foot.html',
 
 registerHelpers(logger);
 
-
 var myPort = process.env.PORT || 8091;
 var mHost = process.env.VCAP_APP_HOST || "127.0.0.1";
 
@@ -68,63 +67,6 @@ app.use('/scripts', express.static('server/scripts'));
 app.use('/images', express.static('server/images'));
 
 // parse the ebird data so we can make a REST API for it
-
-fs.readFile('server/data/day-names.json', 'utf8', function(err, data) {
-	if (err) throw err;
-
-	SightingList.setCustomDayNames(JSON.parse(data));
-	logger.info('loaded custom day names', Object.keys(SightingList.customDayNames).length);
-});
-
-fs.readFile('server/data/omitted-common-names.json', 'utf8', function(err, data) {
-	if (err) throw err;
-
-	SightingList.setOmittedCommonNames(JSON.parse(data));
-	logger.info('loaded omitted common names', Object.keys(SightingList.omittedCommonNames).length);
-});
-
-fs.readFile('server/data/ebird.csv', 'utf8', function(err, data) {
-	if (err) throw err;
-
-	let ebird = babyParse.parse(data, {
-			header: true,
-		});
-
-	logger.info('parsed ebird', ebird.data.length);
-
-	gSightingList = new SightingList();
-	gSightingList.addRows(ebird.data);
-	gSightingList.setGlobalIDs();
-
-	gIndex = lunr(function () {
-	    this.field('location');
-	    this.field('common');
-	    this.field('county');
-	    this.field('trip');
-	    this.field('scientific');
-	    this.ref('id');
-	});
-
-	for (let index = 0; index < gSightingList.rows.length; index++) {
-		let aValue = gSightingList.rows[index];
-
-		if (aValue['State/Province']) {
-			let tmp = iso3166.subdivision(aValue['State/Province']);
-			if (tmp) {
-				aValue['Country'] = tmp['countryName'];
-			}
-		}
-
-		gIndex.add({
-			location: aValue['Location'],
-			county: aValue['County'],
-			common: aValue['Common Name'],
-			trip: SightingList.customDayNames[aValue['Date']],
-			scientific: aValue['Scientific Name'],
-			id: index,
-		});
-	}
-});
 
 // read and parse the full taxonomy list for eBird
 

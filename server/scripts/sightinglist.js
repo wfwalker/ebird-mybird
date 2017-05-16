@@ -1,5 +1,10 @@
 'use strict';
 
+var iso3166 = require('iso-3166-2');
+var fs = require('fs');
+var babyParse = require('babyparse');
+var lunr = require('lunr');
+
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
 // Scientific Name, Dendrocygna autumnalis
@@ -37,7 +42,6 @@ var SightingList = function (inRows, inPhotos) {
 	this.dayNames = [];
 	this.photos = inPhotos;
 
-
 	if (inRows) {
 		if (inRows instanceof Array) {
 			this.addRows(inRows);
@@ -46,6 +50,47 @@ var SightingList = function (inRows, inPhotos) {
 		}
 	}
 };
+
+SightingList.newFromCSV = function(inFilename) {
+	let ebird = babyParse.parseFiles(inFilename, {
+		header: true,
+	});
+
+	console.log('parsed', inFilename, ebird.data.length);
+
+	let newSightingList = new SightingList();
+	newSightingList.addRows(ebird.data);
+	newSightingList.setGlobalIDs();
+
+	return newSightingList;
+};
+
+SightingList.prototype.createIndex = function() {
+	let lunrIndex = lunr(function () {
+	    this.field('location');
+	    this.field('common');
+	    this.field('county');
+	    this.field('trip');
+	    this.field('scientific');
+	    this.ref('id');
+	});
+
+	for (let index = 0; index < this.rows.length; index++) {
+		let aValue = this.rows[index];
+
+		lunrIndex.add({
+			location: aValue['Location'],
+			county: aValue['County'],
+			common: aValue['Common Name'],
+			trip: SightingList.customDayNames[aValue['Date']],
+			scientific: aValue['Scientific Name'],
+			id: index,
+		});
+	}
+
+	return lunrIndex;
+};
+
 
 SightingList.omittedCommonNames = [];
 SightingList.customDayNames = [];
@@ -56,6 +101,16 @@ SightingList.setCustomDayNames = function(inNames) {
 
 SightingList.setOmittedCommonNames = function(inNames) {
 	SightingList.omittedCommonNames = inNames;
+};
+
+SightingList.loadDayNamesAndOmittedNames = function() {
+	let dayNames = fs.readFileSync('server/data/day-names.json');
+	SightingList.setCustomDayNames(JSON.parse(dayNames));
+	console.log('loaded custom day names', Object.keys(SightingList.customDayNames).length);
+
+	let omittedCommonNames = fs.readFileSync('server/data/omitted-common-names.json');
+	SightingList.setOmittedCommonNames(JSON.parse(omittedCommonNames));
+	console.log('loaded omitted common names', Object.keys(SightingList.omittedCommonNames).length);
 };
 
 SightingList.families = [];
@@ -111,6 +166,13 @@ SightingList.prototype.addRows = function(inRows) {
 			// create and save the new dat
 			var newDate = convertDate(fixedDateString);
 			sighting['DateObject'] = newDate;
+
+			if (sighting['State/Province']) {
+				let isoData = iso3166.subdivision(sighting['State/Province']);
+				if (isoData) {
+					sighting['Country'] = isoData['countryName'];
+				}
+			}
 
 			if (this.dates.indexOf(sighting['Date']) < 0) {
 				this.dates.push(sighting['Date']);
@@ -355,8 +417,6 @@ SightingList.prototype.getSpeciesByDate = function() {
 };
 
 SightingList.prototype.getEarliestByCommonName = function() {
-	console.log('computing earliestByCommonName');
-
 	this._earliestRowByCommonName = {};
 
 	for (var index = 0; index < this.rows.length; index++) {
@@ -392,7 +452,6 @@ SightingList.prototype.getLatestPhotos = function(inPhotoCount) {
 		return this.photos.slice(0, inPhotoCount);
 	}
 };
-
 
 if (typeof module != 'undefined') {
 	module.exports = SightingList;
