@@ -224,14 +224,9 @@ Date.prototype.getWeek = function() {
 
 // REST API for ebird data
 
-app.get('/photosThisWeek', function(req, resp, next) {
-	let currentWeekOfYear = new Date().getWeek();
-	let photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
-
-	logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length);
-
-	resp.json(photosThisWeek);
-});
+app.get('/', function(req, resp, next) {
+	resp.redirect('/photos');
+})
 
 app.get('/photos', function(req, resp, next) {
 	let currentWeekOfYear = new Date().getWeek();
