@@ -86,12 +86,22 @@ describe('SightingList', function() {
 		gSightingList.addRows(ebird.data);
 		gSightingList.setGlobalIDs();
 
-		it('something', function() {
+		it('getEarliestByCommonName in chrono order', function() {
 			let earliestByCommonName = gSightingList.getEarliestByCommonName();
 			let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function(k) { return earliestByCommonName[k]; });
 			lifeSightingsChronological.sort(function(a, b) { return b['DateObject'] - a['DateObject']; });
 			assert.ok(lifeSightingsChronological[0].DateObject > lifeSightingsChronological[1].DateObject, 'first two in order');
 			assert.ok(lifeSightingsChronological[1].DateObject > lifeSightingsChronological[2].DateObject, 'second two in order');
+		});
+	});
+
+	describe('loadDayNamesAndOmittedNames', function() {
+		it('loads without crashing', function() {
+			SightingList.loadDayNamesAndOmittedNames();
+		});
+		it('got some data', function() {
+			assert.ok(Object.keys(SightingList.customDayNames).length > 0, 'should have some custom day names');
+			assert.ok(SightingList.omittedCommonNames.length > 0, 'should have some omitted species common names');
 		});
 	})
 });
