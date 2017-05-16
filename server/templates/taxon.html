@@ -1,3 +1,5 @@
+{{> head title=name}}
+
 <h3>
 	{{name}} <span class='lighter'>{{scientificName}}</span>
 
@@ -27,7 +29,7 @@
 			<div class="biglist">
 			{{#each sightingList.dateObjects}}
 			  <div class='biglist-item'>
-			    <div><a href="#trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
+			    <div><a href="/trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
 			  </div>
 			{{/each}}
 			</div>
@@ -41,9 +43,11 @@
 
 		<h4>{{valuecount sightingList "Location"}} Locations</h4>
 
-		<div id="{{mapID}}" class="embed-responsive embed-responsive-16by9"></div>
-		{{googlemap sightingList mapID}}
-
+		<div>
+			{{googlemap sightingList mapID}}		
+		</div>
 	</div>
 </div>
+
+{{> foot}}
 

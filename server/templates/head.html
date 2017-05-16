@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <title>BirdWalker | {{title}}</title>
+
+    <meta name="description" content="ebird-mybird : An offline web app for browsing your personal eBird sightings">
+
+    <link rel="manifest" href="./w3c-manifest.json">
+    <link rel="shortcut icon" href="./images/ebird-favicon.ico">
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles/app.css" >
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles/justifiedGallery.min.css" >
+
+    <!-- JQUERY -->
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>    
+
+    <!-- Justified Gallery -->
+    <script src='/scripts/jquery.justifiedGallery.min.js'></script>
+
+    <!-- BOOTSTRAP -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script type='text/javascript' src='/scripts/app.js'></script>
+  </head>
+
+  <body>
+    <div id='loading' class='hidden'>
+      <div class="sk-fading-circle">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/photos">BirdWalker</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a data-hash="photos" href="/photos">Photos by Bill Walker</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Birding <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/bigdays">Big Days</a></li>
+                <li><a data-hash="locations" href="/locations">Locations</a></li>
+                <li><a href="/trips">Trips</a></li>
+                <li><a href="/chrono">Chronological Life List</a></li>
+                <li><a href="/taxons">Taxonomic Life List</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <form action='/search' method='GET' class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input id='searchtext' name='searchtext' type="text" class="form-control" placeholder="Search">
+            </div>
+            <button id='gosearch' type="submit" class="btn btn-default">Submit</button>
+          </form>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container" style='padding-top: 60px'>

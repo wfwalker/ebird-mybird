@@ -138,6 +138,7 @@ SightingList.prototype.addRows = function(inRows) {
 
 		} else {
 			console.log('ERROR SIGHTING HAS NO DATE', index, JSON.stringify(sighting));
+			inRows.splice(index, 1);
 		}
 	}
 
