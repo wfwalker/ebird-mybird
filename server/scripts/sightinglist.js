@@ -93,23 +93,15 @@ SightingList.prototype.createIndex = function() {
 
 
 SightingList.omittedCommonNames = [];
-SightingList.customDayNames = [];
-
-SightingList.setCustomDayNames = function(inNames) {
-	SightingList.customDayNames = inNames;
-};
-
-SightingList.setOmittedCommonNames = function(inNames) {
-	SightingList.omittedCommonNames = inNames;
-};
+SightingList.customDayNames = {};
 
 SightingList.loadDayNamesAndOmittedNames = function() {
 	let dayNames = fs.readFileSync('server/data/day-names.json');
-	SightingList.setCustomDayNames(JSON.parse(dayNames));
+	SightingList.customDayNames = JSON.parse(dayNames);
 	console.log('loaded custom day names', Object.keys(SightingList.customDayNames).length);
 
 	let omittedCommonNames = fs.readFileSync('server/data/omitted-common-names.json');
-	SightingList.setOmittedCommonNames(JSON.parse(omittedCommonNames));
+	SightingList.omittedCommonNames = JSON.parse(omittedCommonNames);
 	console.log('loaded omitted common names', Object.keys(SightingList.omittedCommonNames).length);
 };
 
@@ -362,21 +354,6 @@ SightingList.prototype.getTaxonomyHierarchy = function() {
 	}
 
 	return byFamily;
-};
-
-SightingList.prototype.mapSubmissionIDToChecklistComments = function() {
-	var tmpMap = {};
-
-	for (var index = 0; index < this.rows.length; index++) {
-		var sighting = this.rows[index];
-		var submissionID = sighting['Submission ID'];
-
-		if (! tmpMap[submissionID]) {
-			tmpMap[submissionID] = sighting['Checklist Comments'];
-		}
-	}
-
-	return tmpMap;
 };
 
 // TODO: map also Protocol, Duration (Min), Time for Location

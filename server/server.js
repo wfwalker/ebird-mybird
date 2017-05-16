@@ -271,7 +271,6 @@ app.get('/family/:family_name', function(req, resp, next) {
 	resp.send(gTemplates.family({
 
 			name: req.params.family_name,
-			chartID: 'bymonth' + Date.now(),
 			showDates: familySightingList.dateObjects.length < 30,
 			showLocations: familySightingList.getUniqueValues('Location').length < 30,
 			sightingsByMonth: familySightingList.byMonth(),
@@ -322,7 +321,6 @@ app.get('/taxon/:common_name', function(req, resp, next) {
 			photos: taxonSightingList.photos,
 			sightingList: taxonSightingList,
 			customDayNames: SightingList.customDayNames,
-			chartID: 'bymonth' + Date.now(),
 
 	}));
 });
@@ -420,7 +418,6 @@ app.get('/place/:state_name', function(req, resp, next) {
 	resp.send(gTemplates.state({
 
 			name: req.params.state_name,
-			chartID: 'bymonth' + Date.now(),
 			showDates: stateSightingList.getUniqueValues('Date').length < 30,
 			sightingsByMonth: stateSightingList.byMonth(),
 			photos: stateSightingList.getLatestPhotos(20),
@@ -453,7 +450,6 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 	resp.send(gTemplates.county({
 
 			name: req.params.county_name,
-			chartID: 'bymonth' + Date.now(),
 			showMap: true,
 			showDates: countySightingList.getUniqueValues('Date').length < 30,
 			sightingsByMonth: countySightingList.byMonth(),
@@ -488,7 +484,6 @@ app.get('/place/:state_name/:county_name/:location_name', function(req, resp, ne
 	resp.send(gTemplates.location({
 
 			name: req.params.location_name,
-			chartID: 'bymonth' + Date.now(),
 			showChart: locationSightingList.dateObjects.length > 20,
 			sightingsByMonth: locationSightingList.byMonth(),
 			photos: locationSightingList.getLatestPhotos(20),
