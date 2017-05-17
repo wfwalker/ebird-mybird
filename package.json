@@ -29,5 +29,8 @@
   "engines": {
     "node": "7.2.1",
     "npm": "3.10.9"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.1"
   }
 }
