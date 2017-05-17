@@ -13,6 +13,8 @@ var fs = require('fs');
 var winston = require('winston');
 var request = require('request');
 var registerHelpers = require('../server/scripts/helpers.js');
+var createTemplates = require('../server/scripts/templates.js');
+var Application = require('../server/scripts/application.js');
 
 var logger = new (winston.Logger)({
     transports: [
@@ -24,32 +26,13 @@ var logger = new (winston.Logger)({
 });
 
 var gSightingList = SightingList.newFromCSV('server/data/ebird.csv');
+var gApplication = new Application(gSightingList);
 var gIndex = gSightingList.createIndex();
 SightingList.loadDayNamesAndOmittedNames();
 
-var gTemplates = {
-	photo: Handlebars.compile(fs.readFileSync('server/templates/photo.html', 'UTF-8')),
-	trips: Handlebars.compile(fs.readFileSync('server/templates/trips.html', 'UTF-8')),
-	trip: Handlebars.compile(fs.readFileSync('server/templates/trip.html', 'UTF-8')),
-	sighting: Handlebars.compile(fs.readFileSync('server/templates/sighting.html', 'UTF-8')),
-	taxon: Handlebars.compile(fs.readFileSync('server/templates/taxon.html', 'UTF-8')),
-	taxons: Handlebars.compile(fs.readFileSync('server/templates/taxons.html', 'UTF-8')),
-	family: Handlebars.compile(fs.readFileSync('server/templates/family.html', 'UTF-8')),
-	location: Handlebars.compile(fs.readFileSync('server/templates/location.html', 'UTF-8')),
-	photos: Handlebars.compile(fs.readFileSync('server/templates/photos.html', 'UTF-8')),
-	county: Handlebars.compile(fs.readFileSync('server/templates/county.html', 'UTF-8')),
-	state: Handlebars.compile(fs.readFileSync('server/templates/state.html', 'UTF-8')),
-	locations: Handlebars.compile(fs.readFileSync('server/templates/locations.html', 'UTF-8')),
-	bigdays: Handlebars.compile(fs.readFileSync('server/templates/bigdays.html', 'UTF-8')),
-	chrono: Handlebars.compile(fs.readFileSync('server/templates/chrono.html', 'UTF-8')),
-	year: Handlebars.compile(fs.readFileSync('server/templates/year.html', 'UTF-8')),
-	searchresults: Handlebars.compile(fs.readFileSync('server/templates/searchresults.html', 'UTF-8')),
-}
-
-Handlebars.registerPartial('head', fs.readFileSync('server/templates/head.html', 'UTF-8'));
-Handlebars.registerPartial('foot', fs.readFileSync('server/templates/foot.html', 'UTF-8'));
-
 registerHelpers(logger);
+
+gTemplates = createTemplates();
 
 var myPort = process.env.PORT || 8091;
 var mHost = process.env.VCAP_APP_HOST || "127.0.0.1";
@@ -101,12 +84,14 @@ fs.readFile(eBirdAllFilename, 'utf8', function(err, data) {
 	}
 
 	let familyKeys = Object.keys(familyRanges);
+	let familyTriples = [];
 
 	for (index = 0; index < familyKeys.length; index++) {
 		let aKey = familyKeys[index];
 		let triple = [aKey, familyRanges[aKey][0], familyRanges[aKey][1]];
-		SightingList.families.push(triple);
+		familyTriples.push(triple);
 	}
+	SightingList.setFamilies(familyTriples);
 });
 
 // TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
@@ -255,7 +240,7 @@ app.get('/bigdays', function(req, resp, next) {
 	
 	resp.send(gTemplates.bigdays({
 		bigDays: bigDays,
-		customDayNames: SightingList.customDayNames,
+		customDayNames: SightingList.getCustomDayNames(),
 	}));
 });
 
@@ -277,7 +262,7 @@ app.get('/family/:family_name', function(req, resp, next) {
 			photos: familySightingList.getLatestPhotos(20),
 			sightingList: familySightingList,
 			taxons: familySightingList.commonNames,
-			customDayNames: SightingList.customDayNames,
+			customDayNames: SightingList.getCustomDayNames(),
 	}));
 });
 
@@ -320,7 +305,7 @@ app.get('/taxon/:common_name', function(req, resp, next) {
 			sightingsByMonth: taxonSightingList.byMonth(),
 			photos: taxonSightingList.photos,
 			sightingList: taxonSightingList,
-			customDayNames: SightingList.customDayNames,
+			customDayNames: SightingList.getCustomDayNames(),
 
 	}));
 });
@@ -329,10 +314,7 @@ app.get('/trips', function(req, resp, next) {
 	logger.debug('/trips');
 
 	// TODO: feature envy; move this into sighting list?
-	resp.send(gTemplates.trips({
-		trips: gSightingList.dateObjects,
-		customDayNames: SightingList.customDayNames,		
-	}));
+	resp.send(gTemplates.trips(gApplication.dataForTripsTemplate()));
 });
 
 app.get('/search', function(req, resp, next) {
@@ -349,7 +331,7 @@ app.get('/search', function(req, resp, next) {
 
 	resp.send(gTemplates.searchresults({
 		dates: searchResultsSightingList.dateObjects,
-		customDayNames: SightingList.customDayNames,
+		customDayNames: SightingList.getCustomDayNames(),
 		sightingList: searchResultsSightingList,
 	}));
 });
@@ -425,7 +407,7 @@ app.get('/place/:state_name', function(req, resp, next) {
 			Country: stateSightingList.rows[0]['Country'],
 			sightingList: stateSightingList,
 			taxons: stateSightingList.commonNames,
-			customDayNames: SightingList.customDayNames,
+			customDayNames: SightingList.getCustomDayNames(),
 			hierarchy: stateSightingList.getLocationHierarchy(),
 	}));
 });
@@ -450,7 +432,6 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 	resp.send(gTemplates.county({
 
 			name: req.params.county_name,
-			showMap: true,
 			showDates: countySightingList.getUniqueValues('Date').length < 30,
 			sightingsByMonth: countySightingList.byMonth(),
 			photos: countySightingList.getLatestPhotos(20),
@@ -459,7 +440,7 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 			Country: countySightingList.rows[0]['Country'],
 			sightingList: countySightingList,
 			taxons: countySightingList.commonNames,
-			customDayNames: SightingList.customDayNames,
+			customDayNames: SightingList.getCustomDayNames(),
 
 	}));
 });
@@ -488,7 +469,7 @@ app.get('/place/:state_name/:county_name/:location_name', function(req, resp, ne
 			sightingsByMonth: locationSightingList.byMonth(),
 			photos: locationSightingList.getLatestPhotos(20),
 			sightingList: locationSightingList,
-			customDayNames: SightingList.customDayNames,
+			customDayNames: SightingList.getCustomDayNames(),
 
 
 	}));
