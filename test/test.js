@@ -1,16 +1,24 @@
 // test.js
 const assert = require('assert');
 const fs = require('fs');
-var babyParse = require('babyparse');
+const winston = require('winston');
+const babyParse = require('babyparse');
 const SightingList = require('../server/scripts/sightinglist.js');
+const registerHelpers = require('../server/scripts/helpers.js');
+const createTemplates = require('../server/scripts/templates.js');
+const Application = require('../server/scripts/application.js');
 
-describe('ebird-mybird', function() {
-	describe('hello world', function() {
-		it('should always pass', function() {
-			assert.equal(1, 1);
-		});
-	});
+var logger = new (winston.Logger)({
+    transports: [
+      new (winston.transports.Console)({
+		'timestamp': true,
+		'level': 'debug'
+      })
+    ]
 });
+
+registerHelpers(logger);
+gTemplates = createTemplates();
 
 const testSightings = [
 	{ Date: '01-01-2017', 'Common Name': 'Aaa' },
@@ -85,6 +93,9 @@ describe('SightingList', function() {
 		let gSightingList = new SightingList();
 		gSightingList.addRows(ebird.data);
 		gSightingList.setGlobalIDs();
+		let gApplication = new Application(gSightingList);
+		registerHelpers(logger);
+		const templates = createTemplates();
 
 		it('getEarliestByCommonName in chrono order', function() {
 			let earliestByCommonName = gSightingList.getEarliestByCommonName();
@@ -93,6 +104,14 @@ describe('SightingList', function() {
 			assert.ok(lifeSightingsChronological[0].DateObject > lifeSightingsChronological[1].DateObject, 'first two in order');
 			assert.ok(lifeSightingsChronological[1].DateObject > lifeSightingsChronological[2].DateObject, 'second two in order');
 		});
+
+		it ('renders sighting template', function() {
+			assert.ok(templates.sighting(gSightingList.rows[0]).indexOf('undefined') < 0, 'rendered tempate should contain no undefined');
+		});
+
+		it ('renders trips template', function() {
+			assert.ok(templates.trips(gApplication.dataForTripsTemplate()).indexOf('undefined') < 0, 'rendered tempate should contain no undefined');
+		});
 	});
 
 	describe('loadDayNamesAndOmittedNames', function() {
@@ -100,8 +119,8 @@ describe('SightingList', function() {
 			SightingList.loadDayNamesAndOmittedNames();
 		});
 		it('got some data', function() {
-			assert.ok(Object.keys(SightingList.customDayNames).length > 0, 'should have some custom day names');
-			assert.ok(SightingList.omittedCommonNames.length > 0, 'should have some omitted species common names');
+			assert.ok(Object.keys(SightingList.getCustomDayNames()).length > 0, 'should have some custom day names');
+			assert.ok(SightingList.getOmittedCommonNames().length > 0, 'should have some omitted species common names');
 		});
 	})
 });
