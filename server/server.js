@@ -1,7 +1,6 @@
 // server.js
 
 var gPhotos = [];
-var gEBirdAll = [];
 
 var express = require('express');
 var compression = require('compression');
@@ -26,9 +25,11 @@ var logger = new (winston.Logger)({
 });
 
 var gSightingList = SightingList.newFromCSV('server/data/ebird.csv');
-var gApplication = new Application(gSightingList);
+var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
+var gApplication = new Application(gSightingList, gPhotos);
 var gIndex = gSightingList.createIndex();
 SightingList.loadDayNamesAndOmittedNames();
+SightingList.loadEBirdTaxonomy();
 
 registerHelpers(logger);
 
@@ -49,105 +50,6 @@ app.use('/styles', express.static('server/styles'));
 app.use('/scripts', express.static('server/scripts'));
 app.use('/images', express.static('server/images'));
 
-// parse the ebird data so we can make a REST API for it
-
-// read and parse the full taxonomy list for eBird
-
-var eBirdAllFilename = 'server/data/eBird_Taxonomy_v2016.csv';
-
-fs.readFile(eBirdAllFilename, 'utf8', function(err, data) {
-	if (err) throw err;
-
-	let familyRanges = {};
-
-	gEBirdAll = babyParse.parse(data, {
-		header: true,
-	});
-
-	logger.info('parsed ebird all', gEBirdAll.data.length);
-
-	for (let index = 0; index < gEBirdAll.data.length; index++) {
-		let aValue = gEBirdAll.data[index];
-		let aFamily = familyRanges[aValue['FAMILY']];
-		let taxoValue = parseFloat(aValue['TAXON_ORDER']);
-
-		if (aValue['FAMILY'] == '') {
-			continue;
-		}
-
-		if (aFamily != null) {
-			familyRanges[aValue['FAMILY']][0] = Math.min(taxoValue, aFamily[0]);
-			familyRanges[aValue['FAMILY']][1] = Math.max(taxoValue, aFamily[1]);
-		} else {
-			familyRanges[aValue['FAMILY']] = [taxoValue, taxoValue];
-		}
-	}
-
-	let familyKeys = Object.keys(familyRanges);
-	let familyTriples = [];
-
-	for (index = 0; index < familyKeys.length; index++) {
-		let aKey = familyKeys[index];
-		let triple = [aKey, familyRanges[aKey][0], familyRanges[aKey][1]];
-		familyTriples.push(triple);
-	}
-	SightingList.setFamilies(familyTriples);
-});
-
-// TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
-function privateGetTaxoFromCommonName(inCommonName) {
-	for (let index = 0; index < gEBirdAll.data.length; index++) {
-		if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] == inCommonName) {
-			return parseFloat(gEBirdAll.data[index]['TAXON_ORDER']);
-		}
-	}
-
-	return 'Unknown';
-}
-
-fs.readFile('server/data/photos.json', 'utf8', function(err, data) {
-	if (err) throw err;
-	gPhotos = JSON.parse(data);
-
-	for (let index = 0; index < gPhotos.length; index++)
-	{
-		let photo = gPhotos[index];
-
-		// // TODO: try to get the images
-		// request(photo['Photo URL'], function(error, response, body) {
-		// 	if (response == null) {
-		// 		console.log('no response', error);
-		// 	} else if (response.statusCode == 403) {
-		// 		console.log('photo error', response.request.uri.href);
-		// 	} else {
-		// 		// console.log('thumbnail win');
-		// 	}
-		// });
-
-		// set the photos's ID as its index in this array.
-		// TODO: not permanently stable
-		photo.id = index;
-
-		// Parse the date
-		let pieces = photo['Date'].split('-');
-
-		// order the pieces in a sensible way
-		let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
-
-		// create and save the new dat
-		let newDate = new Date(fixedDateString);
-		photo['DateObject'] = newDate;
-	}
-
-	logger.info('parsed photos', gPhotos.length);
-});
-
-// ADD getWeek to Date class
-
-Date.prototype.getWeek = function() {
-    let dt = new Date(this.getFullYear(),0,1);
-    return Math.ceil((((this - dt) / 86400000) + dt.getDay()+1)/7);
-};
 
 // REST API for ebird data
 
@@ -156,65 +58,8 @@ app.get('/', function(req, resp, next) {
 })
 
 app.get('/photos', function(req, resp, next) {
-	let currentWeekOfYear = new Date().getWeek();
-	let photosThisWeek = gPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });	
-
-	logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length);
-
-	let commonNamesByFamily = {};
-	let photosByFamily = {};
-	let photoCommonNamesByFamily = [];
-	let speciesPhotographed = 0;
-
-	// make an array of common name, taxonomic id, and family name
-
-	for (let index = 0; index < gPhotos.length; index++) {
-		let aPhoto = gPhotos[index];
-
-		aPhoto.taxonomicSort = privateGetTaxoFromCommonName(aPhoto['Common Name']);
-		aPhoto.family = SightingList.getFamily(aPhoto.taxonomicSort);
-		photoCommonNamesByFamily.push({'Common Name': aPhoto['Common Name'], taxonomicSort: aPhoto.taxonomicSort, family: aPhoto.family});
-
-		if (! photosByFamily[aPhoto.family]) {
-			photosByFamily[aPhoto.family] = [];
-		}
-
-		photosByFamily[aPhoto.family].push(aPhoto);
-	}
-
-	// sort that array by taxonomic id
-
-	photoCommonNamesByFamily.sort(function (x,y) { return x.taxonomicSort - y.taxonomicSort; } );
-
-	// loop through that array and group into families
-
-	for (index = 0; index < photoCommonNamesByFamily.length; index++) {
-		aPhoto = photoCommonNamesByFamily[index];
-		if (aPhoto.family == null) {
-			logger.error('photo.family == null', aPhoto);
-			continue;
-		}
-
-		if (! commonNamesByFamily[aPhoto.family ]) {
-			commonNamesByFamily[aPhoto.family ] = [];
-		}
-
-		if (commonNamesByFamily[aPhoto.family].indexOf(aPhoto['Common Name']) < 0) {
-			commonNamesByFamily[aPhoto.family].push(aPhoto['Common Name']);
-			speciesPhotographed = speciesPhotographed + 1;
-		}
-	};
-
-	logger.debug('/photos');
-
 	// pass down to the page template all the photo data plus the list of common names in taxo order
-	resp.send(gTemplates.photos({
-		numPhotos: gPhotos.length,
-		numSpecies: speciesPhotographed,
-		photosByFamily: photosByFamily,
-		hierarchy: commonNamesByFamily,
-		photosThisWeek: photosThisWeek
-	}));
+	resp.send(gTemplates.photos(gApplication.dataForPhotosTemplate()));
 });
 
 app.get('/locations', function(req, resp, next) {
@@ -446,31 +291,5 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 });
 
 app.get('/place/:state_name/:county_name/:location_name', function(req, resp, next) {
-	if (req.params.county_name == 'none') {
-		req.params.county_name = '';
-	}
-
-	let tmp = gSightingList.filter(function(s) {
-		return (s['State/Province'] == req.params.state_name) && (s['County'] == req.params.county_name) && (s['Location'] == req.params.location_name);
-	});
-	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-
-	// TODO: wrong, doesn't handle duplication location names
-	let photos = gPhotos.filter(function(p) { return p.Location == req.params.location_name; });
-
-	let locationSightingList = new SightingList(tmp, photos);
-
-	logger.debug('/location/', req.params.state_name, req.params.county_name, req.params.location_name, locationSightingList.rows.length);
-
-	resp.send(gTemplates.location({
-
-			name: req.params.location_name,
-			showChart: locationSightingList.dateObjects.length > 20,
-			sightingsByMonth: locationSightingList.byMonth(),
-			photos: locationSightingList.getLatestPhotos(20),
-			sightingList: locationSightingList,
-			customDayNames: SightingList.getCustomDayNames(),
-
-
-	}));
+	resp.send(gTemplates.location(gApplication.dataForLocationTemplate(req)));
 });

@@ -30,6 +30,9 @@ var lunr = require('lunr');
 var gCustomDayNames = {};
 var gOmittedCommonNames = [];
 var gFamilies = [];
+var gEBirdAll = [];
+
+const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2016.csv';
 
 function convertDate(inDate) {
 	var tmp = new Date(inDate);
@@ -75,6 +78,83 @@ class SightingList {
 		return newSightingList;
 	};
 
+	static newPhotosFromJSON(inFilename) {
+		let data = fs.readFileSync(inFilename, 'utf8')
+		let tmpPhotos = JSON.parse(data);
+
+		for (let index = 0; index < tmpPhotos.length; index++)
+		{
+			let photo = tmpPhotos[index];
+
+			photo.id = index;
+
+			// Parse the date
+			let pieces = photo['Date'].split('-');
+
+			// order the pieces in a sensible way
+			let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
+
+			// create and save the new dat
+			let newDate = new Date(fixedDateString);
+			photo['DateObject'] = newDate;
+		}
+
+		console.log('parsed photos', tmpPhotos.length);
+		return tmpPhotos;
+	}
+
+
+	static loadEBirdTaxonomy() {
+		const fileBytes = fs.readFileSync(eBirdAllFilename, 'utf8');
+
+		let familyRanges = {};
+
+		gEBirdAll = babyParse.parse(fileBytes, {
+			header: true,
+		});
+
+		console.log('parsed ebird all', gEBirdAll.data.length);
+
+		for (let index = 0; index < gEBirdAll.data.length; index++) {
+			let aValue = gEBirdAll.data[index];
+			let aFamily = familyRanges[aValue['FAMILY']];
+			let taxoValue = parseFloat(aValue['TAXON_ORDER']);
+
+			if (aValue['FAMILY'] == '') {
+				continue;
+			}
+
+			if (aFamily != null) {
+				familyRanges[aValue['FAMILY']][0] = Math.min(taxoValue, aFamily[0]);
+				familyRanges[aValue['FAMILY']][1] = Math.max(taxoValue, aFamily[1]);
+			} else {
+				familyRanges[aValue['FAMILY']] = [taxoValue, taxoValue];
+			}
+		}
+
+		let familyKeys = Object.keys(familyRanges);
+		let familyTriples = [];
+
+		for (let index = 0; index < familyKeys.length; index++) {
+			let aKey = familyKeys[index];
+			let triple = [aKey, familyRanges[aKey][0], familyRanges[aKey][1]];
+			familyTriples.push(triple);
+		}
+
+		gFamilies = familyTriples;
+	}
+
+	// TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
+	static getTaxoFromCommonName(inCommonName) {
+		for (let index = 0; index < gEBirdAll.data.length; index++) {
+			if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] == inCommonName) {
+				return parseFloat(gEBirdAll.data[index]['TAXON_ORDER']);
+			}
+		}
+
+		return 'Unknown';
+	}
+
 	createIndex() {
 		let lunrIndex = lunr(function () {
 		    this.field('location');
@@ -107,10 +187,6 @@ class SightingList {
 
 	static getOmittedCommonNames() {
 		return gOmittedCommonNames;
-	}
-
-	static setFamilies(inFamilies) {
-		gFamilies = inFamilies;
 	}
 
 	static getFamilies() {
