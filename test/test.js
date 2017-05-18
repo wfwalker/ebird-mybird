@@ -85,15 +85,12 @@ describe('SightingList', function() {
 	});
 
 	describe('with full data', function() {
-		let data = fs.readFileSync('server/data/ebird.csv', 'utf8');
-		let ebird = babyParse.parse(data, {
-			header: true,
-		});
+		SightingList.loadDayNamesAndOmittedNames();
+		SightingList.loadEBirdTaxonomy();
 
-		let gSightingList = new SightingList();
-		gSightingList.addRows(ebird.data);
-		gSightingList.setGlobalIDs();
-		let gApplication = new Application(gSightingList);
+		var gSightingList = SightingList.newFromCSV('server/data/ebird.csv');
+		var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
+		let gApplication = new Application(gSightingList, gPhotos);
 		registerHelpers(logger);
 		const templates = createTemplates();
 
@@ -110,14 +107,35 @@ describe('SightingList', function() {
 		});
 
 		it ('renders trips template', function() {
-			assert.ok(templates.trips(gApplication.dataForTripsTemplate()).indexOf('undefined') < 0, 'rendered tempate should contain no undefined');
+			assert.ok(templates.trips(gApplication.dataForTripsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders photos template', function() {
+			assert.ok(templates.photos(gApplication.dataForPhotosTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders location template', function() {
+			const req = {
+				params: {
+					state_name: 'US-CA',
+					county_name: 'Santa Clara',
+					location_name: 'Charleston Slough'
+				}
+			}
+			assert.ok(templates.location(gApplication.dataForLocationTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders state template', function() {
+			const req = {
+				params: {
+					state_name: 'US-CA',
+				}
+			}
+			assert.ok(templates.state(gApplication.dataForStateTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
 		});
 	});
 
 	describe('loadDayNamesAndOmittedNames', function() {
-		it('loads without crashing', function() {
-			SightingList.loadDayNamesAndOmittedNames();
-		});
 		it('got some data', function() {
 			assert.ok(Object.keys(SightingList.getCustomDayNames()).length > 0, 'should have some custom day names');
 			assert.ok(SightingList.getOmittedCommonNames().length > 0, 'should have some omitted species common names');
