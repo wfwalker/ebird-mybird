@@ -9,20 +9,12 @@ var Handlebars = require('handlebars');
 var babyParse = require('babyparse');
 var SightingList = require('../server/scripts/sightinglist.js');
 var fs = require('fs');
-var winston = require('winston');
 var request = require('request');
 var registerHelpers = require('../server/scripts/helpers.js');
 var createTemplates = require('../server/scripts/templates.js');
 var Application = require('../server/scripts/application.js');
 
-var logger = new (winston.Logger)({
-    transports: [
-      new (winston.transports.Console)({
-		'timestamp': true,
-		'level': 'debug'
-      })
-    ]
-});
+require('../server/scripts/logger.js');
 
 var gSightingList = SightingList.newFromCSV('server/data/ebird.csv');
 var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
@@ -31,7 +23,7 @@ var gIndex = gSightingList.createIndex();
 SightingList.loadDayNamesAndOmittedNames();
 SightingList.loadEBirdTaxonomy();
 
-registerHelpers(logger);
+registerHelpers();
 
 gTemplates = createTemplates();
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const SightingList = require('./sightinglist.js');
+require('./logger.js');
 
 // ADD getWeek to Date class
 
@@ -37,7 +38,7 @@ class Application {
 
 		let locationSightingList = new SightingList(tmp, photos);
 
-		console.log('/location/', req.params.state_name, req.params.county_name, req.params.location_name, locationSightingList.rows.length);
+		logger.debug('/location/', req.params.state_name, req.params.county_name, req.params.location_name, locationSightingList.rows.length);
 
 		return {
 			name: req.params.location_name,
@@ -60,7 +61,7 @@ class Application {
 		let stateLocations = stateSightingList.getUniqueValues('Location');
 		stateSightingList.photos = this.allPhotos.filter(function(p) { return stateLocations.indexOf(p.Location) >= 0; });
 
-		console.log('/state/', req.params.state_name, stateSightingList.length());
+		logger.debug('/state/', req.params.state_name, stateSightingList.length());
 
 		return {
 			name: req.params.state_name,
@@ -80,7 +81,7 @@ class Application {
 		let currentWeekOfYear = new Date().getWeek();
 		let photosThisWeek = this.allPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });
 
-		console.log('photos of the week', currentWeekOfYear, photosThisWeek.length);
+		logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length);
 
 		let commonNamesByFamily = {};
 		let photosByFamily = {};
@@ -112,7 +113,7 @@ class Application {
 		for (let index = 0; index < photoCommonNamesByFamily.length; index++) {
 			let aPhoto = photoCommonNamesByFamily[index];
 			if (aPhoto.family == null) {
-				console.log('photo.family == null', aPhoto);
+				logger.debug('photo.family == null', aPhoto);
 				continue;
 			}
 
@@ -126,7 +127,7 @@ class Application {
 			}
 		};
 
-		console.log('/photos');
+		logger.debug('/photos');
 
 		// pass down to the page template all the photo data plus the list of common names in taxo order
 		return {

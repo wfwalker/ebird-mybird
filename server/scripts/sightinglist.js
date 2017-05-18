@@ -5,6 +5,8 @@ var fs = require('fs');
 var babyParse = require('babyparse');
 var lunr = require('lunr');
 
+require('./logger.js');
+
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
 // Scientific Name, Dendrocygna autumnalis
@@ -69,7 +71,7 @@ class SightingList {
 			header: true,
 		});
 
-		console.log('parsed', inFilename, ebird.data.length);
+		logger.debug('parsed', inFilename, ebird.data.length);
 
 		let newSightingList = new SightingList();
 		newSightingList.addRows(ebird.data);
@@ -99,7 +101,7 @@ class SightingList {
 			photo['DateObject'] = newDate;
 		}
 
-		console.log('parsed photos', tmpPhotos.length);
+		logger.debug('parsed photos', tmpPhotos.length);
 		return tmpPhotos;
 	}
 
@@ -113,7 +115,7 @@ class SightingList {
 			header: true,
 		});
 
-		console.log('parsed ebird all', gEBirdAll.data.length);
+		logger.debug('parsed ebird all', gEBirdAll.data.length);
 
 		for (let index = 0; index < gEBirdAll.data.length; index++) {
 			let aValue = gEBirdAll.data[index];
@@ -196,11 +198,11 @@ class SightingList {
 	static loadDayNamesAndOmittedNames() {
 		let dayNames = fs.readFileSync('server/data/day-names.json');
 		gCustomDayNames = JSON.parse(dayNames);
-		console.log('loaded custom day names', Object.keys(gCustomDayNames).length);
+		logger.debug('loaded custom day names', Object.keys(gCustomDayNames).length);
 
 		let omittedCommonNames = fs.readFileSync('server/data/omitted-common-names.json');
 		gOmittedCommonNames = JSON.parse(omittedCommonNames);
-		console.log('loaded omitted common names', Object.keys(gOmittedCommonNames).length);
+		logger.debug('loaded omitted common names', Object.keys(gOmittedCommonNames).length);
 	};
 
 	// families = [];
@@ -259,7 +261,7 @@ class SightingList {
 				this.rowsByMonth[pieces[0]].push(sighting);
 
 			} else {
-				console.log('ERROR SIGHTING HAS NO DATE', index, JSON.stringify(sighting));
+				logger.debug('ERROR SIGHTING HAS NO DATE', index, JSON.stringify(sighting));
 				inRows.splice(index, 1);
 			}
 		}
@@ -337,9 +339,9 @@ class SightingList {
 
 	getUniqueValues(fieldName) {
 		if (this._uniqueValuesCache[fieldName]) {
-			// console.log('returning cached unique values for', fieldName);
+			// logger.debug('returning cached unique values for', fieldName);
 		} else {
-			// console.log('computing unique values for', fieldName);
+			// logger.debug('computing unique values for', fieldName);
 			var tmpValues = [];
 			for (var index = 0; index < this.rows.length; index++) {
 				var aValue = this.rows[index][fieldName];
@@ -395,7 +397,7 @@ class SightingList {
 	getTaxonomyHierarchy() {
 		var byFamily = {};
 
-		console.log(byFamily);
+		logger.debug(byFamily);
 
 		for (var index = 0; index < this.rows.length; index++) {
 			var aSighting = this.rows[index];
@@ -405,7 +407,7 @@ class SightingList {
 				var aFamily = SightingList.getFamily(taxoID);
 
 				if (aFamily == null) {
-					console.log(taxoID, commonName);
+					logger.debug(taxoID, commonName);
 					continue;
 				}
 
@@ -417,7 +419,7 @@ class SightingList {
 					byFamily[aFamily].push(commonName);
 				}
 			} else {
-				console.log('no scientific name', aSighting);
+				logger.debug('no scientific name', aSighting);
 			}
 		}
 
@@ -442,7 +444,7 @@ class SightingList {
 	};
 
 	getSpeciesByDate() {
-		console.log('computing speciesByDate');
+		logger.debug('computing speciesByDate');
 		
 		for (var index = 0; index < this.rows.length; index++) {
 			var sighting = this.rows[index];
@@ -474,7 +476,7 @@ class SightingList {
 					this._earliestRowByCommonName[sighting['Common Name']] = sighting;
 				}	
 			} else {
-				// console.log('omit', sighting['Common Name']);
+				// logger.debug('omit', sighting['Common Name']);
 			}
 		};
 

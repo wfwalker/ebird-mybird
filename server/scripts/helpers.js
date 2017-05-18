@@ -3,7 +3,9 @@ var moment = require('moment');
 var { URL, URLSearchParams } = require('url');
 var iso3166 = require('iso-3166-2');
 
-function registerHelpers(logger) {
+require('./logger.js');
+
+function registerHelpers() {
 	Handlebars.registerHelper('nicedate', function(inDate) {
 		if (inDate) {
 			return new Handlebars.SafeString (
