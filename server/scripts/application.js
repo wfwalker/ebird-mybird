@@ -49,6 +49,33 @@ class Application {
 		};
 	}
 
+	dataForStateTemplate(req) {
+		let tmp = this.allSightings.filter(function(s) {
+			return s['State/Province'] == req.params.state_name;
+		});
+		tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+
+		let stateSightingList = new SightingList(tmp);
+		// TODO: can't compute photos before creating list
+		let stateLocations = stateSightingList.getUniqueValues('Location');
+		stateSightingList.photos = this.allPhotos.filter(function(p) { return stateLocations.indexOf(p.Location) >= 0; });
+
+		console.log('/state/', req.params.state_name, stateSightingList.length());
+
+		return {
+			name: req.params.state_name,
+			showDates: stateSightingList.getUniqueValues('Date').length < 30,
+			sightingsByMonth: stateSightingList.byMonth(),
+			photos: stateSightingList.getLatestPhotos(20),
+			State: stateSightingList.rows[0]['State/Province'],
+			Country: stateSightingList.rows[0]['Country'],
+			sightingList: stateSightingList,
+			taxons: stateSightingList.commonNames,
+			customDayNames: SightingList.getCustomDayNames(),
+			hierarchy: stateSightingList.getLocationHierarchy(),
+		}
+	}
+
 	dataForPhotosTemplate() {
 		let currentWeekOfYear = new Date().getWeek();
 		let photosThisWeek = this.allPhotos.filter(function(p) { return p.DateObject.getWeek() == currentWeekOfYear; });
@@ -85,7 +112,7 @@ class Application {
 		for (let index = 0; index < photoCommonNamesByFamily.length; index++) {
 			let aPhoto = photoCommonNamesByFamily[index];
 			if (aPhoto.family == null) {
-				logger.error('photo.family == null', aPhoto);
+				console.log('photo.family == null', aPhoto);
 				continue;
 			}
 
