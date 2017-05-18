@@ -92,7 +92,7 @@ app.get('/bigdays', function(req, resp, next) {
 app.get('/family/:family_name', function(req, resp, next) {
 	let tmp = gSightingList.filter(function(s) { return SightingList.getFamily(s['Taxonomic Order']) == req.params.family_name; });
 	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-	let photos = gPhotos.filter(function(p) { return SightingList.getFamily(privateGetTaxoFromCommonName(p['Common Name'])) == req.params.family_name; });
+	let photos = gPhotos.filter(function(p) { return SightingList.getFamily(SightingList.getTaxoFromCommonName(p['Common Name'])) == req.params.family_name; });
 
 	let familySightingList = new SightingList(tmp, photos);
 
@@ -230,34 +230,12 @@ app.get('/trip/:trip_date', function(req, resp, next) {
 // TODO: need location hierarchy
 
 app.get('/place/:state_name', function(req, resp, next) {
-	let tmp = gSightingList.filter(function(s) {
-		return s['State/Province'] == req.params.state_name;
-	});
-	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
-
-	let stateSightingList = new SightingList(tmp);
-	// TODO: can't compute photos before creating list
-	let stateLocations = stateSightingList.getUniqueValues('Location');
-	stateSightingList.photos = gPhotos.filter(function(p) { return stateLocations.indexOf(p.Location) >= 0; });
-
-	logger.debug('/state/', req.params.state_name, stateSightingList.length());
-
-	resp.send(gTemplates.state({
-
-			name: req.params.state_name,
-			showDates: stateSightingList.getUniqueValues('Date').length < 30,
-			sightingsByMonth: stateSightingList.byMonth(),
-			photos: stateSightingList.getLatestPhotos(20),
-			State: stateSightingList.rows[0]['State/Province'],
-			Country: stateSightingList.rows[0]['Country'],
-			sightingList: stateSightingList,
-			taxons: stateSightingList.commonNames,
-			customDayNames: SightingList.getCustomDayNames(),
-			hierarchy: stateSightingList.getLocationHierarchy(),
-	}));
+	logger.debug('/state/', req.params.state_name);
+	resp.send(gTemplates.state(gApplication.dataForStateTemplate(req)));
 });
 
 app.get('/place/:state_name/:county_name', function(req, resp, next) {
+
 	if (req.params.county_name == 'none') {
 		req.params.county_name = '';
 	}
@@ -291,5 +269,6 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 });
 
 app.get('/place/:state_name/:county_name/:location_name', function(req, resp, next) {
+	logger.debug('LOCATION', req.params);
 	resp.send(gTemplates.location(gApplication.dataForLocationTemplate(req)));
 });
