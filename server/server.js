@@ -1,18 +1,13 @@
 // server.js
 
-var gPhotos = [];
-
-var express = require('express');
-var compression = require('compression');
-var expires = require('expires-middleware');
-var Handlebars = require('handlebars');
-var babyParse = require('babyparse');
-var SightingList = require('../server/scripts/sightinglist.js');
-var fs = require('fs');
-var request = require('request');
-var registerHelpers = require('../server/scripts/helpers.js');
-var createTemplates = require('../server/scripts/templates.js');
-var Application = require('../server/scripts/application.js');
+var express = require('express')
+var compression = require('compression')
+var expires = require('expires-middleware')
+var SightingList = require('../server/scripts/sightinglist.js')
+var request = require('request')
+var registerHelpers = require('../server/scripts/helpers.js')
+var createTemplates = require('../server/scripts/templates.js')
+var Application = require('../server/scripts/application.js')
 
 require('../server/scripts/logger.js');
 
@@ -25,7 +20,7 @@ SightingList.loadEBirdTaxonomy();
 
 registerHelpers();
 
-gTemplates = createTemplates();
+var gTemplates = createTemplates();
 
 var myPort = process.env.PORT || 8091;
 var mHost = process.env.VCAP_APP_HOST || "127.0.0.1";
@@ -235,17 +230,16 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 	let tmp = gSightingList.filter(function(s) {
 		return (s['State/Province'] == req.params.state_name) && (s['County'] == req.params.county_name);
 	});
-	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; });
+	tmp.sort(function(a, b) { return a['Taxonomic Order'] - b['Taxonomic Order']; })
 
-	let countySightingList = new SightingList(tmp);
+	let countySightingList = new SightingList(tmp)
 	// TODO: can't compute photos before creating list
-	let countyLocations = countySightingList.getUniqueValues('Location');
-	countySightingList.photos = gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; });
+	let countyLocations = countySightingList.getUniqueValues('Location')
+	countySightingList.photos = gPhotos.filter(function(p) { return countyLocations.indexOf(p.Location) >= 0; })
 
-	logger.debug('/county/', req.params.county_name, countySightingList.length());
+	logger.debug('/county/', req.params.county_name, countySightingList.length())
 
 	resp.send(gTemplates.county({
-
 			name: req.params.county_name,
 			showDates: countySightingList.getUniqueValues('Date').length < 30,
 			sightingsByMonth: countySightingList.byMonth(),
@@ -255,12 +249,11 @@ app.get('/place/:state_name/:county_name', function(req, resp, next) {
 			Country: countySightingList.rows[0]['Country'],
 			sightingList: countySightingList,
 			taxons: countySightingList.commonNames,
-			customDayNames: SightingList.getCustomDayNames(),
-
-	}));
-});
+			customDayNames: SightingList.getCustomDayNames()
+	}))
+})
 
 app.get('/place/:state_name/:county_name/:location_name', function(req, resp, next) {
-	logger.debug('LOCATION', req.params);
-	resp.send(gTemplates.location(gApplication.dataForLocationTemplate(req)));
-});
+	logger.debug ('LOCATION', req.params)
+	resp.send(gTemplates.location(gApplication.dataForLocationTemplate(req)))
+})
