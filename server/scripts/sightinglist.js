@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
-var iso3166 = require('iso-3166-2');
-var fs = require('fs');
-var babyParse = require('babyparse');
-var lunr = require('lunr');
+var iso3166 = require('iso-3166-2')
+var fs = require('fs')
+var babyParse = require('babyparse')
+var lunr = require('lunr')
 
-require('./logger.js');
+require('./logger.js')
 
 // Submission ID, S7755084
 // Common Name, Black-bellied Whistling-Duck
@@ -29,480 +29,475 @@ require('./logger.js');
 // Species Comments,
 // Checklist Comments
 
-var gCustomDayNames = {};
-var gOmittedCommonNames = [];
-var gFamilies = [];
-var gEBirdAll = [];
+var gCustomDayNames = {}
+var gOmittedCommonNames = []
+var gFamilies = []
+var gEBirdAll = []
 
-const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2016.csv';
+const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2016.csv'
 
-function convertDate(inDate) {
-	var tmp = new Date(inDate);
-	tmp.setTime( tmp.getTime() + tmp.getTimezoneOffset()*60*1000 );
-	return tmp;
+function convertDate (inDate) {
+  var tmp = new Date(inDate)
+  tmp.setTime(tmp.getTime() + tmp.getTimezoneOffset() * 60 * 1000)
+  return tmp
 }
 
 class SightingList {
-	constructor(inRows, inPhotos) {
-		this.rows = [];
-		this._uniqueValuesCache = {};
-		this.rowsByYear = {};
-		this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] };
-		this._speciesByDate = {};
-		this._earliestRowByCommonName = null;
-		this.earliestDateObject = null;
-		this.latestDateObject = null;
-		this.dates = [];
-		this.dateObjects = [];
-		this.dayNames = [];
-		this.photos = inPhotos;
-
-		if (inRows) {
-			if (inRows instanceof Array) {
-				this.addRows(inRows);
-			} else {
-				throw new Error('not an array');
-			}
-		}
-	}
-
-	static newFromCSV(inFilename) {
-		let ebird = babyParse.parseFiles(inFilename, {
-			header: true,
-		});
-
-		logger.debug('parsed', inFilename, ebird.data.length);
-
-		let newSightingList = new SightingList();
-		newSightingList.addRows(ebird.data);
-		newSightingList.setGlobalIDs();
-
-		return newSightingList;
-	};
-
-	static newPhotosFromJSON(inFilename) {
-		let data = fs.readFileSync(inFilename, 'utf8')
-		let tmpPhotos = JSON.parse(data);
-
-		for (let index = 0; index < tmpPhotos.length; index++)
-		{
-			let photo = tmpPhotos[index];
-
-			photo.id = index;
-
-			// Parse the date
-			let pieces = photo['Date'].split('-');
-
-			// order the pieces in a sensible way
-			let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
-
-			// create and save the new dat
-			let newDate = new Date(fixedDateString);
-			photo['DateObject'] = newDate;
-		}
-
-		logger.debug('parsed photos', tmpPhotos.length);
-		return tmpPhotos;
-	}
-
-
-	static loadEBirdTaxonomy() {
-		const fileBytes = fs.readFileSync(eBirdAllFilename, 'utf8');
-
-		let familyRanges = {};
-
-		gEBirdAll = babyParse.parse(fileBytes, {
-			header: true,
-		});
-
-		logger.debug('parsed ebird all', gEBirdAll.data.length);
-
-		for (let index = 0; index < gEBirdAll.data.length; index++) {
-			let aValue = gEBirdAll.data[index];
-			let aFamily = familyRanges[aValue['FAMILY']];
-			let taxoValue = parseFloat(aValue['TAXON_ORDER']);
-
-			if (aValue['FAMILY'] == '') {
-				continue;
-			}
-
-			if (aFamily != null) {
-				familyRanges[aValue['FAMILY']][0] = Math.min(taxoValue, aFamily[0]);
-				familyRanges[aValue['FAMILY']][1] = Math.max(taxoValue, aFamily[1]);
-			} else {
-				familyRanges[aValue['FAMILY']] = [taxoValue, taxoValue];
-			}
-		}
-
-		let familyKeys = Object.keys(familyRanges);
-		let familyTriples = [];
-
-		for (let index = 0; index < familyKeys.length; index++) {
-			let aKey = familyKeys[index];
-			let triple = [aKey, familyRanges[aKey][0], familyRanges[aKey][1]];
-			familyTriples.push(triple);
-		}
-
-		gFamilies = familyTriples;
-	}
-
-	// TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
-	static getTaxoFromCommonName(inCommonName) {
-		for (let index = 0; index < gEBirdAll.data.length; index++) {
-			if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] == inCommonName) {
-				return parseFloat(gEBirdAll.data[index]['TAXON_ORDER']);
-			}
-		}
-
-		return 'Unknown';
-	}
-
-	createIndex() {
-		let lunrIndex = lunr(function () {
-		    this.field('location');
-		    this.field('common');
-		    this.field('county');
-		    this.field('trip');
-		    this.field('scientific');
-		    this.ref('id');
-		});
-
-		for (let index = 0; index < this.rows.length; index++) {
-			let aValue = this.rows[index];
-
-			lunrIndex.add({
-				location: aValue['Location'],
-				county: aValue['County'],
-				common: aValue['Common Name'],
-				trip: gCustomDayNames[aValue['Date']],
-				scientific: aValue['Scientific Name'],
-				id: index,
-			});
-		}
-
-		return lunrIndex;
-	};
-
-	static getCustomDayNames() {
-		return gCustomDayNames;
-	}
-
-	static getOmittedCommonNames() {
-		return gOmittedCommonNames;
-	}
-
-	static getFamilies() {
-		return gFamilies;
-	}
-
-	static loadDayNamesAndOmittedNames() {
-		let dayNames = fs.readFileSync('server/data/day-names.json');
-		gCustomDayNames = JSON.parse(dayNames);
-		logger.debug('loaded custom day names', Object.keys(gCustomDayNames).length);
-
-		let omittedCommonNames = fs.readFileSync('server/data/omitted-common-names.json');
-		gOmittedCommonNames = JSON.parse(omittedCommonNames);
-		logger.debug('loaded omitted common names', Object.keys(gOmittedCommonNames).length);
-	};
-
-	// families = [];
-
-	setGlobalIDs() {
-		for (var index = 0; index < this.rows.length; index++) {
-			var sighting = this.rows[index];
-			sighting.id = index;
-		}
-	};
-
-	addRows(inRows) {
-		for (var index = 0; index < inRows.length; index++) {
-			var sighting = inRows[index];
-
-			if (sighting['Date']) {
-				// Parse the date
-				var pieces = sighting['Date'].split('-');
-
-				// order the pieces in a sensible way
-				var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('');
-
-				// create and save the new dat
-				var newDate = convertDate(fixedDateString);
-				sighting['DateObject'] = newDate;
-
-				if (sighting['State/Province']) {
-					let isoData = iso3166.subdivision(sighting['State/Province']);
-					if (isoData) {
-						sighting['Country'] = isoData['countryName'];
-					}
-				}
-
-				if (this.dates.indexOf(sighting['Date']) < 0) {
-					this.dates.push(sighting['Date']);
-					this.dateObjects.push(newDate);
-					this.dayNames.push(gCustomDayNames[sighting['Date']]);
-				}
-
-				if (this.earliestDateObject == null || newDate < this.earliestDateObject) {
-					this.earliestDateObject = newDate;
-				}
-
-				if (this.latestDateObject == null || newDate > this.latestDateObject) {
-					this.latestDateObject = newDate;
-				}
-
-				if (! this.rowsByYear[pieces[2]]) {
-					this.rowsByYear[pieces[2]] = [];
-				}
-				this.rowsByYear[pieces[2]].push(sighting);
-
-				if (! this.rowsByMonth[pieces[0]]) {
-					this.rowsByMonth[pieces[0]] = [];
-				}
-				this.rowsByMonth[pieces[0]].push(sighting);
-
-			} else {
-				logger.debug('ERROR SIGHTING HAS NO DATE', index, JSON.stringify(sighting));
-				inRows.splice(index, 1);
-			}
-		}
-
-		this.rows = this.rows.concat(inRows);
-
-		this.dateObjects.sort(function(a, b) { return b - a; });
-	};
-
-	sortByDate() {
-		// TODO: this is probably unnecessary sort!
-		this.rows.sort(function(a, b) { return a['DateObject'] - b['DateObject']; });           
-	};
-
-	sortByLocation() {
-		this.rows.sort(function(a, b) {
-			if (a['State/Province'] < b['State/Province']) {
-				return -1;
-			} else if (a['State/Province'] > b['State/Province']) {
-				return 1;
-			} else {
-				if (a['County'] < b['County']) {
-					return -1;
-				} else if (a['County'] > b['County']) {
-					return 1;
-				} else {
-					if (a['Location'] < b['Location']) {
-						return -1;
-					} else if (a['Location'] > b['Location']) {
-						return 1;
-					} else {
-						return 0;
-					}
-				}
-			}
-		});
-	};
-
-	earliestDateObject() {
-		return this.earliestDateObject;
-	};
-
-	latestDateObject() {
-		return this.latestDateObject;
-	};
-
-	filter(filterFunc) {
-		return this.rows.filter(filterFunc);
-	};
-
-	length() {
-		return this.rows.length;
-	};
-
-	byYear() {
-		return this.rowsByYear;
-	};
-
-	byMonth() {
-		return [
-			this.rowsByMonth['01'],
-			this.rowsByMonth['02'],
-			this.rowsByMonth['03'],
-			this.rowsByMonth['04'],
-			this.rowsByMonth['05'],
-			this.rowsByMonth['06'],
-			this.rowsByMonth['07'],
-			this.rowsByMonth['08'],
-			this.rowsByMonth['09'],
-			this.rowsByMonth['10'],
-			this.rowsByMonth['11'],
-			this.rowsByMonth['12'],
-		];
-	};
-
-	getUniqueValues(fieldName) {
-		if (this._uniqueValuesCache[fieldName]) {
-			// logger.debug('returning cached unique values for', fieldName);
-		} else {
-			// logger.debug('computing unique values for', fieldName);
-			var tmpValues = [];
-			for (var index = 0; index < this.rows.length; index++) {
-				var aValue = this.rows[index][fieldName];
-				if (tmpValues.indexOf(aValue) < 0) {
-					tmpValues.push(aValue);
-				}
-			}
-			this._uniqueValuesCache[fieldName] = tmpValues;
-		}
-
-		return this._uniqueValuesCache[fieldName];
-	};
-
-	getLocationHierarchy() {
-		this.sortByLocation();
-
-		var provinces = {};
-
-		for (var index = 0; index < this.rows.length; index++) {
-			var aSighting = this.rows[index];
-
-			var province = aSighting['State/Province'];
-			var county = aSighting['County'];
-			var location = aSighting['Location'];
-
-			if (! provinces[province]) {
-				provinces[province] = {};
-			}
-
-			if (! provinces[province][county]) {
-				provinces[province][county] = [];
-			}
-
-			if (provinces[province][county].indexOf(location) < 0) {
-				provinces[province][county].push(location);
-			}
-		}
-
-		return provinces;
-	};
-
-	static getFamily(inTaxonomicOrderID) {
-		for (var index = 0; index < gFamilies.length; index++) {
-			var tmp = gFamilies[index];
-			if ((tmp[1] <= inTaxonomicOrderID) && (inTaxonomicOrderID <= tmp[2])) {
-				return tmp[0];
-			}
-		}
-
-		return null;
-	};
-
-	getTaxonomyHierarchy() {
-		var byFamily = {};
-
-		logger.debug(byFamily);
-
-		for (var index = 0; index < this.rows.length; index++) {
-			var aSighting = this.rows[index];
-			var commonName = aSighting['Common Name'];
-			if (aSighting['Taxonomic Order']) {
-				var taxoID = parseFloat(aSighting['Taxonomic Order']);
-				var aFamily = SightingList.getFamily(taxoID);
-
-				if (aFamily == null) {
-					logger.debug(taxoID, commonName);
-					continue;
-				}
-
-				if (! byFamily[aFamily]) {
-					byFamily[aFamily] = [];
-				}
-
-				if (byFamily[aFamily].indexOf(commonName) < 0) {
-					byFamily[aFamily].push(commonName);
-				}
-			} else {
-				logger.debug('no scientific name', aSighting);
-			}
-		}
-
-		return byFamily;
-	};
-
-	// TODO: map also Protocol, Duration (Min), Time for Location
-
-	mapSubmissionIDToSighting() {
-		var tmpMap = {};
-
-		for (var index = 0; index < this.rows.length; index++) {
-			var sighting = this.rows[index];
-			var submissionID = sighting['Submission ID'];
-
-			if (! tmpMap[submissionID]) {
-				tmpMap[submissionID] = sighting;
-			}
-		}
-
-		return tmpMap;
-	};
-
-	getSpeciesByDate() {
-		logger.debug('computing speciesByDate');
-		
-		for (var index = 0; index < this.rows.length; index++) {
-			var sighting = this.rows[index];
-
-			if (! this._speciesByDate[sighting['Date']]) {
-				this._speciesByDate[sighting['Date']] = {
-					commonNames: [],
-					dateObject: sighting['DateObject'],
-				};
-			}
-			if (this._speciesByDate[sighting['Date']].commonNames.indexOf(sighting['Common Name']) < 0) {
-				this._speciesByDate[sighting['Date']].commonNames.push(sighting['Common Name']);
-			}
-		};
-
-		return this._speciesByDate;
-	};
-
-	getEarliestByCommonName() {
-		this._earliestRowByCommonName = {};
-
-		for (var index = 0; index < this.rows.length; index++) {
-			var sighting = this.rows[index];
-
-			if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
-				if (! this._earliestRowByCommonName[sighting['Common Name']]) {
-					this._earliestRowByCommonName[sighting['Common Name']] = sighting;
-				} else if (sighting.DateObject < this._earliestRowByCommonName[sighting['Common Name']].DateObject) {
-					this._earliestRowByCommonName[sighting['Common Name']] = sighting;
-				}	
-			} else {
-				// logger.debug('omit', sighting['Common Name']);
-			}
-		};
-
-		return this._earliestRowByCommonName;
-	};
-
-	// Return as many as possible recent photos from the list, up to the supplied limit
-	getLatestPhotos(inPhotoCount) {
-		if (this.photos.length <= inPhotoCount) {
-			// if the limit exceeds the available photos, return all of them.
-			return this.photos;
-		} else {
-			// sort the photos into date order and return up to the supplied limit
-			// NOTE: assumes you have read the photos and added DatObject field to them.
-			// see server.js code for reading photos.json
-			this.photos.sort(function(a, b) {
-				return a.DateObject < b.DateObject;
-			});
-
-			return this.photos.slice(0, inPhotoCount);
-		}
-	};
-
-
-};
-
-if (typeof module != 'undefined') {
-	module.exports = SightingList;
+  constructor (inRows, inPhotos) {
+    this.rows = []
+    this._uniqueValuesCache = {}
+    this.rowsByYear = {}
+    this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] }
+    this._speciesByDate = {}
+    this._earliestRowByCommonName = null
+    this.earliestDateObject = null
+    this.latestDateObject = null
+    this.dates = []
+    this.dateObjects = []
+    this.dayNames = []
+    this.photos = inPhotos
+
+    if (inRows) {
+      if (inRows instanceof Array) {
+        this.addRows(inRows)
+      } else {
+        throw new Error('not an array')
+      }
+    }
+  }
+
+  static newFromCSV (inFilename) {
+    let ebird = babyParse.parseFiles(inFilename, {
+      header: true
+    })
+
+    logger.debug('parsed', inFilename, ebird.data.length)
+
+    let newSightingList = new SightingList()
+    newSightingList.addRows(ebird.data)
+    newSightingList.setGlobalIDs()
+
+    return newSightingList
+  }
+
+  static newPhotosFromJSON (inFilename) {
+    let data = fs.readFileSync(inFilename, 'utf8')
+    let tmpPhotos = JSON.parse(data)
+
+    for (let index = 0; index < tmpPhotos.length; index++) {
+      let photo = tmpPhotos[index]
+
+      photo.id = index
+
+      // Parse the date
+      let pieces = photo['Date'].split('-')
+
+      // order the pieces in a sensible way
+      let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('')
+
+      // create and save the new dat
+      let newDate = new Date(fixedDateString)
+      photo['DateObject'] = newDate
+    }
+
+    logger.debug('parsed photos', tmpPhotos.length)
+    return tmpPhotos
+  }
+
+  static loadEBirdTaxonomy () {
+    const fileBytes = fs.readFileSync(eBirdAllFilename, 'utf8')
+
+    let familyRanges = {}
+
+    gEBirdAll = babyParse.parse(fileBytes, {
+      header: true
+    })
+
+    logger.debug('parsed ebird all', gEBirdAll.data.length)
+
+    for (let index = 0; index < gEBirdAll.data.length; index++) {
+      let aValue = gEBirdAll.data[index]
+      let aFamily = familyRanges[aValue['FAMILY']]
+      let taxoValue = parseFloat(aValue['TAXON_ORDER'])
+
+      if (aValue['FAMILY'] === '') {
+        continue
+      }
+
+      if (aFamily != null) {
+        familyRanges[aValue['FAMILY']][0] = Math.min(taxoValue, aFamily[0])
+        familyRanges[aValue['FAMILY']][1] = Math.max(taxoValue, aFamily[1])
+      } else {
+        familyRanges[aValue['FAMILY']] = [taxoValue, taxoValue]
+      }
+    }
+
+    let familyKeys = Object.keys(familyRanges)
+    let familyTriples = []
+
+    for (let index = 0; index < familyKeys.length; index++) {
+      let aKey = familyKeys[index]
+      let triple = [aKey, familyRanges[aKey][0], familyRanges[aKey][1]]
+      familyTriples.push(triple)
+    }
+
+    gFamilies = familyTriples
+  }
+
+  // TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
+  static getTaxoFromCommonName (inCommonName) {
+    for (let index = 0; index < gEBirdAll.data.length; index++) {
+      if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] === inCommonName) {
+        return parseFloat(gEBirdAll.data[index]['TAXON_ORDER'])
+      }
+    }
+
+    return 'Unknown'
+  }
+
+  createIndex () {
+    let lunrIndex = lunr(function () {
+      this.field('location')
+      this.field('common')
+      this.field('county')
+      this.field('trip')
+      this.field('scientific')
+      this.ref('id')
+    })
+
+    for (let index = 0; index < this.rows.length; index++) {
+      let aValue = this.rows[index]
+
+      lunrIndex.add({
+        location: aValue['Location'],
+        county: aValue['County'],
+        common: aValue['Common Name'],
+        trip: gCustomDayNames[aValue['Date']],
+        scientific: aValue['Scientific Name'],
+        id: index
+      })
+    }
+
+    return lunrIndex
+  }
+
+  static getCustomDayNames () {
+    return gCustomDayNames
+  }
+
+  static getOmittedCommonNames () {
+    return gOmittedCommonNames
+  }
+
+  static getFamilies () {
+    return gFamilies
+  }
+
+  static loadDayNamesAndOmittedNames () {
+    let dayNames = fs.readFileSync('server/data/day-names.json')
+    gCustomDayNames = JSON.parse(dayNames)
+    logger.debug('loaded custom day names', Object.keys(gCustomDayNames).length)
+
+    let omittedCommonNames = fs.readFileSync('server/data/omitted-common-names.json')
+    gOmittedCommonNames = JSON.parse(omittedCommonNames)
+    logger.debug('loaded omitted common names', Object.keys(gOmittedCommonNames).length)
+  }
+
+  // families = []
+
+  setGlobalIDs () {
+    for (var index = 0; index < this.rows.length; index++) {
+      var sighting = this.rows[index]
+      sighting.id = index
+    }
+  }
+
+  addRows (inRows) {
+    for (var index = 0; index < inRows.length; index++) {
+      var sighting = inRows[index]
+
+      if (sighting['Date']) {
+        // Parse the date
+        var pieces = sighting['Date'].split('-')
+
+        // order the pieces in a sensible way
+        var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('')
+
+        // create and save the new dat
+        var newDate = convertDate(fixedDateString)
+        sighting['DateObject'] = newDate
+
+        if (sighting['State/Province']) {
+          let isoData = iso3166.subdivision(sighting['State/Province'])
+          if (isoData) {
+            sighting['Country'] = isoData['countryName']
+          }
+        }
+
+        if (this.dates.indexOf(sighting['Date']) < 0) {
+          this.dates.push(sighting['Date'])
+          this.dateObjects.push(newDate)
+          this.dayNames.push(gCustomDayNames[sighting['Date']])
+        }
+
+        if (this.earliestDateObject == null || newDate < this.earliestDateObject) {
+          this.earliestDateObject = newDate
+        }
+
+        if (this.latestDateObject == null || newDate > this.latestDateObject) {
+          this.latestDateObject = newDate
+        }
+
+        if (!this.rowsByYear[pieces[2]]) {
+          this.rowsByYear[pieces[2]] = []
+        }
+        this.rowsByYear[pieces[2]].push(sighting)
+
+        if (!this.rowsByMonth[pieces[0]]) {
+          this.rowsByMonth[pieces[0]] = []
+        }
+        this.rowsByMonth[pieces[0]].push(sighting)
+      } else {
+        logger.debug('ERROR SIGHTING HAS NO DATE', index, JSON.stringify(sighting))
+        inRows.splice(index, 1)
+      }
+    }
+
+    this.rows = this.rows.concat(inRows)
+
+    this.dateObjects.sort(function (a, b) { return b - a })
+  }
+
+  sortByDate () {
+    // TODO: this is probably unnecessary sort!
+    this.rows.sort(function (a, b) { return a['DateObject'] - b['DateObject'] })
+  }
+
+  sortByLocation () {
+    this.rows.sort(function (a, b) {
+      if (a['State/Province'] < b['State/Province']) {
+        return -1
+      } else if (a['State/Province'] > b['State/Province']) {
+        return 1
+      } else {
+        if (a['County'] < b['County']) {
+          return -1
+        } else if (a['County'] > b['County']) {
+          return 1
+        } else {
+          if (a['Location'] < b['Location']) {
+            return -1
+          } else if (a['Location'] > b['Location']) {
+            return 1
+          } else {
+            return 0
+          }
+        }
+      }
+    })
+  }
+
+  earliestDateObject () {
+    return this.earliestDateObject
+  }
+
+  latestDateObject () {
+    return this.latestDateObject
+  }
+
+  filter (filterFunc) {
+    return this.rows.filter(filterFunc)
+  }
+
+  length () {
+    return this.rows.length
+  }
+
+  byYear () {
+    return this.rowsByYear
+  }
+
+  byMonth () {
+    return [
+      this.rowsByMonth['01'],
+      this.rowsByMonth['02'],
+      this.rowsByMonth['03'],
+      this.rowsByMonth['04'],
+      this.rowsByMonth['05'],
+      this.rowsByMonth['06'],
+      this.rowsByMonth['07'],
+      this.rowsByMonth['08'],
+      this.rowsByMonth['09'],
+      this.rowsByMonth['10'],
+      this.rowsByMonth['11'],
+      this.rowsByMonth['12']
+    ]
+  }
+
+  getUniqueValues (fieldName) {
+    if (this._uniqueValuesCache[fieldName]) {
+      // logger.debug('returning cached unique values for', fieldName)
+    } else {
+      // logger.debug('computing unique values for', fieldName)
+      var tmpValues = []
+      for (var index = 0; index < this.rows.length; index++) {
+        var aValue = this.rows[index][fieldName]
+        if (tmpValues.indexOf(aValue) < 0) {
+          tmpValues.push(aValue)
+        }
+      }
+      this._uniqueValuesCache[fieldName] = tmpValues
+    }
+
+    return this._uniqueValuesCache[fieldName]
+  }
+
+  getLocationHierarchy () {
+    this.sortByLocation()
+
+    var provinces = {}
+
+    for (var index = 0; index < this.rows.length; index++) {
+      var aSighting = this.rows[index]
+
+      var province = aSighting['State/Province']
+      var county = aSighting['County']
+      var location = aSighting['Location']
+
+      if (!provinces[province]) {
+        provinces[province] = {}
+      }
+
+      if (!provinces[province][county]) {
+        provinces[province][county] = []
+      }
+
+      if (provinces[province][county].indexOf(location) < 0) {
+        provinces[province][county].push(location)
+      }
+    }
+
+    return provinces
+  }
+
+  static getFamily (inTaxonomicOrderID) {
+    for (var index = 0; index < gFamilies.length; index++) {
+      var tmp = gFamilies[index]
+      if ((tmp[1] <= inTaxonomicOrderID) && (inTaxonomicOrderID <= tmp[2])) {
+        return tmp[0]
+      }
+    }
+
+    return null
+  }
+
+  getTaxonomyHierarchy () {
+    var byFamily = {}
+
+    logger.debug(byFamily)
+
+    for (var index = 0; index < this.rows.length; index++) {
+      var aSighting = this.rows[index]
+      var commonName = aSighting['Common Name']
+      if (aSighting['Taxonomic Order']) {
+        var taxoID = parseFloat(aSighting['Taxonomic Order'])
+        var aFamily = SightingList.getFamily(taxoID)
+
+        if (aFamily == null) {
+          logger.debug(taxoID, commonName)
+          continue
+        }
+
+        if (!byFamily[aFamily]) {
+          byFamily[aFamily] = []
+        }
+
+        if (byFamily[aFamily].indexOf(commonName) < 0) {
+          byFamily[aFamily].push(commonName)
+        }
+      } else {
+        logger.debug('no scientific name', aSighting)
+      }
+    }
+
+    return byFamily
+  }
+
+  // TODO: map also Protocol, Duration (Min), Time for Location
+
+  mapSubmissionIDToSighting () {
+    var tmpMap = {}
+
+    for (var index = 0; index < this.rows.length; index++) {
+      var sighting = this.rows[index]
+      var submissionID = sighting['Submission ID']
+
+      if (!tmpMap[submissionID]) {
+        tmpMap[submissionID] = sighting
+      }
+    }
+
+    return tmpMap
+  }
+
+  getSpeciesByDate () {
+    logger.debug('computing speciesByDate')
+
+    for (var index = 0; index < this.rows.length; index++) {
+      var sighting = this.rows[index]
+
+      if (!this._speciesByDate[sighting['Date']]) {
+        this._speciesByDate[sighting['Date']] = {
+          commonNames: [],
+          dateObject: sighting['DateObject']
+        }
+      }
+      if (this._speciesByDate[sighting['Date']].commonNames.indexOf(sighting['Common Name']) < 0) {
+        this._speciesByDate[sighting['Date']].commonNames.push(sighting['Common Name'])
+      }
+    }
+
+    return this._speciesByDate
+  }
+
+  getEarliestByCommonName () {
+    this._earliestRowByCommonName = {}
+
+    for (var index = 0; index < this.rows.length; index++) {
+      var sighting = this.rows[index]
+
+      if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
+        if (!this._earliestRowByCommonName[sighting['Common Name']]) {
+          this._earliestRowByCommonName[sighting['Common Name']] = sighting
+        } else if (sighting.DateObject < this._earliestRowByCommonName[sighting['Common Name']].DateObject) {
+          this._earliestRowByCommonName[sighting['Common Name']] = sighting
+        }
+      } else {
+        // logger.debug('omit', sighting['Common Name'])
+      }
+    }
+
+    return this._earliestRowByCommonName
+  }
+
+  // Return as many as possible recent photos from the list, up to the supplied limit
+  getLatestPhotos (inPhotoCount) {
+    if (this.photos.length <= inPhotoCount) {
+      // if the limit exceeds the available photos, return all of them.
+      return this.photos
+    } else {
+      // sort the photos into date order and return up to the supplied limit
+      // NOTE: assumes you have read the photos and added DatObject field to them.
+      // see server.js code for reading photos.json
+      this.photos.sort(function (a, b) {
+        return a.DateObject < b.DateObject
+      })
+
+      return this.photos.slice(0, inPhotoCount)
+    }
+  }
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = SightingList
 }
