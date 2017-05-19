@@ -110,8 +110,33 @@ describe('SightingList', function() {
 			assert.ok(templates.trips(gApplication.dataForTripsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
 		});
 
+		it ('renders locations template', function() {
+			assert.ok(templates.locations(gApplication.dataForLocationsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
 		it ('renders photos template', function() {
 			assert.ok(templates.photos(gApplication.dataForPhotosTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders bigdays template', function() {
+			assert.ok(templates.bigdays(gApplication.dataForBigdaysTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders taxons template', function() {
+			assert.ok(templates.taxons(gApplication.dataForTaxonsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders chrono template', function() {
+			assert.ok(templates.chrono(gApplication.dataForChronoTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders family template', function() {
+			const req = {
+				params: {
+					family_name: 'Apodidae (Swifts)'
+				}
+			}
+			assert.ok(templates.family(gApplication.dataForFamilyTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
 		});
 
 		it ('renders location template', function() {
@@ -123,6 +148,16 @@ describe('SightingList', function() {
 				}
 			}
 			assert.ok(templates.location(gApplication.dataForLocationTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders county template', function() {
+			const req = {
+				params: {
+					state_name: 'US-CA',
+					county_name: 'Santa Clara',
+				}
+			}
+			assert.ok(templates.county(gApplication.dataForCountyTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
 		});
 
 		it ('renders state template', function() {
