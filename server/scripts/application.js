@@ -23,6 +23,89 @@ class Application {
     }
   }
 
+  dataForLocationsTemplate () {
+    return {
+      count: this.allSightings.getUniqueValues('Location').length,
+      hierarchy: this.allSightings.getLocationHierarchy()
+    }
+  }
+
+  dataForBigdaysTemplate() {
+    let speciesByDate = this.allSightings.getSpeciesByDate()
+    let bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]] })
+    bigDays = bigDays.filter(function (x) { return x[1].commonNames.length > 100 })
+    bigDays = bigDays.map(function (x) { return { date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length } })
+    bigDays.sort(function (x, y) { return y.count - x.count })
+
+    // TODO: look up the custom day names for those days, don't just pass down the whole dang thing
+
+    return {
+      bigDays: bigDays,
+      customDayNames: SightingList.getCustomDayNames()
+    }
+  }
+
+  dataForChronoTemplate() {
+    let earliestByCommonName = this.allSightings.getEarliestByCommonName()
+    let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
+    lifeSightingsChronological.sort(function (a, b) { return b['DateObject'] - a['DateObject'] })
+
+    return {
+      firstSightings: lifeSightingsChronological
+    }
+  }
+
+  dataForTaxonsTemplate () {
+    let earliestByCommonName = this.allSightings.getEarliestByCommonName()
+    let lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
+    lifeSightingsTaxonomic.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+    let lifeSightingsList = new SightingList(lifeSightingsTaxonomic)
+
+    return {
+      lifeSightingsCount: lifeSightingsList.length(),
+      hierarchy: lifeSightingsList.getTaxonomyHierarchy()
+    }
+  }
+
+  dataForTaxonTemplate (req) {
+    let tmp = this.allSightings.filter(function (s) { return s['Common Name'] === req.params.common_name })
+    let photos = this.allPhotos.filter(function (p) { return p['Common Name'] === req.params.common_name })
+
+    let taxonSightingList = new SightingList(tmp, photos)
+    taxonSightingList.sortByDate()
+
+    return {
+      name: req.params.common_name,
+      showDates: taxonSightingList.length() < 30,
+      scientificName: taxonSightingList.rows[0]['Scientific Name'],
+      sightingsByMonth: taxonSightingList.byMonth(),
+      photos: taxonSightingList.photos,
+      sightingList: taxonSightingList,
+      customDayNames: SightingList.getCustomDayNames()
+    }
+  }
+
+  dataForFamilyTemplate (req) {
+    let tmp = this.allSightings.filter(function (s) { return SightingList.getFamily(s['Taxonomic Order']) === req.params.family_name })
+    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+    let photos = this.allPhotos.filter(function (p) { return SightingList.getFamily(SightingList.getTaxoFromCommonName(p['Common Name'])) === req.params.family_name })
+
+    let familySightingList = new SightingList(tmp, photos)
+
+    logger.debug('/family/', req.params.family_name, familySightingList.rows.length)
+
+    return {
+      name: req.params.family_name,
+      showDates: familySightingList.dateObjects.length < 30,
+      showLocations: familySightingList.getUniqueValues('Location').length < 30,
+      sightingsByMonth: familySightingList.byMonth(),
+      photos: familySightingList.getLatestPhotos(20),
+      sightingList: familySightingList,
+      taxons: familySightingList.commonNames,
+      customDayNames: SightingList.getCustomDayNames()
+    }
+  }
+
   dataForLocationTemplate (req) {
     if (req.params.county_name === 'none') {
       req.params.county_name = ''
@@ -46,6 +129,38 @@ class Application {
       sightingsByMonth: locationSightingList.byMonth(),
       photos: locationSightingList.getLatestPhotos(20),
       sightingList: locationSightingList,
+      customDayNames: SightingList.getCustomDayNames()
+    }
+  }
+
+  dataForCountyTemplate (req) {
+    if (req.params.county_name === 'none') {
+      req.params.county_name = ''
+    }
+
+    let tmp = this.allSightings.filter(function (s) {
+      return (s['State/Province'] === req.params.state_name) && (s['County'] === req.params.county_name)
+    })
+
+    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+
+    let countySightingList = new SightingList(tmp)
+    // TODO: can't compute photos before creating list
+    let countyLocations = countySightingList.getUniqueValues('Location')
+    countySightingList.photos = this.allPhotos.filter(function (p) { return countyLocations.indexOf(p.Location) >= 0 })
+
+    logger.debug('/county/', req.params.county_name, countySightingList.length())
+
+    return {
+      name: req.params.county_name,
+      showDates: countySightingList.getUniqueValues('Date').length < 30,
+      sightingsByMonth: countySightingList.byMonth(),
+      photos: countySightingList.getLatestPhotos(20),
+      State: countySightingList.rows[0]['State/Province'],
+      Region: countySightingList.rows[0]['Region'],
+      Country: countySightingList.rows[0]['Country'],
+      sightingList: countySightingList,
+      taxons: countySightingList.commonNames,
       customDayNames: SightingList.getCustomDayNames()
     }
   }
@@ -74,6 +189,23 @@ class Application {
       taxons: stateSightingList.commonNames,
       customDayNames: SightingList.getCustomDayNames(),
       hierarchy: stateSightingList.getLocationHierarchy()
+    }
+  }
+
+  dataForTripTemplate (req) {
+    let tmp = this.allSightings.filter(function (s) { return s['Date'] === req.params.trip_date })
+    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+    let photos = gPhotos.filter(function (p) { return p.Date === req.params.trip_date })
+
+    let tripSightingList = new SightingList(tmp, photos)
+
+    return {
+      tripDate: tripSightingList.rows[0].DateObject,
+      photos: tripSightingList.photos,
+      customName: tripSightingList.dayNames[0],
+      submissionIDToSighting: tripSightingList.mapSubmissionIDToSighting(),
+      comments: tripSightingList.getUniqueValues('Checklist Comments'),
+      sightingList: tripSightingList
     }
   }
 
