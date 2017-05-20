@@ -137,6 +137,9 @@ function registerHelpers () {
     let markers = inData.rows.map(row => row.Latitude + ',' + row.Longitude)
     let markerSet = new Set(markers)
     let markersNoDups = Array.from(markerSet)
+    if (markersNoDups.length > 100) {
+      markersNoDups = markersNoDups.slice(0, 100)
+    }
     logger.debug('markers', markers.length, 'markersNoDups', markersNoDups.length)
     mapsURL.searchParams.append('markers', markersNoDups.join('|'))
 
