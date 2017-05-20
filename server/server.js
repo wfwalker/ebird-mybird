@@ -11,11 +11,10 @@ var Application = require('../server/scripts/application.js')
 require('../server/scripts/logger.js')
 
 var gSightingList = SightingList.newFromCSV('server/data/ebird.csv')
-var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
-var gApplication = new Application(gSightingList, gPhotos)
-
 SightingList.loadDayNamesAndOmittedNames()
 SightingList.loadEBirdTaxonomy()
+var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
+var gApplication = new Application(gSightingList, gPhotos)
 
 registerHelpers()
 
@@ -121,3 +120,6 @@ app.get('/place/:state_name/:county_name/:location_name', function (req, resp, n
   logger.debug('LOCATION', req.params)
   resp.send(gTemplates.location(gApplication.dataForLocationTemplate(req)))
 })
+
+// AFTER server is running, then create index
+gApplication.createIndex()

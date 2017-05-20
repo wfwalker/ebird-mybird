@@ -156,6 +156,9 @@ class SightingList {
   }
 
   createIndex () {
+    logger.debug('start createIndex')
+    let tmpRows = this.rows
+
     let lunrIndex = lunr(function () {
       this.field('location')
       this.field('common')
@@ -163,21 +166,22 @@ class SightingList {
       this.field('trip')
       this.field('scientific')
       this.ref('id')
+
+      for (let index = 0; index < tmpRows.length; index++) {
+        let aValue = tmpRows[index]
+
+        this.add({
+          location: aValue['Location'],
+          county: aValue['County'],
+          common: aValue['Common Name'],
+          trip: gCustomDayNames[aValue['Date']],
+          scientific: aValue['Scientific Name'],
+          id: index
+        })
+      }
     })
 
-    for (let index = 0; index < this.rows.length; index++) {
-      let aValue = this.rows[index]
-
-      lunrIndex.add({
-        location: aValue['Location'],
-        county: aValue['County'],
-        common: aValue['Common Name'],
-        trip: gCustomDayNames[aValue['Date']],
-        scientific: aValue['Scientific Name'],
-        id: index
-      })
-    }
-
+    logger.debug('end createIndex')
     return lunrIndex
   }
 
