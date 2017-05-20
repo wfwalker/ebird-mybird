@@ -14,6 +14,22 @@ class Application {
   constructor (inAllSightings, inAllPhotos) {
     this.allSightings = inAllSightings
     this.allPhotos = inAllPhotos
+    this.sightingsIndex = this.allSightings.createIndex()
+  }
+
+  dataForSearchTemplate(req) {
+    logger.debug('/search', req.query)
+    let rawResults = this.sightingsIndex.search(req.query.searchtext)
+
+    let resultsAsSightings = rawResults.map((result)  => (this.allSightings.rows[result.ref]))
+
+    let searchResultsSightingList = new SightingList(resultsAsSightings)
+
+    return {
+      dates: searchResultsSightingList.dateObjects,
+      customDayNames: SightingList.getCustomDayNames(),
+      sightingList: searchResultsSightingList
+    }
   }
 
   dataForTripsTemplate () {

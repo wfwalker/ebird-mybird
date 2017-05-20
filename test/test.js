@@ -8,16 +8,8 @@ const registerHelpers = require('../server/scripts/helpers.js');
 const createTemplates = require('../server/scripts/templates.js');
 const Application = require('../server/scripts/application.js');
 
-var logger = new (winston.Logger)({
-    transports: [
-      new (winston.transports.Console)({
-		'timestamp': true,
-		'level': 'debug'
-      })
-    ]
-});
+registerHelpers();
 
-registerHelpers(logger);
 gTemplates = createTemplates();
 
 const testSightings = [
@@ -167,6 +159,35 @@ describe('SightingList', function() {
 				}
 			}
 			assert.ok(templates.state(gApplication.dataForStateTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders search template for sandpiper', function() {
+			const req = {
+				query: {
+					searchtext: 'sandpiper',
+				}
+			}
+			assert.ok(templates.searchresults(gApplication.dataForSearchTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('finds matches when searching for sandpiper', function() {
+			const req = {
+				query: {
+					searchtext: 'sandpiper',
+				}
+			}
+			let searchResults = gApplication.dataForSearchTemplate(req)
+			assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings')
+		});
+
+		it ('finds matches when searching for least', function() {
+			const req = {
+				query: {
+					searchtext: 'least',
+				}
+			}
+			let searchResults = gApplication.dataForSearchTemplate(req)
+			assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings')
 		});
 	});
 

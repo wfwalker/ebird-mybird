@@ -13,7 +13,7 @@ require('../server/scripts/logger.js')
 var gSightingList = SightingList.newFromCSV('server/data/ebird.csv')
 var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
 var gApplication = new Application(gSightingList, gPhotos)
-var gIndex = gSightingList.createIndex()
+
 SightingList.loadDayNamesAndOmittedNames()
 SightingList.loadEBirdTaxonomy()
 
@@ -81,22 +81,8 @@ app.get('/trips', function (req, resp, next) {
 })
 
 app.get('/search', function (req, resp, next) {
-  logger.debug('/search', req.query)
-  let rawResults = gIndex.search(req.query.searchtext)
-
-  let resultsAsSightings = rawResults.map(function (result) {
-    return gSightingList.rows[result.ref]
-  })
-
-  let searchResultsSightingList = new SightingList(resultsAsSightings)
-
-  logger.debug('/search/', resultsAsSightings.length, searchResultsSightingList.rows.length)
-
-  resp.send(gTemplates.searchresults({
-    dates: searchResultsSightingList.dateObjects,
-    customDayNames: SightingList.getCustomDayNames(),
-    sightingList: searchResultsSightingList
-  }))
+  logger.debug('/search/', req.param.searchtext)
+  resp.send(gTemplates.searchresults(gApplication.dataForSearchTemplate(req)))
 })
 
 app.get('/year/:year', function (req, resp, next) {
