@@ -102,6 +102,24 @@ describe('SightingList', function() {
 			assert.ok(templates.trips(gApplication.dataForTripsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
 		});
 
+		it ('renders trip template', function() {
+			const req = {
+				params: {
+					trip_date: '03-10-2017'
+				}
+			}
+			assert.ok(templates.trip(gApplication.dataForTripTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
+		it ('renders year template', function() {
+			const req = {
+				params: {
+					year: '2015'
+				}
+			}
+			assert.ok(templates.year(gApplication.dataForYearTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined');
+		});
+
 		it ('renders locations template', function() {
 			assert.ok(templates.locations(gApplication.dataForLocationsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined');
 		});

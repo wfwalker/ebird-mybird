@@ -86,18 +86,8 @@ app.get('/search', function (req, resp, next) {
 })
 
 app.get('/year/:year', function (req, resp, next) {
-  let tmp = gSightingList.byYear()[req.params.year]
-  tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
-  let photos = gPhotos.filter(function (p) { return p.Date.substring(6, 10) === req.params.year })
-  let yearSightingList = new SightingList(tmp, photos)
-
-  logger.debug('/year/', req.params.year, yearSightingList.rows.length)
-
-  resp.send(gTemplates.year({
-    year: req.params.year,
-    photos: yearSightingList.getLatestPhotos(20),
-    sightingList: yearSightingList
-  }))
+  logger.debug('/year/', req.params.year)
+  resp.send(gTemplates.year(gApplication.dataForYearTemplate(req)))
 })
 
 app.get('/sighting/:sighting_id', function (req, resp, next) {

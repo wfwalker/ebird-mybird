@@ -211,7 +211,7 @@ class Application {
   dataForTripTemplate (req) {
     let tmp = this.allSightings.filter(function (s) { return s['Date'] === req.params.trip_date })
     tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
-    let photos = gPhotos.filter(function (p) { return p.Date === req.params.trip_date })
+    let photos = this.allPhotos.filter(function (p) { return p.Date === req.params.trip_date })
 
     let tripSightingList = new SightingList(tmp, photos)
 
@@ -222,6 +222,19 @@ class Application {
       submissionIDToSighting: tripSightingList.mapSubmissionIDToSighting(),
       comments: tripSightingList.getUniqueValues('Checklist Comments'),
       sightingList: tripSightingList
+    }
+  }
+
+  dataForYearTemplate (req) {
+    let tmp = this.allSightings.byYear()[req.params.year]
+    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+    let photos = this.allPhotos.filter(function (p) { return p.Date.substring(6, 10) === req.params.year })
+    let yearSightingList = new SightingList(tmp, photos)
+
+    return {
+      year: req.params.year,
+      photos: yearSightingList.getLatestPhotos(20),
+      sightingList: yearSightingList
     }
   }
 
