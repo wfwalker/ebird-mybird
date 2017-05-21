@@ -62,7 +62,7 @@ app.get('/family/:family_name', function (req, resp, next) {
 
 app.get('/taxons', function (req, resp, next) {
   logger.debug('/taxons')
-  resp.send(gTemplates.taxons(gApplication.dataForTaxonsTemplate))
+  resp.send(gTemplates.taxons(gApplication.dataForTaxonsTemplate()))
 })
 
 app.get('/chrono', function (req, resp, next) {
