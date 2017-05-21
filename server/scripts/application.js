@@ -20,6 +20,10 @@ class Application {
     this.sightingsIndex = this.allSightings.createIndex()
   }
 
+  loadIndex (inIndexFile) {
+    this.sightingsIndex = SightingList.loadIndex(inIndexFile)
+  }
+
   dataForSearchTemplate (req) {
     logger.debug('/search', req.query)
 
@@ -30,7 +34,8 @@ class Application {
     return {
       dates: searchResultsSightingList.dateObjects,
       customDayNames: SightingList.getCustomDayNames(),
-      sightingList: searchResultsSightingList
+      sightingList: searchResultsSightingList,
+      searchtext: req.query.searchtext
     }
   }
 

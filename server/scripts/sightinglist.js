@@ -155,6 +155,11 @@ class SightingList {
     return 'Unknown'
   }
 
+  static loadIndex (inIndexFile) {
+    logger.debug('start loadIndex')
+    return lunr.Index.load(JSON.parse(fs.readFileSync(inIndexFile)))
+  }
+
   createIndex () {
     logger.debug('start createIndex')
     let tmpRows = this.rows
@@ -180,6 +185,8 @@ class SightingList {
         })
       }
     })
+
+    fs.writeFileSync('lunrIndex.json', JSON.stringify(lunrIndex, null, 4));
 
     logger.debug('end createIndex')
     return lunrIndex

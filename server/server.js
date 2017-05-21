@@ -122,4 +122,4 @@ app.get('/place/:state_name/:county_name/:location_name', function (req, resp, n
 })
 
 // AFTER server is running, then create index
-gApplication.createIndex()
+gApplication.loadIndex('server/data/lunrIndex.json')
