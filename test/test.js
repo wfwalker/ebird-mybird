@@ -83,6 +83,7 @@ describe('SightingList', function() {
 		var gSightingList = SightingList.newFromCSV('server/data/ebird.csv');
 		var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
 		let gApplication = new Application(gSightingList, gPhotos);
+		gApplication.loadIndex('server/data/lunrIndex.json')
 		registerHelpers(logger);
 		const templates = createTemplates();
 
