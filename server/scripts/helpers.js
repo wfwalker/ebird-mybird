@@ -143,7 +143,7 @@ function registerHelpers () {
     logger.debug('markers', markers.length, 'markersNoDups', markersNoDups.length)
     mapsURL.searchParams.append('markers', markersNoDups.join('|'))
 
-    return new Handlebars.SafeString('<img src="' + mapsURL.toString() + '">')
+    return new Handlebars.SafeString('<img class="img-responsive" src="' + mapsURL.toString() + '">')
   })
 
   Handlebars.registerHelper('monthgraph', function (inData, inElement) {
@@ -159,11 +159,11 @@ function registerHelpers () {
     chartURL.searchParams.append('chxr', axisRange.join(','))
     chartURL.searchParams.append('chco', '76A4FB')
     chartURL.searchParams.append('chls', '2.0')
-    chartURL.searchParams.append('chs', '360x200')
+    chartURL.searchParams.append('chs', '480x270')
 
     logger.debug(chartURL)
 
-    return new Handlebars.SafeString('<img src="' + chartURL.toString() + '">')
+    return new Handlebars.SafeString('<img class="img-responsive" src="' + chartURL.toString() + '">')
   })
 }
 
