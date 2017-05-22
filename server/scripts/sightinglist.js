@@ -186,7 +186,7 @@ class SightingList {
       }
     })
 
-    fs.writeFileSync('lunrIndex.json', JSON.stringify(lunrIndex, null, 4));
+    fs.writeFileSync('lunrIndex.json', JSON.stringify(lunrIndex, null, 4))
 
     logger.debug('end createIndex')
     return lunrIndex
