@@ -27,23 +27,18 @@
 	</div>
 </div>
 
-<h3>{{numSpecies}} species photographed</h3>
-
 <div class='row'>
-	{{#each hierarchy}}
-		{{#with (random ../photosByFamily @key)}}
+	<div class='col-md-12'>
+		<h3>{{numSpecies}} species photographed</h3>
 
-			<div class="col-xs-6 col-sm-3 col-md-2" style='height: 300px'>
-				<div class="thumbnail">
-					<a href='/family/{{@key}}'><img src="{{[Thumbnail URL]}}" width='100%' alt="{{stripLatinFromEbirdFamily @key}}"></a>
-					<div class="caption">
-						<a href='/family/{{@key}}'>{{stripLatinFromEbirdFamily @key}}</a>
-					</div>
-				</div>
-			</div>
-
-		{{/with}}
-	{{/each}}
+	    <div class="mygallery">
+			{{#each hierarchy}}
+				{{#with (random ../photosByFamily @key)}}
+				      <a href="/family/{{@key}}"><img alt="{{stripLatinFromEbirdFamily @key}}" src="{{[Thumbnail URL]}}"></a>
+				{{/with}}
+			{{/each}}
+		</div>
+	</div>
 </div>
 
 {{> foot}}

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "mocha",
-    "lint": "eslint server/server.js server/*.js"
+    "lint": "eslint server/scripts/application.js server/scripts/sightinglist.js server/server.js test/test.js"
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -19,6 +19,7 @@
     "eslint": "^3.19.0",
     "expires-middleware": "0.0.1",
     "express": "^4.13.4",
+    "google-cloud": "^0.54.0",
     "handlebars": "^4.0.8",
     "iso-3166-2": "^0.4.0",
     "jquery": "^3.1.1",
