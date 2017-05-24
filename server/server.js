@@ -3,18 +3,13 @@
 var express = require('express')
 var compression = require('compression')
 var expires = require('expires-middleware')
-var SightingList = require('../server/scripts/sightinglist.js')
 var registerHelpers = require('../server/scripts/helpers.js')
 var createTemplates = require('../server/scripts/templates.js')
 var Application = require('../server/scripts/application.js')
 
 require('../server/scripts/logger.js')
 
-var gSightingList = SightingList.newFromCSV('server/data/ebird.csv')
-SightingList.loadDayNamesAndOmittedNames()
-SightingList.loadEBirdTaxonomy()
-var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
-var gApplication = new Application(gSightingList, gPhotos)
+var gApplication = Application.withFullData()
 
 registerHelpers()
 
@@ -91,12 +86,12 @@ app.get('/year/:year', function (req, resp, next) {
 
 app.get('/sighting/:sighting_id', function (req, resp, next) {
   logger.debug('/sighting/', req.params.sighting_id)
-  resp.send(gTemplates.sighting(gSightingList.rows[req.params.sighting_id]))
+  resp.send(gTemplates.sighting(gApplication.dataForSightingTemplate(req)))
 })
 
 app.get('/photo/:photo_id', function (req, resp, next) {
   logger.debug('/photo/', req.params.photo_id)
-  resp.send(gTemplates.photo(gPhotos[req.params.photo_id]))
+  resp.send(gTemplates.photo(gApplication.dataForPhotoTemplate(req)))
 })
 
 app.get('/trip/:trip_date', function (req, resp, next) {

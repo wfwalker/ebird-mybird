@@ -1,4 +1,5 @@
 var Handlebars = require('handlebars')
+var fs = require('fs')
 var moment = require('moment')
 var { URL, URLSearchParams } = require('url')
 var iso3166 = require('iso-3166-2')
@@ -123,6 +124,8 @@ function registerHelpers () {
     {{/each}} \
     </div>'
   )
+
+  Handlebars.registerPartial('datelist', fs.readFileSync('server/templates/datelist.html', 'UTF-8'))
 
   Handlebars.registerHelper('nicenumber', function (inNumber) {
     return new Handlebars.SafeString(
