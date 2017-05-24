@@ -74,18 +74,16 @@ describe('SightingList', function () {
   })
 
   describe('with full data', function () {
-    SightingList.loadDayNamesAndOmittedNames()
-    SightingList.loadEBirdTaxonomy()
+    let gApplication = Application.withFullData()
 
-    var gSightingList = SightingList.newFromCSV('server/data/ebird.csv')
-    var gPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
-    let gApplication = new Application(gSightingList, gPhotos)
+    // AFTER server is running, then create index
     gApplication.loadIndex('server/data/lunrIndex.json')
+
     registerHelpers(logger)
     const templates = createTemplates()
 
     it('getEarliestByCommonName in chrono order', function () {
-      let earliestByCommonName = gSightingList.getEarliestByCommonName()
+      let earliestByCommonName = gApplication.allSightings.getEarliestByCommonName()
       let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
       lifeSightingsChronological.sort(function (a, b) { return b['DateObject'] - a['DateObject'] })
       assert.ok(lifeSightingsChronological[0].DateObject > lifeSightingsChronological[1].DateObject, 'first two in order')
@@ -93,7 +91,7 @@ describe('SightingList', function () {
     })
 
     it('renders sighting template', function () {
-      assert.ok(templates.sighting(gSightingList.rows[0]).indexOf('undefined') < 0, 'rendered tempate should contain no undefined')
+      assert.ok(templates.sighting(gApplication.allSightings.rows[0]).indexOf('undefined') < 0, 'rendered tempate should contain no undefined')
     })
 
     it('renders trips template', function () {
@@ -145,6 +143,24 @@ describe('SightingList', function () {
         }
       }
       assert.ok(templates.family(gApplication.dataForFamilyTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    })
+
+    it('renders sighting template', function () {
+      const req = {
+        params: {
+          sighting_id: '29'
+        }
+      }
+      assert.ok(templates.sighting(gApplication.dataForSightingTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    })
+
+    it('renders photo template', function () {
+      const req = {
+        params: {
+          photo_id: '29'
+        }
+      }
+      assert.ok(templates.photo(gApplication.dataForPhotoTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
     })
 
     it('renders location template', function () {

@@ -1,0 +1,14 @@
+<h4>{{valuecount sightingList "Date"}} Dates</h4>
+
+{{#if this.showDates}}
+	<div class="biglist">
+	{{#each sightingList.dateObjects}}
+	  <div class='biglist-item'>
+	  	<a href="/trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}
+	  </div>
+	{{/each}}
+	</div>
+{{else}}
+	<div id={{chartID}} class='bargraph'></div>
+	{{monthgraph sightingsByMonth chartID}}
+{{/if}}
