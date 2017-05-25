@@ -21,11 +21,11 @@
 <h4>{{valuecount sightingList 'Common Name'}} Species</h4>
 
 <div class="biglist">
-{{#each (values sightingList 'Common Name')}}
-  <div class='biglist-item'>
-    <a href='/taxon/{{encode this}}'>{{this}}</a>
-  </div>
-{{/each}}
+	{{#each (values sightingList 'Common Name')}}
+	  <div class='biglist-item'>
+	    <a href='/taxon/{{encode this}}'>{{this}}</a>
+	  </div>
+	{{/each}}
 </div>
 
 {{> foot}}
