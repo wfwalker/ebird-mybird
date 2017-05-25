@@ -10,25 +10,10 @@
 
 <div class='row'>
 	<div class='col-md-4'>
-
-		<h4>{{sightingList.dateObjects.length}} Dates</h4>
-
-		{{#if showDates}}
-			<div class="biglist">
-			{{#each sightingList.dateObjects}}
-			  <div class='biglist-item'>
-			    <div><a href="/trip/{{ebirddate this}}">{{nicedate this}}</a> {{lookup ../customDayNames (ebirddate this)}}</div>
-			  </div>
-			{{/each}}
-			</div>
-		{{else}}
-			<div id={{chartID}} class='bargraph'></div>
-			{{monthgraph sightingsByMonth chartID}}
-		{{/if}}
-
+		{{> datelist}}
 	</div>
-	<div class='col-md-8'>
 
+	<div class='col-md-8'>
 		<h4>{{valuecount sightingList "Location"}} Locations</h4>
 
 		<div>
