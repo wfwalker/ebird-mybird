@@ -17,7 +17,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-    <title>BirdWalker | {{title}}</title>
+    <title>
+      {{#if title}}
+        BirdWalker | {{title}}
+      {{else}}
+        BirdWalker
+      {{/if}}
+    </title>
 
     <meta name="description" content="ebird-mybird : An offline web app for browsing your personal eBird sightings">
 
