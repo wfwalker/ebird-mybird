@@ -261,12 +261,21 @@ class Application {
     }
   }
 
-  dataForPhotosTemplate () {
+  dataForPhotosThisWeekTemplate () {
     let currentWeekOfYear = new Date().getWeek()
     let photosThisWeek = this.allPhotos.filter((p) => (p.DateObject.getWeek() === currentWeekOfYear))
 
     logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length)
 
+    return {
+      photos: photosThisWeek,
+      currentWeekOfYear: currentWeekOfYear
+    }
+  }
+
+  dataForPhotosTemplate () {
+    let currentWeekOfYear = new Date().getWeek()
+    let photosThisWeek = this.allPhotos.filter((p) => (p.DateObject.getWeek() === currentWeekOfYear))
     let commonNamesByFamily = {}
     let photosByFamily = {}
     let photoCommonNamesByFamily = []

@@ -15,14 +15,13 @@
 	</div>
 
 	<div class='col-md-4'>
-		<div class='thumbnail'>
-			<img class='img-responsive' src="{{photosThisWeek.[0].[Photo URL]}}">
+		<h3><a href="/photosthisweek">Photos this Week</a></h3>
 
-			<div class='caption'>
-				<a href="/taxon/{{encode photosThisWeek.[0].[Common Name]}}">{{photosThisWeek.[0].[Common Name]}}</a>,
-				<a href="/place/{{encode photosThisWeek.[0].[State/Province]}}/{{addnone photosThisWeek.[0].[County]}}/{{encode photosThisWeek.[0].[Location]}}">{{photosThisWeek.[0].[Location]}}</a>,
-				{{photosThisWeek.[0].Date}}
-			</div>
+		<a href="/photosthisweek"><img class='img-responsive' src="{{photosThisWeek.[0].[Photo URL]}}"></a>
+
+		<div class='caption'>
+			<a href="/photosthisweek">{{photosThisWeek.[0].[Common Name]}}</a>,
+			<a href="/photosthisweek">{{photosThisWeek.[0].[Location]}}, {{photosThisWeek.[0].Date}}</a>
 		</div>
 	</div>
 </div>
