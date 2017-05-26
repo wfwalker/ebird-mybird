@@ -66,6 +66,10 @@ class SightingList {
     }
   }
 
+  static taxonomicSortComparator(a, b) {
+    return a['Taxonomic Order'] - b['Taxonomic Order']
+  }
+
   static newFromCSV (inFilename) {
     let ebird = babyParse.parseFiles(inFilename, {
       header: true
@@ -157,7 +161,9 @@ class SightingList {
 
   static loadIndex (inIndexFile) {
     logger.debug('start loadIndex')
-    return lunr.Index.load(JSON.parse(fs.readFileSync(inIndexFile)))
+    let tmp = lunr.Index.load(JSON.parse(fs.readFileSync(inIndexFile)))
+    logger.debug('done loadIndex')
+    return tmp
   }
 
   createIndex () {

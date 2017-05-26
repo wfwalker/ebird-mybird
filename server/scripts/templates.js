@@ -12,6 +12,7 @@ function createTemplates () {
     family: Handlebars.compile(fs.readFileSync('server/templates/family.html', 'UTF-8')),
     location: Handlebars.compile(fs.readFileSync('server/templates/location.html', 'UTF-8')),
     photos: Handlebars.compile(fs.readFileSync('server/templates/photos.html', 'UTF-8')),
+    photosthisweek: Handlebars.compile(fs.readFileSync('server/templates/photosthisweek.html', 'UTF-8')),
     county: Handlebars.compile(fs.readFileSync('server/templates/county.html', 'UTF-8')),
     state: Handlebars.compile(fs.readFileSync('server/templates/state.html', 'UTF-8')),
     locations: Handlebars.compile(fs.readFileSync('server/templates/locations.html', 'UTF-8')),

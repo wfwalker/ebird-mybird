@@ -10,10 +10,25 @@ Date.prototype.getWeek = function () {
   return Math.ceil((((this - dt) / 86400000) + dt.getDay() + 1) / 7)
 }
 
+
+// TODO: make helper for customDayNames, stop passing around
+// TOOD: unify page title
+// TODO: unify fixed data filenames
+// TODO: move some code out to sightingList or photoList
+
 class Application {
   constructor (inAllSightings, inAllPhotos) {
     this.allSightings = inAllSightings
     this.allPhotos = inAllPhotos
+  }
+
+  static withFullData () {
+    let fullSightingList = SightingList.newFromCSV('server/data/ebird.csv')
+    SightingList.loadDayNamesAndOmittedNames()
+    SightingList.loadEBirdTaxonomy()
+    let fullPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
+
+    return new Application(fullSightingList, fullPhotos)
   }
 
   createIndex () {
@@ -24,11 +39,19 @@ class Application {
     this.sightingsIndex = SightingList.loadIndex(inIndexFile)
   }
 
+  dataForSightingTemplate (req) {
+    return this.allSightings.rows[req.params.sighting_id]
+  }
+
+  dataForPhotoTemplate (req) {
+    return this.allPhotos[req.params.photo_id]
+  }
+
   dataForSearchTemplate (req) {
     logger.debug('/search', req.query)
 
     let rawResults = this.sightingsIndex.search(req.query.searchtext)
-    let resultsAsSightings = rawResults.map((result)  => (this.allSightings.rows[result.ref]))
+    let resultsAsSightings = rawResults.map((result) => (this.allSightings.rows[result.ref]))
     let searchResultsSightingList = new SightingList(resultsAsSightings)
 
     return {
@@ -56,9 +79,9 @@ class Application {
   dataForBigdaysTemplate () {
     let speciesByDate = this.allSightings.getSpeciesByDate()
     let bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]] })
-    bigDays = bigDays.filter(function (x) { return x[1].commonNames.length > 100 })
-    bigDays = bigDays.map(function (x) { return { date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length } })
-    bigDays.sort(function (x, y) { return y.count - x.count })
+    bigDays = bigDays.filter((x) => (x[1].commonNames.length > 100))
+    bigDays = bigDays.map((x) => ({ date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length }))
+    bigDays.sort((x, y) => (y.count - x.count))
 
     // TODO: look up the custom day names for those days, don't just pass down the whole dang thing
 
@@ -68,7 +91,7 @@ class Application {
     }
   }
 
-  dataForChronoTemplate() {
+  dataForChronoTemplate () {
     let earliestByCommonName = this.allSightings.getEarliestByCommonName()
     let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
     lifeSightingsChronological.sort(function (a, b) { return b['DateObject'] - a['DateObject'] })
@@ -81,7 +104,7 @@ class Application {
   dataForTaxonsTemplate () {
     let earliestByCommonName = this.allSightings.getEarliestByCommonName()
     let lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
-    lifeSightingsTaxonomic.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+    lifeSightingsTaxonomic.sort(SightingList.taxonomicSortComparator)
     let lifeSightingsList = new SightingList(lifeSightingsTaxonomic)
 
     return {
@@ -91,8 +114,8 @@ class Application {
   }
 
   dataForTaxonTemplate (req) {
-    let tmp = this.allSightings.filter(function (s) { return s['Common Name'] === req.params.common_name })
-    let photos = this.allPhotos.filter(function (p) { return p['Common Name'] === req.params.common_name })
+    let tmp = this.allSightings.filter((s) => (s['Common Name'] === req.params.common_name))
+    let photos = this.allPhotos.filter((p) => (p['Common Name'] === req.params.common_name))
 
     let taxonSightingList = new SightingList(tmp, photos)
     taxonSightingList.sortByDate()
@@ -109,9 +132,9 @@ class Application {
   }
 
   dataForFamilyTemplate (req) {
-    let tmp = this.allSightings.filter(function (s) { return SightingList.getFamily(s['Taxonomic Order']) === req.params.family_name })
-    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
-    let photos = this.allPhotos.filter(function (p) { return SightingList.getFamily(SightingList.getTaxoFromCommonName(p['Common Name'])) === req.params.family_name })
+    let tmp = this.allSightings.filter((s) => (SightingList.getFamily(s['Taxonomic Order']) === req.params.family_name))
+    tmp.sort(SightingList.taxonomicSortComparator)
+    let photos = this.allPhotos.filter((p) => (SightingList.getFamily(SightingList.getTaxoFromCommonName(p['Common Name'])) === req.params.family_name))
 
     let familySightingList = new SightingList(tmp, photos)
 
@@ -134,10 +157,8 @@ class Application {
       req.params.county_name = ''
     }
 
-    let tmp = this.allSightings.filter(function (s) {
-      return (s['State/Province'] === req.params.state_name) && (s['County'] === req.params.county_name) && (s['Location'] === req.params.location_name)
-    })
-    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+    let tmp = this.allSightings.filter((s) => (s['State/Province'] === req.params.state_name) && (s['County'] === req.params.county_name) && (s['Location'] === req.params.location_name))
+    tmp.sort(SightingList.taxonomicSortComparator)
 
     // TODO: wrong, doesn't handle duplication location names
     let photos = this.allPhotos.filter(function (p) { return p.Location === req.params.location_name })
@@ -148,7 +169,7 @@ class Application {
 
     return {
       name: req.params.location_name,
-      showChart: locationSightingList.dateObjects.length > 20,
+      showDates: locationSightingList.dateObjects.length < 20,
       sightingsByMonth: locationSightingList.byMonth(),
       photos: locationSightingList.getLatestPhotos(20),
       sightingList: locationSightingList,
@@ -161,16 +182,13 @@ class Application {
       req.params.county_name = ''
     }
 
-    let tmp = this.allSightings.filter(function (s) {
-      return (s['State/Province'] === req.params.state_name) && (s['County'] === req.params.county_name)
-    })
-
-    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+    let tmp = this.allSightings.filter((s) => (s['State/Province'] === req.params.state_name) && (s['County'] === req.params.county_name))
+    tmp.sort(SightingList.taxonomicSortComparator)
 
     let countySightingList = new SightingList(tmp)
     // TODO: can't compute photos before creating list
     let countyLocations = countySightingList.getUniqueValues('Location')
-    countySightingList.photos = this.allPhotos.filter(function (p) { return countyLocations.indexOf(p.Location) >= 0 })
+    countySightingList.photos = this.allPhotos.filter((p) => (countyLocations.indexOf(p.Location) >= 0))
 
     logger.debug('/county/', req.params.county_name, countySightingList.length())
 
@@ -189,10 +207,8 @@ class Application {
   }
 
   dataForStateTemplate (req) {
-    let tmp = this.allSightings.filter(function (s) {
-      return s['State/Province'] === req.params.state_name
-    })
-    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
+    let tmp = this.allSightings.filter((s) => (s['State/Province'] === req.params.state_name))
+    tmp.sort(SightingList.taxonomicSortComparator)
 
     let stateSightingList = new SightingList(tmp)
     // TODO: can't compute photos before creating list
@@ -216,9 +232,9 @@ class Application {
   }
 
   dataForTripTemplate (req) {
-    let tmp = this.allSightings.filter(function (s) { return s['Date'] === req.params.trip_date })
-    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
-    let photos = this.allPhotos.filter(function (p) { return p.Date === req.params.trip_date })
+    let tmp = this.allSightings.filter((s) => (s['Date'] === req.params.trip_date))
+    tmp.sort(SightingList.taxonomicSortComparator)
+    let photos = this.allPhotos.filter((p) => (p.Date === req.params.trip_date))
 
     let tripSightingList = new SightingList(tmp, photos)
 
@@ -234,8 +250,8 @@ class Application {
 
   dataForYearTemplate (req) {
     let tmp = this.allSightings.byYear()[req.params.year]
-    tmp.sort(function (a, b) { return a['Taxonomic Order'] - b['Taxonomic Order'] })
-    let photos = this.allPhotos.filter(function (p) { return p.Date.substring(6, 10) === req.params.year })
+    tmp.sort(SightingList.taxonomicSortComparator)
+    let photos = this.allPhotos.filter((p) => (p.Date.substring(6, 10) === req.params.year))
     let yearSightingList = new SightingList(tmp, photos)
 
     return {
@@ -245,12 +261,21 @@ class Application {
     }
   }
 
-  dataForPhotosTemplate () {
+  dataForPhotosThisWeekTemplate () {
     let currentWeekOfYear = new Date().getWeek()
-    let photosThisWeek = this.allPhotos.filter(function (p) { return p.DateObject.getWeek() === currentWeekOfYear })
+    let photosThisWeek = this.allPhotos.filter((p) => (p.DateObject.getWeek() === currentWeekOfYear))
 
     logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length)
 
+    return {
+      photos: photosThisWeek,
+      currentWeekOfYear: currentWeekOfYear
+    }
+  }
+
+  dataForPhotosTemplate () {
+    let currentWeekOfYear = new Date().getWeek()
+    let photosThisWeek = this.allPhotos.filter((p) => (p.DateObject.getWeek() === currentWeekOfYear))
     let commonNamesByFamily = {}
     let photosByFamily = {}
     let photoCommonNamesByFamily = []
@@ -299,7 +324,6 @@ class Application {
 
     // pass down to the page template all the photo data plus the list of common names in taxo order
     return {
-      numPhotos: this.allPhotos.length,
       numSpecies: speciesPhotographed,
       photosByFamily: photosByFamily,
       hierarchy: commonNamesByFamily,

@@ -1,4 +1,5 @@
 var Handlebars = require('handlebars')
+var fs = require('fs')
 var moment = require('moment')
 var { URL, URLSearchParams } = require('url')
 var iso3166 = require('iso-3166-2')
@@ -124,6 +125,8 @@ function registerHelpers () {
     </div>'
   )
 
+  Handlebars.registerPartial('datelist', fs.readFileSync('server/templates/datelist.html', 'UTF-8'))
+
   Handlebars.registerHelper('nicenumber', function (inNumber) {
     return new Handlebars.SafeString(
       inNumber
@@ -154,9 +157,13 @@ function registerHelpers () {
     chartURL.searchParams.append('chxt', 'x,y')
     chartURL.searchParams.append('cht', 'bvs')
     let counts = inData.map(d => d.length)
-    let axisRange = [0, 0, 12, 12]
+    let maxCount = Math.max.apply(null, counts)
     chartURL.searchParams.append('chd', 't:' + counts.join(','))
-    chartURL.searchParams.append('chxr', axisRange.join(','))
+    chartURL.searchParams.append('chds', '0,' + maxCount)
+    chartURL.searchParams.append('chxl', '0:|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec')
+    chartURL.searchParams.append('chxt', 'x,y')
+    chartURL.searchParams.append('chxr', '1,0,' + maxCount)
+    chartURL.searchParams.append('chbh', 'r,0,0')
     chartURL.searchParams.append('chco', '76A4FB')
     chartURL.searchParams.append('chls', '2.0')
     chartURL.searchParams.append('chs', '480x270')
