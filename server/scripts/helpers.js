@@ -6,6 +6,22 @@ var iso3166 = require('iso-3166-2')
 
 require('./logger.js')
 
+// https://stackoverflow.com/questions/3280323/get-week-of-the-month
+
+Date.prototype.getWeekOfMonth = function(exact) {
+    var month = this.getMonth()
+        , year = this.getFullYear()
+        , firstWeekday = new Date(year, month, 1).getDay()
+        , lastDateOfMonth = new Date(year, month + 1, 0).getDate()
+        , offsetDate = this.getDate() + firstWeekday - 1
+        , index = 1 // start index at 0 or 1, your choice
+        , weeksInMonth = index + Math.ceil((lastDateOfMonth + firstWeekday - 7) / 7)
+        , week = index + Math.floor(offsetDate / 7)
+    ;
+    if (exact || week < 2 + index) return week;
+    return week === weeksInMonth ? index + 5 : week;
+};
+
 function registerHelpers () {
   Handlebars.registerHelper('nicedate', function (inDate) {
     if (inDate) {
@@ -13,7 +29,17 @@ function registerHelpers () {
         moment(inDate).format('MMM D, Y')
       )
     } else {
-      return new Handlebars.SafeString('NaN')
+      return new Handlebars.SafeString('Not a Date')
+    } 
+  })
+
+  Handlebars.registerHelper('weekOfMonth', function (inDate) {
+    if (inDate) {
+      return new Handlebars.SafeString(
+        moment.localeData().ordinal(inDate.getWeekOfMonth()) + ' week of ' + moment(inDate).format('MMM')
+      )
+    } else {
+      return new Handlebars.SafeString('Not a Date')
     }
   })
 

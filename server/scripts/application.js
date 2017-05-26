@@ -10,7 +10,6 @@ Date.prototype.getWeek = function () {
   return Math.ceil((((this - dt) / 86400000) + dt.getDay() + 1) / 7)
 }
 
-
 // TODO: make helper for customDayNames, stop passing around
 // TOOD: unify page title
 // TODO: unify fixed data filenames
@@ -262,19 +261,21 @@ class Application {
   }
 
   dataForPhotosThisWeekTemplate () {
-    let currentWeekOfYear = new Date().getWeek()
+    let tmpNow = new Date();
+    let currentWeekOfYear = tmpNow.getWeek()
     let photosThisWeek = this.allPhotos.filter((p) => (p.DateObject.getWeek() === currentWeekOfYear))
 
     logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length)
 
     return {
       photos: photosThisWeek,
-      currentWeekOfYear: currentWeekOfYear
+      currentDate: tmpNow
     }
   }
 
   dataForPhotosTemplate () {
-    let currentWeekOfYear = new Date().getWeek()
+    let currentDate = new Date()
+    let currentWeekOfYear = currentDate.getWeek()
     let photosThisWeek = this.allPhotos.filter((p) => (p.DateObject.getWeek() === currentWeekOfYear))
     let commonNamesByFamily = {}
     let photosByFamily = {}
@@ -327,7 +328,8 @@ class Application {
       numSpecies: speciesPhotographed,
       photosByFamily: photosByFamily,
       hierarchy: commonNamesByFamily,
-      photosThisWeek: photosThisWeek
+      photosThisWeek: photosThisWeek,
+      currentDate: currentDate
     }
   }
 }
