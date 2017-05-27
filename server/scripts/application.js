@@ -261,22 +261,28 @@ class Application {
   }
 
   dataForPhotosThisWeekTemplate () {
-    let tmpNow = new Date();
-    let currentWeekOfYear = tmpNow.getWeek()
-    let photosThisWeek = this.allPhotos.filter((p) => (p.DateObject.getWeek() === currentWeekOfYear))
+    let currentDayOfYear = moment().dayOfYear()
+    let photosThisWeek = this.allPhotos.filter((p) => {
+      let photoDayOfYear = moment(p.DateObject).dayOfYear()
+      return ((currentDayOfYear - 5) < photoDayOfYear) && (photoDayOfYear < (currentDayOfYear + 5))
+    })
 
-    logger.debug('photos of the week', currentWeekOfYear, photosThisWeek.length)
+    logger.debug('photos of the week', currentDayOfYear, photosThisWeek.length)
 
     return {
       photos: photosThisWeek,
-      currentDate: tmpNow
+      startDayOfYear: moment().subtract(5, 'days').format('MMMM Do'),
+      endDayOfYear: moment().add(5, 'days').format('MMMM Do')
     }
   }
 
   dataForPhotosTemplate () {
-    let currentDate = new Date()
-    let currentWeekOfYear = currentDate.getWeek()
-    let photosThisWeek = this.allPhotos.filter((p) => (p.DateObject.getWeek() === currentWeekOfYear))
+    let currentDayOfYear = moment().dayOfYear()
+    let photosThisWeek = this.allPhotos.filter((p) => {
+      let photoDayOfYear = moment(p.DateObject).dayOfYear()
+      return ((currentDayOfYear - 5) < photoDayOfYear) && (photoDayOfYear < (currentDayOfYear + 5))
+    })
+
     let commonNamesByFamily = {}
     let photosByFamily = {}
     let photoCommonNamesByFamily = []
@@ -329,7 +335,8 @@ class Application {
       photosByFamily: photosByFamily,
       hierarchy: commonNamesByFamily,
       photosThisWeek: photosThisWeek,
-      currentDate: currentDate
+      startDayOfYear: moment().subtract(5, 'days').format('MMM D'),
+      endDayOfYear: moment().add(5, 'days').format('MMM D')
     }
   }
 }
