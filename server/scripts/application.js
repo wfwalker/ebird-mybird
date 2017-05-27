@@ -1,13 +1,13 @@
 'use strict'
 
 const SightingList = require('./sightinglist.js')
+var moment = require('moment')
 require('./logger.js')
 
 // ADD getWeek to Date class
 
 Date.prototype.getWeek = function () {
-  let dt = new Date(this.getFullYear(), 0, 1)
-  return Math.ceil((((this - dt) / 86400000) + dt.getDay() + 1) / 7)
+  return moment(this).isoWeek()
 }
 
 // TODO: make helper for customDayNames, stop passing around
