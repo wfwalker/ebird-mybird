@@ -4,12 +4,6 @@ const SightingList = require('./sightinglist.js')
 var moment = require('moment')
 require('./logger.js')
 
-// ADD getWeek to Date class
-
-Date.prototype.getWeek = function () {
-  return moment(this).isoWeek()
-}
-
 // TODO: make helper for customDayNames, stop passing around
 // TOOD: unify page title
 // TODO: unify fixed data filenames
