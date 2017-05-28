@@ -76,9 +76,6 @@ describe('SightingList', function () {
   describe('with full data', function () {
     let gApplication = Application.withFullData()
 
-    // AFTER server is running, then create index
-    gApplication.loadIndex('server/data/lunrIndex.json')
-
     registerHelpers(logger)
     const templates = createTemplates()
 
@@ -209,7 +206,47 @@ describe('SightingList', function () {
         }
       }
       let searchResults = gApplication.dataForSearchTemplate(req)
-      assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings')
+      assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings matching common name')
+    })
+
+    it('finds matches when searching for wings', function () {
+      const req = {
+        query: {
+          searchtext: 'wings'
+        }
+      }
+      let searchResults = gApplication.dataForSearchTemplate(req)
+      assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings matching trip name')
+    })
+
+    it('finds matches when searching for domesticus', function () {
+      const req = {
+        query: {
+          searchtext: 'domesticus'
+        }
+      }
+      let searchResults = gApplication.dataForSearchTemplate(req)
+      assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings matching taxonomic name')
+    })
+
+    it('finds matches when searching for charleston', function () {
+      const req = {
+        query: {
+          searchtext: 'charleston'
+        }
+      }
+      let searchResults = gApplication.dataForSearchTemplate(req)
+      assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings matching location name')
+    })
+
+    it('finds matches when searching for Ozaukee', function () {
+      const req = {
+        query: {
+          searchtext: 'Ozaukee'
+        }
+      }
+      let searchResults = gApplication.dataForSearchTemplate(req)
+      assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings matching county name')
     })
 
     it('finds matches when searching for least', function () {
@@ -219,7 +256,7 @@ describe('SightingList', function () {
         }
       }
       let searchResults = gApplication.dataForSearchTemplate(req)
-      assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings')
+      assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings matching commmon name')
     })
   })
 

@@ -3,7 +3,6 @@
 var iso3166 = require('iso-3166-2')
 var fs = require('fs')
 var babyParse = require('babyparse')
-var lunr = require('lunr')
 
 require('./logger.js')
 
@@ -157,45 +156,6 @@ class SightingList {
     }
 
     return 'Unknown'
-  }
-
-  static loadIndex (inIndexFile) {
-    logger.debug('start loadIndex')
-    let tmp = lunr.Index.load(JSON.parse(fs.readFileSync(inIndexFile)))
-    logger.debug('done loadIndex')
-    return tmp
-  }
-
-  createIndex () {
-    logger.debug('start createIndex')
-    let tmpRows = this.rows
-
-    let lunrIndex = lunr(function () {
-      this.field('location')
-      this.field('common')
-      this.field('county')
-      this.field('trip')
-      this.field('scientific')
-      this.ref('id')
-
-      for (let index = 0; index < tmpRows.length; index++) {
-        let aValue = tmpRows[index]
-
-        this.add({
-          location: aValue['Location'],
-          county: aValue['County'],
-          common: aValue['Common Name'],
-          trip: gCustomDayNames[aValue['Date']],
-          scientific: aValue['Scientific Name'],
-          id: index
-        })
-      }
-    })
-
-    fs.writeFileSync('lunrIndex.json', JSON.stringify(lunrIndex, null, 4))
-
-    logger.debug('end createIndex')
-    return lunrIndex
   }
 
   static getCustomDayNames () {

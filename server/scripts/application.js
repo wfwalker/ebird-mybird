@@ -48,9 +48,16 @@ class Application {
 
   dataForSearchTemplate (req) {
     logger.debug('/search', req.query)
+    let lowerCaseQuery = req.query.searchtext.toLowerCase()
 
-    let rawResults = this.sightingsIndex.search(req.query.searchtext)
-    let resultsAsSightings = rawResults.map((result) => (this.allSightings.rows[result.ref]))
+    let resultsAsSightings = this.allSightings.filter((s) => (
+      (SightingList.getCustomDayNames()[s['Date']] && SightingList.getCustomDayNames()[s['Date']].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (s['Common Name'] && s['Common Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (s['Location'] && s['Location'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (s['County'] && s['County'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (s['Scientific Name'] && s['Scientific Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0)
+    ))
+
     let searchResultsSightingList = new SightingList(resultsAsSightings)
 
     return {

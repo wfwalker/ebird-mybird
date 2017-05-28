@@ -120,6 +120,3 @@ app.get('/place/:state_name/:county_name/:location_name', function (req, resp, n
   logger.debug('LOCATION', req.params)
   resp.send(gTemplates.location(gApplication.dataForLocationTemplate(req)))
 })
-
-// AFTER server is running, then create index
-gApplication.loadIndex('server/data/lunrIndex.json')
