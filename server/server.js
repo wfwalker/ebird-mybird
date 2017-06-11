@@ -40,9 +40,9 @@ app.get('/photos', function (req, resp, next) {
   resp.send(gTemplates.photos(gApplication.dataForPhotosTemplate()))
 })
 
-app.get('/photosthisweek', function (req, resp, next) {
-  logger.debug('/photos')
-  resp.send(gTemplates.photosthisweek(gApplication.dataForPhotosThisWeekTemplate()))
+app.get('/photos/dayofyear/:dayofyear', function (req, resp, next) {
+  logger.debug('/photos/dayofyear/' + req.params.dayofyear)
+  resp.send(gTemplates.photosthisweek(gApplication.dataForPhotosDayOfYearTemplate(req)))
 })
 
 app.get('/locations', function (req, resp, next) {

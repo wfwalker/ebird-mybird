@@ -261,8 +261,8 @@ class Application {
     }
   }
 
-  dataForPhotosThisWeekTemplate () {
-    let currentDayOfYear = moment().dayOfYear()
+  dataForPhotosDayOfYearTemplate (req) {
+    let currentDayOfYear = parseInt(req.params.dayofyear)
     let photosThisWeek = this.allPhotos.filter((p) => {
       let photoDayOfYear = moment(p.DateObject).dayOfYear()
       return ((currentDayOfYear - 5) < photoDayOfYear) && (photoDayOfYear < (currentDayOfYear + 5))
@@ -272,6 +272,7 @@ class Application {
 
     return {
       photos: photosThisWeek,
+      currentDayOfYear: currentDayOfYear,
       startDayOfYear: moment().subtract(5, 'days').format('MMMM Do'),
       endDayOfYear: moment().add(5, 'days').format('MMMM Do')
     }
@@ -336,6 +337,7 @@ class Application {
       photosByFamily: photosByFamily,
       hierarchy: commonNamesByFamily,
       photosThisWeek: photosThisWeek,
+      currentDayOfYear: currentDayOfYear,
       startDayOfYear: moment().subtract(5, 'days').format('MMM D'),
       endDayOfYear: moment().add(5, 'days').format('MMM D')
     }
