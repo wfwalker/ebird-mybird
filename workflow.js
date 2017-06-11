@@ -5,7 +5,7 @@ var fs = require('fs');
 var xml2js = require('xml2js');
 var babyParse = require('babyparse');
 var glob = require('glob');
-var SightingList = require('./app/scripts/sightinglist.js');
+var SightingList = require('./server/scripts/sightinglist.js');
 
 var gFiles = {};
 var gSightingList = null;
@@ -34,7 +34,7 @@ console.log('total flickrUP jpegs', allTheFiles.length);
 var jpegs = allTheFiles.filter((n) => {
     var stats = fs.statSync('/Users/walker/Photography/flickrUP/' + n);
     var daysOld = (theNow - stats.birthtime)/(24*60*60*1000);
-    return (daysOld < 2);
+    return (daysOld < 20);
 });
 
 console.log('recent jpegs', jpegs.length);
