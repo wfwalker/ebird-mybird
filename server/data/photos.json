@@ -11728,5 +11728,35 @@
     "Photo URL": "https://storage.googleapis.com/ebird-mybird.appspot.com/photo/2016-04-14-melanerpes-carolinus-6P5A2870.jpg",
     "County": "Charlotte",
     "State/Province": "US-FL"
-  }
+  },
+  {
+    "Date": "05-06-2017",
+    "Location": "Picchetti Ranch OSP",
+    "Scientific Name": "Vireo huttoni",
+    "Common Name": "Hutton's Vireo",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-05-06-vireo-huttoni-0L5A1103.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-05-06-vireo-huttoni-0L5A1103.jpg",
+    "County": "Santa Clara",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "04-14-2017",
+    "Location": "Charleston Slough/Coast Casey Forebay",
+    "Scientific Name": "Circus cyaneus",
+    "Common Name": "Northern Harrier",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-04-14-circus-cyaneus-0L5A1060.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-04-14-circus-cyaneus-0L5A1060.jpg",
+    "County": "Santa Clara",
+    "State/Province": "US-CA"
+  },
+  {
+      "Date": "05-22-2017",
+      "Location": "West Cliff Dr. at Stockton Ave.",
+      "Scientific Name": "Cepphus columba",
+      "Common Name": "Pigeon Guillemot",
+      "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-05-22-cepphus-columba-0L5A0187.jpg",
+      "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-05-22-cepphus-columba-0L5A0187.jpg",
+      "County": "Santa Cruz",
+      "State/Province": "US-CA"
+  }  
 ]
