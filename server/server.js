@@ -104,10 +104,10 @@ app.get('/', function(req, res){
 //   resp.send(gTemplates.sighting(gApplication.dataForSightingTemplate(req)))
 // })
 
-// app.get('/photo/:photo_id', function (req, resp, next) {
-//   logger.debug('/photo/', req.params.photo_id)
-//   resp.send(gTemplates.photo(gApplication.dataForPhotoTemplate(req)))
-// })
+app.get('/photo/:photo_id', function (req, resp, next) {
+  logger.debug('/photo/', req.params.photo_id)
+  resp.render('photo', gApplication.dataForPhotoTemplate(req))
+})
 
 // app.get('/trip/:trip_date', function (req, resp, next) {
 //   logger.debug('/trip/', req.params.trip_date)
