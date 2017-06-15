@@ -29,7 +29,7 @@ app.use('/styles', express.static('server/styles'))
 app.use('/scripts', express.static('server/scripts'))
 app.use('/images', express.static('server/images'))
 
-const options = { beautify: true }
+const options = { beautify: false }
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
@@ -55,10 +55,10 @@ app.get('/', function(req, res){
 //   resp.send(gTemplates.photosthisweek(gApplication.dataForPhotosDayOfYearTemplate(req)))
 // })
 
-// app.get('/locations', function (req, resp, next) {
-//   logger.debug('/locations')
-//   resp.send(gTemplates.locations(gApplication.dataForLocationsTemplate()))
-// })
+app.get('/locations', function (req, resp, next) {
+  logger.debug('/locations')
+  resp.render('locations', gApplication.dataForLocationsTemplate())
+})
 
 // app.get('/bigdays', function (req, resp, next) {
 //   logger.debug('/bigdays')
@@ -84,10 +84,10 @@ app.get('/', function(req, res){
 //   resp.send(gTemplates.taxon(gApplication.dataForTaxonTemplate(req)))
 // })
 
-// app.get('/trips', function (req, resp, next) {
-//   logger.debug('/trips')
-//   resp.send(gTemplates.trips(gApplication.dataForTripsTemplate()))
-// })
+app.get('/trips', function (req, resp, next) {
+  logger.debug('/trips')
+  resp.render('trips', gApplication.dataForTripsTemplate())
+})
 
 // app.get('/search', function (req, resp, next) {
 //   logger.debug('/search/', req.param.searchtext)
@@ -99,10 +99,10 @@ app.get('/', function(req, res){
 //   resp.send(gTemplates.year(gApplication.dataForYearTemplate(req)))
 // })
 
-// app.get('/sighting/:sighting_id', function (req, resp, next) {
-//   logger.debug('/sighting/', req.params.sighting_id)
-//   resp.send(gTemplates.sighting(gApplication.dataForSightingTemplate(req)))
-// })
+app.get('/sighting/:sighting_id', function (req, resp, next) {
+  logger.debug('/sighting/', req.params.sighting_id)
+  resp.render('sighting', gApplication.dataForSightingTemplate(req))
+})
 
 app.get('/photo/:photo_id', function (req, resp, next) {
   logger.debug('/photo/', req.params.photo_id)

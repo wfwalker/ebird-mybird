@@ -1,8 +1,12 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 
-var Photo = React.createClass({
-	render: function() {
+class Photo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+	render() {
 		return (
 			<DefaultLayout title={this.props.title}>
 				<h3>{this.props['Common Name']} <span className='lighter'>{this.props['Scientific Name']}</span></h3>
@@ -12,6 +16,6 @@ var Photo = React.createClass({
 			</DefaultLayout>
 		)
 	}
-})
+}
 
-module.exports = Photo;
+export default Photo
