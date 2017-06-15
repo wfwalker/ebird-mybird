@@ -1,20 +1,12 @@
 var React = require('react');
-var DefaultLayout = require('./layouts/default');
-var BirdwalkerComponent = require('./birdwalkercomponent');
+import DefaultLayout from './layouts/default.jsx'
+import BirdwalkerComponent from './birdwalkercomponent.jsx'
 var moment = require('moment')
 
-class Trips extends React.Component {
+class Trips extends BirdwalkerComponent {
   constructor(props) {
     super(props);
   }
-
-	generateHeading(title, subtitle) {
-		if (subtitle) {
-			return (<h3>{title} <span className='lighter'>{subtitle}</span></h3>)
-		} else {
-			return (<h3>{title}</h3>)
-		}
-	}  
 
   generateTrip(t) {
   	return (

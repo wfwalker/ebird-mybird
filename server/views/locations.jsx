@@ -1,40 +1,37 @@
 var React = require('react')
-var DefaultLayout = require('./layouts/default')
-var iso3166 = require('iso-3166-2')
+import DefaultLayout from './layouts/default.jsx'
+import BirdwalkerComponent from './birdwalkercomponent.jsx'
 
-function lookupState(inString) {
-	logger.debug('lookupState', inString)
-	if (inString == null || inString === '') {
-		return 'None'
-	} else if (!iso3166.subdivision(inString).name) {
-		return inString
-	} else {
-		return iso3166.subdivision(inString).name
-	}
-}
-
-class Locations extends React.Component {
+class Locations extends BirdwalkerComponent {
   constructor(props) {
     super(props);
+  }
+
+  generateEntriesForState(state) {
+  	return (
+  		<div>
+				<h3>{this.lookupState(state)}</h3>
+				{Object.keys(this.props.hierarchy[state]).map(c => (
+					<div key={c}>
+						<h4>{c} County</h4>
+						{this.props.hierarchy[state][c].map(l => (
+							<div key={l} className='biglist-item'><a href={'/location/' + state + '/' + c + '/' + l}>{l}</a></div>
+						))}
+					</div>
+				))}
+			</div>
+		)
   }
 
 	render() {
 		return (
 			<DefaultLayout title={this.props.title}>
-				<h3>{this.props.count} Locations</h3>
+				{this.generateHeading(this.props.count + ' Locations')}
 
 				<div className='biglist'>
 					{Object.keys(this.props.hierarchy).map(h => (
 						<div key={h}>
-							<h3>{lookupState(h)}</h3>
-							{Object.keys(this.props.hierarchy[h]).map(c => (
-								<div>
-									<h4>{c} County</h4>
-									{this.props.hierarchy[h][c].map(l => (
-										<div className='biglist-item'><a href={'/location/' + h + '/' + c + '/' + l}>{l}</a></div>
-									))}
-								</div>
-							))}
+							{this.generateEntriesForState(h)}
 						</div>
 					))}
 				</div>

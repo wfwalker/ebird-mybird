@@ -1,7 +1,11 @@
 var React = require('react');
  
-var DefaultLayout = React.createClass({
-	generateHead: function() {
+class DefaultLayout extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+	generateHead() {
 		return (
         <head>
 		    <meta charset="utf-8" />
@@ -30,9 +34,9 @@ var DefaultLayout = React.createClass({
 		 
     	</head>
 		)
-	},
+	}
 
-	generateNav: function() {
+	generateNav() {
 		return (
 	    <nav className="navbar navbar-default navbar-fixed-top">
 	      <div className="container">
@@ -71,9 +75,9 @@ var DefaultLayout = React.createClass({
 	      </div>
 	    </nav>
 		)
-	},
+	}
 
-  render: function() {
+  render() {
     return (
       <html>
       	{this.generateHead()}
@@ -86,8 +90,8 @@ var DefaultLayout = React.createClass({
         	</div>
         </body>
       </html>
-    );
+    )
   }
-});
+}
  
-module.exports = DefaultLayout;
+export default DefaultLayout

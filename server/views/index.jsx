@@ -1,5 +1,5 @@
 var React = require('react');
-var DefaultLayout = require('./layouts/default');
+import DefaultLayout from './layouts/default.jsx'
  
 var HelloMessage = React.createClass({
   render: function() {
