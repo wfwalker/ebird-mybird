@@ -1,10 +1,20 @@
-var React, { Component } = require('react');
-var DefaultLayout = require('./layouts/default');
+var React = require('react');
+var iso3166 = require('iso-3166-2')
 
-class BirdwalkerComponent extends Component {
+class BirdwalkerComponent extends React.Component {
   constructor(props) {
     super(props);
   }
+
+	lookupState(inString) {
+		if (inString == null || inString === '') {
+			return 'None'
+		} else if (!iso3166.subdivision(inString).name) {
+			return inString
+		} else {
+			return iso3166.subdivision(inString).name
+		}
+	}
 
 	generateHeading(title, subtitle) {
 		if (subtitle) {
