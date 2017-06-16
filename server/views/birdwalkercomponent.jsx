@@ -1,10 +1,16 @@
 var React = require('react');
 var iso3166 = require('iso-3166-2')
+var moment = require('moment')
 
 class BirdwalkerComponent extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  getCustomDayNameForDate(inDate) {
+  	return this.props.customDayNames[moment(inDate).format('MM-DD-YYYY')]
+  }
+
 
 	lookupState(inString) {
 		if (inString == null || inString === '') {

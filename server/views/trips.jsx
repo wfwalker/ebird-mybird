@@ -11,7 +11,7 @@ class Trips extends BirdwalkerComponent {
   generateTrip(t) {
   	return (
 			<div className='biglist-item'>
-				<a href={'/trip/' + moment(t).format('MM-DD-YYYY')}>{moment(t).format('MMM, DD, YYYY')}</a> {this.props.customDayNames[moment(t).format('MM-DD-YYYY')]}
+				<a href={'/trip/' + moment(t).format('MM-DD-YYYY')}>{moment(t).format('MMM, DD, YYYY')}</a> {this.getCustomDayNameForDate(t)}
 			</div>
   	)
   }

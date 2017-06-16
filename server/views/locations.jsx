@@ -7,18 +7,26 @@ class Locations extends BirdwalkerComponent {
     super(props);
   }
 
+  generateLinkToLocation(state, county, location) {
+  	return (
+			<div key={location} className='biglist-item'><a href={'/location/' + state + '/' + county + '/' + location}>{location}</a></div>
+		)
+  }
+
+  generateEntriesForCounty(state, county) {
+  	return (
+			<div key={county}>
+				<h4>{county} County</h4>
+				{this.props.hierarchy[state][county].map(l => this.generateLinkToLocation(state, county, l))}
+			</div>
+		)
+  }
+
   generateEntriesForState(state) {
   	return (
   		<div>
 				<h3>{this.lookupState(state)}</h3>
-				{Object.keys(this.props.hierarchy[state]).map(c => (
-					<div key={c}>
-						<h4>{c} County</h4>
-						{this.props.hierarchy[state][c].map(l => (
-							<div key={l} className='biglist-item'><a href={'/location/' + state + '/' + c + '/' + l}>{l}</a></div>
-						))}
-					</div>
-				))}
+				{Object.keys(this.props.hierarchy[state]).map(c => this.generateEntriesForCounty(state, c))}
 			</div>
 		)
   }
