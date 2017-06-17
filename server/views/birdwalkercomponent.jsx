@@ -7,6 +7,14 @@ class BirdwalkerComponent extends React.Component {
     super(props);
   }
 
+  generateTripLink(t) {
+  	return (
+			<div className='biglist-item'>
+				<a href={'/trip/' + moment(t).format('MM-DD-YYYY')}>{moment(t).format('MMM, DD, YYYY')}</a> {this.getCustomDayNameForDate(t)}
+			</div>
+  	)
+  }
+
   getCustomDayNameForDate(inDate) {
   	return this.props.customDayNames[moment(inDate).format('MM-DD-YYYY')]
   }

@@ -8,16 +8,8 @@ class Trips extends BirdwalkerComponent {
     super(props);
   }
 
-  generateTrip(t) {
-  	return (
-			<div className='biglist-item'>
-				<a href={'/trip/' + moment(t).format('MM-DD-YYYY')}>{moment(t).format('MMM, DD, YYYY')}</a> {this.getCustomDayNameForDate(t)}
-			</div>
-  	)
-  }
-
   generateTrips() {
-		return this.props.trips.map(t => this.generateTrip(t))
+		return this.props.trips.map(t => this.generateTripLink(t))
   }
 
 	render() {
