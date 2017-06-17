@@ -126,7 +126,7 @@ app.get('/place/:state_name/:county_name', function (req, resp, next) {
   resp.render('county', gApplication.dataForCountyTemplate(req))
 })
 
-// app.get('/place/:state_name/:county_name/:location_name', function (req, resp, next) {
-//   logger.debug('LOCATION', req.params)
-//   resp.send(gTemplates.location(gApplication.dataForLocationTemplate(req)))
-// })
+app.get('/place/:state_name/:county_name/:location_name', function (req, resp, next) {
+  logger.debug('LOCATION', req.params)
+  resp.render('location', gApplication.dataForLocationTemplate(req))
+})
