@@ -65,10 +65,10 @@ app.get('/bigdays', function (req, resp, next) {
   resp.render('bigdays', gApplication.dataForBigdaysTemplate())
 })
 
-// app.get('/family/:family_name', function (req, resp, next) {
-//   logger.debug('/family/', req.params.family_name)
-//   resp.send(gTemplates.family(gApplication.dataForFamilyTemplate(req)))
-// })
+app.get('/family/:family_name', function (req, resp, next) {
+  logger.debug('/family/', req.params.family_name)
+  resp.render('family', gApplication.dataForFamilyTemplate(req))
+})
 
 // app.get('/taxons', function (req, resp, next) {
 //   logger.debug('/taxons')
