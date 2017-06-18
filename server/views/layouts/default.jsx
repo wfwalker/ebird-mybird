@@ -31,7 +31,9 @@ class DefaultLayout extends React.Component {
 		    <script src='/scripts/jquery.justifiedGallery.min.js'></script>
 
 		    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
-		 
+
+		    <script type='text/javascript' src='/scripts/app.js'></script>
+
     	</head>
 		)
 	}

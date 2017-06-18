@@ -79,10 +79,10 @@ app.get('/chrono', function (req, resp, next) {
   resp.render('chrono', gApplication.dataForChronoTemplate())
 })
 
-// app.get('/taxon/:common_name', function (req, resp, next) {
-//   logger.debug('/taxon/', req.params.common_name)
-//   resp.send(gTemplates.taxon(gApplication.dataForTaxonTemplate(req)))
-// })
+app.get('/taxon/:common_name', function (req, resp, next) {
+  logger.debug('/taxon/', req.params.common_name)
+  resp.render('taxon', gApplication.dataForTaxonTemplate(req))
+})
 
 app.get('/trips', function (req, resp, next) {
   logger.debug('/trips')
@@ -116,10 +116,10 @@ app.get('/photo/:photo_id', function (req, resp, next) {
 
 // // TODO: need location hierarchy
 
-// app.get('/place/:state_name', function (req, resp, next) {
-//   logger.debug('/state/', req.params.state_name)
-//   resp.send(gTemplates.state(gApplication.dataForStateTemplate(req)))
-// })
+app.get('/place/:state_name', function (req, resp, next) {
+  logger.debug('/state/', req.params.state_name)
+  resp.render('state', gApplication.dataForStateTemplate(req))
+})
 
 app.get('/place/:state_name/:county_name', function (req, resp, next) {
   logger.debug('/county/')

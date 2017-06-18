@@ -1,20 +1,20 @@
+
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 var moment = require('moment')
 
-class County extends BirdwalkerComponent {
+class State extends BirdwalkerComponent {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const countyDates = this.props.sightingList.getUniqueValues('Date')
     const commonNames = this.props.sightingList.getUniqueValues('Common Name')
-    const locationNames = this.props.sightingList.getUniqueValues('Location')
+
     return (
       <DefaultLayout title={this.props.title}>
-        {this.generateHeading(this.props.name + ' County', 'TODO link' + this.lookupState(this.props.State) + ' ' + this.props.Country)}
+        {this.generateHeading(this.lookupState(this.props.State), this.props.Country)}
 
         {this.generateThumbnails()}
 
@@ -28,4 +28,4 @@ class County extends BirdwalkerComponent {
   }
 }
 
-export default County
+export default State

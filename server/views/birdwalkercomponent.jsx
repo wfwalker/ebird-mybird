@@ -75,7 +75,7 @@ class BirdwalkerComponent extends React.Component {
     return (<img className='img-responsive' src={mapsURL.toString()} />)
   }
 
-  generateDateList() {
+  generateDateList(sightingList) {
   	if (this.props.showDates) {
 	  	return (
 					<div class="biglist">
@@ -90,6 +90,24 @@ class BirdwalkerComponent extends React.Component {
 			)
 	  }
 	}
+
+  generateDatesandMapRow(sightingList) {
+    const listDates = sightingList.getUniqueValues('Date')
+    const listLocations = sightingList.getUniqueValues('Location')
+
+    return (
+      <div className='row'>
+        <div className='col-md-4'>
+          <h4>{listDates.length} Dates</h4>
+          {this.generateDateList(sightingList)}
+        </div>
+        <div className='col-md-8'>
+          <h4>{listLocations.length} Locations</h4>
+          {this.generateGoogleMap(sightingList)}
+        </div>
+      </div>
+    )
+  }
 
   getCustomDayNameForDate(inDate) {
   	return this.props.customDayNames[moment(inDate).format('MM-DD-YYYY')]
