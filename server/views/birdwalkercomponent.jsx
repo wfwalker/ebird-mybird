@@ -91,7 +91,7 @@ class BirdwalkerComponent extends React.Component {
   	} else {
 	  	return (
 					<div id={this.props.chartID} class='bargraph'>
-						{this.generateMonthGraph(this.props.sightingsByMonth)}
+						{this.generateMonthGraph(this.props.sightingList.byMonth())}
 					</div>
 			)
 	  }

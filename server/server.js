@@ -94,10 +94,10 @@ app.get('/search', function (req, resp, next) {
   resp.render('searchresults', gApplication.dataForSearchTemplate(req))
 })
 
-// app.get('/year/:year', function (req, resp, next) {
-//   logger.debug('/year/', req.params.year)
-//   resp.send(gTemplates.year(gApplication.dataForYearTemplate(req)))
-// })
+app.get('/year/:year', function (req, resp, next) {
+  logger.debug('/year/', req.params.year)
+  resp.render('year', gApplication.dataForYearTemplate(req))
+})
 
 app.get('/sighting/:sighting_id', function (req, resp, next) {
   logger.debug('/sighting/', req.params.sighting_id)
