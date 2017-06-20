@@ -89,10 +89,10 @@ app.get('/trips', function (req, resp, next) {
   resp.render('trips', gApplication.dataForTripsTemplate())
 })
 
-// app.get('/search', function (req, resp, next) {
-//   logger.debug('/search/', req.param.searchtext)
-//   resp.send(gTemplates.searchresults(gApplication.dataForSearchTemplate(req)))
-// })
+app.get('/search', function (req, resp, next) {
+  logger.debug('/search/', req.param.searchtext)
+  resp.render('searchresults', gApplication.dataForSearchTemplate(req))
+})
 
 // app.get('/year/:year', function (req, resp, next) {
 //   logger.debug('/year/', req.params.year)

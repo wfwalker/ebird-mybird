@@ -7,12 +7,6 @@ class Locations extends BirdwalkerComponent {
     super(props);
   }
 
-  generateLinkToLocation(state, county, location) {
-    return (
-      <div key={location} className='biglist-item'><a href={'/place/' + state + '/' + county + '/' + location}>{location}</a></div>
-    )
-  }
-
   generateEntriesForCounty(state, county) {
     return (
       <div key={county}>
