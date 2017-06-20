@@ -8,21 +8,40 @@ class Trips extends BirdwalkerComponent {
     super(props);
   }
 
-  generateTrips() {
-		return this.props.trips.map(t => this.generateTripLink(t))
+  generateTrips(list) {
+    return list.map(t => this.generateTripLink(t))
   }
 
-	render() {
-		return (
-			<DefaultLayout title={this.props.title}>
-				{this.generateHeading(this.props.trips.length + ' trips')}
+  generateYearTripList(y, list) {
+    return (
+      <div>
+        <h4 className='stickyHeader'>{y}</h4>
+        <div className='biglist'>
+          {this.generateTrips(list)}
+        </div>
+      </div>
+    )
+  }
 
-				<div className='biglist'>
-					{this.generateTrips()}
-				</div>
-			</DefaultLayout>
-		)
-	}
+  render() {
+    let byDate = {};
+    this.props.trips.forEach(d => {
+      const theYear = d.getFullYear();
+      if (! byDate[theYear]) {
+        byDate[theYear] = [];
+      }
+      byDate[theYear].push(d)
+    })
+
+    return (
+      <DefaultLayout title={this.props.title}>
+        {this.generateHeading(this.props.trips.length + ' trips')}
+
+        {Object.keys(byDate).reverse().map(y => (this.generateYearTripList(y, byDate[y])))}
+
+      </DefaultLayout>
+    )
+  }
 }
 
 export default Trips

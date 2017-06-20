@@ -25,6 +25,12 @@
 	text-overflow: ellipsis;
 }
 
+.stickyHeader {
+	position: sticky;
+	top: 70px;
+	background-color: white
+}
+
 .biglist-item {
 	white-space: nowrap;
 	overflow: hidden;
