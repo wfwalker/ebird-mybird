@@ -8,6 +8,10 @@ class BirdwalkerComponent extends React.Component {
     super(props);
   }
 
+  commonNameFromEbirdFamily(inString) {
+    return inString.replace(/(.*)\((.*)\)/, '$2')
+  }
+
   generateTripLink(t) {
   	return (
 			<div className='biglist-item'>

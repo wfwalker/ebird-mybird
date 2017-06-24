@@ -9,10 +9,6 @@ class Family extends BirdwalkerComponent {
     super(props);
   }
 
-  commonNameFromEbirdFamily(inString) {
-    return inString.replace(/(.*)\((.*)\)/, '$2')
-  }
-
   latinNameFromEbirdFamily(inString) {
     return inString.replace(/(.*)\((.*)\)/, '$1')
   }

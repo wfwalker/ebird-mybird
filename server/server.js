@@ -35,20 +35,14 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine(options));
 
+app.get('/', function (req, resp, next) {
+  resp.redirect('/photos')
+})
 
-app.get('/', function(req, res){
-  res.render('index', { name: 'Jane', title: 'Jane' });
-});
-
-
-// app.get('/', function (req, resp, next) {
-//   resp.redirect('/photos')
-// })
-
-// app.get('/photos', function (req, resp, next) {
-//   logger.debug('/photos')
-//   resp.send(gTemplates.photos(gApplication.dataForPhotosTemplate()))
-// })
+app.get('/photos', function (req, resp, next) {
+  logger.debug('/photos')
+  resp.render('photos', gApplication.dataForPhotosTemplate())
+})
 
 // app.get('/photos/dayofyear/:dayofyear', function (req, resp, next) {
 //   logger.debug('/photos/dayofyear/' + req.params.dayofyear)
