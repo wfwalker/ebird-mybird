@@ -44,10 +44,10 @@ app.get('/photos', function (req, resp, next) {
   resp.render('photos', gApplication.dataForPhotosTemplate())
 })
 
-// app.get('/photos/dayofyear/:dayofyear', function (req, resp, next) {
-//   logger.debug('/photos/dayofyear/' + req.params.dayofyear)
-//   resp.send(gTemplates.photosthisweek(gApplication.dataForPhotosDayOfYearTemplate(req)))
-// })
+app.get('/photos/dayofyear/:dayofyear', function (req, resp, next) {
+  logger.debug('/photos/dayofyear/' + req.params.dayofyear)
+  resp.render('photosdayofyear', gApplication.dataForPhotosDayOfYearTemplate(req))
+})
 
 app.get('/locations', function (req, resp, next) {
   logger.debug('/locations')
