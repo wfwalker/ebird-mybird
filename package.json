@@ -17,13 +17,13 @@
     "bootstrap": "^3.3.7",
     "compression": "^1.6.2",
     "expires-middleware": "0.0.1",
-    "express": "^4.13.4",
+    "express": "^4.15.3",
     "express-react-views": "^0.10.2",
     "iso-3166-2": "^0.4.0",
     "jquery": "^3.1.1",
     "moment": "^2.18.1",
-    "react": "^15.6.0",
-    "react-dom": "^15.6.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "request": "^2.81.0",
     "winston": "^2.2.0"
   },
@@ -32,14 +32,14 @@
     "npm": "3.10.9"
   },
   "devDependencies": {
-    "xml2js": "^0.4.17",
-    "node-iptc": "^1.0.4",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "mocha": "^3.4.1"
+    "mocha": "^3.4.2",
+    "node-iptc": "^1.0.4",
+    "xml2js": "^0.4.17"
   }
 }
