@@ -28,7 +28,7 @@ class Trip extends BirdwalkerComponent {
     const commonNames = this.props.sightingList.getUniqueValues('Common Name')
     const submissionIDs = this.props.sightingList.getUniqueValues('Submission ID')
     return (
-      <DefaultLayout title={moment(this.props.tripDate).format('MM-DD-YYYY')}>
+      <DefaultLayout title={moment(this.props.tripDate).format('MMM DD, YYYY')}>
         {this.generateHeading(moment(this.props.tripDate).format('MMMM DD, YYYY'), this.props.customName)}
 
         {this.generateThumbnails()}
@@ -54,11 +54,6 @@ class Trip extends BirdwalkerComponent {
 export default Trip
 
 
-// {{> head title=(nicedate tripDate) }}
-
-// <h3>{{nicedate tripDate}} <span class='lighter'>{{customName}}</span></h3>
-
-// {{> thumbnails}}
 
 // {{#if (multiplevalues sightingList "Submission ID")}}
 //   <h4>{{valuecount sightingList "Submission ID"}} eBird Checklists</h4>
@@ -124,9 +119,3 @@ export default Trip
 //     {{values sightingList "Location"}}
 //   </h4>
 // {{/if}}
-
-// <div>
-//   {{googlemap sightingList mapID}}
-// </div>
-
-// {{> foot}}
