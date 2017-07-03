@@ -3,17 +3,11 @@
 var express = require('express')
 var compression = require('compression')
 var expires = require('expires-middleware')
-var registerHelpers = require('../server/scripts/helpers.js')
-var createTemplates = require('../server/scripts/templates.js')
 var Application = require('../server/scripts/application.js')
 
 require('../server/scripts/logger.js')
 
 var gApplication = Application.withFullData()
-
-registerHelpers()
-
-var gTemplates = createTemplates()
 
 var myPort = process.env.PORT || 8091
 
@@ -103,10 +97,10 @@ app.get('/photo/:photo_id', function (req, resp, next) {
   resp.render('photo', gApplication.dataForPhotoTemplate(req))
 })
 
-// app.get('/trip/:trip_date', function (req, resp, next) {
-//   logger.debug('/trip/', req.params.trip_date)
-//   resp.send(gTemplates.trip(gApplication.dataForTripTemplate(req)))
-// })
+app.get('/trip/:trip_date', function (req, resp, next) {
+  logger.debug('/trip/', req.params.trip_date)
+  resp.render('trip', gApplication.dataForTripTemplate(req))
+})
 
 // // TODO: need location hierarchy
 
