@@ -1,6 +1,7 @@
 var React = require('react');
 var iso3166 = require('iso-3166-2')
 var moment = require('moment')
+import LocationMap from './locationmap.jsx'
 var { URL, URLSearchParams } = require('url')
 
 class BirdwalkerComponent extends React.Component {
@@ -70,19 +71,9 @@ class BirdwalkerComponent extends React.Component {
   }
 
   generateGoogleMap(inData) {
-    let mapsURL = new URL('https://maps.googleapis.com/maps/api/staticmap')
-    mapsURL.searchParams.append('key', process.env.GOOGLE_MAPS_API_KEY)
-    mapsURL.searchParams.append('size', '640x360')
-    let markers = inData.rows.map(row => row.Latitude + ',' + row.Longitude)
-    let markerSet = new Set(markers)
-    let markersNoDups = Array.from(markerSet)
-    if (markersNoDups.length > 100) {
-      markersNoDups = markersNoDups.slice(0, 100)
-    }
-    logger.debug('markers', markers.length, 'markersNoDups', markersNoDups.length)
-    mapsURL.searchParams.append('markers', markersNoDups.join('|'))
-
-    return (<img className='img-responsive' src={mapsURL.toString()} />)
+    return (
+      <LocationMap data={inData} />
+    )
   }
 
   generateDateList(sightingList) {
