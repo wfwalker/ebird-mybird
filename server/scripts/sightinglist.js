@@ -32,6 +32,7 @@ var gCustomDayNames = {}
 var gOmittedCommonNames = []
 var gFamilies = []
 var gEBirdAll = []
+var gLocationInfo = {}
 
 const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2016.csv'
 
@@ -81,6 +82,16 @@ class SightingList {
     newSightingList.setGlobalIDs()
 
     return newSightingList
+  }
+
+  static locationInfoFromJSON (inFilename) {
+    let data = fs.readFileSync(inFilename, 'utf8')
+    let tmpLocationInfo = JSON.parse(data)
+    return tmpLocationInfo
+  }
+
+  static loadLocationInfo () {
+    gLocationInfo = SightingList.locationInfoFromJSON('server/data/ca-info.json')
   }
 
   static newPhotosFromJSON (inFilename) {
@@ -160,6 +171,10 @@ class SightingList {
 
   static getCustomDayNames () {
     return gCustomDayNames
+  }
+
+  static getLocationInfo () {
+    return gLocationInfo
   }
 
   static getOmittedCommonNames () {

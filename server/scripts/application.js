@@ -20,6 +20,7 @@ class Application {
     SightingList.loadDayNamesAndOmittedNames()
     SightingList.loadEBirdTaxonomy()
     let fullPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
+    SightingList.loadLocationInfo()
 
     return new Application(fullSightingList, fullPhotos)
   }
@@ -170,6 +171,7 @@ class Application {
       showDates: locationSightingList.dateObjects.length < 20,
       photos: locationSightingList.getLatestPhotos(20),
       sightingList: locationSightingList,
+      locationInfo: SightingList.getLocationInfo().filter(l => l.locName == req.params.location_name),
       customDayNames: SightingList.getCustomDayNames()
     }
   }
