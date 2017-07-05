@@ -15,7 +15,7 @@ class State extends BirdwalkerComponent {
     const commonNames = this.props.sightingList.getUniqueValues('Common Name')
 
     return (
-      <DefaultLayout title={this.props.title}>
+      <DefaultLayout title={this.lookupState(this.props.State)} subtitle={this.props.Country}>
         <PageHeading title={this.lookupState(this.props.State)} subtitle={this.props.Country} />
 
         {this.generateThumbnails()}

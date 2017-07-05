@@ -21,10 +21,10 @@ class Photos extends BirdwalkerComponent {
     let familyNames = Object.keys(this.props.hierarchy)
 
     return(
-      <DefaultLayout title=''>
+      <DefaultLayout title='Photos'>
         <div className='row'>
           <div className='col-md-8'>
-            {this.generateHeading('Welcome to BirdWalker')}
+            <PageHeading title='Welcome to BirdWalker'/ >
             <p className='lead'>Birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996.</p>
 
             <p className='lead'>Some of our favorite places to go birding include
@@ -42,7 +42,7 @@ class Photos extends BirdwalkerComponent {
 
         <div className='row'>
           <div className='col-md-12'>
-            {this.generateHeading(this.props.numSpecies + ' species photographed')}
+            <PageHeading title={this.props.numSpecies + ' species photographed'} />
 
             <div className='mygallery'>
               {familyNames.map(familyName => this.generateImageForFamily(familyName, this.props.photosByFamily[familyName]))}
