@@ -2,6 +2,8 @@
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
+
 var moment = require('moment')
 
 class State extends BirdwalkerComponent {
@@ -14,7 +16,7 @@ class State extends BirdwalkerComponent {
 
     return (
       <DefaultLayout title={this.props.title}>
-        {this.generateHeading(this.lookupState(this.props.State), this.props.Country)}
+        <PageHeading title={this.lookupState(this.props.State)} subtitle={this.props.Country} />
 
         {this.generateThumbnails()}
 

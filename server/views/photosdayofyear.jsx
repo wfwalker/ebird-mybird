@@ -1,6 +1,7 @@
 var React = require('react')
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
 
 class PhotosThisWeek extends BirdwalkerComponent {
   constructor(props) {
@@ -10,7 +11,7 @@ class PhotosThisWeek extends BirdwalkerComponent {
   render() {
     return (
       <DefaultLayout title='Photos'>
-        {this.generateHeading('Photos from ' + this.props.startDayOfYear + ' - ' + this.props.endDayOfYear)}
+        <PageHeading title={'Photos from ' + this.props.startDayOfYear + ' - ' + this.props.endDayOfYear} />
         {this.generateThumbnails()}
       </DefaultLayout>
     )

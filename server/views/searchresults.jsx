@@ -1,6 +1,7 @@
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
 var moment = require('moment')
 
 class SearchResults extends BirdwalkerComponent {
@@ -29,7 +30,7 @@ class SearchResults extends BirdwalkerComponent {
   render() {
     return (
       <DefaultLayout title={'Search Results ' + this.props.searchtext}>
-        {this.generateHeading('Search Results ' + this.props.searchtext)}
+        <PageHeading title={'Search Results ' + this.props.searchtext)} />
 
         <h4>{this.props.dates.length} Dates</h4>
 

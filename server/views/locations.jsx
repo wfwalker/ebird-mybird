@@ -1,6 +1,7 @@
 var React = require('react')
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
 
 class Locations extends BirdwalkerComponent {
   constructor(props) {
@@ -27,8 +28,8 @@ class Locations extends BirdwalkerComponent {
 
   render() {
     return (
-      <DefaultLayout title={this.props.title}>
-        {this.generateHeading(this.props.count + ' Locations')}
+      <DefaultLayout title='Locations'>
+        <PageHeading title='Locations' />
 
         <div className='biglist'>
           {Object.keys(this.props.hierarchy).map(h => (

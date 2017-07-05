@@ -1,6 +1,7 @@
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
 var moment = require('moment')
 
 class BigDays extends BirdwalkerComponent {
@@ -21,8 +22,8 @@ class BigDays extends BirdwalkerComponent {
 
   render() {
   	return (
-			<DefaultLayout title={this.props.title}>
-				{this.generateHeading('Big days')}
+			<DefaultLayout title='Big Days' >
+				<PageHeading title='Big days' />
 
 				<div>
 					{this.props.bigDays.map(bd => this.generateBigDayLink(bd))}

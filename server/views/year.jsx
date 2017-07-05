@@ -1,6 +1,8 @@
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
+
 var moment = require('moment')
 
 class County extends BirdwalkerComponent {
@@ -14,7 +16,7 @@ class County extends BirdwalkerComponent {
     const locationNames = this.props.sightingList.getUniqueValues('Location')
     return (
       <DefaultLayout title={this.props.year}>
-        {this.generateHeading(this.props.year)}
+        <PageHeading title={this.props.year} />
 
         {this.generateThumbnails()}
 

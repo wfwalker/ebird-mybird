@@ -1,6 +1,7 @@
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
 
 class Photos extends BirdwalkerComponent {
   constructor(props) {

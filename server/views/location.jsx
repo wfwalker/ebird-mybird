@@ -1,18 +1,11 @@
 var React = require('react')
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
 
 class Location extends BirdwalkerComponent {
   constructor(props) {
     super(props);
-  }
-
-  generateLocationHeading() {
-    return (
-      <div>
-        {this.generateHeading(this.props.sightingList.rows[0].Location, this.lookupState(this.props.sightingList.rows[0]['State/Province']))}
-      </div>
-    )
   }
 
   render() {
@@ -21,7 +14,9 @@ class Location extends BirdwalkerComponent {
 
     return (
       <DefaultLayout title={this.props.name}>
-        {this.generateLocationHeading()}
+        <PageHeading title={this.props.sightingList.rows[0].Location} subtitle={this.lookupState(this.props.sightingList.rows[0]['State/Province'])} />
+
+        {this.props.locationInfo[0] && (<a target='_blank' href={'http://ebird.org/ebird/hotspot/' + this.props.locationInfo[0].locID}>eBird Hotspot</a>)}
 
         {this.generateThumbnails()}
 

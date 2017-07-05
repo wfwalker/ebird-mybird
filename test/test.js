@@ -1,13 +1,7 @@
 // test.js
 const assert = require('assert')
 const SightingList = require('../server/scripts/sightinglist.js')
-const registerHelpers = require('../server/scripts/helpers.js')
-const createTemplates = require('../server/scripts/templates.js')
 const Application = require('../server/scripts/application.js')
-
-registerHelpers()
-
-gTemplates = createTemplates()
 
 const testSightings = [
   { Date: '01-01-2017', 'Common Name': 'Aaa' },
@@ -75,9 +69,6 @@ describe('SightingList', function () {
 
   describe('with full data', function () {
     let gApplication = Application.withFullData()
-
-    registerHelpers(logger)
-    const templates = createTemplates()
 
     it('getEarliestByCommonName in chrono order', function () {
       let earliestByCommonName = gApplication.allSightings.getEarliestByCommonName()

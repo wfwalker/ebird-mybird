@@ -1,7 +1,7 @@
-
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
 var moment = require('moment')
 
 class Family extends BirdwalkerComponent {
@@ -17,8 +17,8 @@ class Family extends BirdwalkerComponent {
     const commonNames = this.props.sightingList.getUniqueValues('Common Name')
 
     return (
-      <DefaultLayout title={this.commonNameFromEbirdFamily(this.props.name)}>
-        {this.generateHeading(this.commonNameFromEbirdFamily(this.props.name), this.latinNameFromEbirdFamily(this.props.name))}
+      <DefaultLayout title={this.commonNameFromEbirdFamily(this.props.name)} subtitle={this.latinNameFromEbirdFamily(this.props.name)}>
+        <PageHeading title={this.commonNameFromEbirdFamily(this.props.name)} subtitle={this.latinNameFromEbirdFamily(this.props.name)} />
 
         {this.generateThumbnails()}
 

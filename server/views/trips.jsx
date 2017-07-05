@@ -1,6 +1,8 @@
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
+
 var moment = require('moment')
 
 class Trips extends BirdwalkerComponent {
@@ -34,8 +36,8 @@ class Trips extends BirdwalkerComponent {
     })
 
     return (
-      <DefaultLayout title={this.props.title}>
-        {this.generateHeading(this.props.trips.length + ' trips')}
+      <DefaultLayout title='Trips'>
+        <PageHeading title={this.props.trips.length + ' trips'} />
 
         {Object.keys(byDate).reverse().map(y => (this.generateYearTripList(y, byDate[y])))}
 

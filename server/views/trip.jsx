@@ -1,6 +1,7 @@
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import PageHeading from './pageheading.jsx'
 var moment = require('moment')
 
 class Trip extends BirdwalkerComponent {
@@ -27,9 +28,11 @@ class Trip extends BirdwalkerComponent {
     const locations = this.props.sightingList.getUniqueValues('Location')
     const commonNames = this.props.sightingList.getUniqueValues('Common Name')
     const submissionIDs = this.props.sightingList.getUniqueValues('Submission ID')
+    console.log('DATE DATE DATE', this.props.tripDate)
+    console.log('DATE DATE DATE', moment(this.props.tripDate).format('MMM DD, YYYY'))
     return (
-      <DefaultLayout title={moment(this.props.tripDate).format('MMM DD, YYYY')}>
-        {this.generateHeading(moment(this.props.tripDate).format('MMMM DD, YYYY'), this.props.customName)}
+      <DefaultLayout title={moment(this.props.tripDate).format('MMM DD, YYYY')} subtitle={this.props.customName} >
+        <PageHeading title={moment(this.props.tripDate).format('MMM DD, YYYY')} subtitle={this.props.customName} />
 
         {this.generateThumbnails()}
 
