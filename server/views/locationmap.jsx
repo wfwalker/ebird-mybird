@@ -12,7 +12,7 @@ class LocationMap extends React.Component {
     if (markersNoDups.length > 100) {
       markersNoDups = markersNoDups.slice(0, 100)
     }
-    logger.debug('markers', markers.length, 'markersNoDups', markersNoDups.length)
+    // logger.debug('markers', markers.length, 'markersNoDups', markersNoDups.length)
     mapsURL.searchParams.append('markers', markersNoDups.join('|'))
 
     return (<img className='img-responsive' src={mapsURL.toString()} />)    

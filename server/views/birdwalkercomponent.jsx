@@ -2,6 +2,7 @@ var React = require('react');
 var iso3166 = require('iso-3166-2')
 var moment = require('moment')
 import LocationMap from './locationmap.jsx'
+
 var { URL, URLSearchParams } = require('url')
 
 class BirdwalkerComponent extends React.Component {
@@ -13,10 +14,10 @@ class BirdwalkerComponent extends React.Component {
     return inString.replace(/(.*)\((.*)\)/, '$2')
   }
 
-  generateTripLink(t) {
+  generateTripLink(tuple) {
   	return (
 			<div className='biglist-item'>
-				<a href={'/trip/' + moment(t).format('MM-DD-YYYY')}>{moment(t).format('MMM, DD, YYYY')}</a> {this.getCustomDayNameForDate(t)}
+				<a href={'/trip/' + moment(tuple.dateObject).format('MM-DD-YYYY')}>{moment(tuple.dateObject).format('MMM, DD, YYYY')}</a> {tuple.customDayName}
 			</div>
   	)
   }
@@ -77,10 +78,12 @@ class BirdwalkerComponent extends React.Component {
   }
 
   generateDateList(sightingList) {
+
   	if (this.props.showDates) {
+      const listDateTuples = sightingList.getDateTuples()
 	  	return (
 					<div class="biglist">
-						{this.props.sightingList.dateObjects.map(d => (this.generateTripLink(d)))}
+						{listDateTuples.map(tuple => (this.generateTripLink(tuple)))}
 					</div>
 			)
   	} else {
@@ -93,13 +96,13 @@ class BirdwalkerComponent extends React.Component {
 	}
 
   generateDatesandMapRow(sightingList) {
-    const listDates = sightingList.getUniqueValues('Date')
+    const listDateTuples = sightingList.getDateTuples()
     const listLocations = sightingList.getUniqueValues('Location')
 
     return (
       <div className='row'>
         <div className='col-md-4'>
-          <h4>{listDates.length} Dates</h4>
+          <h4>{listDateTuples.length} Dates</h4>
           {this.generateDateList(sightingList)}
         </div>
         <div className='col-md-8'>
@@ -108,10 +111,6 @@ class BirdwalkerComponent extends React.Component {
         </div>
       </div>
     )
-  }
-
-  getCustomDayNameForDate(inDate) {
-  	return this.props.customDayNames[moment(inDate).format('MM-DD-YYYY')]
   }
 
 	lookupState(inString) {

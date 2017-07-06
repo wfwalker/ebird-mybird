@@ -29,8 +29,8 @@ class SearchResults extends BirdwalkerComponent {
 
   render() {
     return (
-      <DefaultLayout title={'Search Results ' + this.props.searchtext}>
-        <PageHeading title={'Search Results ' + this.props.searchtext)} />
+      <DefaultLayout title={'Search Results "' + this.props.searchtext + '"'}>
+        <PageHeading title={'Search Results "' + this.props.searchtext + '"'} />
 
         <h4>{this.props.dates.length} Dates</h4>
 

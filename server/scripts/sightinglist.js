@@ -219,6 +219,11 @@ class SightingList {
         var newDate = convertDate(fixedDateString)
         sighting['DateObject'] = newDate
 
+        // add custom day name 
+        if (gCustomDayNames[sighting['Date']]) {
+          sighting['customDayName'] = gCustomDayNames[sighting['Date']]
+        }
+
         if (sighting['State/Province']) {
           let isoData = iso3166.subdivision(sighting['State/Province'])
           if (isoData) {
@@ -430,6 +435,16 @@ class SightingList {
     }
 
     return tmpMap
+  }
+
+  getDateTuples() {
+    let tuples = []
+
+    for (let i = 0; i < this.dates.length; i++) {
+      tuples.push({ date: this.dates[i], dateObject: this.dateObjects[i], customDayName: this.dayNames[i]})
+    }
+
+    return tuples
   }
 
   getSpeciesByDate () {

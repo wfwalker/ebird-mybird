@@ -16,9 +16,9 @@ class Application {
   }
 
   static withFullData () {
-    let fullSightingList = SightingList.newFromCSV('server/data/ebird.csv')
     SightingList.loadDayNamesAndOmittedNames()
     SightingList.loadEBirdTaxonomy()
+    let fullSightingList = SightingList.newFromCSV('server/data/ebird.csv')
     let fullPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
     SightingList.loadLocationInfo()
 
@@ -46,7 +46,7 @@ class Application {
     let lowerCaseQuery = req.query.searchtext.toLowerCase()
 
     let resultsAsSightings = this.allSightings.filter((s) => (
-      (SightingList.getCustomDayNames()[s['Date']] && SightingList.getCustomDayNames()[s['Date']].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (s['customDayName'] && s['customDayName'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['Common Name'] && s['Common Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['Location'] && s['Location'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['County'] && s['County'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
@@ -79,16 +79,15 @@ class Application {
 
   dataForBigdaysTemplate () {
     let speciesByDate = this.allSightings.getSpeciesByDate()
-    let bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]] })
-    bigDays = bigDays.filter((x) => (x[1].commonNames.length > 100))
-    bigDays = bigDays.map((x) => ({ date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length }))
-    bigDays.sort((x, y) => (y.count - x.count))
+    let bigDayPairs = Object.keys(speciesByDate).map(dateString => [dateString, speciesByDate[dateString]])
+    bigDayPairs = bigDayPairs.filter(bigDayPair => (bigDayPair[1].commonNames.length > 100))
+    let bigDayObjects = bigDayPairs.map(bigDayPair => ({ date: bigDayPair[0], customName: SightingList.getCustomDayNames()[bigDayPair[0]], dateObject: bigDayPair[1].dateObject, count: bigDayPair[1].commonNames.length }))
+    bigDayObjects.sort((x, y) => (y.count - x.count))
 
     // TODO: look up the custom day names for those days, don't just pass down the whole dang thing
 
     return {
-      bigDays: bigDays,
-      customDayNames: SightingList.getCustomDayNames()
+      bigDays: bigDayObjects
     }
   }
 
@@ -126,8 +125,7 @@ class Application {
       showDates: taxonSightingList.length() < 30,
       scientificName: taxonSightingList.rows[0]['Scientific Name'],
       photos: taxonSightingList.photos,
-      sightingList: taxonSightingList,
-      customDayNames: SightingList.getCustomDayNames()
+      sightingList: taxonSightingList
     }
   }
 
@@ -238,7 +236,7 @@ class Application {
     return {
       tripDate: tripSightingList.rows[0].DateObject,
       photos: tripSightingList.photos,
-      customName: tripSightingList.dayNames[0],
+      customName: tripSightingList.rows[0].customDayName,
       submissionIDToSighting: tripSightingList.mapSubmissionIDToSighting(),
       comments: tripSightingList.getUniqueValues('Checklist Comments'),
       sightingList: tripSightingList
