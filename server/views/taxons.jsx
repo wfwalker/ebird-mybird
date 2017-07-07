@@ -26,17 +26,4 @@ class Taxons extends BirdwalkerComponent {
   }
 }
 
-// {{> head title='Species'}}
-
-// <h3>Our Life List <span class='lighter'>{{nicenumber lifeSightingsCount}} species</span></h3>
-
-// <div class="biglist">
-//  {{#each hierarchy}}
-//    <div><a href='/family/{{@key}}'>{{stripLatinFromEbirdFamily @key}}</a></div>
-//  {{/each}}
-// </div>
-
-// {{> foot}}
-
-
 export default Taxons
