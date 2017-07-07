@@ -16,10 +16,11 @@ class Application {
   }
 
   static withFullData () {
-    let fullSightingList = SightingList.newFromCSV('server/data/ebird.csv')
     SightingList.loadDayNamesAndOmittedNames()
     SightingList.loadEBirdTaxonomy()
+    let fullSightingList = SightingList.newFromCSV('server/data/ebird.csv')
     let fullPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
+    SightingList.loadLocationInfo()
 
     return new Application(fullSightingList, fullPhotos)
   }
@@ -45,7 +46,7 @@ class Application {
     let lowerCaseQuery = req.query.searchtext.toLowerCase()
 
     let resultsAsSightings = this.allSightings.filter((s) => (
-      (SightingList.getCustomDayNames()[s['Date']] && SightingList.getCustomDayNames()[s['Date']].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (s['customDayName'] && s['customDayName'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['Common Name'] && s['Common Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['Location'] && s['Location'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['County'] && s['County'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
@@ -78,16 +79,15 @@ class Application {
 
   dataForBigdaysTemplate () {
     let speciesByDate = this.allSightings.getSpeciesByDate()
-    let bigDays = Object.keys(speciesByDate).map(function (key) { return [key, speciesByDate[key]] })
-    bigDays = bigDays.filter((x) => (x[1].commonNames.length > 100))
-    bigDays = bigDays.map((x) => ({ date: x[0], dateObject: x[1].dateObject, count: x[1].commonNames.length }))
-    bigDays.sort((x, y) => (y.count - x.count))
+    let bigDayPairs = Object.keys(speciesByDate).map(dateString => [dateString, speciesByDate[dateString]])
+    bigDayPairs = bigDayPairs.filter(bigDayPair => (bigDayPair[1].commonNames.length > 100))
+    let bigDayObjects = bigDayPairs.map(bigDayPair => ({ date: bigDayPair[0], customName: SightingList.getCustomDayNames()[bigDayPair[0]], dateObject: bigDayPair[1].dateObject, count: bigDayPair[1].commonNames.length }))
+    bigDayObjects.sort((x, y) => (y.count - x.count))
 
     // TODO: look up the custom day names for those days, don't just pass down the whole dang thing
 
     return {
-      bigDays: bigDays,
-      customDayNames: SightingList.getCustomDayNames()
+      bigDays: bigDayObjects
     }
   }
 
@@ -124,10 +124,8 @@ class Application {
       name: req.params.common_name,
       showDates: taxonSightingList.length() < 30,
       scientificName: taxonSightingList.rows[0]['Scientific Name'],
-      sightingsByMonth: taxonSightingList.byMonth(),
       photos: taxonSightingList.photos,
-      sightingList: taxonSightingList,
-      customDayNames: SightingList.getCustomDayNames()
+      sightingList: taxonSightingList
     }
   }
 
@@ -144,7 +142,6 @@ class Application {
       name: req.params.family_name,
       showDates: familySightingList.dateObjects.length < 30,
       showLocations: familySightingList.getUniqueValues('Location').length < 30,
-      sightingsByMonth: familySightingList.byMonth(),
       photos: familySightingList.getLatestPhotos(20),
       sightingList: familySightingList,
       taxons: familySightingList.commonNames,
@@ -170,9 +167,9 @@ class Application {
     return {
       name: req.params.location_name,
       showDates: locationSightingList.dateObjects.length < 20,
-      sightingsByMonth: locationSightingList.byMonth(),
       photos: locationSightingList.getLatestPhotos(20),
       sightingList: locationSightingList,
+      locationInfo: SightingList.getLocationInfo().filter(l => l.locName == req.params.location_name),
       customDayNames: SightingList.getCustomDayNames()
     }
   }
@@ -195,7 +192,6 @@ class Application {
     return {
       name: req.params.county_name,
       showDates: countySightingList.getUniqueValues('Date').length < 30,
-      sightingsByMonth: countySightingList.byMonth(),
       photos: countySightingList.getLatestPhotos(20),
       State: countySightingList.rows[0]['State/Province'],
       Region: countySightingList.rows[0]['Region'],
@@ -220,7 +216,6 @@ class Application {
     return {
       name: req.params.state_name,
       showDates: stateSightingList.getUniqueValues('Date').length < 30,
-      sightingsByMonth: stateSightingList.byMonth(),
       photos: stateSightingList.getLatestPhotos(20),
       State: stateSightingList.rows[0]['State/Province'],
       Country: stateSightingList.rows[0]['Country'],
@@ -241,7 +236,7 @@ class Application {
     return {
       tripDate: tripSightingList.rows[0].DateObject,
       photos: tripSightingList.photos,
-      customName: tripSightingList.dayNames[0],
+      customName: tripSightingList.rows[0].customDayName,
       submissionIDToSighting: tripSightingList.mapSubmissionIDToSighting(),
       comments: tripSightingList.getUniqueValues('Checklist Comments'),
       sightingList: tripSightingList
@@ -263,6 +258,7 @@ class Application {
 
   dataForPhotosDayOfYearTemplate (req) {
     let currentDayOfYear = parseInt(req.params.dayofyear)
+
     let photosThisWeek = this.allPhotos.filter((p) => {
       let photoDayOfYear = moment(p.DateObject).dayOfYear()
       return ((currentDayOfYear - 5) < photoDayOfYear) && (photoDayOfYear < (currentDayOfYear + 5))
@@ -273,8 +269,8 @@ class Application {
     return {
       photos: photosThisWeek,
       currentDayOfYear: currentDayOfYear,
-      startDayOfYear: moment().subtract(5, 'days').format('MMMM Do'),
-      endDayOfYear: moment().add(5, 'days').format('MMMM Do')
+      startDayOfYear: moment().startOf('year').add(currentDayOfYear, 'days').subtract(5, 'days').format('MMMM Do'),
+      endDayOfYear: moment().startOf('year').add(currentDayOfYear, 'days').add(5, 'days').format('MMMM Do')
     }
   }
 

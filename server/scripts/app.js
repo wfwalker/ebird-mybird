@@ -1,7 +1,7 @@
 // TODO: bigger row height if fewer photos
 // TODO: this happens too late most of the time
 
-window.onload = function() {
+$(document).ready(function() {
 	var galleryCount = $('.mygallery a').length;
 	var rowHeight = 200;
 
@@ -15,4 +15,4 @@ window.onload = function() {
 		rowHeight: rowHeight,
 		maxRowHeight: rowHeight,
 	});
-};
+});

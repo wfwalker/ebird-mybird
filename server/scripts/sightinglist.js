@@ -32,6 +32,7 @@ var gCustomDayNames = {}
 var gOmittedCommonNames = []
 var gFamilies = []
 var gEBirdAll = []
+var gLocationInfo = {}
 
 const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2016.csv'
 
@@ -81,6 +82,16 @@ class SightingList {
     newSightingList.setGlobalIDs()
 
     return newSightingList
+  }
+
+  static locationInfoFromJSON (inFilename) {
+    let data = fs.readFileSync(inFilename, 'utf8')
+    let tmpLocationInfo = JSON.parse(data)
+    return tmpLocationInfo
+  }
+
+  static loadLocationInfo () {
+    gLocationInfo = SightingList.locationInfoFromJSON('server/data/ca-info.json')
   }
 
   static newPhotosFromJSON (inFilename) {
@@ -162,6 +173,10 @@ class SightingList {
     return gCustomDayNames
   }
 
+  static getLocationInfo () {
+    return gLocationInfo
+  }
+
   static getOmittedCommonNames () {
     return gOmittedCommonNames
   }
@@ -203,6 +218,11 @@ class SightingList {
         // create and save the new dat
         var newDate = convertDate(fixedDateString)
         sighting['DateObject'] = newDate
+
+        // add custom day name 
+        if (gCustomDayNames[sighting['Date']]) {
+          sighting['customDayName'] = gCustomDayNames[sighting['Date']]
+        }
 
         if (sighting['State/Province']) {
           let isoData = iso3166.subdivision(sighting['State/Province'])
@@ -415,6 +435,16 @@ class SightingList {
     }
 
     return tmpMap
+  }
+
+  getDateTuples() {
+    let tuples = []
+
+    for (let i = 0; i < this.dates.length; i++) {
+      tuples.push({ date: this.dates[i], dateObject: this.dateObjects[i], customDayName: this.dayNames[i]})
+    }
+
+    return tuples
   }
 
   getSpeciesByDate () {

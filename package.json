@@ -16,14 +16,14 @@
     "babyparse": "^0.4.6",
     "bootstrap": "^3.3.7",
     "compression": "^1.6.2",
-    "eslint": "^3.19.0",
     "expires-middleware": "0.0.1",
-    "express": "^4.13.4",
-    "handlebars": "^4.0.8",
+    "express": "^4.15.3",
+    "express-react-views": "^0.10.2",
     "iso-3166-2": "^0.4.0",
     "jquery": "^3.1.1",
-    "mocha": "^3.4.0",
     "moment": "^2.18.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "request": "^2.81.0",
     "winston": "^2.2.0"
   },
@@ -34,10 +34,12 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "mocha": "^3.4.1"
+    "mocha": "^3.4.2",
+    "node-iptc": "^1.0.4",
+    "xml2js": "^0.4.17"
   }
 }
