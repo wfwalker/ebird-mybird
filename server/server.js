@@ -58,10 +58,10 @@ app.get('/family/:family_name', function (req, resp, next) {
   resp.render('family', gApplication.dataForFamilyTemplate(req))
 })
 
-// app.get('/taxons', function (req, resp, next) {
-//   logger.debug('/taxons')
-//   resp.send(gTemplates.taxons(gApplication.dataForTaxonsTemplate()))
-// })
+app.get('/taxons', function (req, resp, next) {
+  logger.debug('/taxons')
+  resp.render('taxons', gApplication.dataForTaxonsTemplate())
+})
 
 app.get('/chrono', function (req, resp, next) {
   resp.render('chrono', gApplication.dataForChronoTemplate())
