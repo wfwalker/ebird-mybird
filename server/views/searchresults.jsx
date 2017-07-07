@@ -35,7 +35,7 @@ class SearchResults extends BirdwalkerComponent {
         <h4>{this.props.dates.length} Dates</h4>
 
         <div className='biglist'>
-          {this.props.dates.map(d => this.generateTripLink(d))}
+          {this.props.sightingList.getDateTuples().map(d => this.generateTripLink(d))}
         </div>
 
         <h4>{this.props.sightingList.getUniqueValues('Location').length} Locations</h4>
