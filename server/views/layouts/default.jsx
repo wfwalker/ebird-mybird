@@ -9,7 +9,7 @@ class DefaultLayout extends React.Component {
 
   generateHead() {
     return (
-        <head>
+      <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
 
@@ -23,19 +23,13 @@ class DefaultLayout extends React.Component {
         
         <link rel="stylesheet" type="text/css" media="screen" href="/styles/app.css"></link>
         <link rel="stylesheet" type="text/css" media="screen" href="/styles/justifiedGallery.min.css"></link>
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous" />
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous" />
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>    
-
         <script src='/scripts/jquery.justifiedGallery.min.js'></script>
-
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
-
         <script type='text/javascript' src='/scripts/app.js'></script>
-
       </head>
     )
   }
@@ -92,6 +86,8 @@ class DefaultLayout extends React.Component {
             {this.props.children}
           </div>
 
+          <footer>
+          </footer>
         </body>
       </html>
     )

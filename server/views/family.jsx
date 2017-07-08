@@ -33,33 +33,3 @@ class Family extends BirdwalkerComponent {
 }
 
 export default Family
-
-
-/*
-{{> head title=name}}
-
-<h3>{{stripLatinFromEbirdFamily name}}</h3>
-
-{{> thumbnails}}
-
-<h4>{{valuecount sightingList "Common Name"}} Species</h4>
-
-{{> specieslist}}
-
-<div class='row'>
-	<div class='col-md-4'>
-		{{> datelist}}
-	</div>
-
-	<div class='col-md-8'>
-		<h4>{{valuecount sightingList "Location"}} Locations</h4>
-
-		<div>
-			{{googlemap sightingList mapID}}
-		</div>
-	</div>
-</div>
-
-{{> foot}}
-
-*/
