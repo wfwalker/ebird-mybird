@@ -65,7 +65,7 @@ class Application {
 
   dataForTripsTemplate () {
     return {
-      trips: this.allSightings.dateObjects,
+      trips: this.allSightings.getDateTuples(),
       customDayNames: SightingList.getCustomDayNames()
     }
   }

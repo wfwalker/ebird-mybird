@@ -28,7 +28,7 @@ class Trips extends BirdwalkerComponent {
   render() {
     let byDate = {};
     this.props.trips.forEach(d => {
-      const theYear = d.getFullYear();
+      const theYear = d.dateObject.getFullYear();
       if (! byDate[theYear]) {
         byDate[theYear] = [];
       }
