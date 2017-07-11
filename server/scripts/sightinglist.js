@@ -205,18 +205,18 @@ class SightingList {
   }
 
   addRows (inRows) {
-    for (var index = 0; index < inRows.length; index++) {
-      var sighting = inRows[index]
+    for (let index = 0; index < inRows.length; index++) {
+      let sighting = inRows[index]
 
       if (sighting['Date']) {
         // Parse the date
-        var pieces = sighting['Date'].split('-')
+        let pieces = sighting['Date'].split('-')
 
         // order the pieces in a sensible way
-        var fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('')
+        let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('')
 
-        // create and save the new dat
-        var newDate = convertDate(fixedDateString)
+        // create and save the new date
+        let newDate = convertDate(fixedDateString)
         sighting['DateObject'] = newDate
 
         // add custom day name 
@@ -261,8 +261,6 @@ class SightingList {
     }
 
     this.rows = this.rows.concat(inRows)
-
-    this.dateObjects.sort(function (a, b) { return b - a })
   }
 
   sortByDate () {
@@ -441,8 +439,11 @@ class SightingList {
     let tuples = []
 
     for (let i = 0; i < this.dates.length; i++) {
-      tuples.push({ date: this.dates[i], dateObject: this.dateObjects[i], customDayName: this.dayNames[i]})
+      let newTuple = { date: this.dates[i], dateObject: this.dateObjects[i], customDayName: this.dayNames[i] }
+      tuples.push(newTuple)
     }
+
+    tuples.sort((a, b) => (b.dateObject - a.dateObject))
 
     return tuples
   }
