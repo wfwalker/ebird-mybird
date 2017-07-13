@@ -94,6 +94,7 @@ class Application {
     let earliestByCommonName = this.allSightings.getEarliestByCommonName()
     let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
     lifeSightingsChronological.sort(function (a, b) { return b['DateObject'] - a['DateObject'] })
+    lifeSightingsChronological = lifeSightingsChronological.filter(ls => (SightingList.getCategoryFromCommonName(ls['Common Name']) == 'species'))
 
     return {
       firstSightings: lifeSightingsChronological
@@ -286,7 +287,7 @@ class Application {
     let speciesPhotographed = 0
 
     // make an array of common name, taxonomic id, and family name
-
+    // TODO: can do this when importing photos?
     for (let index = 0; index < this.allPhotos.length; index++) {
       let aPhoto = this.allPhotos[index]
 

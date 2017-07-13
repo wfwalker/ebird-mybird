@@ -70,125 +70,126 @@ describe('SightingList', function () {
   describe('with full data', function () {
     let gApplication = Application.withFullData()
 
-    it('getEarliestByCommonName in chrono order', function () {
-      let earliestByCommonName = gApplication.allSightings.getEarliestByCommonName()
-      let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
-      lifeSightingsChronological.sort(function (a, b) { return b['DateObject'] - a['DateObject'] })
-      assert.ok(lifeSightingsChronological[0].DateObject > lifeSightingsChronological[1].DateObject, 'first two in order')
-      assert.ok(lifeSightingsChronological[1].DateObject > lifeSightingsChronological[2].DateObject, 'second two in order')
+    it('excludes omitted names from chronological life list', function () {
+      let chronoData = gApplication.dataForChronoTemplate()
+      assert.equal(chronoData.firstSightings.filter(fs => (fs['Common Name'] == 'swallow sp.')).length, 0, 'it should not have "swallow sp."')
+      assert.equal(chronoData.firstSightings.filter(fs => (fs['Common Name'] == 'sparrow sp.')).length, 0, 'it should not have "sparrow sp."')
     })
 
-    it('renders sighting template', function () {
-      assert.ok(templates.sighting(gApplication.allSightings.rows[0]).indexOf('undefined') < 0, 'rendered tempate should contain no undefined')
-    })
+    // it('renders sighting template', function () {
+    //   assert.ok(templates.sighting(gApplication.allSightings.rows[0]).indexOf('undefined') < 0, 'rendered tempate should contain no undefined')
+    // })
 
-    it('renders trips template', function () {
-      assert.ok(templates.trips(gApplication.dataForTripsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders trips template', function () {
+    //   assert.ok(templates.trips(gApplication.dataForTripsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders trip template', function () {
-      const req = {
-        params: {
-          trip_date: '03-10-2017'
-        }
-      }
-      assert.ok(templates.trip(gApplication.dataForTripTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders trip template', function () {
+    //   const req = {
+    //     params: {
+    //       trip_date: '03-10-2017'
+    //     }
+    //   }
+    //   console.log('dir', __dirname)
+    //   assert.ok(reactRender('/Users/walker/Dropbox/ebird-mybird/server/views/trip.jsx', reactViewOptions, function(err, source) {
+    //     console.log('err', err)
+    //     console.log('source', source)}))
+    // })
 
-    it('renders year template', function () {
-      const req = {
-        params: {
-          year: '2015'
-        }
-      }
-      assert.ok(templates.year(gApplication.dataForYearTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders year template', function () {
+    //   const req = {
+    //     params: {
+    //       year: '2015'
+    //     }
+    //   }
+    //   assert.ok(templates.year(gApplication.dataForYearTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders locations template', function () {
-      assert.ok(templates.locations(gApplication.dataForLocationsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders locations template', function () {
+    //   assert.ok(templates.locations(gApplication.dataForLocationsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders photos template', function () {
-      assert.ok(templates.photos(gApplication.dataForPhotosTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders photos template', function () {
+    //   assert.ok(templates.photos(gApplication.dataForPhotosTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders bigdays template', function () {
-      assert.ok(templates.bigdays(gApplication.dataForBigdaysTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders bigdays template', function () {
+    //   assert.ok(templates.bigdays(gApplication.dataForBigdaysTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders taxons template', function () {
-      assert.ok(templates.taxons(gApplication.dataForTaxonsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders taxons template', function () {
+    //   assert.ok(templates.taxons(gApplication.dataForTaxonsTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders chrono template', function () {
-      assert.ok(templates.chrono(gApplication.dataForChronoTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders chrono template', function () {
+    //   assert.ok(templates.chrono(gApplication.dataForChronoTemplate()).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders family template', function () {
-      const req = {
-        params: {
-          family_name: 'Apodidae (Swifts)'
-        }
-      }
-      assert.ok(templates.family(gApplication.dataForFamilyTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders family template', function () {
+    //   const req = {
+    //     params: {
+    //       family_name: 'Apodidae (Swifts)'
+    //     }
+    //   }
+    //   assert.ok(templates.family(gApplication.dataForFamilyTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders sighting template', function () {
-      const req = {
-        params: {
-          sighting_id: '29'
-        }
-      }
-      assert.ok(templates.sighting(gApplication.dataForSightingTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders sighting template', function () {
+    //   const req = {
+    //     params: {
+    //       sighting_id: '29'
+    //     }
+    //   }
+    //   assert.ok(templates.sighting(gApplication.dataForSightingTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders photo template', function () {
-      const req = {
-        params: {
-          photo_id: '29'
-        }
-      }
-      assert.ok(templates.photo(gApplication.dataForPhotoTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders photo template', function () {
+    //   const req = {
+    //     params: {
+    //       photo_id: '29'
+    //     }
+    //   }
+    //   assert.ok(templates.photo(gApplication.dataForPhotoTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders location template', function () {
-      const req = {
-        params: {
-          state_name: 'US-CA',
-          county_name: 'Santa Clara',
-          location_name: 'Charleston Slough'
-        }
-      }
-      assert.ok(templates.location(gApplication.dataForLocationTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders location template', function () {
+    //   const req = {
+    //     params: {
+    //       state_name: 'US-CA',
+    //       county_name: 'Santa Clara',
+    //       location_name: 'Charleston Slough'
+    //     }
+    //   }
+    //   assert.ok(templates.location(gApplication.dataForLocationTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders county template', function () {
-      const req = {
-        params: {
-          state_name: 'US-CA',
-          county_name: 'Santa Clara'
-        }
-      }
-      assert.ok(templates.county(gApplication.dataForCountyTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders county template', function () {
+    //   const req = {
+    //     params: {
+    //       state_name: 'US-CA',
+    //       county_name: 'Santa Clara'
+    //     }
+    //   }
+    //   assert.ok(templates.county(gApplication.dataForCountyTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders state template', function () {
-      const req = {
-        params: {
-          state_name: 'US-CA'
-        }
-      }
-      assert.ok(templates.state(gApplication.dataForStateTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders state template', function () {
+    //   const req = {
+    //     params: {
+    //       state_name: 'US-CA'
+    //     }
+    //   }
+    //   assert.ok(templates.state(gApplication.dataForStateTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
-    it('renders search template for sandpiper', function () {
-      const req = {
-        query: {
-          searchtext: 'sandpiper'
-        }
-      }
-      assert.ok(templates.searchresults(gApplication.dataForSearchTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
-    })
+    // it('renders search template for sandpiper', function () {
+    //   const req = {
+    //     query: {
+    //       searchtext: 'sandpiper'
+    //     }
+    //   }
+    //   assert.ok(templates.searchresults(gApplication.dataForSearchTemplate(req)).indexOf('undefined') < 0, 'rendered template should contain no undefined')
+    // })
 
     it('finds matches when searching for sandpiper', function () {
       const req = {

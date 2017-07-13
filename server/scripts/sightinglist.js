@@ -159,10 +159,23 @@ class SightingList {
   }
 
   // TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
+  // LINEAR SEARCH!
   static getTaxoFromCommonName (inCommonName) {
     for (let index = 0; index < gEBirdAll.data.length; index++) {
       if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] === inCommonName) {
         return parseFloat(gEBirdAll.data[index]['TAXON_ORDER'])
+      }
+    }
+
+    return 'Unknown'
+  }
+
+  // TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
+  // LINEAR SEARCH!
+  static getCategoryFromCommonName (inCommonName) {
+    for (let index = 0; index < gEBirdAll.data.length; index++) {
+      if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] === inCommonName) {
+        return gEBirdAll.data[index]['CATEGORY']
       }
     }
 
