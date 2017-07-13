@@ -31,7 +31,7 @@ class Trip extends BirdwalkerComponent {
 
     return (
       <DefaultLayout title={moment(this.props.tripDate).format('MMM DD, YYYY')} subtitle={this.props.customName} >
-        <PageHeading title={moment(this.props.tripDate).format('MMM DD, YYYY')} subtitle={this.props.customName} />
+        <PageHeading title={moment(this.props.tripDate).format('dddd, MMM DD, YYYY')} subtitle={this.props.customName} />
 
         {this.generateThumbnails()}
 

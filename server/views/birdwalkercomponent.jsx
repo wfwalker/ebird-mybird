@@ -29,6 +29,11 @@ class BirdwalkerComponent extends React.Component {
   }
 
   generateLinkToLocation(state, county, location) {
+    // TODO: move this elsewhere?
+    if (county == '') {
+      county = 'none'
+    }
+
     return (
       <div key={location} className='biglist-item'><a href={'/place/' + state + '/' + county + '/' + location}>{location}</a></div>
     )
