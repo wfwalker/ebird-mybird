@@ -2,6 +2,14 @@
 const assert = require('assert')
 const SightingList = require('../server/scripts/sightinglist.js')
 const Application = require('../server/scripts/application.js')
+const reactRender = require('express-react-views').createEngine()
+
+const reactViewOptions = {
+  settings: {
+    env: 'development',
+    views: '../server/views'
+  }
+};
 
 const testSightings = [
   { Date: '01-01-2017', 'Common Name': 'Aaa' },
