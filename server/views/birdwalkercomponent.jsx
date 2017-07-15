@@ -5,6 +5,12 @@ import LocationMap from './locationmap.jsx'
 
 var { URL, URLSearchParams } = require('url')
 
+const Thumbnail = (props) => {
+  return (
+    <a href={'/photo/' + props.photo.id}><img alt={props.photo['Common Name']} src={props.photo['Photo URL']} /></a>
+  )
+}
+
 class BirdwalkerComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +56,7 @@ class BirdwalkerComponent extends React.Component {
   generateThumbnails() {
 		return (
 	    <div className='mygallery'>
-	    	{this.props.photos.map(p => (<a href={'/photo/' + p.id}><img alt={p['Common Name']} src={p['Photo URL']} /></a>))}
+        {this.props.photos.map(p => (<Thumbnail key={p.id} photo={p} />))}
 	    </div>
 		)  	
   }
@@ -70,8 +76,6 @@ class BirdwalkerComponent extends React.Component {
     chartURL.searchParams.append('chco', '76A4FB')
     chartURL.searchParams.append('chls', '2.0')
     chartURL.searchParams.append('chs', '480x270')
-
-    logger.debug(chartURL)
 
     return (<img className='img-responsive' src={chartURL.toString()} />)
   }

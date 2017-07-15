@@ -11,9 +11,16 @@ class Trip extends BirdwalkerComponent {
 
   generateLinkForSubmssionID(id) {
     let sighting = this.props.submissionIDToSighting[id]
+
+    // TODO duplicated code!!
+    let county = sighting['County']
+    if (county == '') {
+      county = 'none'
+    }
+
     return (
       <div className='biglist-item'>
-          <a href={'/place/' + sighting['State/Province'] + '/' + sighting['County'] + '/' + sighting['Location']}>{sighting['Location']}</a>
+          <a href={'/place/' + sighting['State/Province'] + '/' + county + '/' + sighting['Location']}>{sighting['Location']}</a>
           <a href={'http://ebird.org/ebird/view/checklist?subID=' + id}><img src='/images/ebird-favicon.png' /></a>
 
           <div style={{fontSize: '80%', marginLeft: '1em'}}>

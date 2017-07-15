@@ -4,7 +4,7 @@ var moment = require('moment')
 class DefaultLayout extends React.Component {
   constructor(props) {
     super(props);
-    console.log('constructor', this.props.title)
+    logger.debug('DefaultLayout constructor', this.props.title)
   }
 
   generateHead() {
