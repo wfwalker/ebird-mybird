@@ -122,7 +122,6 @@ class Application {
 
     return {
       name: req.params.common_name,
-      showDates: taxonSightingList.length() < 30,
       scientificName: taxonSightingList.rows[0]['Scientific Name'],
       photos: taxonSightingList.photos,
       sightingList: taxonSightingList
@@ -140,7 +139,6 @@ class Application {
 
     return {
       name: req.params.family_name,
-      showDates: familySightingList.dateObjects.length < 30,
       showLocations: familySightingList.getUniqueValues('Location').length < 30,
       photos: familySightingList.getLatestPhotos(20),
       sightingList: familySightingList,
@@ -166,7 +164,6 @@ class Application {
 
     return {
       name: req.params.location_name,
-      showDates: locationSightingList.dateObjects.length < 20,
       photos: locationSightingList.getLatestPhotos(20),
       sightingList: locationSightingList,
       locationInfo: SightingList.getLocationInfo().filter(l => l.locName == req.params.location_name),
@@ -191,7 +188,6 @@ class Application {
 
     return {
       name: req.params.county_name,
-      showDates: countySightingList.getUniqueValues('Date').length < 30,
       photos: countySightingList.getLatestPhotos(20),
       State: countySightingList.rows[0]['State/Province'],
       Region: countySightingList.rows[0]['Region'],
@@ -215,7 +211,6 @@ class Application {
 
     return {
       name: req.params.state_name,
-      showDates: stateSightingList.getUniqueValues('Date').length < 30,
       photos: stateSightingList.getLatestPhotos(20),
       State: stateSightingList.rows[0]['State/Province'],
       Country: stateSightingList.rows[0]['Country'],

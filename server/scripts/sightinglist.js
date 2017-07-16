@@ -461,6 +461,24 @@ class SightingList {
     return tuples
   }
 
+  getLocationTriples() {
+    let triples = []
+    let tmp = []
+
+    for (let index = 0; index < this.rows.length; index++) {
+      let row = this.rows[index]
+      let triple = [row['State/Province'], row['County'], row['Location']]
+      let code = triple.join('-')
+
+      if (tmp.indexOf(code) === -1) {
+        triples.push(triple)
+        tmp.push(code)
+      }
+    }
+
+    return triples
+  }
+
   getSpeciesByDate () {
     logger.debug('computing speciesByDate')
 

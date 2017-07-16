@@ -81,14 +81,18 @@ class BirdwalkerComponent extends React.Component {
   }
 
   generateGoogleMap(inData) {
+    let locationTriples = inData.getLocationTriples()
+
     return (
-      <LocationMap data={inData} />
+      <div>
+        <LocationMap data={inData} />
+        {(locationTriples.length < 20) && locationTriples.map(l => this.generateLinkToLocation(l[0], l[1], l[2]))}
+      </div>
     )
   }
 
   generateDateList(sightingList) {
-
-  	if (this.props.showDates) {
+  	if (sightingList.getUniqueValues('Date').length < 30) {
       const listDateTuples = sightingList.getDateTuples()
 	  	return (
 					<div class="biglist">
