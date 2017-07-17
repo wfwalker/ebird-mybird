@@ -14,8 +14,8 @@ class County extends BirdwalkerComponent {
     const commonNames = this.props.sightingList.getUniqueValues('Common Name')
     const locationNames = this.props.sightingList.getUniqueValues('Location')
     return (
-      <DefaultLayout title={this.props.name + ' County'} subtitle={'TODO link' + this.lookupState(this.props.State) + ' ' + this.props.Country}>
-        <PageHeading title={this.props.name + ' County'} subtitle={'TODO link' + this.lookupState(this.props.State) + ' ' + this.props.Country} />
+      <DefaultLayout title={this.props.name + ' County'} subtitle={this.lookupState(this.props.State) + ' ' + this.props.Country}>
+        <PageHeading title={this.props.name + ' County'} subtitle={this.lookupState(this.props.State) + ' ' + this.props.Country} />
 
         {this.generateThumbnails()}
 
