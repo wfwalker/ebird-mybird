@@ -264,7 +264,6 @@ class Application {
       return ((currentDayOfYear - 5) < sightingDayOfYear) && (sightingDayOfYear < (currentDayOfYear + 5))
     })
     let sightingsThisWeekList = new SightingList(sightingsThisWeek)
-    sightingsThisWeekList.sortByDate()
 
     logger.debug('photos of the week', currentDayOfYear, photosThisWeek.length)
     logger.debug('sightings of the week', currentDayOfYear, sightingsThisWeek.length)
