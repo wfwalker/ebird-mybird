@@ -12,7 +12,7 @@ class Taxon extends BirdwalkerComponent {
 
   render() {
     return (
-      <DefaultLayout title='Sighting' subtitle={this.props.scientificName}>
+      <DefaultLayout title={this.props.name} subtitle={this.props.scientificName}>
         <PageHeading title={this.props.name} subtitle={this.props.scientificName} />
 
         {this.generateThumbnails()}
