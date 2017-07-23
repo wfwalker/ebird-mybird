@@ -259,10 +259,19 @@ class Application {
       return ((currentDayOfYear - 5) < photoDayOfYear) && (photoDayOfYear < (currentDayOfYear + 5))
     })
 
+    let sightingsThisWeek = this.allSightings.filter((s) =>  {
+      let sightingDayOfYear = moment(s['DateObject']).dayOfYear()
+      return ((currentDayOfYear - 5) < sightingDayOfYear) && (sightingDayOfYear < (currentDayOfYear + 5))
+    })
+    let sightingsThisWeekList = new SightingList(sightingsThisWeek)
+    sightingsThisWeekList.sortByDate()
+
     logger.debug('photos of the week', currentDayOfYear, photosThisWeek.length)
+    logger.debug('sightings of the week', currentDayOfYear, sightingsThisWeek.length)
 
     return {
       photos: photosThisWeek,
+      sightingList: sightingsThisWeekList,
       currentDayOfYear: currentDayOfYear,
       startDayOfYear: moment().startOf('year').add(currentDayOfYear, 'days').subtract(5, 'days').format('MMMM Do'),
       endDayOfYear: moment().startOf('year').add(currentDayOfYear, 'days').add(5, 'days').format('MMMM Do')

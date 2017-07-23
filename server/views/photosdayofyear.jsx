@@ -12,7 +12,10 @@ class PhotosThisWeek extends BirdwalkerComponent {
     return (
       <DefaultLayout title='Photos'>
         <PageHeading title={'Photos from ' + this.props.startDayOfYear + ' - ' + this.props.endDayOfYear} />
+
         {this.generateThumbnails()}
+
+        {this.generateDatesandMapRow(this.props.sightingList)}
       </DefaultLayout>
     )
   }
