@@ -42,33 +42,11 @@ describe('SightingList', function () {
     })
   })
 
-  describe('getEarliestByCommonName', function () {
-    it('maps three sightings to single common name', function () {
-      let tmp = new SightingList(testSightings)
-
-      let earliestByCommonName = tmp.getEarliestByCommonName()
-      assert.ok(earliestByCommonName['Aaa'])
-
-      let keys = Object.keys(earliestByCommonName)
-      assert.equal(keys.length, 1)
-    })
-
-    it('maps six sightings to two common names', function () {
-      let tmp = new SightingList(testSightings.concat(testSightings2))
-
-      let earliestByCommonName = tmp.getEarliestByCommonName()
-      assert.ok(earliestByCommonName['Aaa'])
-      assert.ok(earliestByCommonName['Bbb'])
-
-      let keys = Object.keys(earliestByCommonName)
-      assert.equal(keys.length, 2)
-    })
-
+  describe('getEarliestSightings', function () {
     it('supports chrono life list', function () {
       let tmp = new SightingList(testSightings3.concat(testSightings).concat(testSightings2))
 
-      let earliestByCommonName = tmp.getEarliestByCommonName()
-      let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
+      let lifeSightingsChronological = tmp.getEarliestSightings()
       lifeSightingsChronological.sort(function (a, b) { return b['DateObject'] - a['DateObject'] })
       assert.ok(lifeSightingsChronological[0].DateObject > lifeSightingsChronological[1].DateObject, 'first two in order')
       assert.ok(lifeSightingsChronological[1].DateObject > lifeSightingsChronological[2].DateObject, 'second two in order')
@@ -80,8 +58,8 @@ describe('SightingList', function () {
 
     it('excludes omitted names from chronological life list', function () {
       let chronoData = gApplication.dataForChronoTemplate()
-      assert.equal(chronoData.firstSightings.filter(fs => (fs['Common Name'] == 'swallow sp.')).length, 0, 'it should not have "swallow sp."')
-      assert.equal(chronoData.firstSightings.filter(fs => (fs['Common Name'] == 'sparrow sp.')).length, 0, 'it should not have "sparrow sp."')
+      assert.equal(chronoData.firstSightingList.filter(fs => (fs['Common Name'] == 'swallow sp.')).length, 0, 'it should not have "swallow sp."')
+      assert.equal(chronoData.firstSightingList.filter(fs => (fs['Common Name'] == 'sparrow sp.')).length, 0, 'it should not have "sparrow sp."')
     })
 
     // it('renders sighting template', function () {

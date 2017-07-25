@@ -49,7 +49,6 @@ class SightingList {
     this.rowsByYear = {}
     this.rowsByMonth = { '01': [], '02': [], '03': [], '04': [], '05': [], '06': [], '07': [], '08': [], '09': [], '10': [], '11': [], '12': [] }
     this._speciesByDate = {}
-    this._earliestRowByCommonName = null
     this.earliestDateObject = null
     this.latestDateObject = null
     this.dates = []
@@ -499,27 +498,28 @@ class SightingList {
     return this._speciesByDate
   }
 
-  getEarliestByCommonName () {
-    this._earliestRowByCommonName = {}
+  getEarliestSightings () {
+    let earliestRowByCommonName = {}
 
     for (var index = 0; index < this.rows.length; index++) {
       var sighting = this.rows[index]
 
       if (gOmittedCommonNames.indexOf(sighting['Common Name']) < 0) {
-        if (!this._earliestRowByCommonName[sighting['Common Name']]) {
-          this._earliestRowByCommonName[sighting['Common Name']] = sighting
-        } else if (sighting.DateObject < this._earliestRowByCommonName[sighting['Common Name']].DateObject) {
-          this._earliestRowByCommonName[sighting['Common Name']] = sighting
+        if (!earliestRowByCommonName[sighting['Common Name']]) {
+          earliestRowByCommonName[sighting['Common Name']] = sighting
+        } else if (sighting.DateObject < earliestRowByCommonName[sighting['Common Name']].DateObject) {
+          earliestRowByCommonName[sighting['Common Name']] = sighting
         }
       } else {
         // logger.debug('omit', sighting['Common Name'])
       }
     }
 
-    return this._earliestRowByCommonName
+    return Object.keys(earliestRowByCommonName).map(k => earliestRowByCommonName[k])
   }
 
   // Return as many as possible recent photos from the list, up to the supplied limit
+  // for uses see application.js
   getLatestPhotos (inPhotoCount) {
     if (this.photos.length <= inPhotoCount) {
       // if the limit exceeds the available photos, return all of them.

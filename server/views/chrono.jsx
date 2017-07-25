@@ -11,19 +11,33 @@ class ChronoLifeList extends BirdwalkerComponent {
 
   generateFirstSightingLink(fs) {
     return (
-      <div key={fs['Common Name']} class='biglist-item'>
-        {moment(fs.DateObject).format('MMM DD, YYYY')} <a href={'/taxon/' + fs['Common Name']}>{fs['Common Name']}</a>
+      <div key={fs['Common Name']}>
+        <a href={'/taxon/' + fs['Common Name']}>{fs['Common Name']}</a>
       </div>
+    )
+  }
+
+  generateChronoEntriesForDate(dateTuple) {
+    let dateSightings = this.props.firstSightingList.filter(s => (s['Date'] === dateTuple.date))
+
+    return (
+      <tr key={dateTuple.date} valign='top'>
+        <td>{this.generateTripLink(dateTuple)}</td>
+        <td>{dateSightings.map(ds => this.generateFirstSightingLink(ds))}</td>
+      </tr>
     )
   }
 
   render() {
     return (
-      <DefaultLayout title='Our Life List' subtitle={this.props.firstSightings.length + ' species'}>
-        <PageHeading title='Our Life List' subtitle={this.props.firstSightings.length + ' species'} />
-        <div class="biglist">
-          {this.props.firstSightings.map(fs => this.generateFirstSightingLink(fs))}
-        </div>
+      <DefaultLayout title='Our Life List' subtitle={this.props.firstSightingList.length() + ' species'}>
+        <PageHeading title='Our Life List' subtitle={this.props.firstSightingList.length() + ' species'} />
+
+        <table>
+          <tbody>
+            {this.props.firstSightingList.getDateTuples().map(dt => this.generateChronoEntriesForDate(dt))}
+          </tbody>
+        </table>
       </DefaultLayout>
     )
   }

@@ -91,19 +91,23 @@ class Application {
   }
 
   dataForChronoTemplate () {
-    let earliestByCommonName = this.allSightings.getEarliestByCommonName()
-    let lifeSightingsChronological = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
+    // retrieve the earliest sightings for each species
+    let lifeSightingsChronological = this.allSightings.getEarliestSightings()
+
+    // sort those sightings by date
     lifeSightingsChronological.sort(function (a, b) { return b['DateObject'] - a['DateObject'] })
+
+    // filter out "spuh" and subspecies records
     lifeSightingsChronological = lifeSightingsChronological.filter(ls => (SightingList.getCategoryFromCommonName(ls['Common Name']) == 'species'))
 
     return {
-      firstSightings: lifeSightingsChronological
+      firstSightingList: new SightingList(lifeSightingsChronological)
     }
   }
 
   dataForTaxonsTemplate () {
-    let earliestByCommonName = this.allSightings.getEarliestByCommonName()
-    let lifeSightingsTaxonomic = Object.keys(earliestByCommonName).map(function (k) { return earliestByCommonName[k] })
+    // retrieve the earliest sightings for each species
+    let lifeSightingsTaxonomic = this.allSightings.getEarliestSightings()
     lifeSightingsTaxonomic.sort(SightingList.taxonomicSortComparator)
     let lifeSightingsList = new SightingList(lifeSightingsTaxonomic)
 
