@@ -1,9 +1,7 @@
 var React = require('react');
 var iso3166 = require('iso-3166-2')
 import LocationMap from './locationmap.jsx'
-import { Thumbnail, TripLink } from './utilities.jsx'
-
-var { URL, URLSearchParams } = require('url')
+import { Thumbnail, TripLink, TaxonLink, MonthGraph } from './utilities.jsx'
 
 class BirdwalkerComponent extends React.Component {
   constructor(props) {
@@ -12,12 +10,6 @@ class BirdwalkerComponent extends React.Component {
 
   commonNameFromEbirdFamily(inString) {
     return inString.replace(/(.*)\((.*)\)/, '$2')
-  }
-
-  generateLinkForCommonName(cn) {
-  	return (
-	    <div key={cn} className='biglist-item'><a href={'/taxon/' + cn}>{cn}</a></div>
-		)
   }
 
   generateLinkToLocation(state, county, location) {
@@ -34,7 +26,7 @@ class BirdwalkerComponent extends React.Component {
   generateSpeciesList(commonNames) {
   	return (
 	    <div className='biglist'>
-		    {commonNames.map(cn => this.generateLinkForCommonName(cn))}
+		    {commonNames.map(cn => <TaxonLink commonName={cn} />)}
 	    </div>
 		)
   }
@@ -45,25 +37,6 @@ class BirdwalkerComponent extends React.Component {
         {this.props.photos.map(p => (<Thumbnail key={p.id} photo={p} />))}
 	    </div>
 		)  	
-  }
-
-  generateMonthGraph(inData) {
-    let chartURL = new URL('https://chart.googleapis.com/chart')
-    chartURL.searchParams.append('chxt', 'x,y')
-    chartURL.searchParams.append('cht', 'bvs')
-    let counts = inData.map(d => d.length)
-    let maxCount = Math.max.apply(null, counts)
-    chartURL.searchParams.append('chd', 't:' + counts.join(','))
-    chartURL.searchParams.append('chds', '0,' + maxCount)
-    chartURL.searchParams.append('chxl', '0:|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec')
-    chartURL.searchParams.append('chxt', 'x,y')
-    chartURL.searchParams.append('chxr', '1,0,' + maxCount)
-    chartURL.searchParams.append('chbh', 'r,0,0')
-    chartURL.searchParams.append('chco', '76A4FB')
-    chartURL.searchParams.append('chls', '2.0')
-    chartURL.searchParams.append('chs', '480x270')
-
-    return (<img className='img-responsive' src={chartURL.toString()} />)
   }
 
   generateGoogleMap(inData) {
@@ -88,7 +61,7 @@ class BirdwalkerComponent extends React.Component {
   	} else {
 	  	return (
 					<div id={this.props.chartID} class='bargraph'>
-						{this.generateMonthGraph(this.props.sightingList.byMonth())}
+						<MonthGraph byMonth={this.props.sightingList.byMonth()} />
 					</div>
 			)
 	  }

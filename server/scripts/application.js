@@ -143,7 +143,6 @@ class Application {
 
     return {
       name: req.params.family_name,
-      showLocations: familySightingList.getUniqueValues('Location').length < 30,
       photos: familySightingList.getLatestPhotos(20),
       sightingList: familySightingList,
       taxons: familySightingList.commonNames,
