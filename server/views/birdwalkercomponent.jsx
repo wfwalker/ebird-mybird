@@ -1,15 +1,9 @@
 var React = require('react');
 var iso3166 = require('iso-3166-2')
-var moment = require('moment')
 import LocationMap from './locationmap.jsx'
+import { Thumbnail, TripLink } from './utilities.jsx'
 
 var { URL, URLSearchParams } = require('url')
-
-const Thumbnail = (props) => {
-  return (
-    <a href={'/photo/' + props.photo.id}><img alt={props.photo['Common Name']} src={props.photo['Photo URL']} /></a>
-  )
-}
 
 class BirdwalkerComponent extends React.Component {
   constructor(props) {
@@ -18,14 +12,6 @@ class BirdwalkerComponent extends React.Component {
 
   commonNameFromEbirdFamily(inString) {
     return inString.replace(/(.*)\((.*)\)/, '$2')
-  }
-
-  generateTripLink(tuple) {
-  	return (
-			<div className='biglist-item'>
-				<a href={'/trip/' + moment(tuple.dateObject).format('MM-DD-YYYY')}>{moment(tuple.dateObject).format('MMM, DD, YYYY')}</a> {tuple.customDayName}
-			</div>
-  	)
   }
 
   generateLinkForCommonName(cn) {
@@ -96,7 +82,7 @@ class BirdwalkerComponent extends React.Component {
       const listDateTuples = sightingList.getDateTuples()
 	  	return (
 					<div class="biglist">
-						{listDateTuples.map(tuple => (this.generateTripLink(tuple)))}
+						{listDateTuples.map(tuple => <TripLink tuple={tuple} />)}
 					</div>
 			)
   	} else {

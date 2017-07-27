@@ -2,6 +2,7 @@ var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
+import { TripLink } from './utilities.jsx'
 
 var moment = require('moment')
 
@@ -15,7 +16,7 @@ class Trips extends BirdwalkerComponent {
       <div>
         <h4 className='stickyHeader'><a href={'/year/' + y}>{y}</a></h4>
         <div className='biglist'>
-          {list.map(t => this.generateTripLink(t))}
+          {list.map(t => (<TripLink tuple={t} />))}
         </div>
       </div>
     )

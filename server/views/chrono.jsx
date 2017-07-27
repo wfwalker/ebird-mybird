@@ -1,6 +1,7 @@
 var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
+import { TripLink } from './utilities.jsx'
 import PageHeading from './pageheading.jsx'
 var moment = require('moment')
 
@@ -22,7 +23,7 @@ class ChronoLifeList extends BirdwalkerComponent {
 
     return (
       <tr key={dateTuple.date} valign='top'>
-        <td>{this.generateTripLink(dateTuple)}</td>
+        <td><TripLink tuple={dateTuple} /></td>
         <td>{dateSightings.map(ds => this.generateFirstSightingLink(ds))}</td>
       </tr>
     )
@@ -33,7 +34,7 @@ class ChronoLifeList extends BirdwalkerComponent {
       <DefaultLayout title='Our Life List' subtitle={this.props.firstSightingList.length() + ' species'}>
         <PageHeading title='Our Life List' subtitle={this.props.firstSightingList.length() + ' species'} />
 
-        <table>
+        <table className='table table-condensed table-striped'>
           <tbody>
             {this.props.firstSightingList.getDateTuples().map(dt => this.generateChronoEntriesForDate(dt))}
           </tbody>
