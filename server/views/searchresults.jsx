@@ -2,6 +2,7 @@ var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
+import { TaxonLink } from './utilities.jsx'
 var moment = require('moment')
 
 class SearchResults extends BirdwalkerComponent {
@@ -17,7 +18,7 @@ class SearchResults extends BirdwalkerComponent {
         <h4>{this.props.sightingList.getUniqueValues('Common Name').length} Species</h4>
 
         <div className='biglist'>
-          {this.props.sightingList.getUniqueValues('Common Name').map(cn => this.generateLinkForCommonName(cn))}
+          {this.props.sightingList.getUniqueValues('Common Name').map(cn => <TaxonLink commonName={cn} />)}
         </div>
 
         {this.generateDatesandMapRow(this.props.sightingList)}
