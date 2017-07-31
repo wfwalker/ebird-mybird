@@ -17,7 +17,7 @@ const TaxonLink = (props) => {
 const TripLink = (props) => {
   return (
     <div className='biglist-item'>
-      <a href={'/trip/' + moment(props.tuple.dateObject).format('MM-DD-YYYY')}>{moment(props.tuple.dateObject).format('MMM, DD, YYYY')}</a> {props.tuple.customDayName}
+      <a href={'/trip/' + moment(props.tuple.dateObject).format('MM-DD-YYYY')}>{moment(props.tuple.dateObject).format('MMM DD, YYYY')}</a> {props.tuple.customDayName}
     </div>
   )
 }

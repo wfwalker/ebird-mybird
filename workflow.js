@@ -7,7 +7,6 @@ var glob = require('glob');
 var SightingList = require('./server/scripts/sightinglist.js');
 var XML = require('pixl-xml');
 
-var gFiles = {};
 var gSightingList = null;
 
 var csvData = fs.readFileSync('server/data/ebird.csv', 'utf8');
@@ -50,26 +49,25 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
     let speciesSightings = daySightingList.filter(s => { return s['Common Name'] == label });
     let photosOriginalNameMatch = photos.filter(p => p['Photo URL'].toLowerCase().indexOf(n.toLowerCase()) > 0);
 
-    gFiles[n].label = label;
-    gFiles[n].location = location;
-    gFiles[n].date = tmpDate;
-    gFiles[n].ebirdDate = tmpEbirdDate;
-    gFiles[n].sightingsThatDate = daySightingList.length();
-    gFiles[n].speciesSightingsThatDate = speciesSightings;
-    gFiles[n].locations = daySightingList.getUniqueValues('Location');
+    let info = {
+        label: label,
+        location: location,
+        date: tmpDate,
+        ebirdDate: tmpEbirdDate, 
+        sightingsThatDate: daySightingList.length(),
+        speciesSightingsThatDate: speciesSightings,
+        locations: daySightingList.getUniqueValues('Location')
+    }
 
     if (photosOriginalNameMatch.length > 0) {
-        console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location);
-        gFiles[n].action = 'already found in photos.json'
+        // console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location);
+        info.action = 'already found in photos.json'
         // console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location, photosOriginalNameMatch[0]);
     } else if (speciesSightings.length > 0) {
-        console.log('\n\n\n');
         let newFilename = tmpDate + '-' + speciesSightings[0]['Scientific Name'].toLowerCase().replace(' ', '-') + '-' + n;
         console.log(n, label, 'sighting', speciesSightings[0].id, location);
 
-        gFiles[n].action = 'READY to add to photos.json'
-
-        console.log('cp /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
+        info.action = 'READY to add to photos.json'
 
         let samplePhoto = {
             Date: speciesSightings[0].Date,
@@ -81,17 +79,20 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
             County: speciesSightings[0].County,
             'State/Province': speciesSightings[0]['State/Province'],
         };
+        console.log('\n\n\n');
         console.log(JSON.stringify(samplePhoto, null, '  '));
-
+        console.log('cp /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
         console.log('s3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/photo/ --add-header=Cache-Control:max-age=31536000')
         console.log('s3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/thumb/ --add-header=Cache-Control:max-age=31536000')
     } else if (daySightingList.length() > 0) {
-        gFiles[n].action = 'missing species from trip'
-        console.log(n, 'trip yes but', label, 'no', tmpEbirdDate);
+        info.action = 'missing species ' + label + ' from existing trip ' + tmpEbirdDate
+        // console.log(n, 'trip yes but', label, 'no', tmpEbirdDate);
     } else {
-        gFiles[n].action = 'missing trip'
-        console.log(n, label, 'no trip this date', tmpEbirdDate);
+        info.action = 'missing trip for date ' + tmpEbirdDate
+        // console.log(n, label, 'no trip this date', tmpEbirdDate);
     }
+
+    return info
 }
 
 function handleJPEG(inJPEGFilename) {
@@ -100,31 +101,30 @@ function handleJPEG(inJPEGFilename) {
     let tmpDate = tmpIPTCdate.substring(0,4) + '-' + tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8);
     let tmpEbirdDate = tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8) + '-' + tmpIPTCdate.substring(0,4);
     let tmpPath = tmpIPTCdate.substring(0,4) + '/' + tmpDate + '/' + inJPEGFilename.replace('jpg', 'xmp');
-
-    gFiles[inJPEGFilename] = { date: tmpIPTCdate };
+    let info = {}
 
     if (fs.existsSync('/Volumes/Big\ Ethel/Photos/' + tmpPath)) {
         // PARSE XML
-        handleXMP('/Volumes/Big\ Ethel/Photos/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
+        info = handleXMP('/Volumes/Big\ Ethel/Photos/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
     } else if (fs.existsSync('/Users/walker/Pictures/' + tmpPath)) {
         // PARSE XML
-        handleXMP('/Users/walker/Pictures/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
+        info = handleXMP('/Users/walker/Pictures/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
     } else if (fs.existsSync('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + inJPEGFilename.replace('jpg','xmp'))) {
         // PARSE XML
-        console.log('FOUND 3');
-        handleXMP('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + inJPEGFilename.replace('jpg','xmp'), tmpEbirdDate, inJPEGFilename, tmpDate);
+        info = handleXMP('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + inJPEGFilename.replace('jpg','xmp'), tmpEbirdDate, inJPEGFilename, tmpDate);
     } else {
         console.log('no XMP', tmpPath, tmpDate);
-        console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpIPTCdate.substring(0,4)+'/**/' + inJPEGFilename.replace('jpg','xmp')));
-        console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpDate+'/**/' + inJPEGFilename.replace('jpg','xmp')));
+        // console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpIPTCdate.substring(0,4)+'/**/' + inJPEGFilename.replace('jpg','xmp')));
+        // console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpDate+'/**/' + inJPEGFilename.replace('jpg','xmp')));
     }
 
-    gFiles[inJPEGFilename].name = inJPEGFilename
-    gFiles[inJPEGFilename].path = tmpPath
+    info.iptcDate = tmpIPTCdate
+    info.name = inJPEGFilename
+    info.path = tmpPath
 
-    return gFiles[inJPEGFilename]
+    return info
 }
 
-var creationDates = jpegs.map(handleJPEG)
+var infoList = jpegs.map(handleJPEG)
 
-// console.log('gFiles', gFiles)
+console.log('infoList', infoList.map(i => [i.name, i.action]))

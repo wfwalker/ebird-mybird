@@ -9,7 +9,7 @@ class BigDay extends BirdwalkerComponent {
   render() {
     return (
       <div>
-        {this.props.bigDay.count} species,
+        {this.props.bigDay.count} species, {" "}
         <a href={'/trip/' + this.props.bigDay.date}>
           {moment(this.props.bigDay.dateObject).format('MMM DD, YYYY')}: {this.props.bigDay.customName}
         </a>
