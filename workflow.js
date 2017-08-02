@@ -104,16 +104,14 @@ function handleJPEG(inJPEGFilename) {
     let info = {}
 
     if (fs.existsSync('/Volumes/Big\ Ethel/Photos/' + tmpPath)) {
-        // PARSE XML
         info = handleXMP('/Volumes/Big\ Ethel/Photos/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
     } else if (fs.existsSync('/Users/walker/Pictures/' + tmpPath)) {
-        // PARSE XML
         info = handleXMP('/Users/walker/Pictures/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
     } else if (fs.existsSync('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + inJPEGFilename.replace('jpg','xmp'))) {
-        // PARSE XML
         info = handleXMP('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + inJPEGFilename.replace('jpg','xmp'), tmpEbirdDate, inJPEGFilename, tmpDate);
     } else {
-        console.log('no XMP', tmpPath, tmpDate);
+        info.action = 'no XMP for ' + tmpPath
+        // console.log('no XMP', tmpPath, tmpDate);
         // console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpIPTCdate.substring(0,4)+'/**/' + inJPEGFilename.replace('jpg','xmp')));
         // console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpDate+'/**/' + inJPEGFilename.replace('jpg','xmp')));
     }
