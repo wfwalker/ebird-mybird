@@ -15,6 +15,8 @@ class SearchResults extends BirdwalkerComponent {
       <DefaultLayout title={'Search Results "' + this.props.searchtext + '"'}>
         <PageHeading title={'Search Results "' + this.props.searchtext + '"'} />
 
+        {this.generateThumbnails()}
+
         <h4>{this.props.sightingList.getUniqueValues('Common Name').length} Species</h4>
 
         <div className='biglist'>
