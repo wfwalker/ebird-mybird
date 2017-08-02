@@ -53,13 +53,22 @@ class Application {
       (s['Scientific Name'] && s['Scientific Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0)
     ))
 
+    let matchingPhotos = this.allPhotos.filter((p) => (
+      (p['Common Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (p['Scientific Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (p['Location'].toLowerCase().indexOf(lowerCaseQuery) >= 0)
+    ))
+
+    console.log('matching photos', lowerCaseQuery, matchingPhotos.length)
+
     let searchResultsSightingList = new SightingList(resultsAsSightings)
 
     return {
       dates: searchResultsSightingList.dateObjects,
       customDayNames: SightingList.getCustomDayNames(),
       sightingList: searchResultsSightingList,
-      searchtext: req.query.searchtext
+      searchtext: req.query.searchtext,
+      photos: matchingPhotos
     }
   }
 
