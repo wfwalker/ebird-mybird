@@ -135,6 +135,7 @@ class Application {
 
     return {
       name: req.params.common_name,
+      category: SightingList.getCategoryFromCommonName(req.params.common_name),
       scientificName: taxonSightingList.rows[0]['Scientific Name'],
       photos: taxonSightingList.photos,
       sightingList: taxonSightingList
