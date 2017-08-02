@@ -28,10 +28,10 @@ class Photos extends BirdwalkerComponent {
             <p className='lead'>Birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996.</p>
 
             <p className='lead'>Some of our favorite places to go birding include
-              <a href='/place/US-CA/Santa Clara/Charleston Slough'>Charleston Slough</a> and
-              <a href='/place/US-CA/Santa Clara/Palo Alto Duck Pond'>the Duck Pond</a> in Palo Alto,
-              <a href='/place/US-CA/Glenn'>Sacramento National Wildlife Refuge</a>, and
-              <a href='/place/US-TX/Hidalgo'>the Rio Grande Valley</a> in Texas.
+              {' '} <a href='/place/US-CA/Santa Clara/Charleston Slough'>Charleston Slough</a> and
+              {' '} <a href='/place/US-CA/Santa Clara/Palo Alto Duck Pond'>the Duck Pond</a> in Palo Alto,
+              {' '} <a href='/place/US-CA/Glenn'>Sacramento National Wildlife Refuge</a>, and
+              {' '} <a href='/place/US-TX/Hidalgo'>the Rio Grande Valley</a> in Texas.
             </p>
           </div>
           <div className='col-md-4'>
