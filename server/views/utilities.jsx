@@ -9,8 +9,9 @@ const Thumbnail = (props) => {
 }
 
 const TaxonLink = (props) => {
+  let encodedCommonName = props.commonName.replace('/','%2F')
   return (
-    <div key={props.commonName} className='biglist-item'><a href={'/taxon/' + props.commonName}>{props.commonName}</a></div>
+    <div key={props.commonName} className='biglist-item'><a href={'/taxon/' + encodedCommonName}>{props.commonName}</a></div>
   )
 }
 
