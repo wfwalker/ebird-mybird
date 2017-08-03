@@ -24,6 +24,8 @@ gSightingList = new SightingList();
 gSightingList.addRows(ebird.data);
 gSightingList.setGlobalIDs();
 
+var newPhotos = []
+
 function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
     let data = fs.readFileSync(inXMPPath)
 
@@ -35,6 +37,10 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
     let speciesSightings = daySightingList.filter(s => { return s['Common Name'] == label });
     let photosOriginalNameMatch = photos.filter(p => p['Photo URL'].toLowerCase().indexOf(n.toLowerCase()) > 0);
 
+    if (label == null) {
+        label = 'missing'
+    }
+
     let info = {
         label: label,
         location: location,
@@ -42,16 +48,17 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
         ebirdDate: tmpEbirdDate, 
         sightingsThatDate: daySightingList.length(),
         speciesSightingsThatDate: speciesSightings,
-        locations: daySightingList.getUniqueValues('Location')
+        locations: daySightingList.getUniqueValues('Location'),
+        needsAction: true
     }
 
     if (photosOriginalNameMatch.length > 0) {
         // console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location);
         info.action = 'already found in photos.json'
+        info.needsAction = false
         // console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location, photosOriginalNameMatch[0]);
     } else if (speciesSightings.length > 0) {
         let newFilename = tmpDate + '-' + speciesSightings[0]['Scientific Name'].toLowerCase().replace(' ', '-') + '-' + n;
-        console.log(n, label, 'sighting', speciesSightings[0].id, location);
 
         info.action = 'READY to add to photos.json'
 
@@ -65,13 +72,14 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
             County: speciesSightings[0].County,
             'State/Province': speciesSightings[0]['State/Province'],
         };
-        console.log('\n\n\n');
-        console.log(JSON.stringify(samplePhoto, null, '  '));
+
+        newPhotos.push(samplePhoto)
+
         console.log('cp /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
         console.log('s3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/photo/ --add-header=Cache-Control:max-age=31536000')
         console.log('s3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/thumb/ --add-header=Cache-Control:max-age=31536000')
     } else if (daySightingList.length() > 0) {
-        info.action = 'missing species ' + label + ' from existing trip ' + tmpEbirdDate
+        info.action = 'missing species from existing trip ' + tmpEbirdDate
         // console.log(n, 'trip yes but', label, 'no', tmpEbirdDate);
     } else {
         info.action = 'missing trip for date ' + tmpEbirdDate
@@ -126,7 +134,9 @@ function getStatusForRecentJPEGs() {
 
     var infoList = jpegs.map(handleJPEG)
 
-    console.log('infoList', infoList.map(i => [i.name, i.action]))
+    console.log(JSON.stringify(newPhotos, null, '  '))
+
+    console.log(infoList.filter(i => i.needsAction).map(i => i.name.padStart(15) + ' ' + i.label.padStart(20) + ' ' +    i.action))
 }
 
 getStatusForRecentJPEGs()
