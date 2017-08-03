@@ -11858,5 +11858,55 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-crotophaga-ani-0L5A8872.jpg",
     "County": "",
     "State/Province": "EC-P"
+  },
+  {
+    "Date": "03-11-2017",
+    "Location": "Panoche Valley--New Idria Rd.",
+    "Scientific Name": "Buteo regalis",
+    "Common Name": "Ferruginous Hawk",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-03-11-buteo-regalis-0L5A0521.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-03-11-buteo-regalis-0L5A0521.jpg",
+    "County": "San Benito",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "12-19-2015",
+    "Location": "Crooked Tree Village - Dec 19, 2015 1:04 PM",
+    "Scientific Name": "Herpetotheres cachinnans",
+    "Common Name": "Laughing Falcon",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-19-herpetotheres-cachinnans-6P5A1328.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-19-herpetotheres-cachinnans-6P5A1328.jpg",
+    "County": "",
+    "State/Province": "BZ-OW"
+  },
+  {
+    "Date": "12-23-2015",
+    "Location": "Slate Creek Lookout - 17.079x-88.967 - Dec 23, 2015 7:19 PM",
+    "Scientific Name": "Falco rufigularis",
+    "Common Name": "Bat Falcon",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-23-falco-rufigularis-6P5A6787.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-23-falco-rufigularis-6P5A6787.jpg",
+    "County": "",
+    "State/Province": "BZ-CY"
+  },
+  {
+    "Date": "01-19-2014",
+    "Location": "TT-Tunapuna-Piarco - 10.7175x-61.2983 - Jan 16, 2014, 6:27 PM",
+    "Scientific Name": "Buteogallus anthracinus",
+    "Common Name": "Common Black Hawk",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-19-buteogallus-anthracinus-DM6C2293.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-19-buteogallus-anthracinus-DM6C2293.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  },
+  {
+    "Date": "12-30-2013",
+    "Location": "Guango Lodge",
+    "Scientific Name": "Coeligena torquata",
+    "Common Name": "Collared Inca",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-30-coeligena-torquata-_O5C5955.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-30-coeligena-torquata-_O5C5955.jpg",
+    "County": "",
+    "State/Province": "EC-N"
   }  
 ]
