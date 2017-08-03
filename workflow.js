@@ -24,20 +24,6 @@ gSightingList = new SightingList();
 gSightingList.addRows(ebird.data);
 gSightingList.setGlobalIDs();
 
-// read all the recent JPEG's in flickrUp
-var allTheFiles = fs.readdirSync('/Users/walker/Photography/flickrUP');
-var theNow = new Date();
-
-console.log('total flickrUP jpegs', allTheFiles.length);
-
-var jpegs = allTheFiles.filter((n) => {
-    var stats = fs.statSync('/Users/walker/Photography/flickrUP/' + n);
-    var daysOld = (theNow - stats.birthtime)/(24*60*60*1000);
-    return (daysOld < 20);
-});
-
-console.log('recent jpegs', jpegs.length);
-
 function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
     let data = fs.readFileSync(inXMPPath)
 
@@ -123,6 +109,25 @@ function handleJPEG(inJPEGFilename) {
     return info
 }
 
-var infoList = jpegs.map(handleJPEG)
+function getStatusForRecentJPEGs() {
+    // read all the recent JPEG's in flickrUp
+    var allTheFiles = fs.readdirSync('/Users/walker/Photography/flickrUP');
+    var theNow = new Date();
 
-console.log('infoList', infoList.map(i => [i.name, i.action]))
+    console.log('total flickrUP jpegs', allTheFiles.length);
+
+    var jpegs = allTheFiles.filter((n) => {
+        var stats = fs.statSync('/Users/walker/Photography/flickrUP/' + n);
+        var daysOld = (theNow - stats.birthtime)/(24*60*60*1000);
+        return (daysOld < 20);
+    });
+
+    console.log('recent jpegs', jpegs.length);
+
+    var infoList = jpegs.map(handleJPEG)
+
+    console.log('infoList', infoList.map(i => [i.name, i.action]))
+}
+
+getStatusForRecentJPEGs()
+
