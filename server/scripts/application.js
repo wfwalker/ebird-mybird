@@ -1,6 +1,7 @@
 'use strict'
 
 const SightingList = require('./sightinglist.js')
+const JPEGUtils = require('./jpeg-utils.js')
 var moment = require('moment')
 require('./logger.js')
 
@@ -287,6 +288,14 @@ class Application {
       currentDayOfYear: currentDayOfYear,
       startDayOfYear: moment().startOf('year').add(currentDayOfYear, 'days').subtract(5, 'days').format('MMMM Do'),
       endDayOfYear: moment().startOf('year').add(currentDayOfYear, 'days').add(5, 'days').format('MMMM Do')
+    }
+  }
+
+  dataForWorkflowTemplate() {
+    JPEGUtils.setAllSightings(this.allSightings)
+    JPEGUtils.setAllPhotos(this.allPhotos)
+    return {
+      jpegs: JPEGUtils.getStatusForRecentJPEGs()
     }
   }
 

@@ -33,6 +33,10 @@ app.get('/', function (req, resp, next) {
   resp.redirect('/photos')
 })
 
+app.get('/jpegs', function (req, resp, next) {
+  resp.render('jpegs', gApplication.dataForWorkflowTemplate())
+})
+
 app.get('/photos', function (req, resp, next) {
   logger.debug('/photos')
   resp.render('photos', gApplication.dataForPhotosTemplate())
