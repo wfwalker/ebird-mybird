@@ -11838,5 +11838,25 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-05-31-agelaius-phoeniceus-0L5A0360.jpg",
     "County": "Kern",
     "State/Province": "US-CA"
-  }
+  },
+  {
+    "Date": "05-15-2017",
+    "Location": "North Mountain Park",
+    "Scientific Name": "Poecile atricapillus",
+    "Common Name": "Black-capped Chickadee",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-05-15-poecile-atricapillus-0L5A0007.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-05-15-poecile-atricapillus-0L5A0007.jpg",
+    "County": "Jackson",
+    "State/Province": "US-OR"
+  },
+  {
+    "Date": "07-16-2016",
+    "Location": "Reserva Amagusa",
+    "Scientific Name": "Crotophaga ani",
+    "Common Name": "Smooth-billed Ani",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-crotophaga-ani-0L5A8872.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-crotophaga-ani-0L5A8872.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  }  
 ]
