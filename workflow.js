@@ -57,6 +57,9 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
         info.action = 'already found in photos.json'
         info.needsAction = false
         // console.log('already found', n, label, 'in photos.json', tmpEbirdDate, location, photosOriginalNameMatch[0]);
+    } else if (label == 'No Label') {
+        info.action = 'photo lacks species label'
+        // console.log(JSON.stringify(result, null, '  '))
     } else if (speciesSightings.length > 0) {
         let newFilename = tmpDate + '-' + speciesSightings[0]['Scientific Name'].toLowerCase().replace(' ', '-') + '-' + n;
 
@@ -75,9 +78,9 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
 
         newPhotos.push(samplePhoto)
 
-        console.log('cp /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
-        console.log('s3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/photo/ --add-header=Cache-Control:max-age=31536000')
-        console.log('s3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/thumb/ --add-header=Cache-Control:max-age=31536000')
+        console.log('\ncp /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
+        console.log('\ns3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/photo/ --add-header=Cache-Control:max-age=31536000')
+        console.log('\ns3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/thumb/ --add-header=Cache-Control:max-age=31536000')
     } else if (daySightingList.length() > 0) {
         info.action = 'missing species from existing trip ' + tmpEbirdDate
         // console.log(n, 'trip yes but', label, 'no', tmpEbirdDate);
@@ -95,7 +98,10 @@ function handleJPEG(inJPEGFilename) {
     let tmpDate = tmpIPTCdate.substring(0,4) + '-' + tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8);
     let tmpEbirdDate = tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8) + '-' + tmpIPTCdate.substring(0,4);
     let tmpPath = tmpIPTCdate.substring(0,4) + '/' + tmpDate + '/' + inJPEGFilename.replace('jpg', 'xmp');
-    let info = {}
+    let info = {
+        needsAction: true,
+        label: 'Missing XMP'
+    }
 
     if (fs.existsSync('/Volumes/Big\ Ethel/Photos/' + tmpPath)) {
         info = handleXMP('/Volumes/Big\ Ethel/Photos/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
