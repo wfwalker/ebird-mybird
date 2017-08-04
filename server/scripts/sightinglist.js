@@ -171,6 +171,17 @@ class SightingList {
 
   // TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
   // LINEAR SEARCH!
+
+  // Possible values:
+  //   Spuh:  Genus or identification at broad level -- e.g., duck sp., dabbling duck sp.
+  //   Slash: Identification to Species-pair e.g., American Black Duck/Mallard)
+  //   Species: e.g., Mallard
+  //   ISSF or Identifiable Sub-specific Group: Identifiable subspecies or group of subspecies, e.g., Mallard (Mexican)
+  //   Hybrid: Hybrid between two species, e.g., American Black Duck x Mallard (hybrid)
+  //   Intergrade: Hybrid between two ISSF (subspecies or subspecies groups), e.g., Mallard (Mexican intergrade)
+  //   Domestic: Distinctly-plumaged domesticated varieties that may be free-flying (these do not count on personal lists) e.g., Mallard (Domestic type)
+  //   Form: Miscellaneous other taxa, including recently-described species yet to be accepted or distinctive forms that are not universally accepted (Red-tailed Hawk (Northern), Upland Goose (Bar-breasted))
+
   static getCategoryFromCommonName (inCommonName) {
     for (let index = 0; index < gEBirdAll.data.length; index++) {
       if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] === inCommonName) {
