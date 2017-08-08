@@ -11958,5 +11958,15 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-30-ensifera-ensifera-_O5C5465.jpg",
     "County": "",
     "State/Province": "EC-N"
-  }  
+  },
+  {
+    "Date": "08-12-2016",
+    "Location": "Howard Prairie Circuit",
+    "Scientific Name": "Strix nebulosa",
+    "Common Name": "Great Gray Owl",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-08-12-strix-nebulosa-179A7279.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-08-12-strix-nebulosa-179A7279.jpg",
+    "County": "Jackson",
+    "State/Province": "US-OR"
+  }
 ]
