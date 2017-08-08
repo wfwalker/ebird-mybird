@@ -11908,5 +11908,55 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-30-coeligena-torquata-_O5C5955.jpg",
     "County": "",
     "State/Province": "EC-N"
+  },
+  {
+    "Date": "07-21-2016",
+    "Location": "Española--Punta Suarez",
+    "Scientific Name": "Creagrus furcatus",
+    "Common Name": "Swallow-tailed Gull",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-21-creagrus-furcatus-0L5A1533.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-21-creagrus-furcatus-0L5A1533.jpg",
+    "County": "",
+    "State/Province": "EC-W"
+  },
+  {
+    "Date": "12-26-2013",
+    "Location": "Mindo--general area",
+    "Scientific Name": "Tersina viridis",
+    "Common Name": "Swallow Tanager",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-26-tersina-viridis-7V5Z8558.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-26-tersina-viridis-7V5Z8558.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  },
+  {
+    "Date": "01-17-2014",
+    "Location": "Asa Wright Nature Centre",
+    "Scientific Name": "Trogon viridis",
+    "Common Name": "Green-backed Trogon",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-17-trogon-viridis-DM6C0687.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-17-trogon-viridis-DM6C0687.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  },
+  {
+    "Date": "01-18-2014",
+    "Location": "Aripo Livestock (Agriculture Research) Station",
+    "Scientific Name": "Forpus passerinus",
+    "Common Name": "Green-rumped Parrotlet",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-18-forpus-passerinus-DM6C1672.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-18-forpus-passerinus-DM6C1672.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  },
+  {
+    "Date": "12-30-2013",
+    "Location": "Guango Lodge",
+    "Scientific Name": "Ensifera ensifera",
+    "Common Name": "Sword-billed Hummingbird",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-30-ensifera-ensifera-_O5C5465.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-30-ensifera-ensifera-_O5C5465.jpg",
+    "County": "",
+    "State/Province": "EC-N"
   }  
 ]
