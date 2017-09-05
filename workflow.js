@@ -133,7 +133,7 @@ function getStatusForRecentJPEGs() {
     var jpegs = allTheFiles.filter((n) => {
         var stats = fs.statSync('/Users/walker/Photography/flickrUP/' + n);
         var daysOld = (theNow - stats.birthtime)/(24*60*60*1000);
-        return (daysOld < 20);
+        return (! stats.isDirectory()) && (daysOld < 40);
     });
 
     console.log('recent jpegs', jpegs.length);

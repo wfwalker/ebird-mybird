@@ -11968,5 +11968,65 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-08-12-strix-nebulosa-179A7279.jpg",
     "County": "Jackson",
     "State/Province": "US-OR"
-  }
+  },
+  {
+    "Date": "06-03-2017",
+    "Location": "Sequoia NF--Holey Meadow Campground",
+    "Scientific Name": "Troglodytes pacificus",
+    "Common Name": "Pacific Wren",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-06-03-troglodytes-pacificus-0L5A1343.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-06-03-troglodytes-pacificus-0L5A1343.jpg",
+    "County": "Tulare",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "08-26-2017",
+    "Location": "(37.4548,-122.6928)",
+    "Scientific Name": "Thalasseus elegans",
+    "Common Name": "Elegant Tern",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-08-26-thalasseus-elegans-0L5A2820.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-08-26-thalasseus-elegans-0L5A2820.jpg",
+    "County": "San Mateo",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "04-13-2016",
+    "Location": "Little Estero Lagoon",
+    "Scientific Name": "Sternula antillarum",
+    "Common Name": "Least Tern",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-13-sternula-antillarum-6P5A2458.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-13-sternula-antillarum-6P5A2458.jpg",
+    "County": "Lee",
+    "State/Province": "US-FL"
+  },
+  {
+    "Date": "04-14-2016",
+    "Location": "Babcock-Webb WMA",
+    "Scientific Name": "Setophaga discolor",
+    "Common Name": "Prairie Warbler",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-14-setophaga-discolor-6P5A3140.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-14-setophaga-discolor-6P5A3140.jpg",
+    "County": "Charlotte",
+    "State/Province": "US-FL"
+  },
+  {
+    "Date": "12-23-2015",
+    "Location": "Slate Creek Lookout - 17.079x-88.967 - Dec 23, 2015 7:19 PM",
+    "Scientific Name": "Pseudastur albicollis",
+    "Common Name": "White Hawk",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-23-pseudastur-albicollis-6P5A6075-2.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-23-pseudastur-albicollis-6P5A6075-2.jpg",
+    "County": "",
+    "State/Province": "BZ-CY"
+  },
+  {
+    "Date": "01-19-2014",
+    "Location": "Mexico Road",
+    "Scientific Name": "Milvago chimachima",
+    "Common Name": "Yellow-headed Caracara",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-19-milvago-chimachima-DM6C2406.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-19-milvago-chimachima-DM6C2406.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  }  
 ]
