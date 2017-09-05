@@ -16,8 +16,8 @@ const LinkToFamily = (props) => {
 class Taxons extends BirdwalkerComponent {
   render() {
     return (
-        <DefaultLayout title='Species'>
-          <PageHeading title='Species' subtitle={this.props.scientificName} />
+      <DefaultLayout title='Our Life List' subtitle={this.props.lifeSightingsCount + ' species'}>
+        <PageHeading title='Our Life List' subtitle={this.props.lifeSightingsCount + ' taxons'} />
           <div className='biglist'>
             {Object.keys(this.props.hierarchy).map(f => (<LinkToFamily family={f} />))}
           </div>
