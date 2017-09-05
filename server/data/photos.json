@@ -12028,5 +12028,45 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-19-milvago-chimachima-DM6C2406.jpg",
     "County": "",
     "State/Province": "TT-TUP"
+  },
+  {
+    "Date": "08-26-2017",
+    "Location": "(37.5068,-122.8279)",
+    "Scientific Name": "Cerorhinca monocerata",
+    "Common Name": "Rhinoceros Auklet",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-08-26-cerorhinca-monocerata-0L5A2222.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-08-26-cerorhinca-monocerata-0L5A2222.jpg",
+    "County": "San Francisco",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "12-20-2015",
+    "Location": "Guinea Grass Rd - 18.026x-88.563 - Dec 20, 2015 4:01 PM",
+    "Scientific Name": "Columbina talpacoti",
+    "Common Name": "Ruddy Ground-Dove",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-20-columbina-talpacoti-6P5A3180.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-20-columbina-talpacoti-6P5A3180.jpg",
+    "County": "",
+    "State/Province": "BZ-OW"
+  },
+  {
+    "Date": "02-21-2012",
+    "Location": "Alajuela",
+    "Scientific Name": "Melanerpes hoffmannii",
+    "Common Name": "Hoffmann's Woodpecker",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2012-02-21-melanerpes-hoffmannii-7V5Z1572.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2012-02-21-melanerpes-hoffmannii-7V5Z1572.jpg",
+    "County": "",
+    "State/Province": "CR-A"
+  },
+  {
+    "Date": "01-23-2014",
+    "Location": "Blue Waters Inn",
+    "Scientific Name": "Tyrannus dominicensis",
+    "Common Name": "Gray Kingbird",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-23-tyrannus-dominicensis-DM6C4968.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-23-tyrannus-dominicensis-DM6C4968.jpg",
+    "County": "",
+    "State/Province": "TT-TOB"
   }  
 ]
