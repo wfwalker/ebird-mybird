@@ -12068,5 +12068,75 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-23-tyrannus-dominicensis-DM6C4968.jpg",
     "County": "",
     "State/Province": "TT-TOB"
-  }  
+  },
+  {
+    "Date": "12-21-2015",
+    "Location": "Crooked Tree Village",
+    "Scientific Name": "Piaya cayana",
+    "Common Name": "Squirrel Cuckoo",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-21-piaya-cayana-6P5A4626.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-21-piaya-cayana-6P5A4626.jpg",
+    "County": "",
+    "State/Province": "BZ-BZ"
+  },
+  {
+    "Date": "02-25-2012",
+    "Location": "Savegre Mountain Lodge",
+    "Scientific Name": "Turdus nigrescens",
+    "Common Name": "Sooty Thrush",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2012-02-25-turdus-nigrescens-7V5Z5107.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2012-02-25-turdus-nigrescens-7V5Z5107.jpg",
+    "County": "",
+    "State/Province": "CR-SJ"
+  },
+  {
+    "Date": "02-26-2012",
+    "Location": "P.N. Los Quetzales, Costa Rica.",
+    "Scientific Name": "Thryorchilus browni",
+    "Common Name": "Timberline Wren",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2012-02-26-thryorchilus-browni-7V5Z5202.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2012-02-26-thryorchilus-browni-7V5Z5202.jpg",
+    "County": "",
+    "State/Province": "CR-SJ"
+  },
+  {
+    "Date": "02-26-2012",
+    "Location": "P.N. Los Quetzales, Costa Rica.",
+    "Scientific Name": "Zeledonia coronata",
+    "Common Name": "Wrenthrush",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2012-02-26-zeledonia-coronata-7V5Z5287.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2012-02-26-zeledonia-coronata-7V5Z5287.jpg",
+    "County": "",
+    "State/Province": "CR-SJ"
+  },
+  {
+    "Date": "02-26-2012",
+    "Location": "P.N. Los Quetzales, Costa Rica.",
+    "Scientific Name": "Junco vulcani",
+    "Common Name": "Volcano Junco",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2012-02-26-junco-vulcani-7V5Z5378.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2012-02-26-junco-vulcani-7V5Z5378.jpg",
+    "County": "",
+    "State/Province": "CR-SJ"
+  },
+  {
+    "Date": "01-19-2014",
+    "Location": "Asa Wright Nature Centre",
+    "Scientific Name": "Vanellus chilensis",
+    "Common Name": "Southern Lapwing",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-19-vanellus-chilensis-DM6C2378.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-19-vanellus-chilensis-DM6C2378.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  },
+  {
+    "Date": "01-19-2014",
+    "Location": "Asa Wright Nature Centre",
+    "Scientific Name": "Piaya cayana",
+    "Common Name": "Squirrel Cuckoo",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-01-19-piaya-cayana-DM6C2402.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-19-piaya-cayana-DM6C2402.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  }   
 ]
