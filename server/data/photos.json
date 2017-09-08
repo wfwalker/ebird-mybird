@@ -12138,5 +12138,75 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-01-19-piaya-cayana-DM6C2402.jpg",
     "County": "",
     "State/Province": "TT-TUP"
-  }   
+  },
+  {
+    "Date": "06-14-2016",
+    "Location": "Rancho San Antonio",
+    "Scientific Name": "Patagioenas fasciata",
+    "Common Name": "Band-tailed Pigeon",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-06-14-patagioenas-fasciata-0L5A0482.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-06-14-patagioenas-fasciata-0L5A0482.jpg",
+    "County": "Santa Clara",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "08-12-2016",
+    "Location": "Howard Prairie Circuit",
+    "Scientific Name": "Oreortyx pictus",
+    "Common Name": "Mountain Quail",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-08-12-oreortyx-pictus-0L5A7044.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-08-12-oreortyx-pictus-0L5A7044.jpg",
+    "County": "Jackson",
+    "State/Province": "US-OR"
+  },
+  {
+    "Date": "07-16-2016",
+    "Location": "Reserva Amagusa",
+    "Scientific Name": "Piranga leucoptera",
+    "Common Name": "White-winged Tanager",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-piranga-leucoptera-0L5A8084.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-piranga-leucoptera-0L5A8084.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  },
+  {
+    "Date": "07-16-2016",
+    "Location": "Reserva Amagusa",
+    "Scientific Name": "Pipreola jucunda",
+    "Common Name": "Orange-breasted Fruiteater",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-pipreola-jucunda-0L5A8103.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-pipreola-jucunda-0L5A8103.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  },
+  {
+    "Date": "07-16-2016",
+    "Location": "Reserva Amagusa",
+    "Scientific Name": "Tangara parzudakii",
+    "Common Name": "Flame-faced Tanager",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-tangara-parzudakii-0L5A8155.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-tangara-parzudakii-0L5A8155.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  },
+  {
+    "Date": "12-02-2016",
+    "Location": "Randall Davey Audubon Center",
+    "Scientific Name": "Melozone fusca",
+    "Common Name": "Canyon Towhee",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-12-02-melozone-fusca-179A8885.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-12-02-melozone-fusca-179A8885.jpg",
+    "County": "Santa Fe",
+    "State/Province": "US-NM"
+  },
+  {
+    "Date": "12-24-2015",
+    "Location": "San Antonio MPR Junction - Dec 24, 2015 10:24 PM",
+    "Scientific Name": "Chondrohierax uncinatus",
+    "Common Name": "Hook-billed Kite",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-24-chondrohierax-uncinatus-6P5A7136.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-24-chondrohierax-uncinatus-6P5A7136.jpg",
+    "County": "",
+    "State/Province": "BZ-CY"
+  }  
 ]
