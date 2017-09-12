@@ -12208,5 +12208,105 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-24-chondrohierax-uncinatus-6P5A7136.jpg",
     "County": "",
     "State/Province": "BZ-CY"
-  }  
+  },
+  {
+    "Date": "12-28-2013",
+    "Location": "Cabañas San Isidro",
+    "Scientific Name": "Zonotrichia capensis",
+    "Common Name": "Rufous-collared Sparrow",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-28-zonotrichia-capensis-_M6C0143.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-28-zonotrichia-capensis-_M6C0143.jpg",
+    "County": "",
+    "State/Province": "EC-N"
+  },
+  {
+    "Date": "12-29-2013",
+    "Location": "Cabañas San Isidro",
+    "Scientific Name": "Merganetta armata",
+    "Common Name": "Torrent Duck",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-29-merganetta-armata-_M6C1002.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-29-merganetta-armata-_M6C1002.jpg",
+    "County": "",
+    "State/Province": "EC-N"
+  },
+  {
+    "Date": "04-09-2016",
+    "Location": "Sunnyvale WPCP",
+    "Scientific Name": "Columba livia (Feral Pigeon)",
+    "Common Name": "Rock Pigeon (Feral Pigeon)",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-09-columba-livia-6P5A1750.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-09-columba-livia-6P5A1750.jpg",
+    "County": "Santa Clara",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "12-28-2013",
+    "Location": "Cabañas San Isidro",
+    "Scientific Name": "Diglossa caerulescens",
+    "Common Name": "Bluish Flowerpiercer",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2013-12-28-diglossa-caerulescens-_M6C0376.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-12-28-diglossa-caerulescens-_M6C0376.jpg",
+    "County": "",
+    "State/Province": "EC-N"
+  },
+  {
+    "Date": "04-08-2008",
+    "Location": "El Canelo Ranch",
+    "Scientific Name": "Melanerpes aurifrons",
+    "Common Name": "Golden-fronted Woodpecker",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-08-melanerpes-aurifrons-7V5Z0797.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-08-melanerpes-aurifrons-7V5Z0797.jpg",
+    "County": "Kenedy",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "04-08-2008",
+    "Location": "El Canelo Ranch",
+    "Scientific Name": "Geranoaetus albicaudatus",
+    "Common Name": "White-tailed Hawk",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-08-geranoaetus-albicaudatus-7V5Z0997.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-08-geranoaetus-albicaudatus-7V5Z0997.jpg",
+    "County": "Kenedy",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "04-10-2008",
+    "Location": "Frontera Audubon",
+    "Scientific Name": "Setophaga virens",
+    "Common Name": "Black-throated Green Warbler",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-10-setophaga-virens-7V5Z2678.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-10-setophaga-virens-7V5Z2678.jpg",
+    "County": "Hidalgo",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "04-11-2008",
+    "Location": "Laguna Atascosa NWR",
+    "Scientific Name": "Geococcyx californianus",
+    "Common Name": "Greater Roadrunner",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-11-geococcyx-californianus-7V5Z3005.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-11-geococcyx-californianus-7V5Z3005.jpg",
+    "County": "Cameron",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "04-12-2008",
+    "Location": "Santa Ana NWR",
+    "Scientific Name": "Buteo platypterus",
+    "Common Name": "Broad-winged Hawk",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-12-buteo-platypterus-7V5Z3979.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-12-buteo-platypterus-7V5Z3979.jpg",
+    "County": "Hidalgo",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "04-12-2008",
+    "Location": "Santa Ana NWR",
+    "Scientific Name": "Buteo platypterus",
+    "Common Name": "Broad-winged Hawk",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-12-buteo-platypterus-7V5Z3998.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-12-buteo-platypterus-7V5Z3998.jpg",
+    "County": "Hidalgo",
+    "State/Province": "US-TX"
+  }
 ]

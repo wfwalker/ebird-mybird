@@ -82,7 +82,7 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
         console.log('\ns3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/photo/ --add-header=Cache-Control:max-age=31536000')
         console.log('\ns3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/thumb/ --add-header=Cache-Control:max-age=31536000')
     } else if (daySightingList.length() > 0) {
-        info.action = 'missing species from existing trip ' + tmpEbirdDate
+        info.action = 'missing species from existing http://www.birdwalker.com/trip/' + tmpEbirdDate
         // console.log(n, 'trip yes but', label, 'no', tmpEbirdDate);
     } else {
         info.action = 'missing trip for date ' + tmpEbirdDate
@@ -93,32 +93,50 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
 }
 
 function handleJPEG(inJPEGFilename) {
-    let tmpFile = fs.readFileSync('/Users/walker/Photography/flickrUP/' + inJPEGFilename);
+    let jpegFilePath = '/Users/walker/Photography/flickrUP/' + inJPEGFilename
+    let tmpFile = fs.readFileSync(jpegFilePath);
+
+    // IPTC date is year month day no seperators '20151223'
     let tmpIPTCdate = iptc(tmpFile).date_created;
-    let tmpDate = tmpIPTCdate.substring(0,4) + '-' + tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8);
+
+    // seperated IPTC date year-month-day like '2015-12-23'    
+    let tmpSeperatedIPTCDate = tmpIPTCdate.substring(0,4) + '-' + tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8);
+
+    // seperated month-day-year like '12-23-2015' as appears in CSV data dump from eBird
     let tmpEbirdDate = tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8) + '-' + tmpIPTCdate.substring(0,4);
-    let tmpPath = tmpIPTCdate.substring(0,4) + '/' + tmpDate + '/' + inJPEGFilename.replace('jpg', 'xmp');
+
+    let yearDateFilenameDotXMP = tmpIPTCdate.substring(0,4) + '/' + tmpSeperatedIPTCDate + '/' + inJPEGFilename.replace('jpg', 'xmp');
+
     let info = {
         needsAction: true,
         label: 'Missing XMP'
     }
 
-    if (fs.existsSync('/Volumes/Big\ Ethel/Photos/' + tmpPath)) {
-        info = handleXMP('/Volumes/Big\ Ethel/Photos/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
-    } else if (fs.existsSync('/Users/walker/Pictures/' + tmpPath)) {
-        info = handleXMP('/Users/walker/Pictures/' + tmpPath, tmpEbirdDate, inJPEGFilename, tmpDate);
-    } else if (fs.existsSync('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + inJPEGFilename.replace('jpg','xmp'))) {
-        info = handleXMP('/Volumes/Big Ethel/Photos/' + tmpDate + '/' + inJPEGFilename.replace('jpg','xmp'), tmpEbirdDate, inJPEGFilename, tmpDate);
+    let path1 = '/Volumes/Big\ Ethel/Photos/' + yearDateFilenameDotXMP
+    let path2 = '/Users/walker/Pictures/' + yearDateFilenameDotXMP
+    let path3 = '/Volumes/Big Ethel/Photos/' + tmpSeperatedIPTCDate + '/' + inJPEGFilename.replace('jpg','xmp')
+    let path4 = '/Volumes/Big Ethel/Photos/photos-' + tmpSeperatedIPTCDate + '/' + inJPEGFilename.replace('jpg','xmp')
+
+    // TODO: need to restore searching for Big\ Ethel/Photos/photos-tmpSeperatedIPTCDate
+
+    if (fs.existsSync(path1)) {
+        info = handleXMP(path1, tmpEbirdDate, inJPEGFilename, tmpSeperatedIPTCDate);
+    } else if (fs.existsSync(path2)) {
+        info = handleXMP(path2, tmpEbirdDate, inJPEGFilename, tmpSeperatedIPTCDate);
+    } else if (fs.existsSync(path3)) {
+        info = handleXMP(path3, tmpEbirdDate, inJPEGFilename, tmpSeperatedIPTCDate);
+    } else if (fs.existsSync(path4)) {
+        info = handleXMP(path4, tmpEbirdDate, inJPEGFilename, tmpSeperatedIPTCDate);
     } else {
-        info.action = 'no XMP for ' + tmpPath
-        // console.log('no XMP', tmpPath, tmpDate);
-        // console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpIPTCdate.substring(0,4)+'/**/' + inJPEGFilename.replace('jpg','xmp')));
-        // console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/'+tmpDate+'/**/' + inJPEGFilename.replace('jpg','xmp')));
+        info.action = 'no XMP for open ' + '/Users/walker/Photography/flickrUP/' + inJPEGFilename
+        console.log('no XMP', yearDateFilenameDotXMP, tmpSeperatedIPTCDate);
+        // console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/**/' + inJPEGFilename.replace('jpg','xmp')));
+        // console.log('GLOB', glob.sync('/Users/walker/Pictures/**/' + inJPEGFilename.replace('jpg','xmp')));
     }
 
     info.iptcDate = tmpIPTCdate
     info.name = inJPEGFilename
-    info.path = tmpPath
+    info.path = yearDateFilenameDotXMP
 
     return info
 }
