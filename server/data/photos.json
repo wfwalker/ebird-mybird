@@ -12308,5 +12308,65 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-12-buteo-platypterus-7V5Z3998.jpg",
     "County": "Hidalgo",
     "State/Province": "US-TX"
+  },
+  {
+    "Date": "06-01-2017",
+    "Location": "Walker Pass",
+    "Scientific Name": "Artemisiospiza belli",
+    "Common Name": "Bell's Sparrow",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2017-06-01-artemisiospiza-belli-0L5A0484.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2017-06-01-artemisiospiza-belli-0L5A0484.jpg",
+    "County": "Kern",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "12-24-2015",
+    "Location": "San Antonio MPR Junction - Dec 24, 2015 10:24 PM",
+    "Scientific Name": "Aimophila rufescens",
+    "Common Name": "Rusty Sparrow",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2015-12-24-aimophila-rufescens-6P5A6917.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2015-12-24-aimophila-rufescens-6P5A6917.jpg",
+    "County": "",
+    "State/Province": "BZ-CY"
+  },
+  {
+    "Date": "04-09-2008",
+    "Location": "Hidalgo",
+    "Scientific Name": "Columbina passerina",
+    "Common Name": "Common Ground-Dove",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-09-columbina-passerina-7V5Z1720.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-09-columbina-passerina-7V5Z1720.jpg",
+    "County": "Hidalgo",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "04-09-2008",
+    "Location": "Hidalgo",
+    "Scientific Name": "Leptotila verreauxi",
+    "Common Name": "White-tipped Dove",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-09-leptotila-verreauxi-7V5Z1725.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-09-leptotila-verreauxi-7V5Z1725.jpg",
+    "County": "Hidalgo",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "04-09-2008",
+    "Location": "Hidalgo",
+    "Scientific Name": "Spinus psaltria",
+    "Common Name": "Lesser Goldfinch",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-09-spinus-psaltria-7V5Z1746.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-09-spinus-psaltria-7V5Z1746.jpg",
+    "County": "Hidalgo",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "04-09-2008",
+    "Location": "Hidalgo",
+    "Scientific Name": "Melanerpes aurifrons",
+    "Common Name": "Golden-fronted Woodpecker",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2008-04-09-melanerpes-aurifrons-7V5Z2217.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-09-melanerpes-aurifrons-7V5Z2217.jpg",
+    "County": "Hidalgo",
+    "State/Province": "US-TX"
   }
 ]
