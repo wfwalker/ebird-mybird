@@ -116,6 +116,7 @@ function handleJPEG(inJPEGFilename) {
     let path2 = '/Users/walker/Pictures/' + yearDateFilenameDotXMP
     let path3 = '/Volumes/Big Ethel/Photos/' + tmpSeperatedIPTCDate + '/' + inJPEGFilename.replace('jpg','xmp')
     let path4 = '/Volumes/Big Ethel/Photos/photos-' + tmpSeperatedIPTCDate + '/' + inJPEGFilename.replace('jpg','xmp')
+    let path5 = '/Volumes/Big Ethel/Photos/photos-' + tmpSeperatedIPTCDate + 'B/' + inJPEGFilename.replace('jpg','xmp')
 
     // TODO: need to restore searching for Big\ Ethel/Photos/photos-tmpSeperatedIPTCDate
 
@@ -127,9 +128,16 @@ function handleJPEG(inJPEGFilename) {
         info = handleXMP(path3, tmpEbirdDate, inJPEGFilename, tmpSeperatedIPTCDate);
     } else if (fs.existsSync(path4)) {
         info = handleXMP(path4, tmpEbirdDate, inJPEGFilename, tmpSeperatedIPTCDate);
+    } else if (fs.existsSync(path5)) {
+        info = handleXMP(path5, tmpEbirdDate, inJPEGFilename, tmpSeperatedIPTCDate);
     } else {
         info.action = 'no XMP for open ' + '/Users/walker/Photography/flickrUP/' + inJPEGFilename
-        console.log('no XMP', yearDateFilenameDotXMP, tmpSeperatedIPTCDate);
+        console.log('\n\n')
+        console.log('no XMP open    /Users/walker/Photography/flickrUP/' + inJPEGFilename)
+        console.log(path1)
+        console.log(path2)
+        console.log(path3)
+        console.log(path4)
         // console.log('GLOB', glob.sync('/Volumes/Big Ethel/Photos/**/' + inJPEGFilename.replace('jpg','xmp')));
         // console.log('GLOB', glob.sync('/Users/walker/Pictures/**/' + inJPEGFilename.replace('jpg','xmp')));
     }
