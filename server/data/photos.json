@@ -12368,5 +12368,75 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2008-04-09-melanerpes-aurifrons-7V5Z2217.jpg",
     "County": "Hidalgo",
     "State/Province": "US-TX"
-  }
+  },
+  {
+    "Date": "07-16-2016",
+    "Location": "Reserva Amagusa",
+    "Scientific Name": "Pipreola jucunda",
+    "Common Name": "Orange-breasted Fruiteater",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-pipreola-jucunda-0L5A8686.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-pipreola-jucunda-0L5A8686.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  },
+  {
+    "Date": "07-17-2016",
+    "Location": "Milpe--Milpe Gardens",
+    "Scientific Name": "Ramphastos brevis",
+    "Common Name": "Choco Toucan",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-17-ramphastos-brevis-0L5A9126.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-17-ramphastos-brevis-0L5A9126.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  },
+  {
+    "Date": "04-14-2016",
+    "Location": "J. N. Ding Darling NWR",
+    "Scientific Name": "Pandion haliaetus",
+    "Common Name": "Osprey",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-14-pandion-haliaetus-6P5A2840.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-14-pandion-haliaetus-6P5A2840.jpg",
+    "County": "Lee",
+    "State/Province": "US-FL"
+  },
+  {
+    "Date": "04-14-2016",
+    "Location": "J. N. Ding Darling NWR",
+    "Scientific Name": "Vireo solitarius",
+    "Common Name": "Blue-headed Vireo",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-14-vireo-solitarius-6P5A2907.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-14-vireo-solitarius-6P5A2907.jpg",
+    "County": "Lee",
+    "State/Province": "US-FL"
+  },
+  {
+    "Date": "04-14-2016",
+    "Location": "Prairie/Shell Creek Preserve",
+    "Scientific Name": "Aphelocoma coerulescens",
+    "Common Name": "Florida Scrub-Jay",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-14-aphelocoma-coerulescens-6P5A3300.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-14-aphelocoma-coerulescens-6P5A3300.jpg",
+    "County": "Charlotte",
+    "State/Province": "US-FL"
+  },
+  {
+    "Date": "04-15-2016",
+    "Location": "Babcock-Webb WMA",
+    "Scientific Name": "Sturnella magna",
+    "Common Name": "Eastern Meadowlark",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-15-sturnella-magna-6P5A3574.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-15-sturnella-magna-6P5A3574.jpg",
+    "County": "Charlotte",
+    "State/Province": "US-FL"
+  },
+  {
+    "Date": "04-20-2016",
+    "Location": "Dry Tortugas NP (Please consider using more specific locations)",
+    "Scientific Name": "Setophaga discolor",
+    "Common Name": "Prairie Warbler",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-20-setophaga-discolor-IMG_0253.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-20-setophaga-discolor-IMG_0253.jpg",
+    "County": "Monroe",
+    "State/Province": "US-FL"
+  }  
 ]
