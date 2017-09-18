@@ -12438,5 +12438,35 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-20-setophaga-discolor-IMG_0253.jpg",
     "County": "Monroe",
     "State/Province": "US-FL"
+  },
+  {
+    "Date": "07-16-2016",
+    "Location": "Reserva Amagusa",
+    "Scientific Name": "Chlorochrysa phoenicotis",
+    "Common Name": "Glistening-green Tanager",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-07-16-chlorochrysa-phoenicotis-0L5A8491.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-07-16-chlorochrysa-phoenicotis-0L5A8491.jpg",
+    "County": "",
+    "State/Province": "EC-P"
+  },
+  {
+    "Date": "04-15-2016",
+    "Location": "Babcock-Webb WMA",
+    "Scientific Name": "Peucaea aestivalis",
+    "Common Name": "Bachman's Sparrow",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-15-peucaea-aestivalis-6P5A3715.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-15-peucaea-aestivalis-6P5A3715.jpg",
+    "County": "Charlotte",
+    "State/Province": "US-FL"
+  },
+  {
+    "Date": "04-21-2016",
+    "Location": "US-Florida-Big Pine Key-3636 Town St - 24.721x-81.399",
+    "Scientific Name": "Chordeiles gundlachii",
+    "Common Name": "Antillean Nighthawk",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2016-04-21-chordeiles-gundlachii-IMG_0759.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2016-04-21-chordeiles-gundlachii-IMG_0759.jpg",
+    "County": "Monroe",
+    "State/Province": "US-FL"
   }  
 ]

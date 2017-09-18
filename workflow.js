@@ -26,6 +26,8 @@ gSightingList.setGlobalIDs();
 
 var newPhotos = []
 
+var consoleCommands = []
+
 function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
     let data = fs.readFileSync(inXMPPath)
 
@@ -78,9 +80,9 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
 
         newPhotos.push(samplePhoto)
 
-        console.log('\ncp /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
-        console.log('\ns3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/photo/ --add-header=Cache-Control:max-age=31536000')
-        console.log('\ns3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/thumb/ --add-header=Cache-Control:max-age=31536000')
+        consoleCommands.push('cp /Users/walker/Photography/flickrUP/' + n + ' /Users/walker/Photography/flickrUP/' + newFilename);
+        consoleCommands.push('s3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/photo/ --add-header=Cache-Control:max-age=31536000')
+        consoleCommands.push('s3cmd put --acl-public /Users/walker/Photography/flickrUP/' + newFilename + ' s3://birdwalker/thumb/ --add-header=Cache-Control:max-age=31536000')
     } else if (daySightingList.length() > 0) {
         info.action = 'missing species from existing http://www.birdwalker.com/trip/' + tmpEbirdDate
         // console.log(n, 'trip yes but', label, 'no', tmpEbirdDate);
@@ -166,8 +168,13 @@ function getStatusForRecentJPEGs() {
 
     var infoList = jpegs.map(handleJPEG)
 
+    console.log('\nDO THESE COMMANDS\n')
+    consoleCommands.forEach(cmd => { console.log(cmd) })
+
+    console.log('\nADD THESE TO photos.json\n')
     console.log(JSON.stringify(newPhotos, null, '  '))
 
+    console.log('\nSUMMARY\n')
     console.log(infoList.filter(i => i.needsAction).map(i => i.name.padStart(15) + ' ' + i.label.padStart(20) + ' ' +    i.action))
 }
 
