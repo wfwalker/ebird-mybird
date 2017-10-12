@@ -93,30 +93,6 @@ class SightingList {
     gLocationInfo = SightingList.locationInfoFromJSON('server/data/ca-info.json')
   }
 
-  static newPhotosFromJSON (inFilename) {
-    let data = fs.readFileSync(inFilename, 'utf8')
-    let tmpPhotos = JSON.parse(data)
-
-    for (let index = 0; index < tmpPhotos.length; index++) {
-      let photo = tmpPhotos[index]
-
-      photo.id = index
-
-      // Parse the date
-      let pieces = photo['Date'].split('-')
-
-      // order the pieces in a sensible way
-      let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('')
-
-      // create and save the new dat
-      let newDate = new Date(fixedDateString)
-      photo['DateObject'] = newDate
-    }
-
-    logger.debug('parsed photos', tmpPhotos.length)
-    return tmpPhotos
-  }
-
   static loadEBirdTaxonomy () {
     const fileBytes = fs.readFileSync(eBirdAllFilename, 'utf8')
 
@@ -190,6 +166,35 @@ class SightingList {
     }
 
     return 'Unknown'
+  }
+
+  static newPhotosFromJSON (inFilename) {
+    let data = fs.readFileSync(inFilename, 'utf8')
+    let tmpPhotos = JSON.parse(data)
+
+    for (let index = 0; index < tmpPhotos.length; index++) {
+      let photo = tmpPhotos[index]
+
+      // set unique index
+      photo.id = index
+
+      if (this.getCategoryFromCommonName(photo['Common Name']) == 'Unknown') {
+        console.log('photos.json: No match in eBird for', photo)
+      }
+
+      // Parse the date
+      let pieces = photo['Date'].split('-')
+
+      // order the pieces in a sensible way
+      let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('')
+
+      // create and save the new dat
+      let newDate = new Date(fixedDateString)
+      photo['DateObject'] = newDate
+    }
+
+    logger.debug('parsed photos', tmpPhotos.length)
+    return tmpPhotos
   }
 
   static getCustomDayNames () {
