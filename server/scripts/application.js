@@ -236,6 +236,9 @@ class Application {
 
   dataForTripTemplate (req) {
     let tmp = this.allSightings.filter((s) => (s['Date'] === req.params.trip_date))
+    if (tmp.length == 0) {
+      throw new Error("No sightings for " + req.params.trip_date)
+    }
     tmp.sort(SightingList.taxonomicSortComparator)
     let photos = this.allPhotos.filter((p) => (p.Date === req.params.trip_date))
 
