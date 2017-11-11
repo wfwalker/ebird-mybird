@@ -12738,5 +12738,35 @@
     "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2013-03-01-prunella-collaris-_M6C2763.jpg",
     "County": "Barcelona",
     "State/Province": "ES-CT"
-  }  
+  },
+  {
+    "Date": "02-25-2012",
+    "Location": "Savegre Mountain Lodge",
+    "Scientific Name": "Basileuterus melanogenys",
+    "Common Name": "Black-cheeked Warbler",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2012-02-25-basileuterus-melanogenys-7V5Z4870.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2012-02-25-basileuterus-melanogenys-7V5Z4870.jpg",
+    "County": "",
+    "State/Province": "CR-SJ"
+  },
+  {
+    "Date": "02-25-2012",
+    "Location": "Savegre Mountain Lodge",
+    "Scientific Name": "Catharus gracilirostris",
+    "Common Name": "Black-billed Nightingale-Thrush",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2012-02-25-catharus-gracilirostris-7V5Z5121.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2012-02-25-catharus-gracilirostris-7V5Z5121.jpg",
+    "County": "",
+    "State/Province": "CR-SJ"
+  },
+  {
+    "Date": "07-03-2014",
+    "Location": "Owens River Rd. .4 miles east of 395",
+    "Scientific Name": "Picoides arcticus",
+    "Common Name": "Black-backed Woodpecker",
+    "Thumbnail URL": "https://s3.amazonaws.com/birdwalker/thumb/2014-07-03-picoides-arcticus-DM6C2008.jpg",
+    "Photo URL": "https://s3.amazonaws.com/birdwalker/photo/2014-07-03-picoides-arcticus-DM6C2008.jpg",
+    "County": "Mono",
+    "State/Province": "US-CA"
+  }
 ]
