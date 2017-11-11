@@ -26,10 +26,13 @@ class DefaultLayout extends React.Component {
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous" />
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>    
-        <script src='/scripts/jquery.justifiedGallery.min.js'></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script type='text/javascript' src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>    
+        <script type='text/javascript' src='/scripts/jquery.justifiedGallery.min.js'></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-717974-5"></script>
+        <script type='text/javascript' src='/scripts/my-gtag.js'></script>
+        <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
         <script type='text/javascript' src='/scripts/app.js'></script>
+
       </head>
     )
   }
