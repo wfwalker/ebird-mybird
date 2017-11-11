@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var rowHeight = 200;
 
 	if (galleryCount < 5) {
-		rowHeight = 400;
+		rowHeight = 350;
 	} else if (galleryCount < 10) {
 		rowHeight = 300;
 	}
