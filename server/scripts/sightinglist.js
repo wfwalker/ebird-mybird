@@ -191,6 +191,25 @@ class SightingList {
       // create and save the new dat
       let newDate = new Date(fixedDateString)
       photo['DateObject'] = newDate
+
+      // THUMBNAIL URL's:
+
+      // https://s3.amazonaws.com/birdwalker/thumb
+      // https://storage.googleapis.com/ebird-mybird.appspot.com/thumb/
+      // http://res.cloudinary.com/birdwalker/c_limit,h_300,w_300/photo/
+
+      const photoURLPrefix = 'https://s3.amazonaws.com/birdwalker/photo/'
+      const thumbURLPrefix = 'https://s3.amazonaws.com/birdwalker/thumb/'
+
+      // PHOTO URL's:
+
+      // https://s3.amazonaws.com/birdwalker/photo/
+      // https://storage.googleapis.com/ebird-mybird.appspot.com/photo/
+      // http://res.cloudinary.com/birdwalker/photo/
+
+      // add Photo URL and Thumbnail URL
+      photo['Photo URL'] = photoURLPrefix + photo['Filename'].toLowerCase()
+      photo['Thumbnail URL'] = thumbURLPrefix + photo['Filename'].toLowerCase()
     }
 
     logger.debug('parsed photos', tmpPhotos.length)
