@@ -24,24 +24,27 @@ gSightingList = new SightingList();
 gSightingList.addRows(ebird.data);
 gSightingList.setGlobalIDs();
 
-function handleJPEG(inJPEGFilename) {
-    let matchAfterLowercasingPhotosJSON = photos.filter(p => p['Filename'].toLowerCase().indexOf(inJPEGFilename) >= 0);
+// read all the recent JPEG's in flickrUp
+var allTheFiles = fs.readdirSync('s3tmp/photo');
+var theNow = new Date();
 
-    if (matchAfterLowercasingPhotosJSON.length == 0) {
-        console.log('NO MATCH')
-        console.log(inJPEGFilename, 'filename on disk')
+for (let i = 0; i < photos.length; i++) {
+
+    let tmpPhoto = photos[i]
+
+    let fullMatch = allTheFiles.filter(fn => tmpPhoto['Filename'].indexOf(fn) >= 0);
+    let fullLowercaseMatch = allTheFiles.filter(fn => tmpPhoto['Filename'].toLowerCase().indexOf(fn.toLowerCase()) >= 0);
+
+    if (fullMatch.length == 0) {
+        // console.log(i, tmpPhoto['Filename'], fullLowercaseMatch)
+        if (fullLowercaseMatch.length == 1) {
+            photos[i].Filename = fullLowercaseMatch[0]
+            // console.log('SETTING IT', photos[i].Filename)
+        } else {
+            // console.log('DANGER DANGER')
+        }
     }
 }
 
-function getStatusForS3TmpJPEGs() {
-    // read all the recent JPEG's in flickrUp
-    var allTheFiles = fs.readdirSync('s3tmp/photo');
-    var theNow = new Date();
-
-    console.log('total s3tmp jpegs', allTheFiles.length);
-
-    var infoList = allTheFiles.map(handleJPEG)
-}
-
-getStatusForS3TmpJPEGs()
+console.log(JSON.stringify(photos, 2, '  '))
 
