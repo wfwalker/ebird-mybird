@@ -208,8 +208,8 @@ class SightingList {
       // http://res.cloudinary.com/birdwalker/photo/
 
       // add Photo URL and Thumbnail URL
-      photo['Photo URL'] = photoURLPrefix + photo['Filename'].toLowerCase()
-      photo['Thumbnail URL'] = thumbURLPrefix + photo['Filename'].toLowerCase()
+      photo['Photo URL'] = photoURLPrefix + photo['Filename']
+      photo['Thumbnail URL'] = thumbURLPrefix + photo['Filename']
     }
 
     logger.debug('parsed photos', tmpPhotos.length)
