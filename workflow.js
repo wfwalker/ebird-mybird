@@ -37,7 +37,7 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
     let location = result['rdf:RDF']['rdf:Description']['Iptc4xmpCore:Location'];
     let daySightingList = new SightingList(gSightingList.filter(function(s) { return s['Date'] == tmpEbirdDate; }));
     let speciesSightings = daySightingList.filter(s => { return s['Common Name'] == label });
-    let photosOriginalNameMatch = photos.filter(p => p['Photo URL'].toLowerCase().indexOf(n.toLowerCase()) > 0);
+    let photosOriginalNameMatch = photos.filter(p => p['Filename'].toLowerCase().indexOf(n.toLowerCase()) > 0);
 
     if (label == null) {
         label = 'missing'
@@ -72,8 +72,7 @@ function handleXMP(inXMPPath, tmpEbirdDate, n, tmpDate) {
             Location: speciesSightings[0].Location,
             'Scientific Name': speciesSightings[0]['Scientific Name'],
             'Common Name': speciesSightings[0]['Common Name'],
-            'Thumbnail URL': 'https://s3.amazonaws.com/birdwalker/thumb/' + newFilename,
-            'Photo URL': 'https://s3.amazonaws.com/birdwalker/photo/' + newFilename,
+            Filename: newFilename,
             County: speciesSightings[0].County,
             'State/Province': speciesSightings[0]['State/Province'],
         };

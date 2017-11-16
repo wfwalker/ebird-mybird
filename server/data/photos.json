@@ -11491,5 +11491,59 @@
     "Filename": "2014-07-03-picoides-arcticus-DM6C2008.jpg",
     "County": "Mono",
     "State/Province": "US-CA"
+  },
+  {
+    "Date": "06-08-2010",
+    "Location": "Teller Road",
+    "Scientific Name": "Larus hyperboreus",
+    "Common Name": "Glaucous Gull",
+    "Filename": "2010-06-08-larus-hyperboreus-7V5Z1546.jpg",
+    "County": "Nome",
+    "State/Province": "US-AK"
+  },
+  {
+    "Date": "06-10-2010",
+    "Location": "Kougarok Road",
+    "Scientific Name": "Larus hyperboreus",
+    "Common Name": "Glaucous Gull",
+    "Filename": "2010-06-10-larus-hyperboreus-7V5Z2603.jpg",
+    "County": "Nome",
+    "State/Province": "US-AK"
+  },
+  {
+    "Date": "04-11-2008",
+    "Location": "Laguna Atascosa NWR",
+    "Scientific Name": "Parabuteo unicinctus",
+    "Common Name": "Harris's Hawk",
+    "Filename": "2008-04-11-parabuteo-unicinctus-7V5Z2930.jpg",
+    "County": "Cameron",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "01-19-2014",
+    "Location": "Yarrete - Hummingbirds",
+    "Scientific Name": "Anthracothorax nigricollis",
+    "Common Name": "Black-throated Mango",
+    "Filename": "2014-01-19-anthracothorax-nigricollis-DM6C2714.jpg",
+    "County": "",
+    "State/Province": "TT-TUP"
+  },
+  {
+    "Date": "12-27-2013",
+    "Location": "Cabañas San Isidro",
+    "Scientific Name": "Ciccaba huhula",
+    "Common Name": "Black-banded Owl",
+    "Filename": "2013-12-27-ciccaba-huhula-_M6C9913.jpg",
+    "County": "",
+    "State/Province": "EC-N"
+  },
+  {
+    "Date": "12-31-2013",
+    "Location": "Antisana Ecological Reserve--general area (*Please consider using a more precise hotspot or personal location when possible.)",
+    "Scientific Name": "Theristicus melanopis",
+    "Common Name": "Black-faced Ibis",
+    "Filename": "2013-12-31-theristicus-melanopis-_O5C6763.jpg",
+    "County": "",
+    "State/Province": "EC-N"
   }
 ]
