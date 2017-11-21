@@ -17,7 +17,7 @@ class DefaultLayout extends React.Component {
             BirdWalker | {this.props.title}
         </title>
 
-        <meta name="description" content="ebird-mybird : An offline web app for browsing your personal eBird sightings" />
+        <meta name="description" content="birdwalker.com: bird photos by Bill Walker" />
 
         <link rel="shortcut icon" href="/images/ebird-favicon.ico" />
         
