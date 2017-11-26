@@ -29,6 +29,7 @@ require('./logger.js')
 // Checklist Comments
 
 var gCustomDayNames = {}
+var gTripNotes = {}
 var gOmittedCommonNames = []
 var gFamilies = []
 var gEBirdAll = []
@@ -228,11 +229,15 @@ class SightingList {
     return gOmittedCommonNames
   }
 
+  static getTripNotes () {
+    return gTripNotes
+  }
+
   static getFamilies () {
     return gFamilies
   }
 
-  static loadDayNamesAndOmittedNames () {
+  static loadDayNamesAndOmittedNamesAndTripNotes () {
     let dayNames = fs.readFileSync('server/data/day-names.json')
     gCustomDayNames = JSON.parse(dayNames)
     logger.debug('loaded custom day names', Object.keys(gCustomDayNames).length)
@@ -240,6 +245,10 @@ class SightingList {
     let omittedCommonNames = fs.readFileSync('server/data/omitted-common-names.json')
     gOmittedCommonNames = JSON.parse(omittedCommonNames)
     logger.debug('loaded omitted common names', Object.keys(gOmittedCommonNames).length)
+
+    let tripNotes = fs.readFileSync('server/data/trip-notes.json')
+    gTripNotes = JSON.parse(tripNotes)
+    logger.debug('loaded trip notes', Object.keys(gTripNotes).length)
   }
 
   // families = []
@@ -269,6 +278,11 @@ class SightingList {
         // add custom day name 
         if (gCustomDayNames[sighting['Date']]) {
           sighting['customDayName'] = gCustomDayNames[sighting['Date']]
+        }
+
+        // add trip notes 
+        if (gTripNotes[sighting['Date']]) {
+          sighting['tripNotes'] = gTripNotes[sighting['Date']]
         }
 
         if (sighting['State/Province']) {

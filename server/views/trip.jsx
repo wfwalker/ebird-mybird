@@ -31,6 +31,14 @@ class Trip extends BirdwalkerComponent {
     )
   }
 
+  renderNotes(someTripNotes) {
+    return (
+      <div>
+        <h4>Notes</h4>
+        <p dangerouslySetInnerHTML={{__html: someTripNotes}} />
+      </div>) 
+  }
+
   render() {
     const locations = this.props.sightingList.getUniqueValues('Location')
     const commonNames = this.props.sightingList.getUniqueValues('Common Name')
@@ -47,6 +55,8 @@ class Trip extends BirdwalkerComponent {
         <div className='biglist'>
           {submissionIDs.map(id => this.generateLinkForSubmssionID(id))}
         </div>
+
+        {this.props.sightingList.rows[0].tripNotes && this.renderNotes(this.props.sightingList.rows[0].tripNotes)}
 
         <h4>{commonNames.length} Species</h4>
 

@@ -16,7 +16,7 @@ class Application {
   }
 
   static withFullData () {
-    SightingList.loadDayNamesAndOmittedNames()
+    SightingList.loadDayNamesAndOmittedNamesAndTripNotes()
     SightingList.loadEBirdTaxonomy()
     let fullSightingList = SightingList.newFromCSV('server/data/ebird.csv')
     let fullPhotos = SightingList.newPhotosFromJSON('server/data/photos.json')
