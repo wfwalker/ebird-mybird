@@ -20,7 +20,7 @@ class Locations extends BirdwalkerComponent {
   generateEntriesForState(state) {
     return (
       <div>
-        <h3>{this.lookupState(state)}</h3>
+        <h3><a href={'/place/' + state}>{this.lookupState(state)}</a></h3>
         {Object.keys(this.props.hierarchy[state]).map(c => this.generateEntriesForCounty(state, c))}
       </div>
     )
