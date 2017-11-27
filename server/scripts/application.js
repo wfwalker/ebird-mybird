@@ -42,7 +42,7 @@ class Application {
   }
 
   dataForSearchTemplate (req) {
-    logger.debug('/search', req.query)
+    logger.debug('dataForSearchTemplate', req.query)
     let lowerCaseQuery = req.query.searchtext.toLowerCase()
 
     let resultsAsSightings = this.allSightings.filter((s) => (

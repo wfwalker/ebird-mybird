@@ -82,6 +82,12 @@ app.get('/search', function (req, resp, next) {
   resp.render('searchresults', gApplication.dataForSearchTemplate(req))
 })
 
+app.get('/searchdata', function (req, resp, next) {
+  logger.debug('/searchdata/', req.param.searchtext)
+  const searchResults = gApplication.dataForSearchTemplate(req)
+  resp.json(searchResults.sightingList.getUniqueValues('Common Name'))
+})
+
 app.get('/year/:year', function (req, resp, next) {
   logger.debug('/year/', req.params.year)
   resp.render('year', gApplication.dataForYearTemplate(req))

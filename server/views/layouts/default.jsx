@@ -31,6 +31,7 @@ class DefaultLayout extends React.Component {
         <script type='text/javascript' src="https://www.googletagmanager.com/gtag/js?id=UA-717974-5"></script>
         <script type='text/javascript' src='/scripts/my-gtag.js'></script>
         <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" crossorigin="anonymous"></script>
         <script type='text/javascript' src='/scripts/app.js'></script>
 
       </head>
@@ -67,7 +68,7 @@ class DefaultLayout extends React.Component {
 
             <form action='/search' method='GET' className="navbar-form navbar-left" role="search">
               <div className="form-group">
-                <input id='searchtext' name='searchtext' type="text" className="form-control" placeholder="Search" />
+                <input id='searchtext' name='searchtext' data-provide="typeahead" type="text" className="typeahead form-control" placeholder="Search" />
               </div>
               <button id='gosearch' type="submit" className="btn btn-default">Submit</button>
             </form>
