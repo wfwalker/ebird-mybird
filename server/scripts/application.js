@@ -267,6 +267,33 @@ class Application {
     }
   }
 
+  dataForYearAndMonthTemplate (req) {
+    let numericMonth = parseInt(req.params.month)
+
+    let tmpSightings = this.allSightings.filter((s) => {
+      let monthMatch = (s['DateObject'].getMonth() + 1) == numericMonth
+      let yearMatch = s['DateObject'].getFullYear() == req.params.year
+      return monthMatch && yearMatch
+    })
+
+    tmpSightings.sort(SightingList.taxonomicSortComparator)
+
+    let photos = this.allPhotos.filter((p) => {
+      let yearMatch = p.Date.substring(6, 10) === req.params.year
+      let monthMatch = (p.DateObject.getMonth() + 1) === numericMonth
+      return monthMatch && yearMatch
+    })
+
+    let yearAndMonthSightingList = new SightingList(tmpSightings, photos)
+
+    return {
+      year: req.params.year,
+      month: req.params.month,
+      photos: yearAndMonthSightingList.getLatestPhotos(20),
+      sightingList: yearAndMonthSightingList
+    }
+  }
+
   dataForPhotosDayOfYearTemplate (req) {
     let currentDayOfYear = parseInt(req.params.dayofyear)
 

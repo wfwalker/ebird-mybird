@@ -88,11 +88,6 @@ app.get('/searchdata', function (req, resp, next) {
   resp.json(searchResults.sightingList.getUniqueValues('Common Name'))
 })
 
-app.get('/year/:year', function (req, resp, next) {
-  logger.debug('/year/', req.params.year)
-  resp.render('year', gApplication.dataForYearTemplate(req))
-})
-
 app.get('/sighting/:sighting_id', function (req, resp, next) {
   logger.debug('/sighting/', req.params.sighting_id)
   resp.render('sighting', gApplication.dataForSightingTemplate(req))
@@ -103,12 +98,24 @@ app.get('/photo/:photo_id', function (req, resp, next) {
   resp.render('photo', gApplication.dataForPhotoTemplate(req))
 })
 
+// Time Hierarchy
+
+app.get('/time/:year', function (req, resp, next) {
+  logger.debug('/year/', req.params.year)
+  resp.render('year', gApplication.dataForYearTemplate(req))
+})
+
+app.get('/time/:year/:month', function (req, resp, next) {
+  logger.debug('/month/', req.params.year, '/', req.params.month)
+  resp.render('month', gApplication.dataForYearAndMonthTemplate(req))
+})
+
 app.get('/trip/:trip_date', function (req, resp, next) {
   logger.debug('/trip/', req.params.trip_date)
   resp.render('trip', gApplication.dataForTripTemplate(req))
 })
 
-// // TODO: need location hierarchy
+// location hierarchy
 
 app.get('/place/:state_name', function (req, resp, next) {
   logger.debug('/state/', req.params.state_name)

@@ -14,7 +14,7 @@ class Trips extends BirdwalkerComponent {
   generateYearTripList(y, list) {
     return (
       <div>
-        <h4 className='stickyHeader'><a href={'/year/' + y}>{y}</a></h4>
+        <h4 className='stickyHeader'><a href={'/time/' + y}>{y}</a></h4>
         <div className='biglist'>
           {list.map(t => (<TripLink tuple={t} />))}
         </div>
