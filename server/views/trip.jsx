@@ -4,6 +4,13 @@ import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
 var moment = require('moment')
 
+const LinkToFamily = (props) => {
+  const englishPart = props.family.replace(/.*\((.*)\)/, '$1')
+  return (
+    <h4 className='biglist-item'><a href={'/family/' + props.family}>{englishPart}</a></h4>
+  )
+}
+
 class Trip extends BirdwalkerComponent {
   constructor(props) {
     super(props);
@@ -42,6 +49,7 @@ class Trip extends BirdwalkerComponent {
   render() {
     const locations = this.props.sightingList.getUniqueValues('Location')
     const commonNames = this.props.sightingList.getUniqueValues('Common Name')
+    const hierarchy = this.props.sightingList.getTaxonomyHierarchy()
     const submissionIDs = this.props.sightingList.getUniqueValues('Submission ID')
 
     return (
@@ -60,7 +68,14 @@ class Trip extends BirdwalkerComponent {
 
         <h4>{commonNames.length} Species</h4>
 
-        {this.generateSpeciesList(commonNames)}
+        <div className='biglist'>
+          {Object.keys(hierarchy).map(f => (
+            <div>
+              <LinkToFamily family={f} />
+              {this.generateSpeciesList(hierarchy[f])}
+            </div>))
+          }
+        </div>
 
         <h4>{locations.length} Locations</h4>
         {this.generateGoogleMap(this.props.sightingList)}
