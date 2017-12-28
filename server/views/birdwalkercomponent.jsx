@@ -1,6 +1,7 @@
 var React = require('react');
 var iso3166 = require('iso-3166-2')
 import LocationMap from './locationmap.jsx'
+import LocationsVRScene from './locationsvrscene.jsx'
 import { Thumbnail, TripLink, TaxonLink, MonthGraph } from './utilities.jsx'
 
 class BirdwalkerComponent extends React.Component {
@@ -47,6 +48,14 @@ class BirdwalkerComponent extends React.Component {
         <LocationMap data={inData} />
         {(locationTriples.length < 20) && locationTriples.map(l => this.generateLinkToLocation(l[0], l[1], l[2]))}
       </div>
+    )
+  }
+
+  generateLocationsVRScene(inData) {
+    let locationTriples = inData.getLocationTriples()
+
+    return (
+      <LocationsVRScene data={inData} />
     )
   }
 

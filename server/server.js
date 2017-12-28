@@ -48,6 +48,11 @@ app.get('/locations', function (req, resp, next) {
   resp.render('locations', gApplication.dataForLocationsTemplate())
 })
 
+app.get('/locations/vr', function (req, resp, next) {
+  logger.debug('/locations/vr')
+  resp.render('locationsvr', gApplication.dataForLocationsTemplate())
+})
+
 app.get('/bigdays', function (req, resp, next) {
   logger.debug('/bigdays')
   resp.render('bigdays', gApplication.dataForBigdaysTemplate())

@@ -199,6 +199,8 @@ class SightingList {
       // https://storage.googleapis.com/ebird-mybird.appspot.com/thumb/
       // http://res.cloudinary.com/birdwalker/c_limit,h_300,w_300/photo/
 
+      // TODO: allow environment variable override
+
       const photoURLPrefix = 'https://s3.amazonaws.com/birdwalker/photo/'
       const thumbURLPrefix = 'https://s3.amazonaws.com/birdwalker/thumb/'
 

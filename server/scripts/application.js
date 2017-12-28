@@ -81,7 +81,8 @@ class Application {
   dataForLocationsTemplate () {
     return {
       count: this.allSightings.getUniqueValues('Location').length,
-      hierarchy: this.allSightings.getLocationHierarchy()
+      hierarchy: this.allSightings.getLocationHierarchy(),
+      sightingList: this.allSightings
     }
   }
 
