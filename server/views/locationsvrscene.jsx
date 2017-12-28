@@ -13,7 +13,7 @@ class LocationsVRScene extends React.Component {
         </head>
         <body>
         <a-scene>
-            <a-entity position="24 10 -124" camera look-controls wasd-controls >
+            <a-entity position="24 2 -124" camera look-controls wasd-controls >
             </a-entity>
             {markersNoDups.map(marker => {
                 let parts = marker.split(',')
@@ -24,7 +24,7 @@ class LocationsVRScene extends React.Component {
                     </a-entity>
                 )
             })}
-            <a-box position="24 -0.1 -124" width="25" depth="66" height="0.1" color="#7BC8A4" />
+            <a-box position="36.5 -0.1 -95" width="25" depth="66" height="0.1" color="#7BC8A4" />
             <a-box position="-1 -0.1 -90.5" width="2" depth="2" height="0.1" color="#7BC8A4" />
         </a-scene>
         </body>
