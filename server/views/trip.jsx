@@ -1,15 +1,11 @@
 var React = require('react');
+
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
-var moment = require('moment')
+import { LinkToFamily } from './utilities.jsx'
 
-const LinkToFamily = (props) => {
-  const englishPart = props.family.replace(/.*\((.*)\)/, '$1')
-  return (
-    <h4 className='biglist-item'><a href={'/family/' + props.family}>{englishPart}</a></h4>
-  )
-}
+var moment = require('moment')
 
 class Trip extends BirdwalkerComponent {
   constructor(props) {
@@ -66,16 +62,7 @@ class Trip extends BirdwalkerComponent {
 
         {this.props.sightingList.rows[0].tripNotes && this.renderNotes(this.props.sightingList.rows[0].tripNotes)}
 
-        <h4>{commonNames.length} Species</h4>
-
-        <div className='biglist'>
-          {Object.keys(hierarchy).map(f => (
-            <div>
-              <LinkToFamily family={f} />
-              {this.generateSpeciesList(hierarchy[f])}
-            </div>))
-          }
-        </div>
+        {this.generateSpeciesList(this.props.sightingList)}
 
         <h4>{locations.length} Locations</h4>
         {this.generateGoogleMap(this.props.sightingList)}

@@ -12,7 +12,6 @@ class Month extends BirdwalkerComponent {
 
   render() {
     const yearDates = this.props.sightingList.getUniqueValues('Date')
-    const commonNames = this.props.sightingList.getUniqueValues('Common Name')
     const locationNames = this.props.sightingList.getUniqueValues('Location')
     const tempMoment = moment().year(this.props.year).month(this.props.month - 1).day(1)  
     console.log('moment temp ' , tempMoment)
@@ -24,7 +23,7 @@ class Month extends BirdwalkerComponent {
 
         <h4>{commonNames.length} Species</h4>
 
-        {this.generateSpeciesList(commonNames)}
+        {this.generateSpeciesList(this.props.sightingList)}
 
         {this.generateDatesandMapRow(this.props.sightingList)}
       </DefaultLayout>

@@ -2,7 +2,7 @@ var React = require('react');
 var iso3166 = require('iso-3166-2')
 import LocationMap from './locationmap.jsx'
 import LocationsVRScene from './locationsvrscene.jsx'
-import { Thumbnail, TripLink, TaxonLink, MonthGraph } from './utilities.jsx'
+import { LinkToFamily, Thumbnail, TripLink, TaxonLink, MonthGraph } from './utilities.jsx'
 
 class BirdwalkerComponent extends React.Component {
   constructor(props) {
@@ -24,12 +24,34 @@ class BirdwalkerComponent extends React.Component {
     )
   }
 
-  generateSpeciesList(commonNames) {
-  	return (
-	    <div className='biglist'>
-		    {commonNames.map(cn => <TaxonLink commonName={cn} />)}
-	    </div>
-		)
+  generateSpeciesList(sightingList) {
+    const commonNames = sightingList.getUniqueValues('Common Name')
+    const hierarchy = this.props.sightingList.getTaxonomyHierarchy()
+
+    if (commonNames.length < 20) {
+      return (
+        <div>
+          <h4>{commonNames.length} Species</h4>
+          <div className='biglist'>
+            {commonNames.map(cn => <TaxonLink commonName={cn} />)}
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h4>{commonNames.length} Species</h4>
+          <div className='biglist'>
+            {Object.keys(hierarchy).map(f => (
+              <div>
+                <LinkToFamily family={f} />
+                {hierarchy[f].map(cn => <TaxonLink commonName={cn} />)}
+              </div>))
+            }
+          </div>
+        </div>
+      )
+    }
   }
 
   generateThumbnails() {

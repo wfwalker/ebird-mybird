@@ -18,11 +18,7 @@ class Taxons extends BirdwalkerComponent {
     return (
       <DefaultLayout title='Our Life List' subtitle={this.props.lifeSightingsCount + ' species'}>
         <PageHeading title='Our Life List' subtitle={this.props.lifeSightingsCount + ' taxons'} />
-          <div className='biglist'>
-            {Object.keys(this.props.hierarchy).map(f => (
-              <div><LinkToFamily family={f} />{this.generateSpeciesList(this.props.hierarchy[f])}</div>))
-            }
-          </div>
+          {this.generateSpeciesList(this.props.sightingList)}
         </DefaultLayout>
     )
   }

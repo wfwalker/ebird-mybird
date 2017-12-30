@@ -10,7 +10,6 @@ class Location extends BirdwalkerComponent {
 
   render() {
     const locationDates = this.props.sightingList.getUniqueValues('Date')
-    const commonNames = this.props.sightingList.getUniqueValues('Common Name')
 
     return (
       <DefaultLayout title={this.props.name}>
@@ -20,9 +19,7 @@ class Location extends BirdwalkerComponent {
 
         {this.generateThumbnails()}
 
-        <h4>{commonNames.length} Species</h4>
-
-        {this.generateSpeciesList(commonNames)}
+        {this.generateSpeciesList(this.props.sightingList)}
 
         {this.generateDatesandMapRow(this.props.sightingList)}
 

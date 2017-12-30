@@ -2,6 +2,13 @@ var moment = require('moment')
 var React = require('react');
 var { URL, URLSearchParams } = require('url')
 
+const LinkToFamily = (props) => {
+  const englishPart = props.family.replace(/.*\((.*)\)/, '$1')
+  return (
+    <h4 className='biglist-item'><a href={'/family/' + props.family}>{englishPart}</a></h4>
+  )
+}
+
 const Thumbnail = (props) => {
   return (
     <a href={'/photo/' + props.photo.id}><img alt={props.photo['Common Name']} src={props.photo['Photo URL']} /></a>
@@ -42,4 +49,4 @@ const MonthGraph = (props) => {
   return (<img className='img-responsive' src={chartURL.toString()} />)
 }
 
-export { Thumbnail, TripLink, TaxonLink, MonthGraph }
+export { LinkToFamily, Thumbnail, TripLink, TaxonLink, MonthGraph }

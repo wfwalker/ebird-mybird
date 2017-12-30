@@ -123,7 +123,8 @@ class Application {
 
     return {
       lifeSightingsCount: lifeSightingsList.length(),
-      hierarchy: lifeSightingsList.getTaxonomyHierarchy()
+      hierarchy: lifeSightingsList.getTaxonomyHierarchy(),
+      sightingList: lifeSightingsList
     }
   }
 

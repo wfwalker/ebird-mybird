@@ -12,8 +12,6 @@ class State extends BirdwalkerComponent {
   }
 
   render() {
-    const commonNames = this.props.sightingList.getUniqueValues('Common Name')
-
     return (
       <DefaultLayout title={this.lookupState(this.props.State)} subtitle={this.props.Country}>
         <PageHeading title={this.lookupState(this.props.State)} subtitle={this.props.Country} />
@@ -22,7 +20,7 @@ class State extends BirdwalkerComponent {
 
         <h4>{commonNames.length} Species</h4>
 
-        {this.generateSpeciesList(commonNames)}
+        {this.generateSpeciesList(this.props.sightingList)}
 
         {this.generateDatesandMapRow(this.props.sightingList)}
       </DefaultLayout>
