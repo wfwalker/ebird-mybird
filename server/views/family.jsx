@@ -22,7 +22,7 @@ class Family extends BirdwalkerComponent {
 
         {this.generateThumbnails()}
 
-        {this.generateSpeciesList(this.props.sightingList)}
+        {this.generateSpeciesList(this.props.sightingList, false)}
 
         {this.generateDatesandMapRow(this.props.sightingList)}
       </DefaultLayout>

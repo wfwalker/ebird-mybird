@@ -24,11 +24,11 @@ class BirdwalkerComponent extends React.Component {
     )
   }
 
-  generateSpeciesList(sightingList) {
+  generateSpeciesList(sightingList, allowHierarchy = true) {
     const commonNames = sightingList.getUniqueValues('Common Name')
     const hierarchy = this.props.sightingList.getTaxonomyHierarchy()
 
-    if (commonNames.length < 20) {
+    if ((commonNames.length < 20) || (! allowHierarchy)) {
       return (
         <div>
           <h4>{commonNames.length} Species</h4>
