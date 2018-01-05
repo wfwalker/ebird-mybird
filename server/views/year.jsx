@@ -19,8 +19,6 @@ class County extends BirdwalkerComponent {
 
         {this.generateThumbnails()}
 
-        <h4>{commonNames.length} Species</h4>
-
         {this.generateSpeciesList(this.props.sightingList)}
 
         {this.generateDatesandMapRow(this.props.sightingList)}
