@@ -85,7 +85,7 @@ class BirdwalkerComponent extends React.Component {
   	if (sightingList.getUniqueValues('Date').length < 30) {
       const listDateTuples = sightingList.getDateTuples()
 	  	return (
-					<div class="biglist">
+					<div className="biglist">
 						{listDateTuples.map(tuple => <TripLink tuple={tuple} />)}
 					</div>
 			)
@@ -103,14 +103,18 @@ class BirdwalkerComponent extends React.Component {
     const listLocations = sightingList.getUniqueValues('Location')
 
     return (
-      <div className='row'>
-        <div className='col-md-4'>
-          <h4>{listDateTuples.length} Dates</h4>
-          {this.generateDateList(sightingList)}
+      <div>
+        <div className='row'>
+          <div className='col-md-12'>
+            <h4>{listDateTuples.length} Dates</h4>
+            {this.generateDateList(sightingList)}
+          </div>
         </div>
-        <div className='col-md-8'>
-          <h4>{listLocations.length} Locations</h4>
-          {this.generateGoogleMap(sightingList)}
+        <div className='row'>
+          <div className='col-md-12'>
+            <h4>{listLocations.length} Locations</h4>
+            {this.generateGoogleMap(sightingList)}
+          </div>
         </div>
       </div>
     )
