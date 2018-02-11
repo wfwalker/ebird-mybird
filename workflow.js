@@ -100,6 +100,10 @@ function handleJPEG(inJPEGFilename) {
     // IPTC date is year month day no seperators '20151223'
     let tmpIPTCdate = iptc(tmpFile).date_created;
 
+    if (tmpIPTCdate == undefined) {
+        throw 'No IPTC date for ' + inJPEGFilename
+    }
+
     // seperated IPTC date year-month-day like '2015-12-23'    
     let tmpSeperatedIPTCDate = tmpIPTCdate.substring(0,4) + '-' + tmpIPTCdate.substring(4,6) + '-' + tmpIPTCdate.substring(6,8);
 
