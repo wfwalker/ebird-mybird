@@ -11608,5 +11608,23 @@
     "Filename": "2012-02-29-caryothraustes-poliogaster-7V5Z7155.jpg",
     "County": "",
     "State/Province": "CR-H"
-  }
+  },
+  {
+    "Date": "04-09-2008",
+    "Location": "Hidalgo",
+    "Scientific Name": "Columbina passerina",
+    "Common Name": "Common Ground-Dove",
+    "Filename": "2008-04-09-columbina-passerina-7V5Z1774.jpg",
+    "County": "Hidalgo",
+    "State/Province": "US-TX"
+  },
+  {
+    "Date": "02-21-2009",
+    "Location": "Merced NWR",
+    "Scientific Name": "Anser caerulescens",
+    "Common Name": "Snow Goose",
+    "Filename": "2009-02-21-anser-caerulescens-7V5Z1976.jpg",
+    "County": "Merced",
+    "State/Province": "US-CA"
+  }  
 ]
