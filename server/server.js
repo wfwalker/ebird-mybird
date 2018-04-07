@@ -38,6 +38,11 @@ app.get('/photos', function (req, resp, next) {
   resp.render('photos', gApplication.dataForPhotosTemplate())
 })
 
+app.get('/videos', function (req, resp, next) {
+  logger.debug('/videos')
+  resp.render('videos', gApplication.dataForPhotosTemplate())
+})
+
 app.get('/photos/dayofyear/:dayofyear', function (req, resp, next) {
   logger.debug('/photos/dayofyear/' + req.params.dayofyear)
   resp.render('photosdayofyear', gApplication.dataForPhotosDayOfYearTemplate(req))

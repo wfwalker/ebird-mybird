@@ -53,7 +53,8 @@ class DefaultLayout extends React.Component {
           </div>
           <div id="navbar" className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
-              <li><a data-hash="photos" href="/photos">Photos by Bill Walker</a></li>
+              <li><a data-hash="photos" href="/photos">Photos</a></li>
+              <li><a data-hash="videos" href="/videos">Videos</a></li>
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Birding <span className="caret"></span></a>
                 <ul className="dropdown-menu">
