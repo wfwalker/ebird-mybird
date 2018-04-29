@@ -92,6 +92,9 @@ class DefaultLayout extends React.Component {
           </div>
 
           <footer>
+            <div className="container" style={{paddingTop: '60px'}}>
+              For more info, please contact <a href="mailto:wfwalkerphoto@gmail.com">wfwalkerphoto@gmail.com</a>
+            </div>
           </footer>
         </body>
       </html>
