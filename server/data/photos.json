@@ -11626,5 +11626,68 @@
     "Filename": "2009-02-21-anser-caerulescens-7V5Z1976.jpg",
     "County": "Merced",
     "State/Province": "US-CA"
-  }  
+  },
+  {
+    "Date": "11-24-2017",
+    "Location": "Road 69, Colusa, California, US (39.402, -121.966)",
+    "Scientific Name": "Antigone canadensis",
+    "Common Name": "Sandhill Crane",
+    "Filename": "2017-11-24-antigone-canadensis-0L5A4962.jpg",
+    "County": "Glenn",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "01-15-2018",
+    "Location": "Coyote Valley--Palm Ave.",
+    "Scientific Name": "Pyrocephalus rubinus",
+    "Common Name": "Vermilion Flycatcher",
+    "Filename": "2018-01-15-pyrocephalus-rubinus-0L5A5574.jpg",
+    "County": "Santa Clara",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "01-15-2018",
+    "Location": "Coyote Valley--Palm Ave.",
+    "Scientific Name": "Pyrocephalus rubinus",
+    "Common Name": "Vermilion Flycatcher",
+    "Filename": "2018-01-15-pyrocephalus-rubinus-0L5A5611.jpg",
+    "County": "Santa Clara",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "06-01-2018",
+    "Location": "Malarrif",
+    "Scientific Name": "Lagopus muta",
+    "Common Name": "Rock Ptarmigan",
+    "Filename": "2018-06-01-lagopus-muta-2P9A1390.jpg",
+    "County": "",
+    "State/Province": "IS-3"
+  },
+  {
+    "Date": "06-06-2018",
+    "Location": "Drangey",
+    "Scientific Name": "Fratercula arctica",
+    "Common Name": "Atlantic Puffin",
+    "Filename": "2018-06-06-fratercula-arctica-2P9A3412.jpg",
+    "County": "",
+    "State/Province": "IS-5"
+  },
+  {
+    "Date": "06-06-2018",
+    "Location": "Drangey",
+    "Scientific Name": "Fratercula arctica",
+    "Common Name": "Atlantic Puffin",
+    "Filename": "2018-06-06-fratercula-arctica-2P9A3462.jpg",
+    "County": "",
+    "State/Province": "IS-5"
+  },
+  {
+    "Date": "06-08-2018",
+    "Location": "Geysir",
+    "Scientific Name": "Motacilla alba",
+    "Common Name": "White Wagtail",
+    "Filename": "2018-06-08-motacilla-alba-2P9A5107.jpg",
+    "County": "",
+    "State/Province": "IS-8"
+  }
 ]
