@@ -35,7 +35,7 @@ var gFamilies = []
 var gEBirdAll = []
 var gLocationInfo = {}
 
-const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2017_18Aug2017.csv'
+const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2018_14Aug2018.csv'
 
 function convertDate (inDate) {
   var tmp = new Date(inDate)
