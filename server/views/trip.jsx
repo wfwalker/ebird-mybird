@@ -64,7 +64,7 @@ class Trip extends BirdwalkerComponent {
 
         {this.generateSpeciesList(this.props.sightingList)}
 
-        <h4>{locations.length} Locations</h4>
+        <h4>{locations.length} Location{(locations.length > 1) && 's'}</h4>
         {this.generateGoogleMap(this.props.sightingList)}
 
       </DefaultLayout>

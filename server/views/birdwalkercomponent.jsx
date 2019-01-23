@@ -106,13 +106,13 @@ class BirdwalkerComponent extends React.Component {
       <div>
         <div className='row'>
           <div className='col-md-12'>
-            <h4>{listDateTuples.length} Dates</h4>
+            <h4>{listDateTuples.length} Date{listDateTuples.length > 1 && 's'}</h4>
             {this.generateDateList(sightingList)}
           </div>
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <h4>{listLocations.length} Locations</h4>
+            <h4>{listLocations.length} Location{listLocations.length > 1 && 's'}</h4>
             {this.generateGoogleMap(sightingList)}
           </div>
         </div>
