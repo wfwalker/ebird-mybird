@@ -54,7 +54,7 @@ class Trip extends BirdwalkerComponent {
 
         {this.generateThumbnails()}
 
-        <h4>{submissionIDs.length} eBird checklists</h4>
+        <h4>{submissionIDs.length} eBird checklist{(submissionIDs.length > 1) && 's'}</h4>
 
         <div className='biglist'>
           {submissionIDs.map(id => this.generateLinkForSubmssionID(id))}
