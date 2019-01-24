@@ -3,6 +3,7 @@ var iso3166 = require('iso-3166-2')
 import LocationMap from './locationmap.jsx'
 import LocationsVRScene from './locationsvrscene.jsx'
 import { LinkToFamily, Thumbnail, TripLink, TaxonLink, MonthGraph } from './utilities.jsx'
+import PageCountedSubheading from './pagecountedsubheading.jsx'
 
 class BirdwalkerComponent extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class BirdwalkerComponent extends React.Component {
     if ((commonNames.length < 20) || (! allowHierarchy)) {
       return (
         <div>
-          <h4>{commonNames.length} Species</h4>
+          <PageCountedSubheading count={commonNames.length} noun='Species' />
           <div className='biglist'>
             {commonNames.map(cn => <TaxonLink commonName={cn} />)}
           </div>
@@ -40,7 +41,7 @@ class BirdwalkerComponent extends React.Component {
     } else {
       return (
         <div>
-          <h4>{commonNames.length} Species</h4>
+          <PageCountedSubheading count={commonNames.length} noun='Species' />
           <div className='biglist'>
             {Object.keys(hierarchy).map(f => (
               <div>
@@ -106,13 +107,13 @@ class BirdwalkerComponent extends React.Component {
       <div>
         <div className='row'>
           <div className='col-md-12'>
-            <h4>{listDateTuples.length} Date{listDateTuples.length > 1 && 's'}</h4>
+            <PageCountedSubheading count={listDateTuples.length} noun='Date' />          
             {this.generateDateList(sightingList)}
           </div>
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <h4>{listLocations.length} Location{listLocations.length > 1 && 's'}</h4>
+            <PageCountedSubheading count={listLocations.length} noun='Location' />          
             {this.generateGoogleMap(sightingList)}
           </div>
         </div>

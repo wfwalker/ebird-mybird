@@ -3,6 +3,8 @@ var React = require('react');
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
+import PageSubheading from './pagesubheading.jsx'
+import PageCountedSubheading from './pagecountedsubheading.jsx'
 import { LinkToFamily } from './utilities.jsx'
 
 var moment = require('moment')
@@ -37,7 +39,7 @@ class Trip extends BirdwalkerComponent {
   renderNotes(someTripNotes) {
     return (
       <div>
-        <h4>Notes</h4>
+        <PageSubheading title='Notes' />
         <p dangerouslySetInnerHTML={{__html: someTripNotes}} />
       </div>) 
   }
@@ -54,7 +56,7 @@ class Trip extends BirdwalkerComponent {
 
         {this.generateThumbnails()}
 
-        <h4>{submissionIDs.length} eBird checklist{(submissionIDs.length > 1) && 's'}</h4>
+        <PageCountedSubheading count={submissionIDs.length} noun='eBird checklist' />
 
         <div className='biglist'>
           {submissionIDs.map(id => this.generateLinkForSubmssionID(id))}
@@ -64,7 +66,7 @@ class Trip extends BirdwalkerComponent {
 
         {this.generateSpeciesList(this.props.sightingList)}
 
-        <h4>{locations.length} Location{(locations.length > 1) && 's'}</h4>
+        <PageCountedSubheading count={locations.length} noun='Location' />
         {this.generateGoogleMap(this.props.sightingList)}
 
       </DefaultLayout>

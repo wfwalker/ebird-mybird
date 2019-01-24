@@ -2,6 +2,7 @@ var React = require('react')
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
+import PageSubheading from './pagesubheading.jsx'
 
 class Locations extends BirdwalkerComponent {
   constructor(props) {
@@ -11,7 +12,7 @@ class Locations extends BirdwalkerComponent {
   generateEntriesForCounty(state, county) {
     return (
       <div key={county}>
-        {county && (<h4><a href={'/place/' + state + '/' + county}>{county} County</a></h4>)}
+        {county && (<PageSubheading href={'/place/' + state + '/' + county} title={county + ' County'} />)}
         {this.props.hierarchy[state][county].map(l => this.generateLinkToLocation(state, county, l))}
       </div>
     )
@@ -20,7 +21,7 @@ class Locations extends BirdwalkerComponent {
   generateEntriesForState(state) {
     return (
       <div>
-        <h3><a href={'/place/' + state}>{this.lookupState(state)}</a></h3>
+        <PageHeading href={'/place/' + state} title={this.lookupState(state)} />
         {Object.keys(this.props.hierarchy[state]).map(c => this.generateEntriesForCounty(state, c))}
       </div>
     )

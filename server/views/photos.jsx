@@ -37,7 +37,7 @@ class Photos extends BirdwalkerComponent {
             </p>
           </div>
           <div className='col-md-4'>
-            <h3><a href={'/photos/dayofyear/' + this.props.currentDayOfYear}>Photos from {this.props.startDayOfYear} - {this.props.endDayOfYear}</a></h3>
+            <PageHeading href={'/photos/dayofyear/' + this.props.currentDayOfYear} title={'Photos from ' + this.props.startDayOfYear + ' - ' + this.props.endDayOfYear} />
             <a href={'/photos/dayofyear/' + this.props.currentDayOfYear}><img className='img-responsive' src={this.props.photosThisWeek[0]['Photo URL']} /></a>
           </div>
         </div>

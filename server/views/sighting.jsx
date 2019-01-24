@@ -19,7 +19,7 @@ class Sighting extends BirdwalkerComponent {
 
         { gUsefulProperties.map(p => (<div>{p}: {this.props[p]}</div>)) }
 
-        <h4>JSON for photos.json</h4>
+        <PageSubheading title='JSON for photos.json' />
 
         <pre>
         "Date": "{this.props['Date']}",
