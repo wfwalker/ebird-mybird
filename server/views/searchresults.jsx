@@ -18,7 +18,7 @@ class SearchResults extends BirdwalkerComponent {
 
         {this.generateThumbnails()}
 
-        <PageCountedSubheading count={this.props.sightingList.getUniqueValues('Common Name').length} noun='Species'} />
+        <PageCountedSubheading count={this.props.sightingList.getUniqueValues('Common Name').length} noun='Species' />
 
         <div className='biglist'>
           {this.props.sightingList.getUniqueValues('Common Name').map(cn => <TaxonLink commonName={cn} />)}
