@@ -105,12 +105,6 @@ function registerHelpers () {
     return !isNaN(inValue)
   })
 
-  Handlebars.registerHelper('ebirddate', function (inDate) {
-    return new Handlebars.SafeString(
-      moment(inDate).format('MM-DD-Y')
-    )
-  })
-
   Handlebars.registerHelper('sortabledate', function (inDate) {
     return new Handlebars.SafeString(
       moment(inDate).format('Y-MM-DD')

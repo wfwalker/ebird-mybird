@@ -16,7 +16,7 @@ require('./logger.js')
 // Location, Brownsville
 // Latitude, 25.911388
 // Longitude, -97.4904876
-// Date, 04-17-2004
+// Date, 04-17-2004 JUST CHANGED TO 2004-04-17
 // Time,
 // Protocol, eBird - Casual Observation
 // Duration (Min),
@@ -271,7 +271,7 @@ class SightingList {
         let pieces = sighting['Date'].split('-')
 
         // order the pieces in a sensible way
-        let fixedDateString = [pieces[0], '/', pieces[1], '/', pieces[2]].join('')
+        let fixedDateString = sighting['Date']
 
         // create and save the new date
         let newDate = convertDate(fixedDateString)
@@ -308,15 +308,17 @@ class SightingList {
           this.latestDateObject = newDate
         }
 
-        if (!this.rowsByYear[pieces[2]]) {
-          this.rowsByYear[pieces[2]] = []
+        // NOTE: assume YYYY-MM-DD
+        if (!this.rowsByYear[pieces[0]]) {
+          this.rowsByYear[pieces[0]] = []
         }
-        this.rowsByYear[pieces[2]].push(sighting)
+        this.rowsByYear[pieces[0]].push(sighting)
 
-        if (!this.rowsByMonth[pieces[0]]) {
-          this.rowsByMonth[pieces[0]] = []
+        // NOTE: assume YYYY-MM-DD
+        if (!this.rowsByMonth[pieces[1]]) {
+          this.rowsByMonth[pieces[1]] = []
         }
-        this.rowsByMonth[pieces[0]].push(sighting)
+        this.rowsByMonth[pieces[1]].push(sighting)
       } else {
         logger.debug('ERROR SIGHTING HAS NO DATE', index, JSON.stringify(sighting))
         inRows.splice(index, 1)
