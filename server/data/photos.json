@@ -90,7 +90,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Malheur NWR",
+    "Location": "Malheur NWR (general)",
     "Date": "2002-04-21",
     "Scientific Name": "Centrocercus urophasianus",
     "Common Name": "Greater Sage-Grouse",
@@ -225,7 +225,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Princeton Harbor",
+    "Location": "Pillar Point Harbor",
     "Date": "2003-01-05",
     "Scientific Name": "Sula leucogaster",
     "Common Name": "Brown Booby",
@@ -234,7 +234,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Princeton Harbor",
+    "Location": "Pillar Point Harbor",
     "Date": "2003-01-05",
     "Scientific Name": "Bucephala albeola",
     "Common Name": "Bufflehead",
@@ -243,7 +243,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Princeton Harbor",
+    "Location": "Pillar Point Harbor",
     "Date": "2003-01-05",
     "Scientific Name": "Gavia immer",
     "Common Name": "Common Loon",
@@ -378,7 +378,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2003-10-12",
     "Scientific Name": "Larus delawarensis",
     "Common Name": "Ring-billed Gull",
@@ -558,7 +558,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2004-01-12",
     "Scientific Name": "Melozone crissalis",
     "Common Name": "California Towhee",
@@ -567,7 +567,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2004-01-12",
     "Scientific Name": "Melanitta perspicillata",
     "Common Name": "Surf Scoter",
@@ -576,7 +576,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2004-01-12",
     "Scientific Name": "Tringa semipalmata",
     "Common Name": "Willet",
@@ -1620,7 +1620,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2004-03-05",
     "Scientific Name": "Bucephala clangula",
     "Common Name": "Common Goldeneye",
@@ -2133,7 +2133,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Malheur NWR",
+    "Location": "Malheur NWR (general)",
     "Date": "2004-10-22",
     "Scientific Name": "Cinclus mexicanus",
     "Common Name": "American Dipper",
@@ -2142,7 +2142,7 @@
     "State/Province": "US-OR"
   },
   {
-    "Location": "Malheur NWR",
+    "Location": "Malheur NWR (general)",
     "Date": "2004-10-23",
     "Scientific Name": "Buteo regalis",
     "Common Name": "Ferruginous Hawk",
@@ -2151,7 +2151,7 @@
     "State/Province": "US-OR"
   },
   {
-    "Location": "Malheur NWR",
+    "Location": "Malheur NWR (general)",
     "Date": "2004-10-23",
     "Scientific Name": "Sitta canadensis",
     "Common Name": "Red-breasted Nuthatch",
@@ -2160,7 +2160,7 @@
     "State/Province": "US-OR"
   },
   {
-    "Location": "Malheur NWR",
+    "Location": "Malheur NWR (general)",
     "Date": "2004-10-23",
     "Scientific Name": "Ixoreus naevius",
     "Common Name": "Varied Thrush",
@@ -2601,7 +2601,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2005-02-04",
     "Scientific Name": "Bucephala clangula",
     "Common Name": "Common Goldeneye",
@@ -2619,7 +2619,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2005-02-09",
     "Scientific Name": "Melanitta perspicillata",
     "Common Name": "Surf Scoter",
@@ -2628,7 +2628,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2005-02-09",
     "Scientific Name": "Fulica americana",
     "Common Name": "American Coot",
@@ -2637,7 +2637,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2005-02-09",
     "Scientific Name": "Podilymbus podiceps",
     "Common Name": "Pied-billed Grebe",
@@ -2970,7 +2970,7 @@
     "State/Province": "US-TX"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2005-05-01",
     "Scientific Name": "Certhia americana",
     "Common Name": "Brown Creeper",
@@ -3312,7 +3312,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2005-06-28",
     "Scientific Name": "Polioptila caerulea",
     "Common Name": "Blue-gray Gnatcatcher",
@@ -3321,7 +3321,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2005-06-28",
     "Scientific Name": "Cyanocitta stelleri",
     "Common Name": "Steller's Jay",
@@ -3330,7 +3330,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2005-06-28",
     "Scientific Name": "Thryomanes bewickii",
     "Common Name": "Bewick's Wren",
@@ -3744,7 +3744,7 @@
     "State/Province": "US-NM"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2005-12-07",
     "Scientific Name": "Melanitta perspicillata",
     "Common Name": "Surf Scoter",
@@ -3753,7 +3753,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2005-12-07",
     "Scientific Name": "Podilymbus podiceps",
     "Common Name": "Pied-billed Grebe",
@@ -3762,7 +3762,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2005-12-07",
     "Scientific Name": "Phasianus colchicus",
     "Common Name": "Ring-necked Pheasant",
@@ -3951,7 +3951,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2006-01-29",
     "Scientific Name": "Bucephala clangula",
     "Common Name": "Common Goldeneye",
@@ -3969,7 +3969,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2006-02-02",
     "Scientific Name": "Aythya valisineria",
     "Common Name": "Canvasback",
@@ -4071,7 +4071,7 @@
     "Location": "Rocky Mountain NP (Larimer Co.) (Please consider using more specific locations.)",
     "Date": "2006-02-12",
     "Scientific Name": "Perisoreus canadensis",
-    "Common Name": "Gray Jay",
+    "Common Name": "Canada Jay",
     "Filename": "2006-02-12-gryjay.jpg",
     "County": "Larimer",
     "State/Province": "US-CO"
@@ -4383,7 +4383,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2006-08-03",
     "Scientific Name": "Athene cunicularia",
     "Common Name": "Burrowing Owl",
@@ -4635,7 +4635,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2007-04-05",
     "Scientific Name": "Icterus bullockii",
     "Common Name": "Bullock's Oriole",
@@ -5751,7 +5751,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2009-01-07",
     "Scientific Name": "Bucephala islandica",
     "Common Name": "Barrow's Goldeneye",
@@ -5796,7 +5796,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2009-01-07",
     "Scientific Name": "Bucephala islandica",
     "Common Name": "Barrow's Goldeneye",
@@ -5805,7 +5805,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2009-01-07",
     "Scientific Name": "Lophodytes cucullatus",
     "Common Name": "Hooded Merganser",
@@ -5958,7 +5958,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2009-05-21",
     "Scientific Name": "Vireo gilvus",
     "Common Name": "Warbling Vireo",
@@ -5967,7 +5967,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2009-05-21",
     "Scientific Name": "Polioptila caerulea",
     "Common Name": "Blue-gray Gnatcatcher",
@@ -6246,7 +6246,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2010-04-26",
     "Scientific Name": "Branta canadensis",
     "Common Name": "Canada Goose",
@@ -7131,7 +7131,7 @@
     "Location": "Council Road",
     "Date": "2010-06-09",
     "Scientific Name": "Perisoreus canadensis",
-    "Common Name": "Gray Jay",
+    "Common Name": "Canada Jay",
     "Filename": "2010-06-09-gryjay-7v5z2225.jpg",
     "County": "Nome",
     "State/Province": "US-AK"
@@ -7326,7 +7326,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2011-04-11",
     "Scientific Name": "Podiceps auritus",
     "Common Name": "Horned Grebe",
@@ -7335,7 +7335,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2011-04-11",
     "Scientific Name": "Podiceps auritus",
     "Common Name": "Horned Grebe",
@@ -7344,7 +7344,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2011-03-13",
     "Scientific Name": "Junco hyemalis",
     "Common Name": "Dark-eyed Junco",
@@ -7461,7 +7461,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2011-05-14",
     "Scientific Name": "Turdus migratorius",
     "Common Name": "American Robin",
@@ -7470,7 +7470,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2011-05-14",
     "Scientific Name": "Pheucticus melanocephalus",
     "Common Name": "Black-headed Grosbeak",
@@ -7587,7 +7587,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Shoreline Lake",
+    "Location": "Shoreline Park--Shoreline Lake area",
     "Date": "2011-04-11",
     "Scientific Name": "Melanitta perspicillata",
     "Common Name": "Surf Scoter",
@@ -7614,7 +7614,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Stevens Creek County Park",
+    "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2011-03-13",
     "Scientific Name": "Picoides villosus",
     "Common Name": "Hairy Woodpecker",
@@ -8154,7 +8154,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Horicon NWR--General",
+    "Location": "Horicon NWR--General (PLEASE USE MORE PRECISE LOCATIONS)",
     "Date": "2012-05-13",
     "Scientific Name": "Melospiza georgiana",
     "Common Name": "Swamp Sparrow",
@@ -8235,7 +8235,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Horicon NWR--General",
+    "Location": "Horicon NWR--General (PLEASE USE MORE PRECISE LOCATIONS)",
     "Date": "2012-05-13",
     "Scientific Name": "Passerina cyanea",
     "Common Name": "Indigo Bunting",
@@ -8244,7 +8244,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Horicon NWR--General",
+    "Location": "Horicon NWR--General (PLEASE USE MORE PRECISE LOCATIONS)",
     "Date": "2012-05-13",
     "Scientific Name": "Pheucticus ludovicianus",
     "Common Name": "Rose-breasted Grosbeak",
@@ -8253,7 +8253,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Horicon NWR--General",
+    "Location": "Horicon NWR--General (PLEASE USE MORE PRECISE LOCATIONS)",
     "Date": "2012-05-13",
     "Scientific Name": "Cypseloides niger",
     "Common Name": "Black Swift",
@@ -8442,7 +8442,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Horicon NWR--General",
+    "Location": "Horicon NWR--General (PLEASE USE MORE PRECISE LOCATIONS)",
     "Date": "2012-05-13",
     "Scientific Name": "Melospiza georgiana",
     "Common Name": "Swamp Sparrow",
@@ -8640,7 +8640,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Lleida Steppes",
+    "Location": "Timoneda d'Alfés",
     "Date": "2013-03-03",
     "Scientific Name": "Milvus milvus",
     "Common Name": "Red Kite",
@@ -8766,7 +8766,7 @@
     "State/Province": "ES-AR"
   },
   {
-    "Location": "Lleida Steppes",
+    "Location": "Timoneda d'Alfés",
     "Date": "2013-03-03",
     "Scientific Name": "Burhinus oedicnemus",
     "Common Name": "Eurasian Thick-knee",
@@ -8856,7 +8856,7 @@
     "State/Province": "GB-SCT"
   },
   {
-    "Location": "Okney Islands",
+    "Location": "Orkney Islands",
     "Date": "2013-06-18",
     "Scientific Name": "Chloris chloris",
     "Common Name": "European Greenfinch",
@@ -8865,7 +8865,7 @@
     "State/Province": "GB-SCT"
   },
   {
-    "Location": "Okney Islands",
+    "Location": "Orkney Islands",
     "Date": "2013-06-18",
     "Scientific Name": "Chloris chloris",
     "Common Name": "European Greenfinch",
@@ -8982,7 +8982,7 @@
     "State/Province": "GB-SCT"
   },
   {
-    "Location": "PN Carara",
+    "Location": "PN Carara (Localidad General)--historical please use other hotspots",
     "Date": "2012-02-23",
     "Scientific Name": "Onychorhynchus coronatus",
     "Common Name": "Royal Flycatcher",
@@ -9703,7 +9703,7 @@
   },
   {
     "Date": "2016-04-20",
-    "Location": "Dry Tortugas NP",
+    "Location": "Dry Tortugas NP (Please consider using more specific locations)",
     "Scientific Name": "Setophaga citrina",
     "Common Name": "Hooded Warbler",
     "Filename": "2016-04-20-setophaga-citrina-img_9953.jpg",
@@ -9712,7 +9712,7 @@
   },
   {
     "Date": "2016-04-20",
-    "Location": "Dry Tortugas NP",
+    "Location": "Dry Tortugas NP (Please consider using more specific locations)",
     "Scientific Name": "Setophaga tigrina",
     "Common Name": "Cape May Warbler",
     "Filename": "2016-04-20-setophaga-tigrina-img_9792.jpg",
@@ -9802,7 +9802,7 @@
   },
   {
     "Date": "2016-04-20",
-    "Location": "Dry Tortugas NP",
+    "Location": "Dry Tortugas NP (Please consider using more specific locations)",
     "Scientific Name": "Seiurus aurocapilla",
     "Common Name": "Ovenbird",
     "Filename": "2016-04-20-seiurus-aurocapilla-img_9930.jpg",
@@ -10000,7 +10000,7 @@
   },
   {
     "Date": "2016-07-20",
-    "Location": "Isla Champion",
+    "Location": "Floreana--Isla Champion",
     "Scientific Name": "Anous stolidus",
     "Common Name": "Brown Noddy",
     "Filename": "2016-07-20-anous-stolidus-0L5A0537.jpg",
@@ -10009,7 +10009,7 @@
   },
   {
     "Date": "2016-07-20",
-    "Location": "Isla Champion",
+    "Location": "Floreana--Isla Champion",
     "Scientific Name": "Sula nebouxii",
     "Common Name": "Blue-footed Booby",
     "Filename": "2016-07-20-sula-nebouxii-0L5A1098.jpg",
@@ -10018,7 +10018,7 @@
   },
   {
     "Date": "2016-07-20",
-    "Location": "Isla Champion",
+    "Location": "Floreana--Isla Champion",
     "Scientific Name": "Geospiza fuliginosa",
     "Common Name": "Small Ground-Finch",
     "Filename": "2016-07-20-geospiza-fuliginosa-0L5A1027.jpg",
@@ -10135,7 +10135,7 @@
   },
   {
     "Date": "2016-04-20",
-    "Location": "Dry Tortugas NP",
+    "Location": "Dry Tortugas NP (Please consider using more specific locations)",
     "Scientific Name": "Setophaga striata",
     "Common Name": "Blackpoll Warbler",
     "Filename": "2016-04-20-setophaga-striata-IMG_0196.jpg",
@@ -10207,7 +10207,7 @@
   },
   {
     "Date": "2016-04-20",
-    "Location": "Dry Tortugas NP",
+    "Location": "Dry Tortugas NP (Please consider using more specific locations)",
     "Scientific Name": "Setophaga ruticilla",
     "Common Name": "American Redstart",
     "Filename": "2016-04-20-setophaga-ruticilla-IMG_9742.jpg",
@@ -10216,7 +10216,7 @@
   },
   {
     "Date": "2016-04-20",
-    "Location": "Dry Tortugas NP",
+    "Location": "Dry Tortugas NP (Please consider using more specific locations)",
     "Scientific Name": "Setophaga caerulescens",
     "Common Name": "Black-throated Blue Warbler",
     "Filename": "2016-04-20-setophaga-caerulescens-IMG_9803.jpg",
@@ -10873,7 +10873,7 @@
   },
   {
     "Date": "2012-02-25",
-    "Location": "Savegre Mountain Lodge",
+    "Location": "Savegre Hotel",
     "Scientific Name": "Turdus nigrescens",
     "Common Name": "Sooty Thrush",
     "Filename": "2012-02-25-turdus-nigrescens-7V5Z5107.jpg",
@@ -11467,7 +11467,7 @@
   },
   {
     "Date": "2012-02-25",
-    "Location": "Savegre Mountain Lodge",
+    "Location": "Savegre Hotel",
     "Scientific Name": "Basileuterus melanogenys",
     "Common Name": "Black-cheeked Warbler",
     "Filename": "2012-02-25-basileuterus-melanogenys-7V5Z4870.jpg",
@@ -11476,7 +11476,7 @@
   },
   {
     "Date": "2012-02-25",
-    "Location": "Savegre Mountain Lodge",
+    "Location": "Savegre Hotel",
     "Scientific Name": "Catharus gracilirostris",
     "Common Name": "Black-billed Nightingale-Thrush",
     "Filename": "2012-02-25-catharus-gracilirostris-7V5Z5121.jpg",
@@ -11548,7 +11548,7 @@
   },
   {
     "Date": "2012-02-23",
-    "Location": "PN Carara",
+    "Location": "PN Carara (Localidad General)--historical please use other hotspots",
     "Scientific Name": "Manacus aurantiacus",
     "Common Name": "Orange-collared Manakin",
     "Filename": "2012-02-23-manacus-aurantiacus-7V5Z2780.jpg",
