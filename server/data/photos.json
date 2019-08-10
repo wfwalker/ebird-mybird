@@ -6642,7 +6642,7 @@
     "State/Province": "US-AZ"
   },
   {
-    "Location": "Miller Canyon",
+    "Location": "Miller Canyon (please consider using more specific locations)",
     "Date": "2010-08-14",
     "Scientific Name": "Strix occidentalis",
     "Common Name": "Spotted Owl",
@@ -6696,13 +6696,13 @@
     "State/Province": "US-AZ"
   },
   {
-    "Location": "San Pedro River Conservation",
+    "Location": "San Pedro River Preserve (restricted access)",
     "Date": "2010-08-09",
     "Scientific Name": "Peucaea botterii",
     "Common Name": "Botteri's Sparrow",
     "Filename": "2010-08-09-botspa-7v5z3804.jpg",
     "County": "Unknown",
-    "State/Province": "Unknown"
+    "State/Province": "US-AZ"
   },
   {
     "Location": "Paton Center for Hummingbirds (Patons' Yard)",
@@ -9414,7 +9414,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Tigertail Beach",
+    "Location": "Marco Island--Tiger Tail Beach",
     "Date": "2014-12-26",
     "Scientific Name": "Charadrius melodus",
     "Common Name": "Piping Plover",
