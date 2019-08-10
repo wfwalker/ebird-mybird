@@ -25,12 +25,11 @@ class Application {
     return new Application(fullSightingList, fullPhotos)
   }
 
-  createIndex () {
-    this.sightingsIndex = this.allSightings.createIndex()
-  }
-
-  loadIndex (inIndexFile) {
-    this.sightingsIndex = SightingList.loadIndex(inIndexFile)
+  scanPhotosForBogusLocations() {
+    let locationNames = this.allSightings.getUniqueValues('Location')
+    let missingLocationPhotos = this.allPhotos.filter((p) => (locationNames.indexOf(p.Location) < 0))
+    let bogusLocationNames = missingLocationPhotos.map(p => p.Location)
+    logger.debug("THESE LOCATION NAMES FOUND IN PHOTO.JSON ARE BOGUS", bogusLocationNames.join("\n"))
   }
 
   dataForSightingTemplate (req) {
@@ -341,6 +340,9 @@ class Application {
 
       aPhoto.taxonomicSort = SightingList.getTaxoFromCommonName(aPhoto['Common Name'])
       aPhoto.family = SightingList.getFamily(aPhoto.taxonomicSort)
+      if (aPhoto.family === null) {
+        logger.debug('photo.family === null', aPhoto)
+      }
       photoCommonNamesByFamily.push({'Common Name': aPhoto['Common Name'], taxonomicSort: aPhoto.taxonomicSort, family: aPhoto.family})
 
       if (!photosByFamily[aPhoto.family]) {
