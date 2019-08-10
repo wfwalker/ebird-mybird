@@ -54,7 +54,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Morro Bay Estuary",
+    "Location": "Morro Bay Estuary (use more specific location(s) when possible)",
     "Date": "2001-07-16",
     "Scientific Name": "Numenius americanus",
     "Common Name": "Long-billed Curlew",
@@ -63,7 +63,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Morro Bay Estuary",
+    "Location": "Morro Bay Estuary (use more specific location(s) when possible)",
     "Date": "2001-07-16",
     "Scientific Name": "Falco peregrinus",
     "Common Name": "Peregrine Falcon",
@@ -2718,7 +2718,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Bear Creek Greenway",
+    "Location": "Bear Creek Greenway (general; use specific if applicable)",
     "Date": "2005-04-09",
     "Scientific Name": "Pipilo maculatus",
     "Common Name": "Spotted Towhee",
@@ -3096,7 +3096,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Kern River Preserve",
+    "Location": "Kern River Preserve--Headquarters",
     "Date": "2005-06-23",
     "Scientific Name": "Empidonax traillii",
     "Common Name": "Willow Flycatcher",
@@ -3105,7 +3105,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Kern River Preserve",
+    "Location": "Kern River Preserve--Headquarters",
     "Date": "2005-06-23",
     "Scientific Name": "Tachycineta bicolor",
     "Common Name": "Tree Swallow",
@@ -3132,7 +3132,7 @@
     "State/Province": "Unknown"
   },
   {
-    "Location": "Kern River Preserve",
+    "Location": "Kern River Preserve--Headquarters",
     "Date": "2005-06-24",
     "Scientific Name": "Streptopelia decaocto",
     "Common Name": "Eurasian Collared-Dove",
@@ -4068,7 +4068,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Rocky Mountain NP (Larimer Co.) (Please consider using more specific locations.)",
+    "Location": "Rocky Mountain NP (Larimer Co.) (Please consider using a more-specific location)",
     "Date": "2006-02-12",
     "Scientific Name": "Perisoreus canadensis",
     "Common Name": "Canada Jay",
@@ -4077,7 +4077,7 @@
     "State/Province": "US-CO"
   },
   {
-    "Location": "Rocky Mountain NP (Larimer Co.) (Please consider using more specific locations.)",
+    "Location": "Rocky Mountain NP (Larimer Co.) (Please consider using a more-specific location)",
     "Date": "2006-02-12",
     "Scientific Name": "Pica hudsonia",
     "Common Name": "Black-billed Magpie",
@@ -4329,7 +4329,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Joseph D. Grant County Park",
+    "Location": "Joseph D. Grant County Park (please use a more specific hotspot where possible)",
     "Date": "2006-05-21",
     "Scientific Name": "Chondestes grammacus",
     "Common Name": "Lark Sparrow",
@@ -6741,7 +6741,7 @@
     "State/Province": "US-AZ"
   },
   {
-    "Location": "Miller Canyon--upper",
+    "Location": "Miller Canyon (please consider using more specific locations)",
     "Date": "2010-08-14",
     "Scientific Name": "Empidonax fulvifrons",
     "Common Name": "Buff-breasted Flycatcher",
@@ -6759,7 +6759,7 @@
     "State/Province": "US-AZ"
   },
   {
-    "Location": "Miller Canyon--upper",
+    "Location": "Miller Canyon (please consider using more specific locations)",
     "Date": "2010-08-14",
     "Scientific Name": "Piranga flava",
     "Common Name": "Hepatic Tanager",
@@ -7317,7 +7317,7 @@
     "State/Province": "US-AK"
   },
   {
-    "Location": "Sunnyvale WPCP--marsh adjacent to Yahoo",
+    "Location": "Sunnyvale WPCP--Lockheed Ponds and Marsh adjacent to Yahoo",
     "Date": "2011-03-05",
     "Scientific Name": "Podilymbus podiceps",
     "Common Name": "Pied-billed Grebe",
@@ -7389,7 +7389,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Sunnyvale WPCP--marsh adjacent to Yahoo",
+    "Location": "Sunnyvale WPCP--Lockheed Ponds and Marsh adjacent to Yahoo",
     "Date": "2011-03-05",
     "Scientific Name": "Bucephala clangula",
     "Common Name": "Common Goldeneye",
@@ -9162,7 +9162,7 @@
     "State/Province": "CR-H"
   },
   {
-    "Location": "PN Braulio Carrillo",
+    "Location": "PN Braulio Carrillo (Localidad General)",
     "Date": "2012-02-28",
     "Scientific Name": "Myrmeciza laemosticta",
     "Common Name": "Dull-mantled Antbird",
@@ -9261,7 +9261,7 @@
     "State/Province": "EC-W"
   },
   {
-    "Location": "Isla Fernandina--Espinoza Point",
+    "Location": "Isla Fernandina--Punta Espinoza",
     "Date": "2013-12-21",
     "Scientific Name": "Geospiza fuliginosa",
     "Common Name": "Small Ground-Finch",
@@ -9270,7 +9270,7 @@
     "State/Province": "EC-W"
   },
   {
-    "Location": "Isla Fernandina--Espinoza Point",
+    "Location": "Isla Fernandina--Punta Espinoza",
     "Date": "2013-12-21",
     "Scientific Name": "Setophaga petechia",
     "Common Name": "Yellow Warbler",
@@ -9721,7 +9721,7 @@
   },
   {
     "Date": "2013-12-31",
-    "Location": "Antisana Ecological Reserve--general area",
+    "Location": "Reserva Ecológica Antisana--general area (*Please consider using a more precise hotspot or personal location when possible.)",
     "Scientific Name": "Phalcoboenus carunculatus",
     "Common Name": "Carunculated Caracara",
     "Filename": "2013-12-31-phalcoboenus-carunculatus-_o5c6708.jpg",
@@ -9730,7 +9730,7 @@
   },
   {
     "Date": "2013-12-31",
-    "Location": "Antisana Ecological Reserve--general area",
+    "Location": "Reserva Ecológica Antisana--general area (*Please consider using a more precise hotspot or personal location when possible.)",
     "Scientific Name": "Aglaeactis cupripennis",
     "Common Name": "Shining Sunbeam",
     "Filename": "2013-12-31-aglaeactis-cupripennis-_o5c7443.jpg",
@@ -9856,7 +9856,7 @@
   },
   {
     "Date": "2012-02-29",
-    "Location": "PN Braulio Carrillo",
+    "Location": "PN Braulio Carrillo (Localidad General)",
     "Scientific Name": "Trogon rufus",
     "Common Name": "Black-throated Trogon",
     "Filename": "2012-02-29-trogon-rufus-7V5Z7098.jpg",
@@ -9892,7 +9892,7 @@
   },
   {
     "Date": "2013-12-21",
-    "Location": "Isla Fernandina--Espinoza Point",
+    "Location": "Isla Fernandina--Punta Espinoza",
     "Scientific Name": "Oceanites gracilis",
     "Common Name": "Elliot's Storm-Petrel",
     "Filename": "2013-12-21-oceanites-gracilis-_M6C6727.jpg",
@@ -10081,7 +10081,7 @@
   },
   {
     "Date": "2016-07-05",
-    "Location": "New Chicago Marsh",
+    "Location": "Don Edwards NWR--New Chicago Marsh",
     "Scientific Name": "Hirundo rustica",
     "Common Name": "Barn Swallow",
     "Filename": "2016-07-05-hirundo-rustica-0L5A0732.jpg",
@@ -10369,7 +10369,7 @@
   },
   {
     "Date": "2016-07-17",
-    "Location": "Septimo Paraiso",
+    "Location": "Séptimo Paraiso",
     "Scientific Name": "Eubucco bourcierii",
     "Common Name": "Red-headed Barbet",
     "Filename": "2016-07-17-eubucco-bourcierii-179A7428.jpg",
@@ -10585,7 +10585,7 @@
   },
   {
     "Date": "2013-12-31",
-    "Location": "Antisana Ecological Reserve--general area",
+    "Location": "Reserva Ecológica Antisana--general area (*Please consider using a more precise hotspot or personal location when possible.)",
     "Scientific Name": "Cinclodes excelsior",
     "Common Name": "Stout-billed Cinclodes",
     "Filename": "2013-12-31-cinclodes-excelsior-_O5C6573.jpg",
@@ -10729,7 +10729,7 @@
   },
   {
     "Date": "2013-12-26",
-    "Location": "Mindo--general area",
+    "Location": "Mindo--general area (*Please consider using a more specific hotspot or personal location when possible.)",
     "Scientific Name": "Tersina viridis",
     "Common Name": "Swallow Tanager",
     "Filename": "2013-12-26-tersina-viridis-7V5Z8558.jpg",
@@ -10882,7 +10882,7 @@
   },
   {
     "Date": "2012-02-26",
-    "Location": "P.N. Los Quetzales, Costa Rica.",
+    "Location": "PN Los Quetzales",
     "Scientific Name": "Thryorchilus browni",
     "Common Name": "Timberline Wren",
     "Filename": "2012-02-26-thryorchilus-browni-7V5Z5202.jpg",
@@ -10891,7 +10891,7 @@
   },
   {
     "Date": "2012-02-26",
-    "Location": "P.N. Los Quetzales, Costa Rica.",
+    "Location": "PN Los Quetzales",
     "Scientific Name": "Zeledonia coronata",
     "Common Name": "Wrenthrush",
     "Filename": "2012-02-26-zeledonia-coronata-7V5Z5287.jpg",
@@ -10900,7 +10900,7 @@
   },
   {
     "Date": "2012-02-26",
-    "Location": "P.N. Los Quetzales, Costa Rica.",
+    "Location": "PN Los Quetzales",
     "Scientific Name": "Junco vulcani",
     "Common Name": "Volcano Junco",
     "Filename": "2012-02-26-junco-vulcani-7V5Z5378.jpg",
@@ -11008,7 +11008,7 @@
   },
   {
     "Date": "2016-04-09",
-    "Location": "Sunnyvale WPCP",
+    "Location": "Sunnyvale WPCP (please use a more specific hotspot where possible)",
     "Scientific Name": "Columba livia (Feral Pigeon)",
     "Common Name": "Rock Pigeon (Feral Pigeon)",
     "Filename": "2016-04-09-columba-livia-6P5A1750.jpg",
@@ -11539,7 +11539,7 @@
   },
   {
     "Date": "2013-12-31",
-    "Location": "Antisana Ecological Reserve--general area (*Please consider using a more precise hotspot or personal location when possible.)",
+    "Location": "Reserva Ecológica Antisana--general area (*Please consider using a more precise hotspot or personal location when possible.)",
     "Scientific Name": "Theristicus melanopis",
     "Common Name": "Black-faced Ibis",
     "Filename": "2013-12-31-theristicus-melanopis-_O5C6763.jpg",
@@ -11593,7 +11593,7 @@
   },
   {
     "Date": "2012-02-28",
-    "Location": "PN Braulio Carrillo",
+    "Location": "PN Braulio Carrillo (Localidad General)",
     "Scientific Name": "Spizaetus ornatus",
     "Common Name": "Ornate Hawk-Eagle",
     "Filename": "2012-02-28-spizaetus-ornatus-7V5Z6670.jpg",
