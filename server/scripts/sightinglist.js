@@ -448,6 +448,7 @@ class SightingList {
       }
     }
 
+    logger.error('Cannot find gFamilies entry for', inTaxonomicOrderID)
     return null
   }
 
@@ -476,7 +477,7 @@ class SightingList {
           byFamily[aFamily].push(commonName)
         }
       } else {
-        logger.debug('no scientific name', aSighting)
+        logger.error('no scientific name', aSighting)
       }
     }
 
