@@ -11,7 +11,8 @@ class Photos extends BirdwalkerComponent {
   // TODO: important! revert randomImage['Photo URL'] to randomImage['Thumbnail URL']
   // after ensuring we have sufficiently hi-res thumbnails
   generateImageForFamily(familyName, family) {
-    let randomImage = family[0]
+    let randomImage = family[Math.floor(Math.random() * family.length)]
+
     return (
       <a href={'/family/' + familyName}>
         <img alt={this.commonNameFromEbirdFamily(familyName)} src={randomImage['Photo URL']} />
