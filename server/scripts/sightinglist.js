@@ -84,6 +84,8 @@ class SightingList {
     return newSightingList
   }
 
+ // ca-info.json generated using:
+ // curl --location --request GET "https://api.ebird.org/v2/ref/hotspot/US-CA?fmt=json"   --header "X-eBirdApiToken: XXXX"
   static locationInfoFromJSON (inFilename) {
     let data = fs.readFileSync(inFilename, 'utf8')
     let tmpLocationInfo = JSON.parse(data)
