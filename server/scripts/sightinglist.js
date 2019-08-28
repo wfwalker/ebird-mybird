@@ -78,7 +78,8 @@ class SightingList {
     }
 
     let ebird = papaParse.parse(fileBytes, {
-      header: true
+      header: true,
+      dynamicTyping: true
     })
 
     logger.debug('parsed', inFilename, ebird.data.length)
@@ -124,9 +125,19 @@ class SightingList {
       let taxoValue = aValue['TAXON_ORDER']
 
       if (aValue['FAMILY'] === '') {
+        logger.error('NO FAMILY FOUND FOR ', aValue)
         continue
       }
 
+      if (aValue['FAMILY'] === 'null') {
+        logger.error('NULL FAMILY FOUND FOR ', aValue)
+        continue
+      }
+
+      if (aValue['FAMILY'] == null) {
+        logger.error('NULL FAMILY FOUND FOR ', aValue)
+        continue
+      }
 
       if (aFamily != null) {
         familyRanges[aValue['FAMILY']][0] = Math.min(taxoValue, aFamily[0])
@@ -153,7 +164,7 @@ class SightingList {
   static getTaxoFromCommonName (inCommonName) {
     for (let index = 0; index < gEBirdAll.data.length; index++) {
       if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] === inCommonName) {
-        return parseFloat(gEBirdAll.data[index]['TAXON_ORDER'])
+        return gEBirdAll.data[index]['TAXON_ORDER']
       }
     }
 
@@ -475,11 +486,11 @@ class SightingList {
       var aSighting = this.rows[index]
       var commonName = aSighting['Common Name']
       if (aSighting['Taxonomic Order']) {
-        var taxoID = parseFloat(aSighting['Taxonomic Order'])
+        var taxoID = aSighting['Taxonomic Order']
         var aFamily = SightingList.getFamily(taxoID)
 
-        if (aFamily == null) {
-          logger.debug(taxoID, commonName)
+        if ((aFamily == 'null') || (aFamily == null)) {
+          logger.error('NO FAMILY', taxoID, commonName)
           continue
         }
 
