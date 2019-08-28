@@ -2,7 +2,7 @@
 
 var iso3166 = require('iso-3166-2')
 var fs = require('fs')
-var babyParse = require('babyparse')
+var papaParse = require('papaparse')
 
 require('./logger.js')
 
@@ -35,7 +35,7 @@ var gFamilies = []
 var gEBirdAll = []
 var gLocationInfo = {}
 
-const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2018_14Aug2018.csv'
+const eBirdAllFilename = 'server/data/eBird_Taxonomy_v2019.csv'
 
 function convertDate (inDate) {
   var tmp = new Date(inDate)
@@ -71,7 +71,13 @@ class SightingList {
   }
 
   static newFromCSV (inFilename) {
-    let ebird = babyParse.parseFiles(inFilename, {
+    let fileBytes = fs.readFileSync(inFilename, 'utf8')
+
+    if (fileBytes.charCodeAt(0) === 0xFEFF) {
+      fileBytes = fileBytes.slice(1);
+    }
+
+    let ebird = papaParse.parse(fileBytes, {
       header: true
     })
 
@@ -97,12 +103,17 @@ class SightingList {
   }
 
   static loadEBirdTaxonomy () {
-    const fileBytes = fs.readFileSync(eBirdAllFilename, 'utf8')
+    let fileBytes = fs.readFileSync(eBirdAllFilename, 'utf8')
+
+    if (fileBytes.charCodeAt(0) === 0xFEFF) {
+      fileBytes = fileBytes.slice(1);
+    }
 
     let familyRanges = {}
 
-    gEBirdAll = babyParse.parse(fileBytes, {
-      header: true
+    gEBirdAll = papaParse.parse(fileBytes, {
+      header: true,
+      dynamicTyping: true
     })
 
     logger.debug('parsed ebird all', gEBirdAll.data.length)
@@ -110,11 +121,12 @@ class SightingList {
     for (let index = 0; index < gEBirdAll.data.length; index++) {
       let aValue = gEBirdAll.data[index]
       let aFamily = familyRanges[aValue['FAMILY']]
-      let taxoValue = parseFloat(aValue['TAXON_ORDER'])
+      let taxoValue = aValue['TAXON_ORDER']
 
       if (aValue['FAMILY'] === '') {
         continue
       }
+
 
       if (aFamily != null) {
         familyRanges[aValue['FAMILY']][0] = Math.min(taxoValue, aFamily[0])

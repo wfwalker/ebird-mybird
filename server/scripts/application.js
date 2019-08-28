@@ -49,7 +49,8 @@ class Application {
       (s['Common Name'] && s['Common Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['Location'] && s['Location'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['County'] && s['County'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
-      (s['Scientific Name'] && s['Scientific Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0)
+      (s['Scientific Name'] && s['Scientific Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
+      (s['tripNotes'] && s['tripNotes'].toLowerCase().indexOf(lowerCaseQuery) >= 0)
     ))
 
     let matchingPhotos = this.allPhotos.filter((p) => (
