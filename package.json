@@ -7,7 +7,7 @@
     "url": "git@github.com:wfwalker/ebird-mybird.git"
   },
   "scripts": {
-    "start": "GOOGLE_MAPS_API_KEY=AIzaSyB4y5UuNoZMXzc3NXzCgYn8usH1gLFA3b4 node server/server.js",
+    "start": "node server/server.js",
     "test": "mocha",
     "lint": "eslint server/scripts/application.js server/scripts/sightinglist.js server/server.js test/test.js"
   },
