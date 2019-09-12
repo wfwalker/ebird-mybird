@@ -217,6 +217,31 @@ describe('SightingList', function () {
       assert.ok(searchResults.sightingList.length() > 0, 'should find some sightings matching location name')
     })
 
+
+    it('finds matches when retrieving location with a County', function () {
+      const req = {
+          params: {
+            state_name: 'US-CA',
+            county_name: 'Santa Clara',
+            location_name: 'Charleston Slough'
+          }
+      }
+      let locationResults = gApplication.dataForLocationTemplate(req)
+      assert.ok(locationResults.sightingList.length() > 0, 'should find some data for this location')
+    })
+
+    it('finds matches when retrieving location with no County', function () {
+      const req = {
+          params: {
+            state_name: 'CH-AG',
+            county_name: null,
+            location_name: 'Klingnauer Stausee'
+          }
+      }
+      let locationResults = gApplication.dataForLocationTemplate(req)
+      assert.ok(locationResults.sightingList.length() > 0, 'should find some data for this location')
+    })
+
     it('finds matches when searching for Ozaukee', function () {
       const req = {
         query: {
