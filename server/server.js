@@ -9,8 +9,6 @@ require('../server/scripts/logger.js')
 
 var gApplication = Application.withFullData()
 
-gApplication.scanPhotosForBogusLocations()
-
 var myPort = process.env.PORT || 8091
 
 var app = express()
