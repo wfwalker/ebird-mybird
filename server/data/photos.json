@@ -8442,15 +8442,6 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Horicon NWR--General (PLEASE USE MORE PRECISE LOCATIONS)",
-    "Date": "2012-05-13",
-    "Scientific Name": "Melospiza georgiana",
-    "Common Name": "Swamp Sparrow",
-    "Filename": "2012-05-13-swaspa-7v5z9683-2.jpg",
-    "County": "Dodge",
-    "State/Province": "US-WI"
-  },
-  {
     "Location": "Lion's Den Gorge Nature Preserve",
     "Date": "2012-05-15",
     "Scientific Name": "Spinus tristis",
@@ -11761,5 +11752,50 @@
     "Filename": "2018-06-04-larus-hyperboreus-2P9A2607.jpg",
     "County": "",
     "State/Province": "IS-6"
-  }  
+  },
+  {
+    "Date": "2018-11-11",
+    "Location": "Jenner Overlook",
+    "Scientific Name": "Buteo regalis",
+    "Common Name": "Ferruginous Hawk",
+    "Filename": "2018-11-11-buteo-regalis-2P9A6505.jpg",
+    "County": "Sonoma",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "2019-01-11",
+    "Location": "Alviso Marina County Park (please use a specific pond hotspot where possible)",
+    "Scientific Name": "Melospiza georgiana",
+    "Common Name": "Swamp Sparrow",
+    "Filename": "2019-01-11-melospiza-georgiana-2P9A8543.jpg",
+    "County": "Santa Clara",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "2019-01-11",
+    "Location": "Alviso Marina County Park (please use a specific pond hotspot where possible)",
+    "Scientific Name": "Melospiza georgiana",
+    "Common Name": "Swamp Sparrow",
+    "Filename": "2019-01-11-melospiza-georgiana-2P9A8610.jpg",
+    "County": "Santa Clara",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "2014-07-02",
+    "Location": "Virginia Lakes",
+    "Scientific Name": "Leucosticte tephrocotis",
+    "Common Name": "Gray-crowned Rosy-Finch",
+    "Filename": "2014-07-02-leucosticte-tephrocotis-DM6C1572.jpg",
+    "County": "Mono",
+    "State/Province": "US-CA"
+  },
+  {
+    "Date": "2013-12-26",
+    "Location": "La Mina en route to refugio paz de las aves",
+    "Scientific Name": "Aglaiocercus coelestis",
+    "Common Name": "Violet-tailed Sylph",
+    "Filename": "2013-12-26-aglaiocercus-coelestis-_M6C9338.jpg",
+    "County": null,
+    "State/Province": "EC-P"
+  }
 ]
