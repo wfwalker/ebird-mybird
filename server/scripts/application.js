@@ -25,13 +25,6 @@ class Application {
     return new Application(fullSightingList, fullPhotos)
   }
 
-  scanPhotosForBogusLocations() {
-    let locationNames = this.allSightings.getUniqueValues('Location')
-    let missingLocationPhotos = this.allPhotos.filter((p) => (locationNames.indexOf(p.Location) < 0))
-    let bogusLocationNames = missingLocationPhotos.map(p => p.Location)
-    logger.debug("THESE LOCATION NAMES FOUND IN PHOTO.JSON ARE BOGUS", bogusLocationNames.join("\n"))
-  }
-
   dataForSightingTemplate (req) {
     return this.allSightings.rows[req.params.sighting_id]
   }
@@ -163,8 +156,9 @@ class Application {
   }
 
   dataForLocationTemplate (req) {
+    // with dynamicTyping in papaParse CVS parser, empty county name from eBird CSV is turned into actual null
     if (req.params.county_name === 'none') {
-      req.params.county_name = ''
+      req.params.county_name = null
     }
 
     let tmp = this.allSightings.filter((s) => (s['State/Province'] === req.params.state_name) && (s['County'] === req.params.county_name) && (s['Location'] === req.params.location_name))
@@ -187,8 +181,9 @@ class Application {
   }
 
   dataForCountyTemplate (req) {
+    // with dynamicTyping in papaParse CVS parser, empty county name from eBird CSV is turned into actual null
     if (req.params.county_name === 'none') {
-      req.params.county_name = ''
+      req.params.county_name = null
     }
 
     let tmp = this.allSightings.filter((s) => (s['State/Province'] === req.params.state_name) && (s['County'] === req.params.county_name))

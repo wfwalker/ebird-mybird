@@ -77,7 +77,7 @@ function registerHelpers () {
   })
 
   Handlebars.registerHelper('addnone', function (inString) {
-    if (inString === '') {
+    if ((inString === '') || (inString == null)) {
       return 'none'
     } else {
       return inString

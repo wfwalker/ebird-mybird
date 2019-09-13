@@ -204,10 +204,6 @@ class SightingList {
       // set unique index
       photo.id = index
 
-      if (this.getCategoryFromCommonName(photo['Common Name']) == 'Unknown') {
-        console.log('photos.json: No match in eBird for', photo)
-      }
-
       // Parse the date
       let pieces = photo['Date'].split('-')
 
@@ -448,6 +444,10 @@ class SightingList {
       var province = aSighting['State/Province']
       var county = aSighting['County']
       var location = aSighting['Location']
+
+      if (county == null) {
+        county = 'none'
+      }
 
       if (!provinces[province]) {
         provinces[province] = {}

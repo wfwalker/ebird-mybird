@@ -12,7 +12,7 @@ class Locations extends BirdwalkerComponent {
   generateEntriesForCounty(state, county) {
     return (
       <div key={county}>
-        {county && (<PageSubheading href={'/place/' + state + '/' + county} title={county + ' County'} />)}
+        {county && (county != null) && (county != 'none') && (<PageSubheading href={'/place/' + state + '/' + county} title={county + ' County'} />)}
         {this.props.hierarchy[state][county].map(l => this.generateLinkToLocation(state, county, l))}
       </div>
     )

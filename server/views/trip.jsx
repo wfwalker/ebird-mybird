@@ -17,9 +17,9 @@ class Trip extends BirdwalkerComponent {
   generateLinkForSubmssionID(id) {
     let sighting = this.props.submissionIDToSighting[id]
 
-    // TODO duplicated code!!
+    // with dynamicTyping in papaParse CVS parser, empty county name from eBird CSV is turned into actual null
     let county = sighting['County']
-    if (county == '') {
+    if ((county == '') || (county == null)) {
       county = 'none'
     }
 

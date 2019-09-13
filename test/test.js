@@ -62,6 +62,24 @@ describe('SightingList', function () {
       assert.equal(chronoData.firstSightingList.filter(fs => (fs['Common Name'] == 'sparrow sp.')).length, 0, 'it should not have "sparrow sp."')
     })
 
+    it('has valid location names for all photos', function () {
+      let locationNames = gApplication.allSightings.getUniqueValues('Location')
+      let missingLocationPhotos = gApplication.allPhotos.filter((p) => (locationNames.indexOf(p.Location) < 0))
+      let bogusLocationNames = missingLocationPhotos.map(p => p.Location)
+      assert.ok(bogusLocationNames.length == 0, 'photos has bogus location names ' + bogusLocationNames)
+    })
+
+    it('has valid species common names for all photos', function () {
+      let bogusCommonNames = []
+      for (let index = 0; index < gApplication.allPhotos.length; index++) {
+        let photo = gApplication.allPhotos[index]
+        if (SightingList.getCategoryFromCommonName(photo['Common Name']) == 'Unknown') {
+          bogusCommonNames.push(photo['Common Name'])
+        }
+      }
+      assert.ok(bogusCommonNames.length == 0, 'photos has no taxon category for these common names ' + bogusCommonNames)   
+    })
+
     // it('renders sighting template', function () {
     //   assert.ok(templates.sighting(gApplication.allSightings.rows[0]).indexOf('undefined') < 0, 'rendered tempate should contain no undefined')
     // })

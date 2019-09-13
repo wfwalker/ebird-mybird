@@ -16,7 +16,7 @@ class BirdwalkerComponent extends React.Component {
 
   generateLinkToLocation(state, county, location) {
     // TODO: move this elsewhere?
-    if (county == '') {
+    if ((county == '') || (county == null)) {
       county = 'none'
     }
 
