@@ -26,7 +26,18 @@ class Photos extends BirdwalkerComponent {
     return(
       <DefaultLayout title='Photos'>
         <div className='row'>
-          <div className='col-md-8'>
+          <div className='col-md-4'>
+            <PageHeading href={'https://www.cafepress.com/wfwalkerphoto.502632979'} title={'BirdWalker 2020 Wall Calendar'} />
+            <p>
+              My wall calendar of bird images from North and South America is available now from&nbsp;
+              <a href='https://www.cafepress.com/wfwalkerphoto.502632979'>my online shop at cafepress.com</a>.
+              Makes a great gift!
+            </p>
+            <a href='https://www.cafepress.com/wfwalkerphoto.502632979'>
+              <img src='/images/bw2020-cover-thumb.jpg' />
+            </a>
+          </div>
+          <div className='col-md-4'>
             <PageHeading title='Welcome to BirdWalker'/ >
             <p className='lead'>Birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996.</p>
 
