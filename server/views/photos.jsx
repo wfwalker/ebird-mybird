@@ -27,13 +27,13 @@ class Photos extends BirdwalkerComponent {
       <DefaultLayout title='Photos'>
         <div className='row'>
           <div className='col-md-4'>
-            <PageHeading href={'https://www.cafepress.com/wfwalkerphoto.502632979'} title={'BirdWalker 2020 Wall Calendar'} />
-            <p>
+            <PageHeading target='_blank' href={'https://www.cafepress.com/wfwalkerphoto.502632979'} title={'BirdWalker 2020 Wall Calendar'} />
+            <p className='lead'>
               My wall calendar of bird images from North and South America is available now from&nbsp;
-              <a href='https://www.cafepress.com/wfwalkerphoto.502632979'>my online shop at cafepress.com</a>.
+              <a target='_blank' href='https://www.cafepress.com/wfwalkerphoto.502632979'>my online shop at cafepress.com</a>.
               Makes a great gift!
             </p>
-            <a href='https://www.cafepress.com/wfwalkerphoto.502632979'>
+            <a target='_blank' href='https://www.cafepress.com/wfwalkerphoto.502632979'>
               <img src='/images/bw2020-cover-thumb.jpg' />
             </a>
           </div>
@@ -46,6 +46,10 @@ class Photos extends BirdwalkerComponent {
               {' '} <a href='/place/US-CA/Santa Clara/Palo Alto Duck Pond'>the Duck Pond</a> in Palo Alto,
               {' '} <a href='/place/US-CA/Glenn'>Sacramento National Wildlife Refuge</a>, and
               {' '} <a href='/place/US-TX/Hidalgo'>the Rio Grande Valley</a> in Texas.
+            </p>
+
+            <p className='lead'>
+              You can also see these sightings at <a target='_blank' href='https://ebird.org/profile/Mjk5MjQ/world'>my eBird profile</a>.
             </p>
           </div>
           <div className='col-md-4'>

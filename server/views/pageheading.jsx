@@ -5,7 +5,7 @@ class PageHeading extends React.Component {
 	return (
 		<h3>
 			{this.props.href ? (
-				<a href={this.props.href}>{this.props.title}</a>
+				<a target={this.props.target} href={this.props.href}>{this.props.title}</a>
 			) : (
 				<span>{this.props.title}</span>
 			)}
