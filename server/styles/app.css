@@ -19,6 +19,13 @@
 	columns: 20em;
 }
 
+a:link {
+	color: #000;
+}
+a:visited {
+	color: #000;
+}
+
 .biglist h3 {
 	white-space: nowrap;
 	overflow: hidden;
@@ -29,6 +36,15 @@
 	position: sticky;
 	top: 52px;
 	background-color: white
+}
+
+.biglist-header {
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.biglist-group {
+	padding-bottom: 10px;
 }
 
 .biglist-item {

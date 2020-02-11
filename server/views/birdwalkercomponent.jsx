@@ -21,7 +21,7 @@ class BirdwalkerComponent extends React.Component {
     }
 
     return (
-      <div key={location} className='biglist-item'><a href={'/place/' + state + '/' + county + '/' + location}>{location}</a></div>
+      <div key={location} className='biglist-item'><a className='black' href={'/place/' + state + '/' + county + '/' + location}>{location}</a></div>
     )
   }
 
@@ -44,7 +44,7 @@ class BirdwalkerComponent extends React.Component {
           <PageCountedSubheading count={commonNames.length} noun='Species' />
           <div className='biglist'>
             {Object.keys(hierarchy).map(f => (
-              <div>
+              <div className='biglist-group'>
                 <LinkToFamily family={f} />
                 {hierarchy[f].map(cn => <TaxonLink commonName={cn} />)}
               </div>))
@@ -69,7 +69,9 @@ class BirdwalkerComponent extends React.Component {
     return (
       <div>
         <LocationMap data={inData} />
-        {(locationTriples.length < 20) && locationTriples.map(l => this.generateLinkToLocation(l[0], l[1], l[2]))}
+        <div className='biglist'>
+          {(locationTriples.length < 20) && locationTriples.map(l => this.generateLinkToLocation(l[0], l[1], l[2]))}
+        </div>
       </div>
     )
   }

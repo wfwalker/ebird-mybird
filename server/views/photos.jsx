@@ -34,7 +34,7 @@ class Photos extends BirdwalkerComponent {
               Makes a great gift!
             </p>
             <a target='_blank' href='https://www.cafepress.com/wfwalkerphoto.502632979'>
-              <img src='/images/bw2020-cover-thumb.jpg' />
+              <img className='img-fluid' src='/images/bw2020-cover-thumb.jpg' />
             </a>
           </div>
           <div className='col-md-4'>
@@ -42,10 +42,10 @@ class Photos extends BirdwalkerComponent {
             <p className='lead'>Birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996.</p>
 
             <p className='lead'>Some of our favorite places to go birding include
-              {' '} <a href='/place/US-CA/Santa Clara/Charleston Slough'>Charleston Slough</a> and
-              {' '} <a href='/place/US-CA/Santa Clara/Palo Alto Duck Pond'>the Duck Pond</a> in Palo Alto,
-              {' '} <a href='/place/US-CA/Glenn'>Sacramento National Wildlife Refuge</a>, and
-              {' '} <a href='/place/US-TX/Hidalgo'>the Rio Grande Valley</a> in Texas.
+              {' '} <a className='black' href='/place/US-CA/Santa Clara/Charleston Slough'>Charleston Slough</a> and
+              {' '} <a className='black' href='/place/US-CA/Santa Clara/Palo Alto Duck Pond'>the Duck Pond</a> in Palo Alto,
+              {' '} <a className='black' href='/place/US-CA/Glenn'>Sacramento National Wildlife Refuge</a>, and
+              {' '} <a className='black' href='/place/US-TX/Hidalgo'>the Rio Grande Valley</a> in Texas.
             </p>
 
             <p className='lead'>
@@ -54,7 +54,7 @@ class Photos extends BirdwalkerComponent {
           </div>
           <div className='col-md-4'>
             <PageHeading href={'/photos/dayofyear/' + this.props.currentDayOfYear} title={'Photos from ' + this.props.startDayOfYear + ' - ' + this.props.endDayOfYear} />
-            <a href={'/photos/dayofyear/' + this.props.currentDayOfYear}><img className='img-responsive' src={this.props.photosThisWeek[0]['Photo URL']} /></a>
+            <a href={'/photos/dayofyear/' + this.props.currentDayOfYear}><img className='img-fluid' src={this.props.photosThisWeek[0]['Photo URL']} /></a>
           </div>
         </div>
 

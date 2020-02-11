@@ -25,7 +25,7 @@ class Trip extends BirdwalkerComponent {
 
     return (
       <div className='biglist-item'>
-          <a href={'/place/' + sighting['State/Province'] + '/' + county + '/' + sighting['Location']}>{sighting['Location']}</a>
+          <a className='black' href={'/place/' + sighting['State/Province'] + '/' + county + '/' + sighting['Location']}>{sighting['Location']}</a>
           <a href={'http://ebird.org/ebird/view/checklist?subID=' + id}><img src='/images/ebird-favicon.png' /></a>
 
           <div style={{fontSize: '80%', marginLeft: '1em'}}>

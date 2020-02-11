@@ -3,6 +3,7 @@ import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
 import PageSubheading from './pagesubheading.jsx'
+import { LinkToCounty, LinkToState } from './utilities.jsx'
 
 class Locations extends BirdwalkerComponent {
   constructor(props) {
@@ -11,8 +12,8 @@ class Locations extends BirdwalkerComponent {
 
   generateEntriesForCounty(state, county) {
     return (
-      <div key={county}>
-        {county && (county != null) && (county != 'none') && (<PageSubheading href={'/place/' + state + '/' + county} title={county + ' County'} />)}
+      <div key={county} className='biglist-group'>
+        {county && (county != null) && (county != 'none') && (<LinkToCounty state={state} county={county} />)}
         {this.props.hierarchy[state][county].map(l => this.generateLinkToLocation(state, county, l))}
       </div>
     )
@@ -21,7 +22,7 @@ class Locations extends BirdwalkerComponent {
   generateEntriesForState(state) {
     return (
       <div>
-        <PageHeading href={'/place/' + state} title={this.lookupState(state)} />
+        <LinkToState state={state} title={this.lookupState(state)} />
         {Object.keys(this.props.hierarchy[state]).map(c => this.generateEntriesForCounty(state, c))}
       </div>
     )

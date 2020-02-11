@@ -5,7 +5,19 @@ var { URL, URLSearchParams } = require('url')
 const LinkToFamily = (props) => {
   const englishPart = props.family.replace(/.*\((.*)\)/, '$1')
   return (
-    <h4 className='biglist-item'><a href={'/family/' + props.family}>{englishPart}</a></h4>
+    <div className='biglist-item biglist-header'><a className='black' href={'/family/' + props.family}>{englishPart}</a></div>
+  )
+}
+
+const LinkToCounty = (props) => {
+  return (
+    <div className='biglist-item biglist-header'><a className='black' href={'/place/' + props.state + '/' + props.county}>{props.county + ' County'}</a></div>
+  )
+}
+
+const LinkToState = (props) => {
+  return (
+    <div className='biglist-item biglist-header'><a className='black' href={'/place/' + props.state}>{props.title}</a></div>
   )
 }
 
@@ -18,14 +30,14 @@ const Thumbnail = (props) => {
 const TaxonLink = (props) => {
   let encodedCommonName = props.commonName.replace('/','%2F')
   return (
-    <div key={props.commonName} className='biglist-item'><a href={'/taxon/' + encodedCommonName}>{props.commonName}</a></div>
+    <div key={props.commonName} className='biglist-item'><a className='black' href={'/taxon/' + encodedCommonName}>{props.commonName}</a></div>
   )
 }
 
 const TripLink = (props) => {
   return (
     <div className='biglist-item'>
-      <a href={'/trip/' + moment(props.tuple.dateObject).format('YYYY-MM-DD')}>{moment(props.tuple.dateObject).format('MMM DD, YYYY')}</a> {props.tuple.customDayName}
+      <a className='black' href={'/trip/' + moment(props.tuple.dateObject).format('YYYY-MM-DD')}>{moment(props.tuple.dateObject).format('MMM DD, YYYY')}</a> {props.tuple.customDayName}
     </div>
   )
 }
@@ -49,4 +61,4 @@ const MonthGraph = (props) => {
   return (<img className='img-responsive' src={chartURL.toString()} />)
 }
 
-export { LinkToFamily, Thumbnail, TripLink, TaxonLink, MonthGraph }
+export { LinkToFamily, LinkToState, LinkToCounty, Thumbnail, TripLink, TaxonLink, MonthGraph }

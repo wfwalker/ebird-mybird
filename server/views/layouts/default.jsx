@@ -23,14 +23,16 @@ class DefaultLayout extends React.Component {
         
         <link rel="stylesheet" type="text/css" media="screen" href="/styles/app.css"></link>
         <link rel="stylesheet" type="text/css" media="screen" href="/styles/justifiedGallery.min.css"></link>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous" />
 
-        <script type='text/javascript' src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous"></link>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
         <script type='text/javascript' src='/scripts/jquery.justifiedGallery.min.js'></script>
         <script type='text/javascript' src="https://www.googletagmanager.com/gtag/js?id=UA-717974-5"></script>
         <script type='text/javascript' src='/scripts/my-gtag.js'></script>
-        <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
         <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" crossorigin="anonymous"></script>
         <script type='text/javascript' src='/scripts/app.js'></script>
 
@@ -40,41 +42,34 @@ class DefaultLayout extends React.Component {
 
   generateNav() {
     return (
-      <nav className="navbar navbar-default navbar-fixed-top">
-        <div className="container">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-            <a className="navbar-brand" href="/photos">BirdWalker</a>
-          </div>
-          <div id="navbar" className="collapse navbar-collapse">
-            <ul className="nav navbar-nav">
-              <li><a data-hash="photos" href="/photos">Photos</a></li>
-              <li><a data-hash="videos" href="/videos">Videos</a></li>
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Birding <span className="caret"></span></a>
-                <ul className="dropdown-menu">
-                  <li><a href="/bigdays">Big Days</a></li>
-                  <li><a href="/locations">Locations</a></li>
-                  <li><a href="/trips">Trips</a></li>
-                  <li><a href="/chrono">Chronological Life List</a></li>
-                  <li><a href="/taxons">Taxonomic Life List</a></li>
-                </ul>
-              </li>
-            </ul>
+      <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="/photos">BirdWalker</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+        </button>
 
-            <form action='/search' method='GET' className="navbar-form navbar-left" role="search">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className='nav-item'><a className='nav-link' data-hash="photos" href="/photos">Photos</a></li>
+            <li className='nav-item'><a className='nav-link' data-hash="videos" href="/videos">Videos</a></li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Birding</a>
+              <div className="dropdown-menu">
+                <a className="dropdown-item" href="/bigdays">Big Days</a>
+                <a className="dropdown-item" href="/locations">Locations</a>
+                <a className="dropdown-item" href="/trips">Trips</a>
+                <a className="dropdown-item" href="/chrono">Chronological Life List</a>
+                <a className="dropdown-item" href="/taxons">Taxonomic Life List</a>
+              </div>
+            </li>
+
+            <form action='/search' method='GET' className="form-inline" role="search">
               <div className="form-group">
                 <input id='searchtext' name='searchtext' data-provide="typeahead" type="text" className="typeahead form-control" placeholder="Search" />
               </div>
-              <button id='gosearch' type="submit" className="btn btn-default">Submit</button>
+              <button id='gosearch' type="submit" className="btn btn-outline-secondary">Submit</button>
             </form>
-
-          </div>
+          </ul>
         </div>
       </nav>
     )
@@ -87,13 +82,13 @@ class DefaultLayout extends React.Component {
         <body>
           {this.generateNav()}
 
-          <div className="container" style={{paddingTop: '60px'}}>
+          <div className="container" style={{paddingTop: '90px'}}>
             {this.props.children}
           </div>
 
           <footer>
             <div className="container" style={{paddingTop: '60px'}}>
-              For more info, please contact <a href="mailto:wfwalkerphoto@gmail.com">wfwalkerphoto@gmail.com</a>
+              For more info, please contact <a className='black' href="mailto:wfwalkerphoto@gmail.com">wfwalkerphoto@gmail.com</a>
             </div>
           </footer>
         </body>

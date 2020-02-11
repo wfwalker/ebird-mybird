@@ -2,10 +2,15 @@ var React = require('react');
 
 class PageCountedSubheading extends React.Component {
   render() {
-	return (
-		<h4>
-			<span>{this.props.count} {this.props.noun}{this.props.count > 1 && (! this.props.noun.endsWith('s')) && 's'}</span>
-		</h4>)
+	if (this.props.count > 1) {
+		return (
+			<div className="mt-4 mb-4 lead">{this.props.count} {this.props.noun}{this.props.count > 1 && (! this.props.noun.endsWith('s')) && 's'}</div>
+		)
+	} else {
+		return (
+			<div className="mt-4 mb-4 lead"></div>
+		)
+	}	
   }
 }
 

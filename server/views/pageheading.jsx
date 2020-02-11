@@ -13,7 +13,7 @@ class PageHeading extends React.Component {
 			{' '}
 
 			{this.props.subtitle &&
-			  <span className='lighter'>{this.props.subtitle}</span>
+			  <span className='text-muted'>{this.props.subtitle}</span>
 			}
 		</h3>)
   }

@@ -3,9 +3,9 @@ var React = require('react');
 class PageSubheading extends React.Component {
   render() {
 	return (
-		<h4>
+		<div className="mt-4 mb-4 lead">
 			{this.props.href ? (
-				<a href={this.props.href}>{this.props.title}</a>
+				<a className='black' href={this.props.href}>{this.props.title}</a>
 			) : (
 				<span>{this.props.title}</span>
 			)}
@@ -15,7 +15,7 @@ class PageSubheading extends React.Component {
 			{this.props.subtitle &&
 			  <span className='lighter'>{this.props.subtitle}</span>
 			}
-		</h4>)
+		</div>)
   }
 }
 

@@ -13,7 +13,7 @@ class ChronoLifeList extends BirdwalkerComponent {
   generateFirstSightingLink(fs) {
     return (
       <div key={fs['Common Name']}>
-        <a href={'/taxon/' + fs['Common Name']}>{fs['Common Name']}</a>
+        <a className='black' href={'/taxon/' + fs['Common Name']}>{fs['Common Name']}</a>
       </div>
     )
   }
