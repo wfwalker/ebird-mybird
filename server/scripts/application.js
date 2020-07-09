@@ -128,8 +128,12 @@ class Application {
     let taxonSightingList = new SightingList(tmp, photos)
     taxonSightingList.sortByDate()
 
+    let family_name = Object.keys(taxonSightingList.getTaxonomyHierarchy())[0]
+    logger.debug('dataForTaxonTemplate, family name', family_name)
+
     return {
       name: req.params.common_name,
+      family_name: family_name,
       category: SightingList.getCategoryFromCommonName(req.params.common_name),
       scientificName: taxonSightingList.rows[0]['Scientific Name'],
       photos: taxonSightingList.photos,

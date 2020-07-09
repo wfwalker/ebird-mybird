@@ -35,6 +35,7 @@ $(document).ready(function() {
 		        this.$element[0].form.submit();
 		        return item;
 		    },
-		minLength: 3
+		minLength: 3,
+		items: 'all'
 	})
 });

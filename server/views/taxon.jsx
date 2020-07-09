@@ -2,6 +2,7 @@ var React = require('react')
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
+import { LinkToFamily } from './utilities.jsx'
 
 var moment = require('moment')
 
@@ -31,6 +32,8 @@ class Taxon extends BirdwalkerComponent {
     return (
       <DefaultLayout title={this.props.name} subtitle={this.props.scientificName}>
         <PageHeading title={this.props.name} subtitle={this.props.scientificName} />
+
+        <p><LinkToFamily family={this.props.family_name} /></p>
 
         {(this.props.category != 'species') && <CategoryExplainer category={this.props.category} />}
 

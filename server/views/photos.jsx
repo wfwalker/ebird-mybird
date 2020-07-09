@@ -14,9 +14,14 @@ class Photos extends BirdwalkerComponent {
     let randomImage = family[Math.floor(Math.random() * family.length)]
 
     return (
-      <a href={'/family/' + familyName}>
-        <img alt={this.commonNameFromEbirdFamily(familyName)} src={randomImage['Photo URL']} />
-      </a>
+      <div className='col-md-4'>
+        <div style={{fontWeight: 'bold', paddingTop: '2em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+          <a href={'/family/' + familyName}>{this.commonNameFromEbirdFamily(familyName)}</a>
+        </div>
+        <a href={'/family/' + familyName}>
+          <img alt={this.commonNameFromEbirdFamily(familyName)} src={randomImage['Photo URL']}  className='img-fluid'/>
+        </a>
+      </div>
     )
   }
 
@@ -59,13 +64,12 @@ class Photos extends BirdwalkerComponent {
         </div>
 
         <div className='row'>
-          <div className='col-md-12'>
+          <div className='col'>
             <PageHeading title={this.props.numSpecies + ' species photographed'} />
-
-            <div className='mygallery'>
-              {familyNames.map(familyName => this.generateImageForFamily(familyName, this.props.photosByFamily[familyName]))}
-            </div>
           </div>
+        </div>
+        <div className='row'>
+            {familyNames.map(familyName => this.generateImageForFamily(familyName, this.props.photosByFamily[familyName]))}
         </div>
 
       </DefaultLayout>

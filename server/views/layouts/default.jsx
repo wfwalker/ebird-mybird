@@ -63,7 +63,7 @@ class DefaultLayout extends React.Component {
               </div>
             </li>
 
-            <form action='/search' method='GET' className="form-inline" role="search">
+            <form action='/search' method='GET' className="pl-5-lg form-inline" role="search">
               <div className="form-group">
                 <input id='searchtext' name='searchtext' data-provide="typeahead" type="text" className="typeahead form-control" placeholder="Search" />
               </div>

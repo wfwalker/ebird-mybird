@@ -480,8 +480,6 @@ class SightingList {
   getTaxonomyHierarchy () {
     var byFamily = {}
 
-    logger.debug(byFamily)
-
     for (var index = 0; index < this.rows.length; index++) {
       var aSighting = this.rows[index]
       var commonName = aSighting['Common Name']
