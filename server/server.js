@@ -43,6 +43,19 @@ app.get('/videos', function (req, resp, next) {
   resp.render('videos', gApplication.dataForPhotosTemplate())
 })
 
+app.get('/shop', function (req, resp, next) {
+  logger.debug('/shop')
+  resp.redirect('https://www.etsy.com/shop/BirdWalkerShop')
+})
+app.get('/store', function (req, resp, next) {
+  logger.debug('/store')
+  resp.redirect('https://www.etsy.com/shop/BirdWalkerShop')
+})
+app.get('/postcards', function (req, resp, next) {
+  logger.debug('/postcards')
+  resp.redirect('https://www.etsy.com/shop/BirdWalkerShop')
+})
+
 app.get('/photos/dayofyear/:dayofyear', function (req, resp, next) {
   logger.debug('/photos/dayofyear/' + req.params.dayofyear)
   resp.render('photosdayofyear', gApplication.dataForPhotosDayOfYearTemplate(req))
