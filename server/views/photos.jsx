@@ -32,15 +32,15 @@ class Photos extends BirdwalkerComponent {
       <DefaultLayout title='Photos'>
         <div className='row'>
           <div className='col-md-4'>
-            <PageHeading target='_blank' href={'https://www.cafepress.com/wfwalkerphoto.502632979'} title={'BirdWalker 2020 Wall Calendar'} />
-            <p className='lead'>
-              My wall calendar of bird images from North and South America is available now from&nbsp;
-              <a target='_blank' href='https://www.cafepress.com/wfwalkerphoto.502632979'>my online shop at cafepress.com</a>.
-              Makes a great gift!
-            </p>
-            <a target='_blank' href='https://www.cafepress.com/wfwalkerphoto.502632979'>
-              <img className='img-fluid' src='/images/bw2020-cover-thumb.jpg' />
+            <PageHeading target='_blank' href={'https://www.etsy.com/shop/BirdWalkerShop'} title={'Etsy Shop'} />
+            <a target='_blank' href='https://www.etsy.com/shop/BirdWalkerShop'>
+              <img className='img-fluid' src='/images/clothesline-postcards.jpeg' />
             </a>
+            <p className='lead'>
+              Bill's niece Sarah created a&nbsp;
+              <a target='_blank' href='https://www.etsy.com/shop/BirdWalkerShop'>BirdWalker shop at Etsy</a>.
+              We've got a great set of postcards for sale there, please take a look!
+            </p>
           </div>
           <div className='col-md-4'>
             <PageHeading title='Welcome to BirdWalker'/ >
@@ -54,7 +54,7 @@ class Photos extends BirdwalkerComponent {
             </p>
 
             <p className='lead'>
-              You can also see these sightings at <a target='_blank' href='https://ebird.org/profile/Mjk5MjQ/world'>my eBird profile</a>.
+              You can also see these sightings at <a target='_blank' href='https://ebird.org/profile/Mjk5MjQ/world'>Bill's eBird profile</a>.
             </p>
           </div>
           <div className='col-md-4'>
