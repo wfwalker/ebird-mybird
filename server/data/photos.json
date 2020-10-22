@@ -29,7 +29,7 @@
   {
     "Location": "Bosque del Apache NWR",
     "Date": "2005-11-26",
-    "Scientific Name": "Chen caerulescens",
+    "Scientific Name": "Anser caerulescens",
     "Common Name": "Snow Goose",
     "Filename": "2005-11-26-snogoo.jpg",
     "County": "Socorro",
@@ -128,7 +128,7 @@
   {
     "Location": "Carmel River",
     "Date": "2002-09-01",
-    "Scientific Name": "Picoides pubescens",
+    "Scientific Name": "Dryobates pubescens",
     "Common Name": "Downy Woodpecker",
     "Filename": "2002-09-01-dowwoo.jpg",
     "County": "Monterey",
@@ -686,7 +686,7 @@
   {
     "Location": "Pt. Reyes National Seashore",
     "Date": "2004-01-24",
-    "Scientific Name": "Anas penelope",
+    "Scientific Name": "Mareca penelope",
     "Common Name": "Eurasian Wigeon",
     "Filename": "2004-01-24-eurwig.jpg",
     "County": "Marin",
@@ -1163,7 +1163,7 @@
   {
     "Location": "Sabal Palm Audubon Sanctuary",
     "Date": "2004-04-17",
-    "Scientific Name": "Anas discors",
+    "Scientific Name": "Spatula discors",
     "Common Name": "Blue-winged Teal",
     "Filename": "2004-04-17-buwtea.jpg",
     "County": "Cameron",
@@ -1334,7 +1334,7 @@
   {
     "Location": "McAllen",
     "Date": "2004-04-18",
-    "Scientific Name": "Porphyrio martinicus",
+    "Scientific Name": "Porphyrio martinica",
     "Common Name": "Purple Gallinule",
     "Filename": "2004-04-18-purgal.jpg",
     "County": "Hidalgo",
@@ -1559,7 +1559,7 @@
   {
     "Location": "Charleston Slough",
     "Date": "2003-11-29",
-    "Scientific Name": "Circus cyaneus",
+    "Scientific Name": "Circus hudsonius",
     "Common Name": "Northern Harrier",
     "Filename": "2003-11-29-norhar.jpg",
     "County": "Santa Clara",
@@ -1586,7 +1586,7 @@
   {
     "Location": "Rancho San Antonio",
     "Date": "2003-11-02",
-    "Scientific Name": "Picoides nuttallii",
+    "Scientific Name": "Dryobates nuttallii",
     "Common Name": "Nuttall's Woodpecker",
     "Filename": "2003-11-02-nutwoo.jpg",
     "County": "Santa Clara",
@@ -1721,7 +1721,7 @@
   {
     "Location": "Palo Alto Duck Pond",
     "Date": "2004-05-23",
-    "Scientific Name": "Circus cyaneus",
+    "Scientific Name": "Circus hudsonius",
     "Common Name": "Northern Harrier",
     "Filename": "2004-05-23-norhar.jpg",
     "County": "Santa Clara",
@@ -1802,7 +1802,7 @@
   {
     "Location": "Downtown Palo Alto",
     "Date": "2004-03-16",
-    "Scientific Name": "Picoides pubescens",
+    "Scientific Name": "Dryobates pubescens",
     "Common Name": "Downy Woodpecker",
     "Filename": "2004-03-16-dowwoo.jpg",
     "County": "Santa Clara",
@@ -1901,7 +1901,7 @@
   {
     "Location": "Palo Alto Duck Pond",
     "Date": "2004-04-30",
-    "Scientific Name": "Anas strepera",
+    "Scientific Name": "Mareca strepera",
     "Common Name": "Gadwall",
     "Filename": "2004-04-30-gadwal.jpg",
     "County": "Santa Clara",
@@ -2117,7 +2117,7 @@
   {
     "Location": "Rural Areas of San Mateo County",
     "Date": "2004-10-10",
-    "Scientific Name": "Anas strepera",
+    "Scientific Name": "Mareca strepera",
     "Common Name": "Gadwall",
     "Filename": "2004-10-10-gadwal.jpg",
     "County": "San Mateo",
@@ -2252,7 +2252,7 @@
   {
     "Location": "Rural Areas of San Mateo County",
     "Date": "2004-11-12",
-    "Scientific Name": "Circus cyaneus",
+    "Scientific Name": "Circus hudsonius",
     "Common Name": "Northern Harrier",
     "Filename": "2004-11-12-norhar.jpg",
     "County": "San Mateo",
@@ -2270,7 +2270,7 @@
   {
     "Location": "Foster City Radio Tower",
     "Date": "2004-11-19",
-    "Scientific Name": "Anas cyanoptera",
+    "Scientific Name": "Spatula cyanoptera",
     "Common Name": "Cinnamon Teal",
     "Filename": "2004-11-19-cintea.jpg",
     "County": "San Mateo",
@@ -2279,7 +2279,7 @@
   {
     "Location": "Foster City Radio Tower",
     "Date": "2004-11-19",
-    "Scientific Name": "Anas americana",
+    "Scientific Name": "Mareca americana",
     "Common Name": "American Wigeon",
     "Filename": "2004-11-19-amewig.jpg",
     "County": "San Mateo",
@@ -2306,7 +2306,7 @@
   {
     "Location": "Sacramento NWR",
     "Date": "2004-11-26",
-    "Scientific Name": "Chen rossii",
+    "Scientific Name": "Anser rossii",
     "Common Name": "Ross's Goose",
     "Filename": "2004-11-26-rosgoo.jpg",
     "County": "Glenn",
@@ -2315,7 +2315,7 @@
   {
     "Location": "Sacramento NWR",
     "Date": "2004-11-26",
-    "Scientific Name": "Anas strepera",
+    "Scientific Name": "Mareca strepera",
     "Common Name": "Gadwall",
     "Filename": "2004-11-26-gadwal.jpg",
     "County": "Glenn",
@@ -2369,7 +2369,7 @@
   {
     "Location": "Sacramento NWR",
     "Date": "2004-11-27",
-    "Scientific Name": "Chen caerulescens",
+    "Scientific Name": "Anser caerulescens",
     "Common Name": "Snow Goose",
     "Filename": "2004-11-27-snogoo.jpg",
     "County": "Glenn",
@@ -2819,7 +2819,7 @@
   {
     "Location": "South Padre Island",
     "Date": "2005-04-21",
-    "Scientific Name": "Oreothlypis ruficapilla",
+    "Scientific Name": "Leiothlypis ruficapilla",
     "Common Name": "Nashville Warbler",
     "Filename": "2005-04-21-naswar.jpg",
     "County": "Cameron",
@@ -2945,7 +2945,7 @@
   {
     "Location": "Charleston Slough",
     "Date": "2005-10-12",
-    "Scientific Name": "Anas discors",
+    "Scientific Name": "Spatula discors",
     "Common Name": "Blue-winged Teal",
     "Filename": "2005-10-12-buwtea.jpg",
     "County": "Santa Clara",
@@ -3278,7 +3278,7 @@
   {
     "Location": "Quaking Aspen Meadow",
     "Date": "2005-06-26",
-    "Scientific Name": "Picoides albolarvatus",
+    "Scientific Name": "Dryobates albolarvatus",
     "Common Name": "White-headed Woodpecker",
     "Filename": "2005-06-26-whhwoo.jpg",
     "County": "Tulare",
@@ -3647,7 +3647,7 @@
   {
     "Location": "Charleston Slough",
     "Date": "2005-11-03",
-    "Scientific Name": "Anas strepera",
+    "Scientific Name": "Mareca strepera",
     "Common Name": "Gadwall",
     "Filename": "2005-11-03-gadwal.jpg",
     "County": "Santa Clara",
@@ -3674,7 +3674,7 @@
   {
     "Location": "Bosque del Apache NWR",
     "Date": "2005-11-27",
-    "Scientific Name": "Picoides scalaris",
+    "Scientific Name": "Dryobates scalaris",
     "Common Name": "Ladder-backed Woodpecker",
     "Filename": "2005-11-27-labwoo.jpg",
     "County": "Socorro",
@@ -3683,7 +3683,7 @@
   {
     "Location": "Bosque del Apache NWR",
     "Date": "2005-11-28",
-    "Scientific Name": "Chen caerulescens",
+    "Scientific Name": "Anser caerulescens",
     "Common Name": "Snow Goose",
     "Filename": "2005-11-28-snogoo.jpg",
     "County": "Socorro",
@@ -3710,7 +3710,7 @@
   {
     "Location": "Bosque del Apache NWR",
     "Date": "2005-11-28",
-    "Scientific Name": "Grus canadensis",
+    "Scientific Name": "Antigone canadensis",
     "Common Name": "Sandhill Crane",
     "Filename": "2005-11-28-sancra.jpg",
     "County": "Socorro",
@@ -3818,7 +3818,7 @@
   {
     "Location": "Ogier Ponds",
     "Date": "2006-01-08",
-    "Scientific Name": "Picoides nuttallii",
+    "Scientific Name": "Dryobates nuttallii",
     "Common Name": "Nuttall's Woodpecker",
     "Filename": "2006-01-08-nutwoo.jpg",
     "County": "Santa Clara",
@@ -3854,7 +3854,7 @@
   {
     "Location": "Ogier Ponds",
     "Date": "2006-01-08",
-    "Scientific Name": "Picoides pubescens",
+    "Scientific Name": "Dryobates pubescens",
     "Common Name": "Downy Woodpecker",
     "Filename": "2006-01-08-dowwoo.jpg",
     "County": "Santa Clara",
@@ -3863,7 +3863,7 @@
   {
     "Location": "Coyote Creek Field Station",
     "Date": "2006-01-07",
-    "Scientific Name": "Picoides pubescens",
+    "Scientific Name": "Dryobates pubescens",
     "Common Name": "Downy Woodpecker",
     "Filename": "2006-01-07-dowwoo.jpg",
     "County": "Santa Clara",
@@ -4727,7 +4727,7 @@
   {
     "Location": "Sir Winston Churchill Provincial Park",
     "Date": "2007-07-07",
-    "Scientific Name": "Ammodramus nelsoni",
+    "Scientific Name": "Ammospiza nelsoni",
     "Common Name": "Nelson's Sparrow",
     "Filename": "2007-07-07-nstspa.jpg",
     "County": "St. Paul",
@@ -4799,7 +4799,7 @@
   {
     "Location": "Bodega Bay",
     "Date": "2007-09-14",
-    "Scientific Name": "Synthliboramphus hypoleucus",
+    "Scientific Name": "Synthliboramphus scrippsi/hypoleucus",
     "Common Name": "Scripps's/Guadalupe Murrelet (Xantus's Murrelet)",
     "Filename": "2007-09-14-xanmur.jpg",
     "County": "Marin",
@@ -4880,7 +4880,7 @@
   {
     "Location": "Lake Tohopekaliga",
     "Date": "2008-01-28",
-    "Scientific Name": "Porphyrio martinicus",
+    "Scientific Name": "Porphyrio martinica",
     "Common Name": "Purple Gallinule",
     "Filename": "2008-01-28-purgal.jpg",
     "County": "Osceola",
@@ -5429,7 +5429,7 @@
   {
     "Location": "Sardine Lakes",
     "Date": "2008-05-29",
-    "Scientific Name": "Oreothlypis ruficapilla",
+    "Scientific Name": "Leiothlypis ruficapilla",
     "Common Name": "Nashville Warbler",
     "Filename": "2008-05-29-naswar.jpg",
     "County": "Sierra",
@@ -5726,7 +5726,7 @@
   {
     "Location": "Bolinas Lagoon",
     "Date": "2008-11-16",
-    "Scientific Name": "Anas penelope",
+    "Scientific Name": "Mareca penelope",
     "Common Name": "Eurasian Wigeon",
     "Filename": "2008-11-16-eurwig-7v5z9228.jpg",
     "County": "Marin",
@@ -5762,7 +5762,7 @@
   {
     "Location": "Foster City Radio Tower",
     "Date": "2009-01-14",
-    "Scientific Name": "Anas penelope",
+    "Scientific Name": "Mareca penelope",
     "Common Name": "Eurasian Wigeon",
     "Filename": "2009-01-14-eurwig-7v5z0884.jpg",
     "County": "San Mateo",
@@ -5771,7 +5771,7 @@
   {
     "Location": "Foster City Radio Tower",
     "Date": "2009-01-14",
-    "Scientific Name": "Anas discors",
+    "Scientific Name": "Spatula discors",
     "Common Name": "Blue-winged Teal",
     "Filename": "2009-01-14-buwtea-7v5z0855.jpg",
     "County": "San Mateo",
@@ -5780,7 +5780,7 @@
   {
     "Location": "Foster City Radio Tower",
     "Date": "2009-01-14",
-    "Scientific Name": "Anas discors",
+    "Scientific Name": "Spatula discors",
     "Common Name": "Blue-winged Teal",
     "Filename": "2009-01-14-buwtea-7v5z0784.jpg",
     "County": "San Mateo",
@@ -5789,7 +5789,7 @@
   {
     "Location": "Foster City Radio Tower",
     "Date": "2009-01-14",
-    "Scientific Name": "Anas cyanoptera",
+    "Scientific Name": "Spatula cyanoptera",
     "Common Name": "Cinnamon Teal",
     "Filename": "2009-01-14-cintea-7v5z0712.jpg",
     "County": "San Mateo",
@@ -5843,7 +5843,7 @@
   {
     "Location": "Merced NWR",
     "Date": "2009-02-21",
-    "Scientific Name": "Oreothlypis celata",
+    "Scientific Name": "Leiothlypis celata",
     "Common Name": "Orange-crowned Warbler",
     "Filename": "2009-02-21-orcwar-7v5z2064.jpg",
     "County": "Merced",
@@ -6959,7 +6959,7 @@
   {
     "Location": "Rural Areas of Champaign County",
     "Date": "2007-12-26",
-    "Scientific Name": "Lanius excubitor",
+    "Scientific Name": "Lanius borealis",
     "Common Name": "Northern Shrike",
     "Filename": "2007-12-26-norshr-img_4634.jpg",
     "County": "Champaign",
@@ -7166,7 +7166,7 @@
   {
     "Location": "Portal-Paradise Road",
     "Date": "2010-08-12",
-    "Scientific Name": "Picoides arizonae",
+    "Scientific Name": "Dryobates arizonae",
     "Common Name": "Arizona Woodpecker",
     "Filename": "2010-08-12-strwoo-7v5z4842.jpg",
     "County": "Cochise",
@@ -7616,7 +7616,7 @@
   {
     "Location": "Stevens Creek County Park (please use a more specific hotspot where possible)",
     "Date": "2011-03-13",
-    "Scientific Name": "Picoides villosus",
+    "Scientific Name": "Dryobates villosus",
     "Common Name": "Hairy Woodpecker",
     "Filename": "2011-03-13-haiwoo-7v5z6180.jpg",
     "County": "Santa Clara",
@@ -8228,7 +8228,7 @@
   {
     "Location": "Lion's Den Gorge Nature Preserve",
     "Date": "2012-05-14",
-    "Scientific Name": "Oreothlypis ruficapilla",
+    "Scientific Name": "Leiothlypis ruficapilla",
     "Common Name": "Nashville Warbler",
     "Filename": "2012-05-14-naswar-7v5z9979.jpg",
     "County": "Ozaukee",
@@ -9146,7 +9146,7 @@
   {
     "Location": "La Quinta de Sarapiqu\u00ed\u00ad Lodge",
     "Date": "2012-02-27",
-    "Scientific Name": "Ramphocelus passerinii",
+    "Scientific Name": "Ramphocelus passerinii passerinii",
     "Common Name": "Scarlet-rumped Tanager (Passerini's)",
     "Filename": "2012-02-27-ramphocelus_passerinii-7v5z6185.jpg",
     "County": "",
@@ -9155,7 +9155,7 @@
   {
     "Location": "PN Braulio Carrillo (Localidad General)",
     "Date": "2012-02-28",
-    "Scientific Name": "Myrmeciza laemosticta",
+    "Scientific Name": "Sipia laemosticta",
     "Common Name": "Dull-mantled Antbird",
     "Filename": "2012-02-28-myrmeciza_laemosticta-7v5z6576.jpg",
     "County": "",
@@ -9227,7 +9227,7 @@
   {
     "Location": "Delta del Llobregat PNat--Area general",
     "Date": "2013-03-01",
-    "Scientific Name": "Anas penelope",
+    "Scientific Name": "Mareca penelope",
     "Common Name": "Eurasian Wigeon",
     "Filename": "2013-03-01-eurwig-_m6c2694.jpg",
     "County": "Barcelona",
@@ -9785,7 +9785,7 @@
   {
     "Date": "2011-11-05",
     "Location": "Palo Alto Duck Pond",
-    "Scientific Name": "Anas clypeata",
+    "Scientific Name": "Spatula clypeata",
     "Common Name": "Northern Shoveler",
     "Filename": "2011-11-05-anas-clypeata-7v5z5954.jpg",
     "County": "Santa Clara",
@@ -10145,7 +10145,7 @@
   {
     "Date": "2016-07-16",
     "Location": "Reserva Amagusa",
-    "Scientific Name": "Tangara ruficervix",
+    "Scientific Name": "Chalcothraupis ruficervix",
     "Common Name": "Golden-naped Tanager",
     "Filename": "2016-07-16-tangara-ruficervix-0L5A8554.jpg",
     "County": "",
@@ -10154,7 +10154,7 @@
   {
     "Date": "2015-12-19",
     "Location": "Crooked Tree Lagoon",
-    "Scientific Name": "Sporophila torqueola",
+    "Scientific Name": "Sporophila morelleti",
     "Common Name": "Morelet's Seedeater",
     "Filename": "2015-12-19-sporophila-torqueola-6P5A1574.jpg",
     "County": "",
@@ -10226,7 +10226,7 @@
   {
     "Date": "2016-12-18",
     "Location": "San Jose CBC, Alviso, Party 4",
-    "Scientific Name": "Circus cyaneus",
+    "Scientific Name": "Circus hudsonius",
     "Common Name": "Northern Harrier",
     "Filename": "2016-12-18-circus-cyaneus-0L5A9332.jpg",
     "County": "Alameda",
@@ -10352,7 +10352,7 @@
   {
     "Date": "2016-07-16",
     "Location": "Reserva Amagusa",
-    "Scientific Name": "Tangara rufigula",
+    "Scientific Name": "Ixothraupis rufigula",
     "Common Name": "Rufous-throated Tanager",
     "Filename": "2016-07-16-tangara-rufigula-0L5A8249.jpg",
     "County": "",
@@ -10559,7 +10559,7 @@
   {
     "Date": "2017-04-14",
     "Location": "Charleston Slough/Coast Casey Forebay",
-    "Scientific Name": "Circus cyaneus",
+    "Scientific Name": "Circus hudsonius",
     "Common Name": "Northern Harrier",
     "Filename": "2017-04-14-circus-cyaneus-0L5A1060.jpg",
     "County": "Santa Clara",

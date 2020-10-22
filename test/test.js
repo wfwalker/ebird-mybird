@@ -69,6 +69,8 @@ describe('SightingList', function () {
       assert.ok(bogusLocationNames.length == 0, 'photos has bogus location names ' + bogusLocationNames)
     })
 
+// TODO: add test asserting that latin name in photos.json matches latin name in ebird.cvs and taxonomy
+
     it('has valid species common names for all photos', function () {
       let bogusCommonNames = []
       for (let index = 0; index < gApplication.allPhotos.length; index++) {
@@ -78,6 +80,17 @@ describe('SightingList', function () {
         }
       }
       assert.ok(bogusCommonNames.length == 0, 'photos has no taxon category for these common names ' + bogusCommonNames)   
+    })
+
+    it('has matching scientific names for all photos', function () {
+      let bogusCommonNames = []
+      for (let index = 0; index < gApplication.allPhotos.length; index++) {
+        let photo = gApplication.allPhotos[index]
+        if (SightingList.getScientificFromCommonName(photo['Common Name']) != photo['Scientific Name']) {
+          bogusCommonNames.push(photo['Common Name'])
+        }
+      }
+      assert.ok(bogusCommonNames.length == 0, 'photos wrong latin names for these common names ' + bogusCommonNames)   
     })
 
     // it('renders sighting template', function () {
