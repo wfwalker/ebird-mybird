@@ -159,8 +159,7 @@ class SightingList {
     gFamilies = familyTriples
   }
 
-  // TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
-  // LINEAR SEARCH!
+  // TODO: LINEAR SEARCH!
   static getTaxoFromCommonName (inCommonName) {
     for (let index = 0; index < gEBirdAll.data.length; index++) {
       if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] === inCommonName) {
@@ -171,8 +170,18 @@ class SightingList {
     return 'Unknown'
   }
 
-  // TODO: deal with taxo changes? try scientific name as well? deal with this at loading time?
-  // LINEAR SEARCH!
+  // TODO: LINEAR SEARCH!
+  static getScientificFromCommonName (inCommonName) {
+    for (let index = 0; index < gEBirdAll.data.length; index++) {
+      if (gEBirdAll.data[index]['PRIMARY_COM_NAME'] === inCommonName) {
+        return gEBirdAll.data[index]['SCI_NAME']
+      }
+    }
+
+    return 'Unknown'
+  }
+
+  // TODO: LINEAR SEARCH!
 
   // Possible values:
   //   Spuh:  Genus or identification at broad level -- e.g., duck sp., dabbling duck sp.
