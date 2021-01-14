@@ -69,6 +69,30 @@ describe('SightingList', function () {
       assert.ok(bogusLocationNames.length == 0, 'photos has bogus location names ' + bogusLocationNames)
     })
 
+    it('has no early photos for birds with recent photos', function () {
+      let byCommonName = {}
+      let sadCommonNames = []
+
+      for (let index = 0; index < gApplication.allPhotos.length; index++) {
+        let photo = gApplication.allPhotos[index]
+        if (! byCommonName[photo['Common Name']]) {
+          byCommonName[photo['Common Name']] = []
+        }
+        byCommonName[photo['Common Name']].push(photo.DateObject.getFullYear())
+      }
+
+      let commonNames = Object.keys(byCommonName)
+      for (index = 0; index < commonNames.length; index++) {
+        let sorted = byCommonName[commonNames[index]].sort()
+        let yearRange = sorted[sorted.length - 1] - sorted[0]
+        if (yearRange > 5) {
+          sadCommonNames.push(commonNames[index])
+        }
+      }
+
+      assert.ok(sadCommonNames.length == 0, 'no early photos for birds with recent photos ' + sadCommonNames)
+    })
+
 // TODO: add test asserting that latin name in photos.json matches latin name in ebird.cvs and taxonomy
 
     it('has valid species common names for all photos', function () {
