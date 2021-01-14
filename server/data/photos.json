@@ -6,7 +6,8 @@
     "Common Name": "Cactus Wren",
     "Filename": "2000-06-19-cacwre.jpg",
     "County": "Maricopa",
-    "State/Province": "US-AZ"
+    "State/Province": "US-AZ",
+    "Retired": true
   },
   {
     "Location": "The Phoenecian",
@@ -51,7 +52,8 @@
     "Common Name": "Black-crowned Night-Heron",
     "Filename": "2001-06-16-bcnher.jpg",
     "County": "Humboldt",
-    "State/Province": "US-CA"
+    "State/Province": "US-CA",
+    "Retired": true
   },
   {
     "Location": "Morro Bay Estuary (use more specific location(s) when possible)",
@@ -132,7 +134,8 @@
     "Common Name": "Downy Woodpecker",
     "Filename": "2002-09-01-dowwoo.jpg",
     "County": "Monterey",
-    "State/Province": "US-CA"
+    "State/Province": "US-CA",
+    "Retired": true
   },
   {
     "Location": "Carmel River",
@@ -150,7 +153,8 @@
     "Common Name": "American White Pelican",
     "Filename": "2002-09-14-amwpel.jpg",
     "County": "Santa Clara",
-    "State/Province": "US-CA"
+    "State/Province": "US-CA",
+    "Retired": true
   },
   {
     "Location": "Rural Areas of Humboldt County",
@@ -159,7 +163,8 @@
     "Common Name": "Common Loon",
     "Filename": "2002-10-13-comloo.jpg",
     "County": "Humboldt",
-    "State/Province": "US-CA"
+    "State/Province": "US-CA",
+    "Retired": true
   },
   {
     "Location": "Rural Areas of Humboldt County",
@@ -186,7 +191,8 @@
     "Common Name": "Merlin",
     "Filename": "2002-12-01-merlin.jpg",
     "County": "Santa Clara",
-    "State/Province": "US-CA"
+    "State/Province": "US-CA",
+    "Retired": true
   },
   {
     "Location": "Donald M. Somers Water Pollution Control Plant",
@@ -195,7 +201,8 @@
     "Common Name": "Belted Kingfisher",
     "Filename": "2003-01-01-belkin.jpg",
     "County": "Santa Clara",
-    "State/Province": "US-CA"
+    "State/Province": "US-CA",
+    "Retired": true
   },
   {
     "Location": "Donald M. Somers Water Pollution Control Plant",
@@ -213,7 +220,8 @@
     "Common Name": "White-tailed Kite",
     "Filename": "2003-01-01-whtkit.jpg",
     "County": "Santa Clara",
-    "State/Province": "US-CA"
+    "State/Province": "US-CA",
+    "Retired": true
   },
   {
     "Location": "Pillar Point",
@@ -456,7 +464,8 @@
     "Common Name": "American Bittern",
     "Filename": "2003-12-07-amebit.jpg",
     "County": "Santa Clara",
-    "State/Province": "US-CA"
+    "State/Province": "US-CA",
+    "Retired": true
   },
   {
     "Location": "Palo Alto Duck Pond",
@@ -1545,7 +1554,8 @@
     "Common Name": "Canyon Wren",
     "Filename": "2004-04-22-canwre.jpg",
     "County": "Real",
-    "State/Province": "US-TX"
+    "State/Province": "US-TX",
+    "Retired": true
   },
   {
     "Location": "Mount Hamilton",
@@ -11869,5 +11879,14 @@
     "Filename": "2019-07-01-geositta-cunicularia-0L5A5230.jpg",
     "County": null,
     "State/Province": "CL-CO"
+  },
+  {
+    "Date": "2019-06-21",
+    "Location": "Laguna Batuco",
+    "Scientific Name": "Thinocorus rumicivorus",
+    "Common Name": "Least Seedsnipe",
+    "Filename": "2019-06-21-thinocorus-rumicivorus-2P9A9200.jpg",
+    "County": "Lampa",
+    "State/Province": "CL-RM"
   }
 ]
