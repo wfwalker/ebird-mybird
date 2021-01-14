@@ -210,8 +210,11 @@ class SightingList {
     for (let index = 0; index < tmpPhotos.length; index++) {
       let photo = tmpPhotos[index]
 
-      // set unique index
+      // set unique index TODO: something better!
       photo.id = index
+      if (photo['Filename'] == '2003-01-01-belkin.jpg') {
+        logger.error('FOUND ' + photo.id)
+      }
 
       // Parse the date
       let pieces = photo['Date'].split('-')
@@ -245,8 +248,7 @@ class SightingList {
       photo['Thumbnail URL'] = thumbURLPrefix + photo['Filename']
     }
 
-    logger.debug('parsed photos', tmpPhotos.length)
-    return tmpPhotos
+    return tmpPhotos.filter((p) => (! p.Retired))
   }
 
   static getCustomDayNames () {

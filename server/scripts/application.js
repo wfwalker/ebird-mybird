@@ -26,17 +26,21 @@ class Application {
   }
 
   dataForSightingTemplate (req) {
+    // NO NO NO! Cannot index into the list! Must match ID field!
     return this.allSightings.rows[req.params.sighting_id]
   }
 
   dataForPhotoTemplate (req) {
-    return this.allPhotos[req.params.photo_id]
+    // NO NO NO! Cannot index into the list! Must match ID field!
+    let matching_ids = this.allPhotos.filter((p) => (p.id == req.params.photo_id))
+    return matching_ids[0]
   }
 
   dataForSearchTemplate (req) {
     logger.debug('dataForSearchTemplate', req.query)
     let lowerCaseQuery = req.query.searchtext.toLowerCase()
 
+    // TODO: stop making unstructured pile of sightings and instead try to redirect to the right page
     let resultsAsSightings = this.allSightings.filter((s) => (
       (s['customDayName'] && s['customDayName'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
       (s['Common Name'] && s['Common Name'].toLowerCase().indexOf(lowerCaseQuery) >= 0) ||
@@ -177,6 +181,8 @@ class Application {
 
     return {
       name: req.params.location_name,
+      county: req.params.county_name,
+      state: req.params.state_name,
       photos: locationSightingList.getLatestPhotos(20),
       sightingList: locationSightingList,
       locationInfo: SightingList.getLocationInfo().filter(l => l.locName == req.params.location_name),
@@ -256,31 +262,33 @@ class Application {
   }
 
   dataForYearTemplate (req) {
+    let numericYear = parseInt(req.params.year)
     let tmp = this.allSightings.byYear()[req.params.year]
     tmp.sort(SightingList.taxonomicSortComparator)
-    let photos = this.allPhotos.filter((p) => (p.Date.substring(6, 10) === req.params.year))
+    let photos = this.allPhotos.filter((p) => (p.DateObject.getFullYear() === numericYear))
     let yearSightingList = new SightingList(tmp, photos)
 
     return {
       year: req.params.year,
-      photos: yearSightingList.getLatestPhotos(20),
+      photos: yearSightingList.photos,
       sightingList: yearSightingList
     }
   }
 
   dataForYearAndMonthTemplate (req) {
     let numericMonth = parseInt(req.params.month)
+    let numericYear = parseInt(req.params.year)
 
     let tmpSightings = this.allSightings.filter((s) => {
       let monthMatch = (s['DateObject'].getMonth() + 1) == numericMonth
-      let yearMatch = s['DateObject'].getFullYear() == req.params.year
+      let yearMatch = s['DateObject'].getFullYear() == numericYear
       return monthMatch && yearMatch
     })
 
     tmpSightings.sort(SightingList.taxonomicSortComparator)
 
     let photos = this.allPhotos.filter((p) => {
-      let yearMatch = p.Date.substring(6, 10) === req.params.year
+      let yearMatch = p.DateObject.getFullYear() === numericYear
       let monthMatch = (p.DateObject.getMonth() + 1) === numericMonth
       return monthMatch && yearMatch
     })
