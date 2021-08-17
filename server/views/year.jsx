@@ -5,7 +5,7 @@ import PageHeading from './pageheading.jsx'
 
 var moment = require('moment')
 
-class County extends BirdwalkerComponent {
+class Year extends BirdwalkerComponent {
   constructor(props) {
     super(props);
   }
@@ -27,4 +27,4 @@ class County extends BirdwalkerComponent {
   }
 }
 
-export default County
+export default Year
