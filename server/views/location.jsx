@@ -2,6 +2,7 @@ var React = require('react')
 import DefaultLayout from './layouts/default.jsx'
 import BirdwalkerComponent from './birdwalkercomponent.jsx'
 import PageHeading from './pageheading.jsx'
+import { LinkToCounty, LinkToState } from './utilities.jsx'
 
 class Location extends BirdwalkerComponent {
   constructor(props) {
@@ -13,7 +14,11 @@ class Location extends BirdwalkerComponent {
 
     return (
       <DefaultLayout title={this.props.name}>
-        <PageHeading title={this.props.sightingList.rows[0].Location} subtitle={this.lookupState(this.props.sightingList.rows[0]['State/Province'])} />
+        <PageHeading title={this.props.name} subtitle={this.props.state} />
+
+        <p>
+          {this.props.county && (this.props.county != null) && (this.props.county != 'none') && (<LinkToCounty state={this.props.state} county={this.props.county} />)}
+        </p>
 
         {this.props.locationInfo[0] && (<a target='_blank' href={'http://ebird.org/ebird/hotspot/' + this.props.locationInfo[0].locID}>eBird Hotspot</a>)}
 
