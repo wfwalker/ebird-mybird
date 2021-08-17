@@ -101,14 +101,24 @@ app.get('/trips', function (req, resp, next) {
 })
 
 app.get('/search', function (req, resp, next) {
-  logger.debug('/search/', req.param.searchtext)
-  resp.render('searchresults', gApplication.dataForSearchTemplate(req))
+  logger.debug('/search/', req.query.searchtext)
+  let commonNames = gApplication.allSightings.getUniqueValues('Common Name')
+
+  if (commonNames.includes(req.query.searchtext)) {
+    logger.error('redirect to taxon')
+    resp.redirect('/taxon/' + encodeURIComponent(req.query.searchtext))
+  } else {
+    logger.error('JUST DO SEARCH')
+    resp.render('searchresults', gApplication.dataForSearchTemplate(req))
+  }
 })
 
 app.get('/searchdata', function (req, resp, next) {
   logger.debug('/searchdata/', req.param.searchtext)
   const searchResults = gApplication.dataForSearchTemplate(req)
-  resp.json(searchResults.sightingList.getUniqueValues('Common Name'))
+  const matches = searchResults.sightingList.getUniqueValues('Common Name').concat(
+    searchResults.sightingList.getUniqueValues('Location'))
+  resp.json(matches)
 })
 
 app.get('/sighting/:sighting_id', function (req, resp, next) {
