@@ -11,7 +11,7 @@ eBird is already an awesome resource, so why did I want to create this project? 
 Prequisites:
 
 * node 7
-* npm 3
+* npm 5
 
 Steps:
 
