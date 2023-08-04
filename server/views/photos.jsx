@@ -31,18 +31,7 @@ class Photos extends BirdwalkerComponent {
     return(
       <DefaultLayout title='Photos'>
         <div className='row'>
-          <div className='col-md-4'>
-            <PageHeading target='_blank' href={'https://www.etsy.com/shop/BirdWalkerShop'} title={'Etsy Shop'} />
-            <a target='_blank' href='https://www.etsy.com/shop/BirdWalkerShop'>
-              <img className='img-fluid' src='/images/clothesline-postcards.jpeg' />
-            </a>
-            <p className='lead'>
-              Bill's niece Sarah created a&nbsp;
-              <a target='_blank' href='https://www.etsy.com/shop/BirdWalkerShop'>BirdWalker shop at Etsy</a>.
-              We've got a great set of postcards for sale there, please take a look!
-            </p>
-          </div>
-          <div className='col-md-4'>
+          <div className='col-md-8'>
             <PageHeading title='Welcome to BirdWalker'/ >
             <p className='lead'>Birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County. We've been collecting our trip reports since 1996.</p>
 
