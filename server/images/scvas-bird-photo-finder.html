@@ -1,0 +1,70 @@
+<html>
+
+	<head>
+		<title>SCVAS Bird Photo Finder</title>
+
+		<style type='text/css'>
+			#common-name {
+				margin: 10px;
+				padding: 10px;
+			}
+
+			.linkHolder {
+				padding: 10px;
+				margin: 10px;
+				border: solid 1px lightgray;
+				border-radius: 5px;
+				width: 300px;
+				background-color: #EEE;
+			}
+		</style>
+
+		<script>
+			searchURLs = {
+				"Ashok Khosla": "https://www.seeingbirds.com/search/?n=ashokkhosla&scope=node&scopeValue=pSWTz8&c=photos&q=ZZZ",
+				"Vivek Khanzode": "https://www.birdpixel.com/search#q=ZZZ",
+				"Pete Latourette": "http://search.freefind.com/find.html?si=33923099&pid=r&n=0&_charset_=UTF-8&bcd=%C3%B7&query=ZZZ",
+				"Bill Walker": "http://www.birdwalker.com/search?searchtext=ZZZ",
+				"Tom Grey": "http://tgreybirds.com/Pages/ZZZp.html"
+			}
+
+			document.addEventListener('DOMContentLoaded', function() {
+				console.log('START');
+
+				Object.entries(searchURLs).forEach((entry) => {
+					let newDiv = document.createElement('div')
+					newDiv.setAttribute('class', 'linkHolder')
+					let newLink = document.createElement('a')
+					newLink.appendChild(document.createTextNode(entry[0]))
+					newLink.setAttribute('id', entry[0])
+					newLink.setAttribute('target', '_blank')
+					newDiv.appendChild(newLink)
+					document.getElementById('links').appendChild(newDiv)
+				});
+
+				document.getElementById('common-name').onkeyup = (event) => {
+					console.log('change', event.target.value)
+
+					Object.entries(searchURLs).forEach((entry) => {
+						let newLink = document.createElement('a')
+						newLink.appendChild(document.createTextNode(entry[0]))
+						newLink.setAttribute('id', entry[0])
+						document.getElementById(entry[0]).href = entry[1].replace('ZZZ', event.target.value)
+					});
+				}
+			}, false)
+		</script>
+	</head>
+
+	<body>
+		<h1>SCVAS Bird Photo Finder</h1>
+
+		<p>Instructions: Type a common name into the box below, then click on the name of a photographer to be taken to their photos of that bird.</p>
+
+		<input type='text' id='common-name' size='20'>
+
+		<div id='links'>
+		</div>
+	</body>
+
+</html>
