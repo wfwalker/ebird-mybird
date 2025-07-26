@@ -49,7 +49,7 @@
     "Location": "Arcata Marsh",
     "Date": "2001-06-16",
     "Scientific Name": "Nycticorax nycticorax",
-    "Common Name": "Black-crowned Night-Heron",
+    "Common Name": "Black-crowned Night Heron",
     "Filename": "2001-06-16-bcnher.jpg",
     "County": "Humboldt",
     "State/Province": "US-CA",
@@ -289,8 +289,8 @@
   {
     "Location": "Salton Sea",
     "Date": "2003-03-24",
-    "Scientific Name": "Bubulcus ibis",
-    "Common Name": "Cattle Egret",
+    "Scientific Name": "Ardea ibis",
+    "Common Name": "Western Cattle-Egret",
     "Filename": "2003-03-24-categr.jpg",
     "County": "Imperial",
     "State/Province": "US-CA"
@@ -316,7 +316,7 @@
   {
     "Location": "San Diego",
     "Date": "2003-03-29",
-    "Scientific Name": "Phalacrocorax pelagicus",
+    "Scientific Name": "Urile pelagicus",
     "Common Name": "Pelagic Cormorant",
     "Filename": "2003-03-29-pelcor.jpg",
     "County": "San Diego",
@@ -370,7 +370,7 @@
   {
     "Location": "Charleston Slough",
     "Date": "2003-10-12",
-    "Scientific Name": "Accipiter cooperii",
+    "Scientific Name": "Astur cooperii",
     "Common Name": "Cooper's Hawk",
     "Filename": "2003-10-12-coohaw.jpg",
     "County": "Santa Clara",
@@ -605,8 +605,8 @@
   {
     "Location": "Stowe Lake",
     "Date": "2004-01-17",
-    "Scientific Name": "Larus canus",
-    "Common Name": "Mew Gull",
+    "Scientific Name": "Larus brachyrhynchus",
+    "Common Name": "Short-billed Gull",
     "Filename": "2004-01-17-mewgul.jpg",
     "County": "San Francisco",
     "State/Province": "US-CA"
@@ -668,7 +668,7 @@
   {
     "Location": "Merced NWR",
     "Date": "2004-01-19",
-    "Scientific Name": "Regulus calendula",
+    "Scientific Name": "Corthylio calendula",
     "Common Name": "Ruby-crowned Kinglet",
     "Filename": "2004-01-19-ruckin.jpg",
     "County": "Merced",
@@ -704,7 +704,7 @@
   {
     "Location": "Pt. Reyes National Seashore",
     "Date": "2004-01-25",
-    "Scientific Name": "Accipiter cooperii",
+    "Scientific Name": "Astur cooperii",
     "Common Name": "Cooper's Hawk",
     "Filename": "2004-01-25-coohaw.jpg",
     "County": "Marin",
@@ -983,8 +983,8 @@
   {
     "Location": "Port Aransas",
     "Date": "2004-04-14",
-    "Scientific Name": "Bubulcus ibis",
-    "Common Name": "Cattle Egret",
+    "Scientific Name": "Ardea ibis",
+    "Common Name": "Western Cattle-Egret",
     "Filename": "2004-04-14-categr.jpg",
     "County": "Nueces",
     "State/Province": "US-TX"
@@ -1163,7 +1163,7 @@
   {
     "Location": "Sabal Palm Audubon Sanctuary",
     "Date": "2004-04-17",
-    "Scientific Name": "Phalacrocorax brasilianus",
+    "Scientific Name": "Nannopterum brasilianum",
     "Common Name": "Neotropic Cormorant",
     "Filename": "2004-04-17-neocor.jpg",
     "County": "Cameron",
@@ -1289,7 +1289,7 @@
   {
     "Location": "Brownsville",
     "Date": "2004-04-17",
-    "Scientific Name": "Ixobrychus exilis",
+    "Scientific Name": "Botaurus exilis",
     "Common Name": "Least Bittern",
     "Filename": "2004-04-17-leabit.jpg",
     "County": "Cameron",
@@ -1362,7 +1362,7 @@
     "Location": "McAllen",
     "Date": "2004-04-18",
     "Scientific Name": "Amazona albifrons",
-    "Common Name": "White-fronted Parrot",
+    "Common Name": "White-fronted Amazon",
     "Filename": "2004-04-18-whfpar.jpg",
     "County": "Hidalgo",
     "State/Province": "US-TX"
@@ -1642,7 +1642,7 @@
     "Location": "Palo Alto Duck Pond",
     "Date": "2004-04-30",
     "Scientific Name": "Nycticorax nycticorax",
-    "Common Name": "Black-crowned Night-Heron",
+    "Common Name": "Black-crowned Night Heron",
     "Filename": "2004-04-30-bcnher.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -1660,7 +1660,7 @@
     "Location": "Mount Hamilton",
     "Date": "2004-05-15",
     "Scientific Name": "Empidonax difficilis",
-    "Common Name": "Pacific-slope Flycatcher",
+    "Common Name": "Western Flycatcher",
     "Filename": "2004-05-15-pasfly.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -1678,7 +1678,7 @@
     "Location": "Mount Hamilton",
     "Date": "2004-05-15",
     "Scientific Name": "Troglodytes aedon",
-    "Common Name": "House Wren",
+    "Common Name": "Northern House Wren",
     "Filename": "2004-05-15-houwre.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -1705,7 +1705,7 @@
     "Location": "Palo Alto Duck Pond",
     "Date": "2004-05-23",
     "Scientific Name": "Nycticorax nycticorax",
-    "Common Name": "Black-crowned Night-Heron",
+    "Common Name": "Black-crowned Night Heron",
     "Filename": "2004-05-23-bcnher-crw_8756.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -1866,7 +1866,7 @@
   {
     "Location": "Rural Areas of San Mateo County",
     "Date": "2004-06-12",
-    "Scientific Name": "Phalacrocorax auritus",
+    "Scientific Name": "Nannopterum auritum",
     "Common Name": "Double-crested Cormorant",
     "Filename": "2004-06-12-doccor.jpg",
     "County": "San Mateo",
@@ -2064,7 +2064,7 @@
   {
     "Location": "Palo Alto Duck Pond",
     "Date": "2004-07-20",
-    "Scientific Name": "Accipiter cooperii",
+    "Scientific Name": "Astur cooperii",
     "Common Name": "Cooper's Hawk",
     "Filename": "2004-07-20-coohaw.jpg",
     "County": "Santa Clara",
@@ -2100,7 +2100,7 @@
   {
     "Location": "Starbucks Pond",
     "Date": "2004-10-04",
-    "Scientific Name": "Phalacrocorax auritus",
+    "Scientific Name": "Nannopterum auritum",
     "Common Name": "Double-crested Cormorant",
     "Filename": "2004-10-04-doccor.jpg",
     "County": "San Mateo",
@@ -2181,7 +2181,7 @@
   {
     "Location": "Charleston Slough",
     "Date": "2004-10-29",
-    "Scientific Name": "Accipiter cooperii",
+    "Scientific Name": "Astur cooperii",
     "Common Name": "Cooper's Hawk",
     "Filename": "2004-10-29-coohaw.jpg",
     "County": "Santa Clara",
@@ -2442,7 +2442,7 @@
   {
     "Location": "Drawbridge",
     "Date": "2004-12-19",
-    "Scientific Name": "Charadrius nivosus",
+    "Scientific Name": "Anarhynchus nivosus",
     "Common Name": "Snowy Plover",
     "Filename": "2004-12-19-snoplo.jpg",
     "County": "Alameda",
@@ -2541,8 +2541,8 @@
   {
     "Location": "Merced NWR",
     "Date": "2005-01-15",
-    "Scientific Name": "Bubulcus ibis",
-    "Common Name": "Cattle Egret",
+    "Scientific Name": "Ardea ibis",
+    "Common Name": "Western Cattle-Egret",
     "Filename": "2005-01-15-categr.jpg",
     "County": "Merced",
     "State/Province": "US-CA"
@@ -2767,7 +2767,7 @@
     "Location": "Sabal Palm Audubon Sanctuary",
     "Date": "2005-04-21",
     "Scientific Name": "Nyctanassa violacea",
-    "Common Name": "Yellow-crowned Night-Heron",
+    "Common Name": "Yellow-crowned Night Heron",
     "Filename": "2005-04-21-ycnher.jpg",
     "County": "Cameron",
     "State/Province": "US-TX"
@@ -3540,8 +3540,8 @@
   {
     "Location": "Bodega Bay",
     "Date": "2005-09-25",
-    "Scientific Name": "Larus argentatus",
-    "Common Name": "Herring Gull",
+    "Scientific Name": "Larus smithsonianus",
+    "Common Name": "American Herring Gull",
     "Filename": "2005-09-25-hergul.jpg",
     "County": "Marin",
     "State/Province": "US-CA"
@@ -3576,7 +3576,7 @@
   {
     "Location": "Charleston Slough",
     "Date": "2005-10-12",
-    "Scientific Name": "Phalacrocorax auritus",
+    "Scientific Name": "Nannopterum auritum",
     "Common Name": "Double-crested Cormorant",
     "Filename": "2005-10-12-doccor.jpg",
     "County": "Santa Clara",
@@ -3648,7 +3648,7 @@
   {
     "Location": "Charleston Slough",
     "Date": "2005-11-03",
-    "Scientific Name": "Phalacrocorax auritus",
+    "Scientific Name": "Nannopterum auritum",
     "Common Name": "Double-crested Cormorant",
     "Filename": "2005-11-03-doccor.jpg",
     "County": "Santa Clara",
@@ -3667,7 +3667,7 @@
     "Location": "Charleston Slough",
     "Date": "2005-11-03",
     "Scientific Name": "Nycticorax nycticorax",
-    "Common Name": "Black-crowned Night-Heron",
+    "Common Name": "Black-crowned Night Heron",
     "Filename": "2005-11-03-bcnher.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -3936,7 +3936,7 @@
   {
     "Location": "Fishermans Wharf",
     "Date": "2006-01-21",
-    "Scientific Name": "Phalacrocorax penicillatus",
+    "Scientific Name": "Urile penicillatus",
     "Common Name": "Brandt's Cormorant",
     "Filename": "2006-01-21-bracor.jpg",
     "County": "Monterey",
@@ -4242,7 +4242,7 @@
   {
     "Location": "Salinas River State Beach",
     "Date": "2006-05-13",
-    "Scientific Name": "Charadrius nivosus",
+    "Scientific Name": "Anarhynchus nivosus",
     "Common Name": "Snowy Plover",
     "Filename": "2006-05-13-snoplo.jpg",
     "County": "Monterey",
@@ -4800,7 +4800,7 @@
   {
     "Location": "Bodega Bay",
     "Date": "2007-09-14",
-    "Scientific Name": "Oceanodroma homochroa",
+    "Scientific Name": "Hydrobates homochroa",
     "Common Name": "Ashy Storm-Petrel",
     "Filename": "2007-09-14-asspet.jpg",
     "County": "Marin",
@@ -4971,7 +4971,7 @@
   {
     "Location": "Lake Cypress",
     "Date": "2008-01-26",
-    "Scientific Name": "Caracara cheriway",
+    "Scientific Name": "Caracara plancus",
     "Common Name": "Crested Caracara",
     "Filename": "2008-01-26-crecar.jpg",
     "County": "Osceola",
@@ -5160,7 +5160,7 @@
   {
     "Location": "Cascade Ranch",
     "Date": "2007-01-18",
-    "Scientific Name": "Regulus calendula",
+    "Scientific Name": "Corthylio calendula",
     "Common Name": "Ruby-crowned Kinglet",
     "Filename": "2007-01-18-ruckin.jpg",
     "County": "San Mateo",
@@ -5232,7 +5232,7 @@
   {
     "Location": "Javelina Ranch / Martin Refuge",
     "Date": "2008-04-06",
-    "Scientific Name": "Caracara cheriway",
+    "Scientific Name": "Caracara plancus",
     "Common Name": "Crested Caracara",
     "Filename": "2008-04-06-crecar.jpg",
     "County": "Hidalgo",
@@ -5269,7 +5269,7 @@
     "Location": "Harlingen",
     "Date": "2008-04-07",
     "Scientific Name": "Amazona viridigenalis",
-    "Common Name": "Red-crowned Parrot",
+    "Common Name": "Red-crowned Amazon",
     "Filename": "2008-04-07-recpar.jpg",
     "County": "Cameron",
     "State/Province": "US-TX"
@@ -5556,7 +5556,7 @@
   {
     "Location": "Moss Landing State Beach",
     "Date": "2008-07-12",
-    "Scientific Name": "Charadrius nivosus",
+    "Scientific Name": "Anarhynchus nivosus",
     "Common Name": "Snowy Plover",
     "Filename": "2008-07-12-snoplo.jpg",
     "County": "Monterey",
@@ -5575,7 +5575,7 @@
     "Location": "Palo Alto Duck Pond",
     "Date": "2004-05-23",
     "Scientific Name": "Nycticorax nycticorax",
-    "Common Name": "Black-crowned Night-Heron",
+    "Common Name": "Black-crowned Night Heron",
     "Filename": "2004-05-23-bcnher-crw_8745.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -5610,7 +5610,7 @@
   {
     "Location": "South Padre Island",
     "Date": "2008-04-11",
-    "Scientific Name": "Charadrius wilsonia",
+    "Scientific Name": "Anarhynchus wilsonia",
     "Common Name": "Wilson's Plover",
     "Filename": "2008-04-11-wilplo-7v5z3492.jpg",
     "County": "Cameron",
@@ -5664,8 +5664,8 @@
   {
     "Location": "Palo Alto Duck Pond",
     "Date": "2008-10-15",
-    "Scientific Name": "Bubulcus ibis",
-    "Common Name": "Cattle Egret",
+    "Scientific Name": "Ardea ibis",
+    "Common Name": "Western Cattle-Egret",
     "Filename": "2008-10-15-categr-7v5z4051.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -6196,7 +6196,7 @@
     "Location": "Rancho San Antonio",
     "Date": "2010-04-16",
     "Scientific Name": "Troglodytes aedon",
-    "Common Name": "House Wren",
+    "Common Name": "Northern House Wren",
     "Filename": "2010-04-16-houwre-7v5z8755.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -6214,7 +6214,7 @@
     "Location": "Pearson-Arastradero Preserve",
     "Date": "2010-04-09",
     "Scientific Name": "Troglodytes aedon",
-    "Common Name": "House Wren",
+    "Common Name": "Northern House Wren",
     "Filename": "2010-04-09-houwre-7v5z8105.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -6294,8 +6294,8 @@
   {
     "Location": "Wasilla and Palmer",
     "Date": "2010-06-06",
-    "Scientific Name": "Acanthis flammea",
-    "Common Name": "Common Redpoll",
+    "Scientific Name": "Acanthis flammea flammea/rostrata/islandica",
+    "Common Name": "Redpoll (Common)",
     "Filename": "2010-06-06-comrdp-7v5z0033.jpg",
     "County": "Matanuska-Susitna",
     "State/Province": "US-AK"
@@ -6717,7 +6717,7 @@
   {
     "Location": "Paton Center for Hummingbirds (Patons' Yard)",
     "Date": "2010-08-08",
-    "Scientific Name": "Amazilia violiceps",
+    "Scientific Name": "Ramosomyia violiceps",
     "Common Name": "Violet-crowned Hummingbird",
     "Filename": "2010-08-08-vichum-7v5z3268.jpg",
     "County": "Santa Cruz",
@@ -6780,7 +6780,7 @@
   {
     "Location": "Miller Canyon--Beatty's Guest Ranch",
     "Date": "2010-08-14",
-    "Scientific Name": "Hylocharis leucotis",
+    "Scientific Name": "Basilinna leucotis",
     "Common Name": "White-eared Hummingbird",
     "Filename": "2010-08-14-whehum-7v5z5336.jpg",
     "County": "Cochise",
@@ -6852,7 +6852,7 @@
   {
     "Location": "Elkhorn Slough",
     "Date": "2006-10-14",
-    "Scientific Name": "Charadrius nivosus",
+    "Scientific Name": "Anarhynchus nivosus",
     "Common Name": "Snowy Plover",
     "Filename": "2006-10-14-snoplo-img_8561.jpg",
     "County": "Monterey",
@@ -6861,7 +6861,7 @@
   {
     "Location": "Elkhorn Slough",
     "Date": "2006-10-14",
-    "Scientific Name": "Charadrius nivosus",
+    "Scientific Name": "Anarhynchus nivosus",
     "Common Name": "Snowy Plover",
     "Filename": "2006-10-14-snoplo-img_8587.jpg",
     "County": "Monterey",
@@ -6870,8 +6870,8 @@
   {
     "Location": "Council Road",
     "Date": "2010-06-09",
-    "Scientific Name": "Larus canus",
-    "Common Name": "Mew Gull",
+    "Scientific Name": "Larus brachyrhynchus",
+    "Common Name": "Short-billed Gull",
     "Filename": "2010-06-09-mewgul-7v5z1855.jpg",
     "County": "Nome",
     "State/Province": "US-AK"
@@ -6897,8 +6897,8 @@
   {
     "Location": "Pillar Point",
     "Date": "2011-01-23",
-    "Scientific Name": "Larus canus",
-    "Common Name": "Mew Gull",
+    "Scientific Name": "Larus brachyrhynchus",
+    "Common Name": "Short-billed Gull",
     "Filename": "2011-01-23-mewgul-7v5z0089.jpg",
     "County": "San Mateo",
     "State/Province": "US-CA"
@@ -6906,8 +6906,8 @@
   {
     "Location": "Bean Hollow State Beach",
     "Date": "2011-01-23",
-    "Scientific Name": "Larus argentatus",
-    "Common Name": "Herring Gull",
+    "Scientific Name": "Larus smithsonianus",
+    "Common Name": "American Herring Gull",
     "Filename": "2011-01-23-hergul-7v5z0574.jpg",
     "County": "San Mateo",
     "State/Province": "US-CA"
@@ -6960,7 +6960,7 @@
   {
     "Location": "Panoche Valley--general area (SBT Co.)",
     "Date": "2011-02-19",
-    "Scientific Name": "Charadrius montanus",
+    "Scientific Name": "Anarhynchus montanus",
     "Common Name": "Mountain Plover",
     "Filename": "2011-02-19-mouplo-7v5z5657.jpg",
     "County": "San Benito",
@@ -7185,7 +7185,7 @@
   {
     "Location": "Miller Canyon--Beatty's Guest Ranch",
     "Date": "2010-08-14",
-    "Scientific Name": "Amazilia beryllina",
+    "Scientific Name": "Saucerottia beryllina",
     "Common Name": "Berylline Hummingbird",
     "Filename": "2010-08-14-berhum-7v5z5331.jpg",
     "County": "Cochise",
@@ -7194,8 +7194,8 @@
   {
     "Location": "Sutter Buttes",
     "Date": "2010-05-15",
-    "Scientific Name": "Tyto alba",
-    "Common Name": "Barn Owl",
+    "Scientific Name": "Tyto furcata",
+    "Common Name": "American Barn Owl",
     "Filename": "2010-05-15-brnowl-_mk_5433.jpg",
     "County": "Sutter",
     "State/Province": "US-CA"
@@ -7546,7 +7546,7 @@
     "Location": "Palo Alto Duck Pond",
     "Date": "2011-05-05",
     "Scientific Name": "Nycticorax nycticorax",
-    "Common Name": "Black-crowned Night-Heron",
+    "Common Name": "Black-crowned Night Heron",
     "Filename": "2011-05-05-bcnher-7v5z7490.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -7609,7 +7609,7 @@
     "Location": "Palo Alto Duck Pond",
     "Date": "2011-05-05",
     "Scientific Name": "Nycticorax nycticorax",
-    "Common Name": "Black-crowned Night-Heron",
+    "Common Name": "Black-crowned Night Heron",
     "Filename": "2011-05-05-bcnher-7v5z7534.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -8472,7 +8472,7 @@
   {
     "Location": "Alviso Marina",
     "Date": "2012-09-07",
-    "Scientific Name": "Accipiter cooperii",
+    "Scientific Name": "Astur cooperii",
     "Common Name": "Cooper's Hawk",
     "Filename": "2012-09-07-coohaw-_m6c6595.jpg",
     "County": "Santa Clara",
@@ -8940,8 +8940,8 @@
   {
     "Location": "Bankburn House",
     "Date": "2013-06-15",
-    "Scientific Name": "Larus canus",
-    "Common Name": "Mew Gull",
+    "Scientific Name": "Larus brachyrhynchus",
+    "Common Name": "Short-billed Gull",
     "Filename": "2013-06-15-mewgul-_m6c7013.jpg",
     "County": "Orkney Islands",
     "State/Province": "GB-SCT"
@@ -8986,7 +8986,7 @@
     "Location": "PN Carara (Localidad General)--historical please use other hotspots",
     "Date": "2012-02-23",
     "Scientific Name": "Onychorhynchus coronatus",
-    "Common Name": "Royal Flycatcher",
+    "Common Name": "Tropical Royal Flycatcher",
     "Filename": "2012-02-23-onychorhynchus_coronatus-7v5z2692.jpg",
     "County": "",
     "State/Province": "CR-P"
@@ -9066,7 +9066,7 @@
   {
     "Location": "R\u00edo Tarcoles--Boat Tour",
     "Date": "2012-02-23",
-    "Scientific Name": "Milvago chimachima",
+    "Scientific Name": "Daptrius chimachima",
     "Common Name": "Yellow-headed Caracara",
     "Filename": "2012-02-23-milvago_chimachima-7v5z3318.jpg",
     "County": "",
@@ -9111,7 +9111,7 @@
   {
     "Location": "R\u00edo Tarcoles--Boat Tour",
     "Date": "2012-02-23",
-    "Scientific Name": "Charadrius collaris",
+    "Scientific Name": "Anarhynchus collaris",
     "Common Name": "Collared Plover",
     "Filename": "2012-02-23-charadrius_collaris-7v5z3452-3.jpg",
     "County": "",
@@ -9255,7 +9255,7 @@
   {
     "Location": "Punta Albemarle",
     "Date": "2013-12-20",
-    "Scientific Name": "Phalacrocorax harrisi",
+    "Scientific Name": "Nannopterum harrisi",
     "Common Name": "Flightless Cormorant",
     "Filename": "2013-12-20-phalacrocorax_harrisi-_m6c6014.jpg",
     "County": "",
@@ -9319,7 +9319,7 @@
     "Location": "La Mina en route to refugio paz de las aves",
     "Date": "2013-12-26",
     "Scientific Name": "Anisognathus somptuosus",
-    "Common Name": "Blue-winged Mountain-Tanager",
+    "Common Name": "Blue-winged Mountain Tanager",
     "Filename": "2013-12-26-anisognathus_somptuosus-_m6c9101.jpg",
     "County": "",
     "State/Province": "EC-P"
@@ -9345,8 +9345,8 @@
   {
     "Location": "La Mina en route to refugio paz de las aves",
     "Date": "2013-12-26",
-    "Scientific Name": "Sclerurus mexicanus",
-    "Common Name": "Tawny-throated Leaftosser",
+    "Scientific Name": "Sclerurus obscurior",
+    "Common Name": "South American Leaftosser",
     "Filename": "2013-12-26-sclerurus_mexicanus-_m6c8821.jpg",
     "County": "",
     "State/Province": "EC-P"
@@ -9390,7 +9390,7 @@
   {
     "Location": "South Ronaldsay",
     "Date": "2013-06-19",
-    "Scientific Name": "Corvus monedula",
+    "Scientific Name": "Coloeus monedula",
     "Common Name": "Eurasian Jackdaw",
     "Filename": "2013-06-19-corvus_monedula-_mg_7632.jpg",
     "County": "Orkney Islands",
@@ -9723,7 +9723,7 @@
   {
     "Date": "2013-12-31",
     "Location": "Reserva Ecológica Antisana--general area (*Please consider using a more precise hotspot or personal location when possible.)",
-    "Scientific Name": "Phalcoboenus carunculatus",
+    "Scientific Name": "Daptrius carunculatus",
     "Common Name": "Carunculated Caracara",
     "Filename": "2013-12-31-phalcoboenus-carunculatus-_o5c6708.jpg",
     "County": "",
@@ -9858,8 +9858,8 @@
   {
     "Date": "2012-02-29",
     "Location": "PN Braulio Carrillo (Localidad General)",
-    "Scientific Name": "Trogon rufus",
-    "Common Name": "Black-throated Trogon",
+    "Scientific Name": "Trogon tenellus",
+    "Common Name": "Northern Black-throated Trogon",
     "Filename": "2012-02-29-trogon-rufus-7V5Z7098.jpg",
     "County": "",
     "State/Province": "CR-SJ"
@@ -9885,7 +9885,7 @@
   {
     "Date": "2014-01-19",
     "Location": "Yarrete - Hummingbirds",
-    "Scientific Name": "Amazilia tobaci",
+    "Scientific Name": "Saucerottia tobaci",
     "Common Name": "Copper-rumped Hummingbird",
     "Filename": "2014-01-19-amazilia-tobaci-DM6C2734.jpg",
     "County": "",
@@ -9939,7 +9939,7 @@
   {
     "Date": "2016-04-13",
     "Location": "Little Estero Lagoon",
-    "Scientific Name": "Charadrius wilsonia",
+    "Scientific Name": "Anarhynchus wilsonia",
     "Common Name": "Wilson's Plover",
     "Filename": "2016-04-13-charadrius-wilsonia-6P5A2541.jpg",
     "County": "Lee",
@@ -10057,7 +10057,7 @@
     "Date": "2016-07-16",
     "Location": "Reserva Amagusa",
     "Scientific Name": "Anisognathus notabilis",
-    "Common Name": "Black-chinned Mountain-Tanager",
+    "Common Name": "Black-chinned Mountain Tanager",
     "Filename": "2016-07-16-anisognathus-notabilis-0L5A8630.jpg",
     "County": "",
     "State/Province": "EC-P"
@@ -10146,7 +10146,7 @@
   {
     "Date": "2015-12-20",
     "Location": "Guinea Grass Rd - 18.026x-88.563 - Dec 20, 2015 4:01 PM",
-    "Scientific Name": "Psilorhinus morio",
+    "Scientific Name": "Cyanocorax morio",
     "Common Name": "Brown Jay",
     "Filename": "2015-12-20-psilorhinus-morio-6P5A3102.jpg",
     "County": "",
@@ -10272,8 +10272,8 @@
   {
     "Date": "2014-01-23",
     "Location": "11.2795x-60.5442 - Jan 23, 2014, 8:45 AM",
-    "Scientific Name": "Formicivora grisea",
-    "Common Name": "White-fringed Antwren",
+    "Scientific Name": "Formicivora intermedia",
+    "Common Name": "Northern White-fringed Antwren",
     "Filename": "2014-01-23-formicivora-grisea-DM6C5166.jpg",
     "County": "",
     "State/Province": "TT-TOB"
@@ -10821,7 +10821,7 @@
   {
     "Date": "2014-01-19",
     "Location": "Mexico Road",
-    "Scientific Name": "Milvago chimachima",
+    "Scientific Name": "Daptrius chimachima",
     "Common Name": "Yellow-headed Caracara",
     "Filename": "2014-01-19-milvago-chimachima-DM6C2406.jpg",
     "County": "",
@@ -11271,7 +11271,7 @@
   {
     "Date": "2015-12-20",
     "Location": "Guinea Grass Rd - 18.026x-88.563 - Dec 20, 2015 4:01 PM",
-    "Scientific Name": "Psilorhinus morio",
+    "Scientific Name": "Cyanocorax morio",
     "Common Name": "Brown Jay",
     "Filename": "2015-12-20-psilorhinus-morio-6P5A2739.jpg",
     "County": "",
@@ -11281,7 +11281,7 @@
     "Date": "2015-12-20",
     "Location": "Guinea Grass Rd - 18.026x-88.563 - Dec 20, 2015 4:01 PM",
     "Scientific Name": "Amazona oratrix",
-    "Common Name": "Yellow-headed Parrot",
+    "Common Name": "Yellow-headed Amazon",
     "Filename": "2015-12-20-amazona-oratrix-6P5A2797.jpg",
     "County": "",
     "State/Province": "BZ-OW"
@@ -11380,7 +11380,7 @@
     "Date": "2017-09-19",
     "Location": "Sunnyvale Baylands Park",
     "Scientific Name": "Empidonax difficilis",
-    "Common Name": "Pacific-slope Flycatcher",
+    "Common Name": "Western Flycatcher",
     "Filename": "2017-09-19-empidonax-difficilis-0L5A3078.jpg",
     "County": "Santa Clara",
     "State/Province": "US-CA"
@@ -11532,7 +11532,7 @@
   {
     "Date": "2013-12-27",
     "Location": "Cabañas San Isidro",
-    "Scientific Name": "Ciccaba huhula",
+    "Scientific Name": "Strix huhula",
     "Common Name": "Black-banded Owl",
     "Filename": "2013-12-27-ciccaba-huhula-_M6C9913.jpg",
     "County": "",
@@ -11811,8 +11811,8 @@
   {
     "Date": "2019-06-28",
     "Location": "(-32.9059,-71.7086)",
-    "Scientific Name": "Diomedea epomophora sanfordi",
-    "Common Name": "Royal Albatross (Northern)",
+    "Scientific Name": "Diomedea sanfordi",
+    "Common Name": "Northern Royal Albatross",
     "Filename": "2019-06-28-diomedea-epomophora-sanfordi-0L5A1744.jpg",
     "County": null,
     "State/Province": "CL-VS"
@@ -11829,7 +11829,7 @@
   {
     "Date": "2019-07-01",
     "Location": "Estero Tongoy--Desembocadura",
-    "Scientific Name": "Milvago chimango",
+    "Scientific Name": "Daptrius chimango",
     "Common Name": "Chimango Caracara",
     "Filename": "2019-07-01-milvago-chimango-0L5A4496.jpg",
     "County": null,
@@ -11838,7 +11838,7 @@
   {
     "Date": "2019-07-01",
     "Location": "Estero Tongoy--Desembocadura",
-    "Scientific Name": "Charadrius nivosus",
+    "Scientific Name": "Anarhynchus nivosus",
     "Common Name": "Snowy Plover",
     "Filename": "2019-07-01-charadrius-nivosus-0L5A4837.jpg",
     "County": null,
