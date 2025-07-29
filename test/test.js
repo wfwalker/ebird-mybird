@@ -66,7 +66,7 @@ describe('SightingList', function () {
       let locationNames = gApplication.allSightings.getUniqueValues('Location')
       let missingLocationPhotos = gApplication.allPhotos.filter((p) => (locationNames.indexOf(p.Location) < 0))
       let bogusLocationNames = missingLocationPhotos.map(p => p.Location)
-      assert.ok(bogusLocationNames.length == 0, 'photos has bogus location names ' + bogusLocationNames)
+      assert.ok(bogusLocationNames.length == 0, 'photos has bogus location names ' + bogusLocationNames.join('\n'))
     })
 
     it('has no early photos for birds with recent photos', function () {
@@ -90,7 +90,7 @@ describe('SightingList', function () {
         }
       }
 
-      assert.ok(sadCommonNames.length == 0, 'no early photos for birds with recent photos ' + sadCommonNames)
+      assert.ok(sadCommonNames.length == 0, 'no early photos for birds with recent photos ' + sadCommonNames.join('\n'))
     })
 
 // TODO: add test asserting that latin name in photos.json matches latin name in ebird.cvs and taxonomy
@@ -103,7 +103,7 @@ describe('SightingList', function () {
           bogusCommonNames.push(photo['Common Name'])
         }
       }
-      assert.ok(bogusCommonNames.length == 0, 'photos has no taxon category for these common names ' + bogusCommonNames)   
+      assert.ok(bogusCommonNames.length == 0, 'photos has no taxon category for these common names ' + bogusCommonNames.join('\n'))
     })
 
     it('has matching scientific names for all photos', function () {
@@ -114,7 +114,7 @@ describe('SightingList', function () {
           bogusCommonNames.push(photo['Common Name'])
         }
       }
-      assert.ok(bogusCommonNames.length == 0, 'photos wrong latin names for these common names ' + bogusCommonNames)   
+      assert.ok(bogusCommonNames.length == 0, 'photos wrong latin names for these common names ' + bogusCommonNames.join('\n'))
     })
 
     // it('renders sighting template', function () {
