@@ -13,7 +13,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "aframe": "^0.7.1",
     "bootstrap": "^3.3.7",
     "compression": "^1.6.2",
     "expires-middleware": "0.0.1",
