@@ -14,7 +14,7 @@ class Location extends BirdwalkerComponent {
 
     return (
       <DefaultLayout title={this.props.name}>
-        <PageHeading title={this.props.name} subtitle={this.props.state} />
+        <PageHeading title={this.props.name} subtitle={this.lookupState(this.props.state)} />
 
         <p>
           {this.props.county && (this.props.county != null) && (this.props.county != 'none') && (<LinkToCounty state={this.props.state} county={this.props.county} />)}
