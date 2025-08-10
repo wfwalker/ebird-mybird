@@ -260,7 +260,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2003-01-11",
     "Scientific Name": "Buteo regalis",
     "Common Name": "Ferruginous Hawk",
@@ -269,7 +269,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2003-01-11",
     "Scientific Name": "Geococcyx californianus",
     "Common Name": "Greater Roadrunner",
@@ -5707,7 +5707,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Pt. Reyes--Drakes Bay",
+    "Location": "Pt. Reyes--Drakes Beach (DO NOT INCLUDE Horseshoe Pond or beach/estero beyond Horseshoe Pond)",
     "Date": "2008-11-15",
     "Scientific Name": "Arenaria melanocephala",
     "Common Name": "Black Turnstone",
@@ -6076,7 +6076,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2010-01-16",
     "Scientific Name": "Asio otus",
     "Common Name": "Long-eared Owl",
@@ -6085,7 +6085,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2010-01-16",
     "Scientific Name": "Chondestes grammacus",
     "Common Name": "Lark Sparrow",
@@ -6103,7 +6103,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2010-01-16",
     "Scientific Name": "Sialia currucoides",
     "Common Name": "Mountain Bluebird",
@@ -6121,7 +6121,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2010-01-16",
     "Scientific Name": "Sitta carolinensis",
     "Common Name": "White-breasted Nuthatch",
@@ -6652,7 +6652,7 @@
     "State/Province": "US-AZ"
   },
   {
-    "Location": "Miller Canyon (please consider using more specific locations)",
+    "Location": "Miller Canyon (historical only, not for current checklists)",
     "Date": "2010-08-14",
     "Scientific Name": "Strix occidentalis",
     "Common Name": "Spotted Owl",
@@ -6751,7 +6751,7 @@
     "State/Province": "US-AZ"
   },
   {
-    "Location": "Miller Canyon (please consider using more specific locations)",
+    "Location": "Miller Canyon (historical only, not for current checklists)",
     "Date": "2010-08-14",
     "Scientific Name": "Empidonax fulvifrons",
     "Common Name": "Buff-breasted Flycatcher",
@@ -6769,7 +6769,7 @@
     "State/Province": "US-AZ"
   },
   {
-    "Location": "Miller Canyon (please consider using more specific locations)",
+    "Location": "Miller Canyon (historical only, not for current checklists)",
     "Date": "2010-08-14",
     "Scientific Name": "Piranga flava",
     "Common Name": "Hepatic Tanager",
@@ -6931,7 +6931,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2011-02-05",
     "Scientific Name": "Tyrannus vociferans",
     "Common Name": "Cassin's Kingbird",
@@ -6958,7 +6958,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2011-02-19",
     "Scientific Name": "Anarhynchus montanus",
     "Common Name": "Mountain Plover",
@@ -7615,7 +7615,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Panoche Valley--general area (SBT Co.)",
+    "Location": "Panoche Valley--(Do not use this location)",
     "Date": "2011-02-05",
     "Scientific Name": "Passerculus sandwichensis",
     "Common Name": "Savannah Sparrow",
@@ -7840,7 +7840,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Lake Park--general",
+    "Location": "Lake Park (general)",
     "Date": "2011-08-02",
     "Scientific Name": "Sitta carolinensis",
     "Common Name": "White-breasted Nuthatch",
@@ -11603,7 +11603,7 @@
   },
   {
     "Date": "2012-02-29",
-    "Location": "La Selva (OTS Reserve)",
+    "Location": "Estación Biológica La Selva-OTS",
     "Scientific Name": "Caryothraustes poliogaster",
     "Common Name": "Black-faced Grosbeak",
     "Filename": "2012-02-29-caryothraustes-poliogaster-7V5Z7155.jpg",
