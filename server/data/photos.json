@@ -657,7 +657,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2004-01-19",
     "Scientific Name": "Buteo lineatus",
     "Common Name": "Red-shouldered Hawk",
@@ -666,7 +666,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2004-01-19",
     "Scientific Name": "Corthylio calendula",
     "Common Name": "Ruby-crowned Kinglet",
@@ -675,7 +675,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2004-01-19",
     "Scientific Name": "Plegadis chihi",
     "Common Name": "White-faced Ibis",
@@ -1837,7 +1837,7 @@
     "State/Province": "US-OR"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2004-01-19",
     "Scientific Name": "Buteo jamaicensis",
     "Common Name": "Red-tailed Hawk",
@@ -2539,7 +2539,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2005-01-15",
     "Scientific Name": "Ardea ibis",
     "Common Name": "Western Cattle-Egret",
@@ -2548,7 +2548,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2005-01-15",
     "Scientific Name": "Porzana carolina",
     "Common Name": "Sora",
@@ -3187,7 +3187,7 @@
     "State/Province": "Unknown"
   },
   {
-    "Location": "Fay Ranch Road",
+    "Location": "Kern River Preserve--Fay Ranch Rd.",
     "Date": "2005-06-24",
     "Scientific Name": "Passerculus sandwichensis",
     "Common Name": "Savannah Sparrow",
@@ -3196,7 +3196,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Fay Ranch Road",
+    "Location": "Kern River Preserve--Fay Ranch Rd.",
     "Date": "2005-06-24",
     "Scientific Name": "Passerina caerulea",
     "Common Name": "Blue Grosbeak",
@@ -3259,7 +3259,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2005-06-26",
     "Scientific Name": "Buteo swainsoni",
     "Common Name": "Swainson's Hawk",
@@ -3619,7 +3619,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Los Gatos Creek County Park (aka Oka Ponds)",
+    "Location": "Los Gatos Creek County Park and Oka Ponds",
     "Date": "2005-11-09",
     "Scientific Name": "Colaptes auratus",
     "Common Name": "Northern Flicker",
@@ -3628,7 +3628,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Los Gatos Creek County Park (aka Oka Ponds)",
+    "Location": "Los Gatos Creek County Park and Oka Ponds",
     "Date": "2005-11-09",
     "Scientific Name": "Actitis macularius",
     "Common Name": "Spotted Sandpiper",
@@ -3637,7 +3637,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Los Gatos Creek County Park (aka Oka Ponds)",
+    "Location": "Los Gatos Creek County Park and Oka Ponds",
     "Date": "2005-11-09",
     "Scientific Name": "Calypte anna",
     "Common Name": "Anna's Hummingbird",
@@ -4519,7 +4519,7 @@
     "State/Province": "US-FL"
   },
   {
-    "Location": "Ding Darling NWR",
+    "Location": "Ding Darling NWR (please consider using a more precise location)",
     "Date": "2006-12-28",
     "Scientific Name": "Platalea ajaja",
     "Common Name": "Roseate Spoonbill",
@@ -5095,7 +5095,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Blufftop Coastal Park",
+    "Location": "Blufftop Coastal Park and Poplar Beach",
     "Date": "2007-10-03",
     "Scientific Name": "Spinus tristis",
     "Common Name": "American Goldfinch",
@@ -5851,7 +5851,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2009-02-21",
     "Scientific Name": "Leiothlypis celata",
     "Common Name": "Orange-crowned Warbler",
@@ -5860,7 +5860,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2009-02-21",
     "Scientific Name": "Anser albifrons",
     "Common Name": "Greater White-fronted Goose",
@@ -7786,7 +7786,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Prairie du Chien--La Riviere Park",
+    "Location": "La Riviere Park",
     "Date": "2011-08-07",
     "Scientific Name": "Spizella pusilla",
     "Common Name": "Field Sparrow",
@@ -7795,7 +7795,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Prairie du Chien--La Riviere Park",
+    "Location": "La Riviere Park",
     "Date": "2011-08-07",
     "Scientific Name": "Spizella pusilla",
     "Common Name": "Field Sparrow",
@@ -7867,7 +7867,7 @@
     "State/Province": "US-WI"
   },
   {
-    "Location": "Prairie du Chien--La Riviere Park",
+    "Location": "La Riviere Park",
     "Date": "2011-08-05",
     "Scientific Name": "Sialia sialis",
     "Common Name": "Eastern Bluebird",
@@ -8020,7 +8020,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2012-01-15",
     "Scientific Name": "Buteo jamaicensis",
     "Common Name": "Red-tailed Hawk",
@@ -8029,7 +8029,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Date": "2012-01-15",
     "Scientific Name": "Plegadis chihi",
     "Common Name": "White-faced Ibis",
@@ -8542,7 +8542,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Celery Fields",
+    "Location": "The Celery Fields",
     "Date": "2012-12-24",
     "Scientific Name": "Mycteria americana",
     "Common Name": "Wood Stork",
@@ -8551,7 +8551,7 @@
     "State/Province": "US-FL"
   },
   {
-    "Location": "Celery Fields",
+    "Location": "The Celery Fields",
     "Date": "2012-12-24",
     "Scientific Name": "Corvus ossifragus",
     "Common Name": "Fish Crow",
@@ -8560,7 +8560,7 @@
     "State/Province": "US-FL"
   },
   {
-    "Location": "Celery Fields",
+    "Location": "The Celery Fields",
     "Date": "2012-12-24",
     "Scientific Name": "Corvus ossifragus",
     "Common Name": "Fish Crow",
@@ -8569,7 +8569,7 @@
     "State/Province": "US-FL"
   },
   {
-    "Location": "Celery Fields",
+    "Location": "The Celery Fields",
     "Date": "2012-12-24",
     "Scientific Name": "Botaurus lentiginosus",
     "Common Name": "American Bittern",
@@ -8614,7 +8614,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Los Gatos Creek County Park (aka Oka Ponds)",
+    "Location": "Los Gatos Creek County Park and Oka Ponds",
     "Date": "2013-01-05",
     "Scientific Name": "Zonotrichia querula",
     "Common Name": "Harris's Sparrow",
@@ -8623,7 +8623,7 @@
     "State/Province": "US-CA"
   },
   {
-    "Location": "Los Gatos Creek County Park (aka Oka Ponds)",
+    "Location": "Los Gatos Creek County Park and Oka Ponds",
     "Date": "2013-01-05",
     "Scientific Name": "Zonotrichia querula",
     "Common Name": "Harris's Sparrow",
@@ -8650,7 +8650,7 @@
     "State/Province": "ES-CT"
   },
   {
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Date": "2013-03-01",
     "Scientific Name": "Phalacrocorax carbo",
     "Common Name": "Great Cormorant",
@@ -8659,7 +8659,7 @@
     "State/Province": "ES-CT"
   },
   {
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Date": "2013-03-01",
     "Scientific Name": "Tachybaptus ruficollis",
     "Common Name": "Little Grebe",
@@ -8668,7 +8668,7 @@
     "State/Province": "ES-CT"
   },
   {
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Date": "2013-03-01",
     "Scientific Name": "Anser anser",
     "Common Name": "Graylag Goose",
@@ -8704,7 +8704,7 @@
     "State/Province": "ES-CT"
   },
   {
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Date": "2013-03-01",
     "Scientific Name": "Erithacus rubecula",
     "Common Name": "European Robin",
@@ -8713,7 +8713,7 @@
     "State/Province": "ES-CT"
   },
   {
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Date": "2013-03-01",
     "Scientific Name": "Columba palumbus",
     "Common Name": "Common Wood-Pigeon",
@@ -8749,7 +8749,7 @@
     "State/Province": "ES-AR"
   },
   {
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Date": "2013-03-03",
     "Scientific Name": "Alectoris rufa",
     "Common Name": "Red-legged Partridge",
@@ -9055,7 +9055,7 @@
     "State/Province": "CR-P"
   },
   {
-    "Location": "R\u00edo Tarcoles--Boat Tour",
+    "Location": "Tárcoles--Tour en Bote",
     "Date": "2012-02-23",
     "Scientific Name": "Numenius phaeopus",
     "Common Name": "Whimbrel",
@@ -9064,7 +9064,7 @@
     "State/Province": "CR-P"
   },
   {
-    "Location": "R\u00edo Tarcoles--Boat Tour",
+    "Location": "Tárcoles--Tour en Bote",
     "Date": "2012-02-23",
     "Scientific Name": "Daptrius chimachima",
     "Common Name": "Yellow-headed Caracara",
@@ -9073,7 +9073,7 @@
     "State/Province": "CR-P"
   },
   {
-    "Location": "R\u00edo Tarcoles--Boat Tour",
+    "Location": "Tárcoles--Tour en Bote",
     "Date": "2012-02-23",
     "Scientific Name": "Chloroceryle amazona",
     "Common Name": "Amazon Kingfisher",
@@ -9082,7 +9082,7 @@
     "State/Province": "CR-P"
   },
   {
-    "Location": "R\u00edo Tarcoles--Boat Tour",
+    "Location": "Tárcoles--Tour en Bote",
     "Date": "2012-02-23",
     "Scientific Name": "Jacana spinosa",
     "Common Name": "Northern Jacana",
@@ -9091,7 +9091,7 @@
     "State/Province": "CR-P"
   },
   {
-    "Location": "R\u00edo Tarcoles--Boat Tour",
+    "Location": "Tárcoles--Tour en Bote",
     "Date": "2012-02-23",
     "Scientific Name": "Tigrisoma mexicanum",
     "Common Name": "Bare-throated Tiger-Heron",
@@ -9100,7 +9100,7 @@
     "State/Province": "CR-P"
   },
   {
-    "Location": "R\u00edo Tarcoles--Boat Tour",
+    "Location": "Tárcoles--Tour en Bote",
     "Date": "2012-02-23",
     "Scientific Name": "Cochlearius cochlearius",
     "Common Name": "Boat-billed Heron",
@@ -9109,7 +9109,7 @@
     "State/Province": "CR-P"
   },
   {
-    "Location": "R\u00edo Tarcoles--Boat Tour",
+    "Location": "Tárcoles--Tour en Bote",
     "Date": "2012-02-23",
     "Scientific Name": "Anarhynchus collaris",
     "Common Name": "Collared Plover",
@@ -9190,7 +9190,7 @@
     "State/Province": "CR-A"
   },
   {
-    "Location": "Genovesa--Darwin Bay",
+    "Location": "Genovesa--Bahía Darwin",
     "Date": "2013-12-18",
     "Scientific Name": "Creagrus furcatus",
     "Common Name": "Swallow-tailed Gull",
@@ -9199,7 +9199,7 @@
     "State/Province": "EC-W"
   },
   {
-    "Location": "Genovesa--Darwin Bay",
+    "Location": "Genovesa--Bahía Darwin",
     "Date": "2013-12-18",
     "Scientific Name": "Creagrus furcatus",
     "Common Name": "Swallow-tailed Gull",
@@ -9208,7 +9208,7 @@
     "State/Province": "EC-W"
   },
   {
-    "Location": "Genovesa--Darwin Bay",
+    "Location": "Genovesa--Bahía Darwin",
     "Date": "2013-12-18",
     "Scientific Name": "Leucophaeus fuliginosus",
     "Common Name": "Lava Gull",
@@ -9217,7 +9217,7 @@
     "State/Province": "EC-W"
   },
   {
-    "Location": "Genovesa--Darwin Bay",
+    "Location": "Genovesa--Bahía Darwin",
     "Date": "2013-12-18",
     "Scientific Name": "Geospiza magnirostris",
     "Common Name": "Large Ground-Finch",
@@ -9235,7 +9235,7 @@
     "State/Province": "EC-W"
   },
   {
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Date": "2013-03-01",
     "Scientific Name": "Mareca penelope",
     "Common Name": "Eurasian Wigeon",
@@ -9586,7 +9586,7 @@
     "State/Province": "EC-N"
   },
   {
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Date": "2013-03-01",
     "Scientific Name": "Fringilla coelebs",
     "Common Name": "Common Chaffinch",
@@ -9695,7 +9695,7 @@
   },
   {
     "Date": "2016-04-13",
-    "Location": "Corkscrew Swamp Sanctuary",
+    "Location": "Audubon Corkscrew Swamp Sanctuary",
     "Scientific Name": "Passerina ciris",
     "Common Name": "Painted Bunting",
     "Filename": "2016-04-13-passerina-ciris-6p5a2189.jpg",
@@ -9911,7 +9911,7 @@
   },
   {
     "Date": "2012-02-23",
-    "Location": "R\u00edo Tarcoles--Boat Tour",
+    "Location": "Tárcoles--Tour en Bote",
     "Scientific Name": "Thamnophilus doliatus",
     "Common Name": "Barred Antshrike",
     "Filename": "2012-02-23-thamnophilus-doliatus-7V5Z3266.jpg",
@@ -10046,7 +10046,7 @@
   },
   {
     "Date": "2016-04-14",
-    "Location": "J. N. Ding Darling NWR",
+    "Location": "J. N. Ding Darling NWR (please consider using a more precise location)",
     "Scientific Name": "Setophaga dominica",
     "Common Name": "Yellow-throated Warbler",
     "Filename": "2016-04-14-setophaga-dominica-6P5A2978.jpg",
@@ -10055,7 +10055,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Anisognathus notabilis",
     "Common Name": "Black-chinned Mountain Tanager",
     "Filename": "2016-07-16-anisognathus-notabilis-0L5A8630.jpg",
@@ -10064,7 +10064,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Pachyramphus albogriseus",
     "Common Name": "Black-and-white Becard",
     "Filename": "2016-07-16-pachyramphus-albogriseus-0L5A8604.jpg",
@@ -10073,7 +10073,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Entomodestes coracinus",
     "Common Name": "Black Solitaire",
     "Filename": "2016-07-16-entomodestes-coracinus-0L5A8362.jpg",
@@ -10091,7 +10091,7 @@
   },
   {
     "Date": "2013-03-01",
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Scientific Name": "Phoenicurus ochruros",
     "Common Name": "Black Redstart",
     "Filename": "2013-03-01-phoenicurus-ochruros-_M6C2834.jpg",
@@ -10109,7 +10109,7 @@
   },
   {
     "Date": "2016-07-17",
-    "Location": "Milpe--Milpe Gardens",
+    "Location": "Milpe Bird Sanctuary (including former Milpe Gardens)",
     "Scientific Name": "Ramphastos brevis",
     "Common Name": "Choco Toucan",
     "Filename": "2016-07-17-ramphastos-brevis-0L5A9139.jpg",
@@ -10154,7 +10154,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Chalcothraupis ruficervix",
     "Common Name": "Golden-naped Tanager",
     "Filename": "2016-07-16-tangara-ruficervix-0L5A8554.jpg",
@@ -10172,7 +10172,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Aulacorhynchus haematopygus",
     "Common Name": "Crimson-rumped Toucanet",
     "Filename": "2016-07-16-aulacorhynchus-haematopygus-0L5A8401.jpg",
@@ -10316,7 +10316,7 @@
   },
   {
     "Date": "2016-07-17",
-    "Location": "Milpe--Milpe Gardens",
+    "Location": "Milpe Bird Sanctuary (including former Milpe Gardens)",
     "Scientific Name": "Electron platyrhynchum",
     "Common Name": "Broad-billed Motmot",
     "Filename": "2016-07-17-electron-platyrhynchum-0L5A9930.jpg",
@@ -10325,7 +10325,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Chlorochrysa phoenicotis",
     "Common Name": "Glistening-green Tanager",
     "Filename": "2016-07-16-chlorochrysa-phoenicotis-0L5A8375.jpg",
@@ -10334,7 +10334,7 @@
   },
   {
     "Date": "2016-07-17",
-    "Location": "Milpe--Milpe Gardens",
+    "Location": "Milpe Bird Sanctuary (including former Milpe Gardens)",
     "Scientific Name": "Discosura conversii",
     "Common Name": "Green Thorntail",
     "Filename": "2016-07-17-discosura-conversii-0L5A9796.jpg",
@@ -10343,7 +10343,7 @@
   },
   {
     "Date": "2016-07-17",
-    "Location": "Milpe--Milpe Gardens",
+    "Location": "Milpe Bird Sanctuary (including former Milpe Gardens)",
     "Scientific Name": "Discosura conversii",
     "Common Name": "Green Thorntail",
     "Filename": "2016-07-17-discosura-conversii-0L5A9738.jpg",
@@ -10352,7 +10352,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Tangara arthus",
     "Common Name": "Golden Tanager",
     "Filename": "2016-07-16-tangara-arthus-0L5A8279.jpg",
@@ -10361,7 +10361,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Ixothraupis rufigula",
     "Common Name": "Rufous-throated Tanager",
     "Filename": "2016-07-16-tangara-rufigula-0L5A8249.jpg",
@@ -10406,7 +10406,7 @@
   },
   {
     "Date": "2016-07-17",
-    "Location": "Milpe--Milpe Gardens",
+    "Location": "Milpe Bird Sanctuary (including former Milpe Gardens)",
     "Scientific Name": "Colibri delphinae",
     "Common Name": "Brown Violetear",
     "Filename": "2016-07-17-colibri-delphinae-0L5A0185.jpg",
@@ -10433,7 +10433,7 @@
   },
   {
     "Date": "2016-07-21",
-    "Location": "Española--Punta Suarez",
+    "Location": "Española--Punta Suárez",
     "Scientific Name": "Phoebastria irrorata",
     "Common Name": "Waved Albatross",
     "Filename": "2016-07-21-phoebastria-irrorata-0L5A1700.jpg",
@@ -10442,7 +10442,7 @@
   },
   {
     "Date": "2016-07-21",
-    "Location": "Española--Punta Suarez",
+    "Location": "Española--Punta Suárez",
     "Scientific Name": "Haematopus palliatus",
     "Common Name": "American Oystercatcher",
     "Filename": "2016-07-21-haematopus-palliatus-0L5A2302.jpg",
@@ -10469,7 +10469,7 @@
   },
   {
     "Date": "2013-12-18",
-    "Location": "Genovesa--Darwin Bay",
+    "Location": "Genovesa--Bahía Darwin",
     "Scientific Name": "Sula granti",
     "Common Name": "Nazca Booby",
     "Filename": "2013-12-18-sula-granti-7V5Z3036.jpg",
@@ -10487,7 +10487,7 @@
   },
   {
     "Date": "2016-07-21",
-    "Location": "Española--Punta Suarez",
+    "Location": "Española--Punta Suárez",
     "Scientific Name": "Sula granti",
     "Common Name": "Nazca Booby",
     "Filename": "2016-07-21-sula-granti-0L5A1438.jpg",
@@ -10667,7 +10667,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Crotophaga ani",
     "Common Name": "Smooth-billed Ani",
     "Filename": "2016-07-16-crotophaga-ani-0L5A8872.jpg",
@@ -10721,7 +10721,7 @@
   },
   {
     "Date": "2016-07-21",
-    "Location": "Española--Punta Suarez",
+    "Location": "Española--Punta Suárez",
     "Scientific Name": "Creagrus furcatus",
     "Common Name": "Swallow-tailed Gull",
     "Filename": "2016-07-21-creagrus-furcatus-0L5A1533.jpg",
@@ -10946,7 +10946,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Piranga leucoptera",
     "Common Name": "White-winged Tanager",
     "Filename": "2016-07-16-piranga-leucoptera-0L5A8084.jpg",
@@ -10955,7 +10955,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Pipreola jucunda",
     "Common Name": "Orange-breasted Fruiteater",
     "Filename": "2016-07-16-pipreola-jucunda-0L5A8103.jpg",
@@ -10964,7 +10964,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Tangara parzudakii",
     "Common Name": "Flame-faced Tanager",
     "Filename": "2016-07-16-tangara-parzudakii-0L5A8155.jpg",
@@ -11135,7 +11135,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Pipreola jucunda",
     "Common Name": "Orange-breasted Fruiteater",
     "Filename": "2016-07-16-pipreola-jucunda-0L5A8686.jpg",
@@ -11144,7 +11144,7 @@
   },
   {
     "Date": "2016-07-17",
-    "Location": "Milpe--Milpe Gardens",
+    "Location": "Milpe Bird Sanctuary (including former Milpe Gardens)",
     "Scientific Name": "Ramphastos brevis",
     "Common Name": "Choco Toucan",
     "Filename": "2016-07-17-ramphastos-brevis-0L5A9126.jpg",
@@ -11153,7 +11153,7 @@
   },
   {
     "Date": "2016-04-14",
-    "Location": "J. N. Ding Darling NWR",
+    "Location": "J. N. Ding Darling NWR (please consider using a more precise location)",
     "Scientific Name": "Pandion haliaetus",
     "Common Name": "Osprey",
     "Filename": "2016-04-14-pandion-haliaetus-6P5A2840.jpg",
@@ -11162,7 +11162,7 @@
   },
   {
     "Date": "2016-04-14",
-    "Location": "J. N. Ding Darling NWR",
+    "Location": "J. N. Ding Darling NWR (please consider using a more precise location)",
     "Scientific Name": "Vireo solitarius",
     "Common Name": "Blue-headed Vireo",
     "Filename": "2016-04-14-vireo-solitarius-6P5A2907.jpg",
@@ -11198,7 +11198,7 @@
   },
   {
     "Date": "2016-07-16",
-    "Location": "Reserva Amagusa",
+    "Location": "Reserva Mashpi-Amagusa (Sergio y Doris)",
     "Scientific Name": "Chlorochrysa phoenicotis",
     "Common Name": "Glistening-green Tanager",
     "Filename": "2016-07-16-chlorochrysa-phoenicotis-0L5A8491.jpg",
@@ -11387,7 +11387,7 @@
   },
   {
     "Date": "2016-07-23",
-    "Location": "Isla Santa Fe",
+    "Location": "Santa Fe",
     "Scientific Name": "Zenaida galapagoensis",
     "Common Name": "Galapagos Dove",
     "Filename": "2016-07-23-zenaida-galapagoensis-0L5A3730.jpg",
@@ -11459,7 +11459,7 @@
   },
   {
     "Date": "2013-03-01",
-    "Location": "Delta del Llobregat PNat--Area general",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
     "Scientific Name": "Prunella collaris",
     "Common Name": "Alpine Accentor",
     "Filename": "2013-03-01-prunella-collaris-_M6C2763.jpg",
@@ -11621,7 +11621,7 @@
   },
   {
     "Date": "2009-02-21",
-    "Location": "Merced NWR",
+    "Location": "Merced NWR (Please use a more specific hotspot where possible.)",
     "Scientific Name": "Anser caerulescens",
     "Common Name": "Snow Goose",
     "Filename": "2009-02-21-anser-caerulescens-7V5Z1976.jpg",
@@ -11882,7 +11882,7 @@
   },
   {
     "Date": "2019-06-21",
-    "Location": "Laguna Batuco",
+    "Location": "SN Laguna Batuco",
     "Scientific Name": "Thinocorus rumicivorus",
     "Common Name": "Least Seedsnipe",
     "Filename": "2019-06-21-thinocorus-rumicivorus-2P9A9200.jpg",
@@ -12071,7 +12071,7 @@
   },
   {
     "Date": "2013-03-01",
-    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible) (use specific hotspot if possible)",
     "Scientific Name": "Tadorna tadorna",
     "Common Name": "Common Shelduck",
     "Filename": "2013-03-01-tadorna-tadorna-_M6C2482.jpg",
@@ -12080,7 +12080,7 @@
   },
   {
     "Date": "2013-03-01",
-    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible)",
+    "Location": "Delta del Llobregat PNat--Area general (use specific hotspot if possible) (use specific hotspot if possible)",
     "Scientific Name": "Fringilla coelebs",
     "Common Name": "Common Chaffinch",
     "Filename": "2013-03-01-fringilla-coelebs-_M6C2865.jpg",
